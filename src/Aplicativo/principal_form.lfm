@@ -1,0 +1,31 @@
+object MenuPrincipalForm: TMenuPrincipalForm
+  Left = 415
+  Height = 240
+  Top = 139
+  Width = 320
+  Caption = 'MenuPrincipalForm'
+  ClientHeight = 220
+  ClientWidth = 320
+  Menu = MainMenu1
+  LCLVersion = '2.2.0.4'
+  object Button1: TButton
+    Left = 107
+    Height = 25
+    Top = 99
+    Width = 75
+    Caption = 'Button1'
+    OnClick = Button1Click
+    TabOrder = 0
+  end
+  object MainMenu1: TMainMenu
+    Left = 53
+    Top = 26
+    object MenuItem1: TMenuItem
+      Caption = '&Utilitários'
+      object MenuItem2: TMenuItem
+        Caption = '&Gerador de Código'
+        OnClick = MenuItem2Click
+      end
+    end
+  end
+end
