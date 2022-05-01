@@ -41,11 +41,13 @@ var
   produtoRepo: TProdutoRepository;
 begin
   produto := TProdutoModel.Create;
-  produto.ID := 10;
-  produto.Nome := 'Rodrigo Castro Eleotério';
+  produto.ID := produtoRepo.GetNextSequence;
+  produto.Nome := 'Rodrigo Castro Eleotério' + IntToStr(produto.Id);
 
   produtoRepo := TProdutoRepository.Create;
-  produto := produtoRepo.FindByID(0);
+  produtoRepo.Insert(produto);
+  ShowMessage(FloatToStr(produto.DataCriacao));
+  //produto := produtoRepo.FindByPK(1);
 end;
 
 procedure TMenuPrincipalForm.MenuItem2Click(Sender: TObject);

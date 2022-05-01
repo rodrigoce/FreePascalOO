@@ -1,0 +1,29 @@
+object ConexaoDM: TConexaoDM
+  OldCreateOrder = False
+  Height = 174
+  HorizontalOffset = 285
+  VerticalOffset = 119
+  Width = 201
+  object Conexao: TIBConnection
+    Connected = False
+    LoginPrompt = False
+    AfterConnect = ConexaoAfterConnect
+    DatabaseName = 'D:\Rodrigo\FreePascalOO\DB\APLICACAO.FDB'
+    KeepConnection = True
+    Password = 'masterkey'
+    Transaction = Transacao
+    UserName = 'SYSDBA'
+    HostName = 'localhost'
+    CheckTransactionParams = False
+    UseConnectionCharSetIfNone = False
+    Left = 88
+    Top = 32
+  end
+  object Transacao: TSQLTransaction
+    Active = False
+    Action = caCommit
+    Database = Conexao
+    Left = 88
+    Top = 104
+  end
+end

@@ -1,0 +1,3 @@
+--** CRIAR O BANCO **
+-- abrir o ISQL TOOL e
+-- create database 'd:\rodrigo\freepascaloo\db\Aplicacao.fdb';

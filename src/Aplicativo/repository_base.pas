@@ -5,7 +5,7 @@ unit repository_base;
 interface
 
 uses
-  Classes, SysUtils, Dialogs, orm, TypInfo, StrUtils;
+  Classes, SysUtils, Dialogs, orm, TypInfo, StrUtils, SQLDB, DateUtils;
 
 type
 
@@ -13,16 +13,21 @@ type
 
   generic TRepositoryBase<T: class> = class
     private
-      function GenerateSelectById(table: TORMTable): string;
+      function GenerateSelectByPK(table: TORMTable): string;
+      function GenerateInsert(table: TORMTable): string;
     public
-      function FindByID(Id: Integer): T;
+      function FindByPK(Id: Integer): T;
+      function GetNextSequence: Integer;
+      procedure Insert(model: T);
   end;
 
 implementation
 
+uses conexao_dm;
+
 { TRepositoryBase }
 
-function TRepositoryBase.GenerateSelectById(table: TORMTable): string;
+function TRepositoryBase.GenerateSelectByPK(table: TORMTable): string;
 var
   i: Integer;
   s: string;
@@ -40,23 +45,100 @@ begin
   Result := s;
 end;
 
-function TRepositoryBase.FindByID(Id: Integer): T;
+function TRepositoryBase.GenerateInsert(table: TORMTable): string;
+var
+  i: Integer;
+  s: string;
+begin
+  s := 'insert into ' + table.DBTableName + '(' + LineEnding;
+
+  for i := 0 to table.FieldList.Count -1 do
+  begin
+    s := s + '  ' + table.FieldList[i].DBColumnName;
+    s := s + IfThen(i < table.FieldList.Count -1, ', ', ')') + LineEnding;
+  end;
+  s := s + 'values ( ' + LineEnding;
+
+  for i := 0 to table.FieldList.Count -1 do
+  begin
+    s := s + '  :' + table.FieldList[i].DBColumnName;
+    s := s + IfThen(i < table.FieldList.Count -1, ', ', ')') + LineEnding;
+  end;
+
+  Result := s;
+end;
+
+function TRepositoryBase.FindByPK(Id: Integer): T;
 var
   table: TORMTable;
+  field: TORMField;
   model: T;
-  select: string;
+  q:TSQLQuery;
 begin
 
   table := TORM.FindTableByName(T.ClassName);
 
-  select := GenerateSelectById(table);
-  ShowMessage(select);
+  q := TSQLQuery.Create(nil);
+  q.DataBase := ConexaoDm.Conexao;
+  q.SQL.Text := GenerateSelectByPK(table);
+  q.ParamByName('Id').Value := Id;
+  q.Open;
 
   model := T.Create;
-  SetPropValue(model, 'Nome', 'Rodrigo');
+
+  for field in table.FieldList do
+  begin
+    if not q.FieldByName(field.DBColumnName).IsNull then
+      SetPropValue(model, field.PPropInfo, q.FieldByName(field.DBColumnName).Value);
+  end;
+
+  q.Close;
+  q.Free;
 
   Result := model;
 end;
+
+function TRepositoryBase.GetNextSequence: Integer;
+var
+  table: TORMTable;
+  q: TSQLQuery;
+begin
+  table := TORM.FindTableByName(T.ClassName);
+
+  q := TSQLQuery.Create(nil);
+  q.DataBase := ConexaoDm.Conexao;
+  q.SQL.Text := 'select next value for SEQUENCE_' + table.DBTableName + ' from RDB$DATABASE';
+  q.Open;
+
+  Result := q.Fields[0].AsInteger;
+
+  q.Close;
+  q.Free;
+end;
+
+procedure TRepositoryBase.Insert(model: T);
+var
+  table: TORMTable;
+  field: TORMField;
+  q:TSQLQuery;
+begin
+
+  table := TORM.FindTableByName(T.ClassName);
+
+  q := TSQLQuery.Create(nil);
+  q.DataBase := ConexaoDm.Conexao;
+  q.SQL.Text := GenerateInsert(table);
+
+  for field in table.FieldList do
+  begin
+    q.ParamByName(field.DBColumnName).Value := GetPropValue(model, field.PPropInfo);
+  end;
+
+  q.ExecSQL;;
+  q.Free;
+
+end;
+
 
 end.
 
