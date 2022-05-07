@@ -32,7 +32,7 @@ var
 
 implementation
 
-uses orm;
+uses mini_orm;
 
 {$R *.lfm}
 
@@ -40,11 +40,11 @@ uses orm;
 
 procedure TGeradorDeCodigoForm.FormShow(Sender: TObject);
 var
-  table: TORMTable;
+  table: TORMEntity;
 begin
-  for table in TORM.TableList do
+  for table in TORM.EntityList do
   begin
-    ListBox1.AddItem(table.ModelClassName, table);
+    ListBox1.AddItem(table.EntityClassName, table);
   end;
 end;
 

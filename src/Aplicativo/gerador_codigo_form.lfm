@@ -1,7 +1,7 @@
 object GeradorDeCodigoForm: TGeradorDeCodigoForm
-  Left = 310
+  Left = 291
   Height = 240
-  Top = 273
+  Top = 364
   Width = 650
   Caption = 'Gerador de Código'
   ClientHeight = 240

@@ -48,23 +48,23 @@
         <ResourceBaseClass Value="Form"/>
       </Unit>
       <Unit>
-        <Filename Value="produto_model.pas"/>
+        <Filename Value="produto_entity.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit>
       <Unit>
-        <Filename Value="model_base.pas"/>
+        <Filename Value="entity_base.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit>
       <Unit>
-        <Filename Value="orm.pas"/>
+        <Filename Value="mini_orm.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit>
       <Unit>
-        <Filename Value="repository_base.pas"/>
+        <Filename Value="dal_base.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit>
       <Unit>
-        <Filename Value="produto_repository.pas"/>
+        <Filename Value="produto_dal.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit>
       <Unit>
@@ -75,7 +75,7 @@
         <ResourceBaseClass Value="Form"/>
       </Unit>
       <Unit>
-        <Filename Value="usuario_model.pas"/>
+        <Filename Value="usuario_entity.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit>
       <Unit>

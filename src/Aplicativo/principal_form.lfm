@@ -1,7 +1,7 @@
 object MenuPrincipalForm: TMenuPrincipalForm
-  Left = 415
+  Left = 418
   Height = 240
-  Top = 139
+  Top = 141
   Width = 320
   Caption = 'MenuPrincipalForm'
   ClientHeight = 220
@@ -16,6 +16,15 @@ object MenuPrincipalForm: TMenuPrincipalForm
     Caption = 'Button1'
     OnClick = Button1Click
     TabOrder = 0
+  end
+  object Button2: TButton
+    Left = 108
+    Height = 25
+    Top = 162
+    Width = 75
+    Caption = 'Button2'
+    OnClick = Button2Click
+    TabOrder = 1
   end
   object MainMenu1: TMainMenu
     Left = 53

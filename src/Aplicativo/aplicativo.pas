@@ -10,8 +10,8 @@ uses
   athreads,
   {$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms, lazcontrols, principal_form, produto_model, orm,
-  repository_base, produto_repository, gerador_codigo_form, usuario_model, 
+  Forms, lazcontrols, principal_form, produto_entity, mini_orm,
+  dal_base, produto_dal, gerador_codigo_form, usuario_entity,
 conexao_dm
   { you can add units after this };
 

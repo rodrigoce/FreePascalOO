@@ -1,16 +1,16 @@
-unit model_base;
+unit entity_base;
 
 {$mode ObjFPC}{$H+}
 
 interface
 
 uses
-  Classes, SysUtils, TypInfo;
+  Classes, SysUtils, TypInfo, Variants;
 
 type
-  { TModelBase }
+  { TEntityBase }
 
-  TModelBase = class
+  TEntityBase = class
     private
       FId: LongInt;
       FDataCriacao: TDateTime;
@@ -20,8 +20,7 @@ type
       FIdUserAtualizacao: LongInt;
       FIdUserExclusao: LongInt;
     public
-      function Meta: string;
-      function FindPropInfoModel(const PropName: string): PPropInfo;
+      function AsString: string;
     published
       property Id: LongInt read FId write FId;
       property DataCriacao: TDateTime read FDataCriacao write FDataCriacao;
@@ -35,9 +34,9 @@ type
 
 implementation
 
-{ TModelBase }
+{ TEntityBase }
 
-function TModelBase.Meta: string;
+function TEntityBase.AsString: string;
 var
   i: Integer;
   vpTypeInfo: PTypeInfo;
@@ -53,14 +52,10 @@ begin
   Result := '';
   for i := 0 to vPTypeData^.PropCount -1 do
   begin
-    Result := Result + vPPropList^[i]^.Name + ' ';
-    Result := Result + vPPropList^[i]^.PropType^.Name + ' ';
+    Result := Result + vPPropList^[i]^.Name + ': ';
+    Result := Result + vPPropList^[i]^.PropType^.Name + ' -> ';
+    Result := Result + VarToStr(GetPropValue(Self, vPPropList^[i])) + LineEnding;
   end;
-end;
-
-function TModelBase.FindPropInfoModel(const PropName: string): PPropInfo;
-begin
-  Result := FindPropInfo(Self, PropName);
 end;
 
 end.

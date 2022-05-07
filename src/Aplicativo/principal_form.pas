@@ -13,10 +13,12 @@ type
 
   TMenuPrincipalForm = class(TForm)
     Button1: TButton;
+    Button2: TButton;
     MainMenu1: TMainMenu;
     MenuItem1: TMenuItem;
     MenuItem2: TMenuItem;
     procedure Button1Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
     procedure MenuItem2Click(Sender: TObject);
   private
 
@@ -29,7 +31,7 @@ var
 
 implementation
 
-uses produto_repository, produto_model, orm, gerador_codigo_form;
+uses produto_dal, produto_entity, mini_orm, gerador_codigo_form;
 
 {$R *.lfm}
 
@@ -37,17 +39,27 @@ uses produto_repository, produto_model, orm, gerador_codigo_form;
 
 procedure TMenuPrincipalForm.Button1Click(Sender: TObject);
 var
-  produto: TProdutoModel;
-  produtoRepo: TProdutoRepository;
+  produto: TProdutoEntity;
+  produtoDal: TProdutoDAL;
 begin
-  produto := TProdutoModel.Create;
-  produto.ID := produtoRepo.GetNextSequence;
+  produtoDal := TProdutoDAL.Create;
+  produto := TProdutoEntity.Create;
+  produto.ID := produtoDal.GetNextSequence;
   produto.Nome := 'Rodrigo Castro Eleotério' + IntToStr(produto.Id);
+  ShowMessage(produto.AsString);
+  produtoDal.Insert(produto);
+  produto.DataAtualizacao := Now;
+  produtoDal.Update(produto);
+  produto := produtoDal.FindByPK(produto.Id);
+  ShowMessage(produto.AsString);
+end;
 
-  produtoRepo := TProdutoRepository.Create;
-  produtoRepo.Insert(produto);
-  ShowMessage(FloatToStr(produto.DataCriacao));
-  //produto := produtoRepo.FindByPK(1);
+procedure TMenuPrincipalForm.Button2Click(Sender: TObject);
+var
+  a: string;
+begin
+  a := 'oi1';
+  ShowMessage(a);
 end;
 
 procedure TMenuPrincipalForm.MenuItem2Click(Sender: TObject);
