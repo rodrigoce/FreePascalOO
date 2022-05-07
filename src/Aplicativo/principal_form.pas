@@ -43,6 +43,7 @@ var
   produtoDal: TProdutoDAL;
 begin
   produtoDal := TProdutoDAL.Create;
+  produtoDal.ShowSQLAndParams := True;
   produto := TProdutoEntity.Create;
   produto.ID := produtoDal.GetNextSequence;
   produto.Nome := 'Rodrigo Castro Eleotério' + IntToStr(produto.Id);

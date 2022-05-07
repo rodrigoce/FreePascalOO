@@ -11,10 +11,10 @@ uses
 type
 
   {Records}
-  TMultStrResult = record
+  {TMultStrResult = record
     Result1: string;
     Result2: string;
-  end;
+  end;}
 
   {Forward Declarations}
 
@@ -48,14 +48,22 @@ type
   {TORMField}
 
   TORMField = class
+    private
+      FDBColumnName: string;
+      FEntityFieldName: string;
+      FDBType: string;
+      FLength: Integer;
+      FIsPK: Boolean;
+      FHasSequence: Boolean;
+      FPPropInfo: PPropInfo;
     public
-      DBColumnName: string;
-      EntityFieldName: string;
-      DBType: string;
-      Length: Integer;
-      IsPK: Boolean;
-      HasSequence: Boolean;
-      PPropInfo: PPropInfo;
+      property DBColumnName: string read FDBColumnName;
+      property EntityFieldName: string read FEntityFieldName;
+      property DBType: string read FDBType;
+      property Length: Integer read FLength;
+      property IsPK: Boolean read FIsPK;
+      property HasSequence: Boolean read FHasSequence;
+      property PPropInfo: PPropInfo read FPPropInfo;
   end;
 
   TORMEntityList = specialize TList<TORMEntity>;
@@ -77,13 +85,13 @@ type
 
   TORMMapBuilder = class
     private
-      function MapField(DBFieldName, EntityFieldName: string): TORMField;
+      function MapField(ADBFieldName, AEntityFieldName: string): TORMField;
   public
-    function MapModel(ClassOfEntity: TClass; DBTableName: string): TORMMapBuilder;
-    function MapSequenceInt32PK(DBFieldName, EntityFieldName: string): TORMMapBuilder;
-    function MapString(DBFieldName, EntityFieldName: string; Lenght: Integer): TORMMapBuilder;
-    function MapDateTime(DBFieldName, EntityFieldName: string): TORMMapBuilder;
-    function MapInt32(DBFieldName, EntityFieldName: string): TORMMapBuilder;
+    function MapModel(AClassOfEntity: TClass; ADBTableName: string): TORMMapBuilder;
+    function MapSequenceInt32PK(ADBFieldName, AEntityFieldName: string): TORMMapBuilder;
+    function MapString(ADBFieldName, AEntityFieldName: string; ALenght: Integer): TORMMapBuilder;
+    function MapDateTime(ADBFieldName, AEntityFieldName: string): TORMMapBuilder;
+    function MapInt32(ADBFieldName, AEntityFieldName: string): TORMMapBuilder;
   end;
 
 
@@ -208,7 +216,7 @@ end;
 
 { TORMMapBuilder }
 
-function TORMMapBuilder.MapField(DBFieldName, EntityFieldName: string
+function TORMMapBuilder.MapField(ADBFieldName, AEntityFieldName: string
   ): TORMField;
 var
   field: TORMField;
@@ -217,65 +225,65 @@ begin
   entity := TORM.EntityList.Last;
 
   field := TORMField.Create;
-  field.DBColumnName := DBFieldName;
-  field.EntityFieldName := EntityFieldName;
-  field.PPropInfo := FindPropInfo(entity.ClassOfEntity, EntityFieldName) ;
+  field.FDBColumnName := ADBFieldName;
+  field.FEntityFieldName := AEntityFieldName;
+  field.FPPropInfo := FindPropInfo(entity.ClassOfEntity, AEntityFieldName) ;
 
   entity.FieldList.Add(field);
 
   Result := field;
 end;
 
-function TORMMapBuilder.MapModel(ClassOfEntity: TClass; DBTableName: string): TORMMapBuilder;
+function TORMMapBuilder.MapModel(AClassOfEntity: TClass; ADBTableName: string): TORMMapBuilder;
 var
   entity: TORMEntity;
 begin
-  entity := TORMEntity.Create(ClassOfEntity.ClassName, DBTableName, ClassOfEntity);
+  entity := TORMEntity.Create(AClassOfEntity.ClassName, ADBTableName, AClassOfEntity);
 
   TORM.EntityList.Add(entity);
 
   Result := Self;
 end;
 
-function TORMMapBuilder.MapString(DBFieldName, EntityFieldName: string; Lenght: Integer
+function TORMMapBuilder.MapString(ADBFieldName, AEntityFieldName: string; ALenght: Integer
   ): TORMMapBuilder;
 var
   field: TORMField;
 begin
-  field := MapField(DBFieldName, EntityFieldName);
-  field.Length := Lenght;
-  field.DBType := 'VarChar(' + IntToStr(Lenght) + ')';
+  field := MapField(ADBFieldName, AEntityFieldName);
+  field.FLength := ALenght;
+  field.FDBType := 'VarChar(' + IntToStr(ALenght) + ')';
   Result := Self;
 end;
 
-function TORMMapBuilder.MapSequenceInt32PK(DBFieldName, EntityFieldName: string
+function TORMMapBuilder.MapSequenceInt32PK(ADBFieldName, AEntityFieldName: string
   ): TORMMapBuilder;
 var
   field: TORMField;
 begin
-  field := MapField(DBFieldName, EntityFieldName);
-  field.DBType := 'Integer';
-  field.IsPK := True;
-  field.HasSequence := True;
+  field := MapField(ADBFieldName, AEntityFieldName);
+  field.FDBType := 'Integer';
+  field.FIsPK := True;
+  field.FHasSequence := True;
   Result := Self;
 end;
 
-function TORMMapBuilder.MapDateTime(DBFieldName, EntityFieldName: string): TORMMapBuilder;
+function TORMMapBuilder.MapDateTime(ADBFieldName, AEntityFieldName: string): TORMMapBuilder;
 var
   field: TORMField;
 begin
-  field := MapField(DBFieldName, EntityFieldName);
-  field.DBType := 'Timestamp';
+  field := MapField(ADBFieldName, AEntityFieldName);
+  field.FDBType := 'Timestamp';
   Result := Self;
 end;
 
-function TORMMapBuilder.MapInt32(DBFieldName, EntityFieldName: string
+function TORMMapBuilder.MapInt32(ADBFieldName, AEntityFieldName: string
   ): TORMMapBuilder;
 var
   field: TORMField;
 begin
-  field := MapField(DBFieldName, EntityFieldName);
-  field.DBType := 'Integer';
+  field := MapField(ADBFieldName, AEntityFieldName);
+  field.FDBType := 'Integer';
   Result := Self;
 end;
 

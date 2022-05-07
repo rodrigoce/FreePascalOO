@@ -5,7 +5,7 @@ unit dal_base;
 interface
 
 uses
-  Classes, SysUtils, Dialogs, mini_orm, TypInfo, StrUtils, SQLDB, DateUtils;
+  Classes, SysUtils, Dialogs, mini_orm, TypInfo, StrUtils, SQLDB, DateUtils, Variants;
 
 type
 
@@ -13,8 +13,9 @@ type
 
   generic TDALBase<T: class> = class
     private
-      function GenerateInsert(ormEntity: TORMEntity): string;
+      FShowSQLAndParams: Boolean;
     public
+      property ShowSQLAndParams: Boolean read FShowSQLAndParams write FShowSQLAndParams;
       // para chaves compostas pode ser passado VarArrayOf
       function FindByPK(Id: Variant): T;
       // pega próximo valor da sequence
@@ -29,29 +30,6 @@ uses conexao_dm;
 
 { TDALBase }
 
-function TDALBase.GenerateInsert(ormEntity: TORMEntity): string;
-var
-  i: Integer;
-  s: string;
-begin
-  s := 'insert into ' + ormEntity.DBTableName + '(' + LineEnding;
-
-  for i := 0 to ormEntity.FieldList.Count -1 do
-  begin
-    s := s + '  ' + ormEntity.FieldList[i].DBColumnName;
-    s := s + IfThen(i < ormEntity.FieldList.Count -1, ', ', ')') + LineEnding;
-  end;
-  s := s + 'values ( ' + LineEnding;
-
-  for i := 0 to ormEntity.FieldList.Count -1 do
-  begin
-    s := s + '  :' + ormEntity.FieldList[i].DBColumnName;
-    s := s + IfThen(i < ormEntity.FieldList.Count -1, ', ', ')') + LineEnding;
-  end;
-
-  Result := s;
-end;
-
 function TDALBase.FindByPK(Id: Variant): T;
 var
   ormEntity: TORMEntity;
@@ -59,7 +37,7 @@ var
   entity: T;
   q: TSQLQuery;
   i, countPKFields: Integer;
-  s: string;
+  sql, strParams: string;
 begin
 
   ormEntity := TORM.FindORMEntity(T.ClassName);
@@ -69,16 +47,16 @@ begin
   // monta o select
   //
 
-  s := 'select ' + LineEnding;
+  sql := 'select ' + LineEnding;
 
   i := 0;
   for ormField in ormEntity.FieldList do
   begin
-    s := s + '  ' + ormField.DBColumnName;
-    s := s + IfThen(i < ormEntity.FieldList.Count -1, ', ', ' ') + LineEnding;
+    sql := sql + '  ' + ormField.DBColumnName;
+    sql := sql + IfThen(i < ormEntity.FieldList.Count -1, ', ', ' ') + LineEnding;
     Inc(i);
   end;
-  s := s + 'from ' + ormEntity.DBTableName + LineEnding +
+  sql := sql + 'from ' + ormEntity.DBTableName + LineEnding +
     'where';
 
   if (countPKFields = 0) then
@@ -89,8 +67,8 @@ begin
   begin
     if ormField.IsPK then
     begin
-      s := s + '  ' + ormField.DBColumnName + ' = :' + ormField.DBColumnName;
-      s := s + IfThen(i < countPKFields, LineEnding + '  and', '');
+      sql := sql + '  ' + ormField.DBColumnName + ' = :' + ormField.DBColumnName;
+      sql := sql + IfThen(i < countPKFields, LineEnding + '  and', '');
       Inc(i);
     end;
   end;
@@ -101,14 +79,17 @@ begin
 
   q := TSQLQuery.Create(nil);
   q.DataBase := ConexaoDm.Conexao;
-  q.SQL.Text := s;
+  q.SQL.Text := sql;
 
   // implementar alimentar o parâmetros de chave composta como
   // em TDataSet.Locate
   for ormField in ormEntity.FieldList do
   begin
     if ormField.IsPK then
+    begin
       q.ParamByName(ormField.DBColumnName).Value := Id;
+      strParams := strParams + VarToStr(Id) + LineEnding;
+    end;
   end;
 
   q.Open;
@@ -127,6 +108,10 @@ begin
 
   q.Close;
   q.Free;
+
+  if ShowSQLAndParams then
+    ShowMessage(sql + LineEnding + LineEnding + strParams);
+
 
   Result := entity;
 end;
@@ -154,21 +139,55 @@ var
   ormEntity: TORMEntity;
   ormField: TORMField;
   q: TSQLQuery;
+  i: Integer;
+  sql, strParams: string;
 begin
 
   ormEntity := TORM.FindORMEntity(T.ClassName);
 
+  //
+  // gera o sql
+  //
+
+  sql := 'insert into ' + ormEntity.DBTableName + ' (' + LineEnding;
+
+  i := 0;
+  for ormField in ormEntity.FieldList do
+  begin
+    sql := sql + '  ' + ormField.DBColumnName;
+    sql := sql + IfThen(i < ormEntity.FieldList.Count -1, ', ', ')') + LineEnding;
+    Inc(i);
+  end;
+  sql := sql + 'values ( ' + LineEnding;
+
+  i := 0;
+  for ormField in ormEntity.FieldList do
+  begin
+    sql := sql + '  :' + ormField.DBColumnName;
+    sql := sql + IfThen(i < ormEntity.FieldList.Count -1, ', ', ')') + LineEnding;
+    Inc(i);
+  end;
+
+  //
+  // alimentas os parâmetros
+  //
+
   q := TSQLQuery.Create(nil);
   q.DataBase := ConexaoDm.Conexao;
-  q.SQL.Text := GenerateInsert(ormEntity);
+  q.SQL.Text := sql;
 
+  strParams := '';
   for ormField in ormEntity.FieldList do
   begin
     q.ParamByName(ormField.DBColumnName).Value := GetPropValue(entity, ormField.PPropInfo);
+    strParams := strParams + VarToStr(GetPropValue(entity, ormField.PPropInfo)) + LineEnding;
   end;
 
   q.ExecSQL;;
   q.Free;
+
+  if ShowSQLAndParams then
+    ShowMessage(sql + LineEnding + strParams);
 
 end;
 
@@ -177,20 +196,21 @@ var
   ormEntity: TORMEntity;
   ormField: TORMField;
   q: TSQLQuery;
-  s: string;
+  sql, strParams: string;
   i, countPKFields, countCommonFields: Integer;
 
 begin
 
+  ormEntity := TORM.FindORMEntity(T.ClassName);
   countPKFields := ormEntity.CountPK;
   countCommonFields := ormEntity.FieldList.Count - countPKFields;
 
   //
   // monta a string com o update
   //
-  ormEntity := TORM.FindORMEntity(T.ClassName);
 
-  s := 'update ' + ormEntity.DBTableName + ' set ' + LineEnding;
+  sql := 'update ' + ormEntity.DBTableName + ' set ' + LineEnding;
+  strParams := '';
 
   i := 0;
   for ormField in ormEntity.FieldList do
@@ -198,13 +218,14 @@ begin
     // apenas campos não PK entram no update
     if not ormField.IsPK then
     begin
-      s := s + '  ' + ormField.DBColumnName + ' = :' + ormField.DBColumnName;
-      s := s + IfThen(i < countCommonFields -1, ', ', '') + LineEnding;
+      sql := sql + '  ' + ormField.DBColumnName + ' = :' + ormField.DBColumnName;
+      sql := sql + IfThen(i < countCommonFields -1, ', ', '') + LineEnding;
+      strParams := strParams + VarToStr(GetPropValue(entity, ormField.PPropInfo)) + LineEnding;
       Inc(i);
     end;
   end;
 
-  s := s + 'where' + LineEnding;
+  sql := sql + 'where' + LineEnding;
 
   if (countPKFields = 0) then
     raise Exception.Create(ormEntity.DBTableName + ' não tem chave primária não pode ser atualizada.');
@@ -214,8 +235,9 @@ begin
   begin
     if ormField.IsPK then
     begin
-      s := s + '  ' + ormField.DBColumnName + ' = :' + ormField.DBColumnName;
-      s := s + IfThen(i < countPKFields, LineEnding + '  and', '');
+      sql := sql + '  ' + ormField.DBColumnName + ' = :' + ormField.DBColumnName;
+      sql := sql + IfThen(i < countPKFields, LineEnding + '  and', '');
+      strParams := strParams + VarToStr(GetPropValue(entity, ormField.PPropInfo)) + LineEnding;
       Inc(i);
     end;
   end;
@@ -226,17 +248,18 @@ begin
 
   q := TSQLQuery.Create(nil);
   q.DataBase := ConexaoDm.Conexao;
-  q.SQL.Text := s;
+  q.SQL.Text := sql;
 
   for ormField in ormEntity.FieldList do
   begin
     q.ParamByName(ormField.DBColumnName).Value := GetPropValue(entity, ormField.PPropInfo);
   end;
 
-  ShowMessage(s);
-
   q.ExecSQL;;
   q.Free;
+
+  if ShowSQLAndParams then
+    ShowMessage(sql + LineEnding + LineEnding + strParams);
 
 end;
 
