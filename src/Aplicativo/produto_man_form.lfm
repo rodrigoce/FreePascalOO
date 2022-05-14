@@ -1,0 +1,43 @@
+object ProdutoManForm: TProdutoManForm
+  Left = 372
+  Height = 470
+  Top = 221
+  Width = 632
+  Caption = 'ProdutoManForm'
+  ClientHeight = 470
+  ClientWidth = 632
+  LCLVersion = '2.2.0.4'
+  WindowState = wsMaximized
+  object DBGrid1: TDBGrid
+    Left = 8
+    Height = 408
+    Top = 56
+    Width = 616
+    Anchors = [akTop, akLeft, akRight, akBottom]
+    AutoEdit = False
+    Color = clWindow
+    Columns = <>
+    DataSource = ds
+    Options = [dgTitles, dgIndicator, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgTabs, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgDisableDelete, dgDisableInsert, dgRowHighlight, dgDblClickAutoSize]
+    TabOrder = 0
+  end
+  object Button1: TButton
+    Left = 8
+    Height = 25
+    Top = 24
+    Width = 75
+    Caption = 'Novo'
+    OnClick = Button1Click
+    TabOrder = 1
+  end
+  object ds: TDataSource
+    DataSet = buf
+    Left = 70
+    Top = 64
+  end
+  object buf: TBufDataset
+    FieldDefs = <>
+    Left = 72
+    Top = 120
+  end
+end

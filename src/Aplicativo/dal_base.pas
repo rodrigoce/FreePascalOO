@@ -5,7 +5,7 @@ unit dal_base;
 interface
 
 uses
-  Classes, SysUtils, Dialogs, mini_orm, TypInfo, StrUtils, SQLDB, DateUtils, Variants;
+  Classes, SysUtils, Dialogs, mini_orm, TypInfo, StrUtils, SQLDB, DateUtils, Variants, conexao_dm;
 
 type
 
@@ -22,11 +22,10 @@ type
       function GetNextSequence: Integer;
       procedure Insert(entity: T);
       procedure Update(entity: T);
+      function CreateSQLQuery: TSQLQuery;
   end;
 
 implementation
-
-uses conexao_dm;
 
 { TDALBase }
 
@@ -83,6 +82,7 @@ begin
 
   // implementar alimentar o parâmetros de chave composta como
   // em TDataSet.Locate
+  strParams := '';
   for ormField in ormEntity.FieldList do
   begin
     if ormField.IsPK then
@@ -261,6 +261,15 @@ begin
   if ShowSQLAndParams then
     ShowMessage(sql + LineEnding + LineEnding + strParams);
 
+end;
+
+function TDALBase.CreateSQLQuery: TSQLQuery;
+var
+  q: TSQLQuery;
+begin
+  q := TSQLQuery.Create(nil);
+  q.DataBase := ConexaoDm.Conexao;
+  Result := q;
 end;
 
 

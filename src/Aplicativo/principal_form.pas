@@ -5,7 +5,8 @@ unit principal_form;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, Menus;
+  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, Menus,
+  funcoes;
 
 type
 
@@ -17,9 +18,12 @@ type
     MainMenu1: TMainMenu;
     MenuItem1: TMenuItem;
     MenuItem2: TMenuItem;
+    MenuItem3: TMenuItem;
+    MenuItem4: TMenuItem;
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure MenuItem2Click(Sender: TObject);
+    procedure MenuItem4Click(Sender: TObject);
   private
 
   public
@@ -31,7 +35,7 @@ var
 
 implementation
 
-uses produto_dal, produto_entity, mini_orm, gerador_codigo_form;
+uses produto_dal, produto_entity, mini_orm, gerador_codigo_form, produto_man_form;
 
 {$R *.lfm}
 
@@ -56,11 +60,8 @@ begin
 end;
 
 procedure TMenuPrincipalForm.Button2Click(Sender: TObject);
-var
-  a: string;
 begin
-  a := 'oi1';
-  ShowMessage(a);
+  ShowMessage(LowerCase(RemoveAcento('ÄÅÁÂÀÃäáâàãÉÊËÈéêëèÍÎÏÌíîïìÖÓÔÒÕöóôòõÜÚÛüúûùÇç')));
 end;
 
 procedure TMenuPrincipalForm.MenuItem2Click(Sender: TObject);
@@ -68,6 +69,11 @@ begin
   Application.CreateForm(TGeradorDeCodigoForm, GeradorDeCodigoForm);
   GeradorDeCodigoForm.ShowModal;
   GeradorDeCodigoForm.Free;
+end;
+
+procedure TMenuPrincipalForm.MenuItem4Click(Sender: TObject);
+begin
+  TProdutoManForm.OpenFeature;;
 end;
 
 end.

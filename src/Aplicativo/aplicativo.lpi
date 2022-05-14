@@ -5,7 +5,7 @@
     <PathDelim Value="\"/>
     <General>
       <SessionStorage Value="InProjectDir"/>
-      <Title Value="aplicativo"/>
+      <Title Value="Aplicativo"/>
       <Scaled Value="True"/>
       <ResourceType Value="res"/>
       <UseXPManifest Value="True"/>
@@ -14,6 +14,10 @@
       </XPManifest>
       <Icon Value="0"/>
     </General>
+    <VersionInfo>
+      <UseVersionInfo Value="True"/>
+      <MajorVersionNr Value="1"/>
+    </VersionInfo>
     <BuildModes>
       <Item Name="Default" Default="True"/>
     </BuildModes>
@@ -26,10 +30,16 @@
     </RunParams>
     <RequiredPackages>
       <Item>
-        <PackageName Value="FCL"/>
+        <PackageName Value="SDFLaz"/>
       </Item>
       <Item>
-        <PackageName Value="LazControls"/>
+        <PackageName Value="DBFLaz"/>
+      </Item>
+      <Item>
+        <PackageName Value="MemDSLaz"/>
+      </Item>
+      <Item>
+        <PackageName Value="FCL"/>
       </Item>
       <Item>
         <PackageName Value="LCL"/>
@@ -37,34 +47,21 @@
     </RequiredPackages>
     <Units>
       <Unit>
-        <Filename Value="aplicativo.pas"/>
+        <Filename Value="Aplicativo.lpr"/>
         <IsPartOfProject Value="True"/>
       </Unit>
       <Unit>
-        <Filename Value="principal_form.pas"/>
+        <Filename Value="conexao_dm.pas"/>
         <IsPartOfProject Value="True"/>
-        <ComponentName Value="MenuPrincipalForm"/>
-        <HasResources Value="True"/>
-        <ResourceBaseClass Value="Form"/>
-      </Unit>
-      <Unit>
-        <Filename Value="produto_entity.pas"/>
-        <IsPartOfProject Value="True"/>
-      </Unit>
-      <Unit>
-        <Filename Value="entity_base.pas"/>
-        <IsPartOfProject Value="True"/>
-      </Unit>
-      <Unit>
-        <Filename Value="mini_orm.pas"/>
-        <IsPartOfProject Value="True"/>
+        <ComponentName Value="ConexaoDM"/>
+        <ResourceBaseClass Value="DataModule"/>
       </Unit>
       <Unit>
         <Filename Value="dal_base.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit>
       <Unit>
-        <Filename Value="produto_dal.pas"/>
+        <Filename Value="entity_base.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit>
       <Unit>
@@ -75,14 +72,48 @@
         <ResourceBaseClass Value="Form"/>
       </Unit>
       <Unit>
+        <Filename Value="mini_orm.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="principal_form.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="MenuPrincipalForm"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit>
+      <Unit>
+        <Filename Value="produto_dal.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="produto_entity.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
+      <Unit>
         <Filename Value="usuario_entity.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit>
       <Unit>
-        <Filename Value="conexao_dm.pas"/>
+        <Filename Value="produto_man_form.pas"/>
         <IsPartOfProject Value="True"/>
-        <ComponentName Value="ConexaoDM"/>
-        <ResourceBaseClass Value="DataModule"/>
+        <ComponentName Value="ProdutoManForm"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit>
+      <Unit>
+        <Filename Value="funcoes.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="documentacao.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="produto_cad_form.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="ProdutoCadForm"/>
+        <ResourceBaseClass Value="Form"/>
       </Unit>
     </Units>
   </ProjectOptions>
@@ -90,7 +121,7 @@
     <Version Value="11"/>
     <PathDelim Value="\"/>
     <Target>
-      <Filename Value="aplicativo"/>
+      <Filename Value="Aplicativo"/>
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>

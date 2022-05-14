@@ -5,7 +5,7 @@ unit usuario_entity;
 interface
 
 uses
-  Classes, SysUtils, entity_base;
+  Classes, SysUtils, entity_base, mini_orm;
 
 type
   TUsuarioEntity = class(TEntityBase)
@@ -21,7 +21,6 @@ type
 
 implementation
 
-uses mini_orm;
 
 initialization
 

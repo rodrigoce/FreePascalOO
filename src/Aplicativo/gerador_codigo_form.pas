@@ -5,8 +5,8 @@ unit gerador_codigo_form;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, ExtCtrls,
-  ComCtrls, ListFilterEdit;
+  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, ExtCtrls, mini_orm,
+  ComCtrls;
 
 type
 
@@ -31,8 +31,6 @@ var
   GeradorDeCodigoForm: TGeradorDeCodigoForm;
 
 implementation
-
-uses mini_orm;
 
 {$R *.lfm}
 
