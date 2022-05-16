@@ -175,7 +175,7 @@ begin
 
     if entity.FieldList[i].HasSequence then
     begin
-      s := s + ' create sequence SEQUENCE_' + entity.DBTableName + ';' + LineEnding;
+      s := s + ' create sequence SEQUENCE_ooo' + entity.DBTableName + ';' + LineEnding;
     end;
 
   end;

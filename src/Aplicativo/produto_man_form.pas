@@ -15,9 +15,11 @@ type
   TProdutoManForm = class(TForm)
     buf: TBufDataset;
     Button1: TButton;
+    Button2: TButton;
     ds: TDataSource;
     DBGrid1: TDBGrid;
     procedure Button1Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
   private
     FProdutoDal: TProdutoDal;
   public
@@ -35,7 +37,12 @@ implementation
 
 procedure TProdutoManForm.Button1Click(Sender: TObject);
 begin
-  TProdutoCadForm.OpenFeature;
+  //TProdutoCadForm.Edit;
+end;
+
+procedure TProdutoManForm.Button2Click(Sender: TObject);
+begin
+
 end;
 
 class procedure TProdutoManForm.OpenFeature;

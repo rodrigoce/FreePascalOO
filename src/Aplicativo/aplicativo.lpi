@@ -113,6 +113,7 @@
         <Filename Value="produto_cad_form.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="ProdutoCadForm"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit>
     </Units>

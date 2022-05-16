@@ -20,7 +20,7 @@ type
     FProdutoEntity: TProdutoEntity;
     FProdutoDal: TProdutoDal;
   public
-    class procedure OpenFeature;
+    class procedure Edit(Id: Integer);
 
   end;
 
@@ -40,7 +40,7 @@ begin
   Close;
 end;
 
-class procedure TProdutoCadForm.OpenFeature;
+class procedure TProdutoCadForm.Edit(Id: Integer);
 begin
   Application.CreateForm(TProdutoCadForm, ProdutoCadForm);
   with ProdutoCadForm do
