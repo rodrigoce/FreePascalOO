@@ -14,9 +14,9 @@ object GeradorDeCodigoForm: TGeradorDeCodigoForm
     Height = 224
     Top = 8
     Width = 394
-    ActivePage = TabSheet1
+    ActivePage = TabSheet2
     Anchors = [akTop, akLeft, akRight, akBottom]
-    TabIndex = 0
+    TabIndex = 1
     TabOrder = 0
     object TabSheet1: TTabSheet
       Caption = 'Create Table'
@@ -38,7 +38,7 @@ object GeradorDeCodigoForm: TGeradorDeCodigoForm
       Caption = 'Add Column'
       ClientHeight = 196
       ClientWidth = 386
-      object Memo1: TMemo
+      object memoAlterTable: TMemo
         Left = 9
         Height = 178
         Top = 10

@@ -14,14 +14,15 @@ type
 
   TProdutoManForm = class(TForm)
     buf: TBufDataset;
-    Button1: TButton;
-    Button2: TButton;
+    btNovo: TButton;
+    btEdit: TButton;
     ds: TDataSource;
     DBGrid1: TDBGrid;
-    procedure Button1Click(Sender: TObject);
-    procedure Button2Click(Sender: TObject);
+    procedure btNovoClick(Sender: TObject);
+    procedure btEditClick(Sender: TObject);
   private
     FProdutoDal: TProdutoDal;
+    procedure Search;
   public
     class procedure OpenFeature;
   end;
@@ -35,14 +36,21 @@ implementation
 
 { TProdutoManForm }
 
-procedure TProdutoManForm.Button1Click(Sender: TObject);
+procedure TProdutoManForm.btNovoClick(Sender: TObject);
 begin
-  //TProdutoCadForm.Edit;
+  TProdutoCadForm.Edit(0);
+  Search;
 end;
 
-procedure TProdutoManForm.Button2Click(Sender: TObject);
+procedure TProdutoManForm.btEditClick(Sender: TObject);
 begin
+  TProdutoCadForm.Edit(buf.FieldByName('id').AsInteger);
+  Search;
+end;
 
+procedure TProdutoManForm.Search;
+begin
+  FProdutoDal.LoadPesquisaProdutos(buf);
 end;
 
 class procedure TProdutoManForm.OpenFeature;
@@ -51,7 +59,7 @@ begin
   with ProdutoManForm do
   begin
     FProdutoDal := TProdutoDAL.Create;
-    FProdutoDal.LoadPesquisaProdutos(buf);
+    Search;
     ProdutoManForm.ShowModal;
     FProdutoDal.Free;
     ProdutoManForm.Free;

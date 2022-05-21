@@ -5,29 +5,52 @@ unit dal_base;
 interface
 
 uses
-  Classes, SysUtils, Dialogs, mini_orm, TypInfo, StrUtils, SQLDB, DateUtils, Variants, conexao_dm;
+  Classes, SysUtils, Dialogs, mini_orm, TypInfo, StrUtils, SQLDB, DateUtils,
+  Variants, conexao_dm, LazUTF8, entity_base;
 
 type
 
   { TDALBase }
 
-  generic TDALBase<T: class> = class
+  generic TDALBase<T: TEntityBase> = class
     private
       FShowSQLAndParams: Boolean;
+      // gera uma exception caso os campos strings tenham mais que o length mapeado
+      procedure CheckStringMaxLength(Entity: T);
     public
       property ShowSQLAndParams: Boolean read FShowSQLAndParams write FShowSQLAndParams;
       // para chaves compostas pode ser passado VarArrayOf
       function FindByPK(Id: Variant): T;
       // pega próximo valor da sequence
       function GetNextSequence: Integer;
-      procedure Insert(entity: T);
-      procedure Update(entity: T);
+      procedure Insert(Entity: T; AutoCommit: Boolean = True);
+      procedure Update(Entity: T; AutoCommit: Boolean = True);
       function CreateSQLQuery: TSQLQuery;
+      function GetDatabaseDateTime: TDateTime;
   end;
 
 implementation
 
 { TDALBase }
+
+procedure TDALBase.CheckStringMaxLength(Entity: T);
+var
+  ormEntity: TORMEntity;
+  ormField: TORMField;
+  v: string;
+begin
+  ormEntity := TORM.FindORMEntity(T.ClassName);
+
+  for ormField in ormEntity.FieldList do
+  begin
+    if ormField.IsString then
+    begin
+      v := GetPropValue(Entity, ormField.PPropInfo);
+      if UTF8Length(v) > ormField.Length then
+        raise Exception.Create('A propriedade ' + ormField.EntityFieldName + ' tem mais de ' + ormField.Length.ToString + ' caracteres no objeto do tipo ' + ormEntity.EntityClassName);
+    end;
+  end;
+end;
 
 function TDALBase.FindByPK(Id: Variant): T;
 var
@@ -103,7 +126,8 @@ begin
   for ormField in ormEntity.FieldList do
   begin
     if not q.FieldByName(ormField.DBColumnName).IsNull then
-      SetPropValue(entity, ormField.PPropInfo, q.FieldByName(ormField.DBColumnName).Value);
+      if ormField.PPropInfo^.SetProc <> nil then
+        SetPropValue(entity, ormField.PPropInfo, q.FieldByName(ormField.DBColumnName).Value);
   end;
 
   q.Close;
@@ -125,7 +149,7 @@ begin
 
   q := TSQLQuery.Create(nil);
   q.DataBase := ConexaoDm.Conexao;
-  q.SQL.Text := 'select next value for SEQUENCE_' + ormEntity.DBTableName + ' from RDB$DATABASE';
+  q.SQL.Text := 'select next value for ' + ormEntity.DBTableName + '_SEQUENCE from RDB$DATABASE';
   q.Open;
 
   Result := q.Fields[0].AsInteger;
@@ -134,7 +158,7 @@ begin
   q.Free;
 end;
 
-procedure TDALBase.Insert(entity: T);
+procedure TDALBase.Insert(Entity: T; AutoCommit: Boolean);
 var
   ormEntity: TORMEntity;
   ormField: TORMField;
@@ -142,6 +166,11 @@ var
   i: Integer;
   sql, strParams: string;
 begin
+  CheckStringMaxLength(Entity);
+  // alimenta campos de rastreamento
+  (Entity as TEntityBase).DataCriacao := GetDatabaseDateTime;
+  (Entity as TEntityBase).IdUserCriacao := 0; //// PEAGR O ID DO CARA LOGADO
+
 
   ormEntity := TORM.FindORMEntity(T.ClassName);
 
@@ -179,19 +208,22 @@ begin
   strParams := '';
   for ormField in ormEntity.FieldList do
   begin
-    q.ParamByName(ormField.DBColumnName).Value := GetPropValue(entity, ormField.PPropInfo);
-    strParams := strParams + VarToStr(GetPropValue(entity, ormField.PPropInfo)) + LineEnding;
+    q.ParamByName(ormField.DBColumnName).Value := GetPropValue(Entity, ormField.PPropInfo);
+    strParams := strParams + VarToStr(GetPropValue(Entity, ormField.PPropInfo)) + LineEnding;
   end;
 
-  q.ExecSQL;;
+  q.ExecSQL;
+  if AutoCommit then
+    TSQLTransaction(q.Transaction).Commit;
   q.Free;
+
 
   if ShowSQLAndParams then
     ShowMessage(sql + LineEnding + strParams);
 
 end;
 
-procedure TDALBase.Update(entity: T);
+procedure TDALBase.Update(Entity: T; AutoCommit: Boolean);
 var
   ormEntity: TORMEntity;
   ormField: TORMField;
@@ -200,6 +232,11 @@ var
   i, countPKFields, countCommonFields: Integer;
 
 begin
+  CheckStringMaxLength(Entity);
+
+  // alimenta campos de rastreamento
+  (Entity as TEntityBase).DataAtualizacao := GetDatabaseDateTime;
+  (Entity as TEntityBase).IdUserAtualizacao := 0; //// PEGAR O ID DO CARA LOGADO
 
   ormEntity := TORM.FindORMEntity(T.ClassName);
   countPKFields := ormEntity.CountPK;
@@ -220,7 +257,7 @@ begin
     begin
       sql := sql + '  ' + ormField.DBColumnName + ' = :' + ormField.DBColumnName;
       sql := sql + IfThen(i < countCommonFields -1, ', ', '') + LineEnding;
-      strParams := strParams + VarToStr(GetPropValue(entity, ormField.PPropInfo)) + LineEnding;
+      strParams := strParams + VarToStr(GetPropValue(Entity, ormField.PPropInfo)) + LineEnding;
       Inc(i);
     end;
   end;
@@ -237,7 +274,7 @@ begin
     begin
       sql := sql + '  ' + ormField.DBColumnName + ' = :' + ormField.DBColumnName;
       sql := sql + IfThen(i < countPKFields, LineEnding + '  and', '');
-      strParams := strParams + VarToStr(GetPropValue(entity, ormField.PPropInfo)) + LineEnding;
+      strParams := strParams + VarToStr(GetPropValue(Entity, ormField.PPropInfo)) + LineEnding;
       Inc(i);
     end;
   end;
@@ -252,10 +289,12 @@ begin
 
   for ormField in ormEntity.FieldList do
   begin
-    q.ParamByName(ormField.DBColumnName).Value := GetPropValue(entity, ormField.PPropInfo);
+    q.ParamByName(ormField.DBColumnName).Value := GetPropValue(Entity, ormField.PPropInfo);
   end;
 
-  q.ExecSQL;;
+  q.ExecSQL;
+  if AutoCommit then
+    TSQLTransaction(q.Transaction).Commit;
   q.Free;
 
   if ShowSQLAndParams then
@@ -270,6 +309,17 @@ begin
   q := TSQLQuery.Create(nil);
   q.DataBase := ConexaoDm.Conexao;
   Result := q;
+end;
+
+function TDALBase.GetDatabaseDateTime: TDateTime;
+var
+  q: TSQLQuery;
+begin
+  q := CreateSQLQuery;
+  q.SQL.Text := 'select cast(''NOW'' as timestamp) from rdb$database';
+  q.Open;
+  Result := q.Fields[0].AsDateTime;
+  q.Free;
 end;
 
 

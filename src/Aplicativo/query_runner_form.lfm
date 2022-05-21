@@ -1,0 +1,237 @@
+object QueryRunnerForm: TQueryRunnerForm
+  Left = 216
+  Height = 504
+  Top = 253
+  Width = 895
+  ActiveControl = edInstrucao
+  Caption = 'Executor de instruções SQL '
+  ClientHeight = 504
+  ClientWidth = 895
+  Color = clBtnFace
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  KeyPreview = True
+  OnKeyDown = FormKeyDown
+  LCLVersion = '2.2.0.4'
+  WindowState = wsMaximized
+  object Splitter1: TSplitter
+    Cursor = crVSplit
+    Left = 0
+    Height = 3
+    Top = 216
+    Width = 895
+    Align = alTop
+    ResizeAnchor = akTop
+    ResizeStyle = rsLine
+  end
+  object Panel2: TPanel
+    Left = 0
+    Height = 285
+    Top = 219
+    Width = 895
+    Align = alClient
+    ClientHeight = 285
+    ClientWidth = 895
+    TabOrder = 0
+    object PageControl1: TPageControl
+      Left = 1
+      Height = 283
+      Top = 1
+      Width = 893
+      ActivePage = TabSheet1
+      Align = alClient
+      TabIndex = 0
+      TabOrder = 0
+      object TabSheet1: TTabSheet
+        Caption = 'Dados'
+        ClientHeight = 257
+        ClientWidth = 885
+        object Grade: TDBGrid
+          Left = 0
+          Height = 226
+          Top = 31
+          Width = 885
+          Align = alClient
+          Color = clWindow
+          Columns = <>
+          TabOrder = 0
+          TitleFont.Color = clWindowText
+          TitleFont.Height = -11
+          TitleFont.Name = 'MS Sans Serif'
+        end
+        object Panel4: TPanel
+          Left = 0
+          Height = 31
+          Top = 0
+          Width = 885
+          Align = alTop
+          BevelOuter = bvLowered
+          ClientHeight = 31
+          ClientWidth = 885
+          TabOrder = 1
+          object labPos: TLabel
+            Left = 72
+            Height = 13
+            Top = 10
+            Width = 21
+            Caption = 'de 0'
+          end
+          object edConta: TSpinEdit
+            Left = 6
+            Height = 21
+            Top = 6
+            Width = 57
+            OnChange = edContaChange
+            TabOrder = 0
+          end
+          object btFechaCon: TButton
+            Left = 528
+            Height = 21
+            Top = 5
+            Width = 115
+            Anchors = [akRight]
+            Caption = 'Fechar essa consulta'
+            Enabled = False
+            OnClick = btFechaConClick
+            TabOrder = 1
+          end
+          object btExport: TButton
+            Left = 648
+            Height = 21
+            Top = 5
+            Width = 115
+            Anchors = [akRight]
+            Caption = 'Export. script de insert'
+            Enabled = False
+            OnClick = btExportClick
+            TabOrder = 2
+          end
+          object btHTML: TButton
+            Left = 768
+            Height = 21
+            Top = 5
+            Width = 115
+            Anchors = [akRight]
+            Caption = 'Export. para HTML'
+            Enabled = False
+            OnClick = btHTMLClick
+            TabOrder = 3
+          end
+        end
+      end
+      object TabSheet2: TTabSheet
+        Caption = 'Linhas afetadas'
+        ClientHeight = 257
+        ClientWidth = 885
+        ImageIndex = 1
+        object edResult: TMemo
+          Left = 0
+          Height = 257
+          Top = 0
+          Width = 885
+          Align = alClient
+          ScrollBars = ssBoth
+          TabOrder = 0
+        end
+      end
+    end
+  end
+  object Panel1: TPanel
+    Left = 0
+    Height = 216
+    Top = 0
+    Width = 895
+    Align = alTop
+    ClientHeight = 216
+    ClientWidth = 895
+    TabOrder = 1
+    object Panel3: TPanel
+      Left = 1
+      Height = 31
+      Top = 184
+      Width = 893
+      Align = alBottom
+      ClientHeight = 31
+      ClientWidth = 893
+      TabOrder = 0
+      object btExec: TButton
+        Left = 806
+        Height = 21
+        Top = 6
+        Width = 83
+        Anchors = [akRight, akBottom]
+        Caption = 'Executar (F5)'
+        OnClick = btExecClick
+        TabOrder = 0
+      end
+      object btLimpa: TButton
+        Left = 6
+        Height = 21
+        Top = 5
+        Width = 83
+        Caption = 'Limpar'
+        OnClick = btLimpaClick
+        TabOrder = 1
+      end
+      object btSalva: TButton
+        Left = 94
+        Height = 21
+        Top = 5
+        Width = 83
+        Caption = 'Salvar'
+        OnClick = btSalvaClick
+        TabOrder = 2
+      end
+      object btAbre: TButton
+        Left = 182
+        Height = 21
+        Top = 5
+        Width = 83
+        Caption = 'Abrir'
+        OnClick = btAbreClick
+        TabOrder = 3
+      end
+      object SpinEdit1: TSpinEdit
+        Left = 321
+        Height = 21
+        Top = 8
+        Width = 50
+        TabOrder = 4
+      end
+    end
+    object edInstrucao: TMemo
+      Left = 1
+      Height = 183
+      Top = 1
+      Width = 893
+      Align = alClient
+      Font.CharSet = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Courier New'
+      ParentFont = False
+      ScrollBars = ssBoth
+      TabOrder = 1
+    end
+  end
+  object q: TSQLQuery
+    FieldDefs = <>
+    Database = ConexaoDM.Conexao
+    Transaction = ConexaoDM.Transacao
+    Params = <>
+    Macros = <>
+    Left = 296
+    Top = 315
+  end
+  object Salvar: TSaveDialog
+    Left = 445
+    Top = 316
+  end
+  object Abrir: TOpenDialog
+    DefaultExt = '.sql'
+    Filter = '*.sql'
+    Left = 533
+    Top = 316
+  end
+end

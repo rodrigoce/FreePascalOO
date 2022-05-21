@@ -14,7 +14,7 @@ type
 
   TGeradorDeCodigoForm = class(TForm)
     ListBox1: TListBox;
-    Memo1: TMemo;
+    memoAlterTable: TMemo;
     memoCreateTable: TMemo;
     PageControl1: TPageControl;
     TabSheet1: TTabSheet;
@@ -48,7 +48,8 @@ end;
 
 procedure TGeradorDeCodigoForm.ListBox1Click(Sender: TObject);
 begin
-  memoCreateTable.Lines.Text := TORM.ToScript(ListBox1.GetSelectedText);
+  memoCreateTable.Lines.Text := TORM.ToScriptCreate(ListBox1.GetSelectedText);
+  memoAlterTable.Lines.Text := TORM.ToScriptAlter(ListBox1.GetSelectedText);
 end;
 
 end.

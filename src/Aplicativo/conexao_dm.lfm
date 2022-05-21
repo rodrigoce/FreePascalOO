@@ -1,11 +1,11 @@
 object ConexaoDM: TConexaoDM
   OldCreateOrder = False
   Height = 174
-  HorizontalOffset = 285
-  VerticalOffset = 119
+  HorizontalOffset = 512
+  VerticalOffset = 275
   Width = 201
   object Conexao: TIBConnection
-    Connected = False
+    Connected = True
     LoginPrompt = False
     AfterConnect = ConexaoAfterConnect
     DatabaseName = 'D:\Rodrigo\FreePascalOO\DB\APLICACAO.FDB'
@@ -14,16 +14,26 @@ object ConexaoDM: TConexaoDM
     Transaction = Transacao
     UserName = 'SYSDBA'
     HostName = 'localhost'
+    OnLog = ConexaoLog
+    LogEvents = [detCustom, detExecute, detFetch, detCommit, detRollBack, detActualSQL]
     CheckTransactionParams = False
     UseConnectionCharSetIfNone = False
-    Left = 88
-    Top = 32
+    Left = 136
+    Top = 24
   end
   object Transacao: TSQLTransaction
     Active = False
-    Action = caCommit
     Database = Conexao
-    Left = 88
+    Left = 136
     Top = 104
+  end
+  object SQLQuery1: TSQLQuery
+    FieldDefs = <>
+    Database = Conexao
+    Transaction = Transacao
+    Params = <>
+    Macros = <>
+    Left = 40
+    Top = 72
   end
 end

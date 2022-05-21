@@ -3,7 +3,7 @@ object ProdutoManForm: TProdutoManForm
   Height = 470
   Top = 93
   Width = 632
-  Caption = 'ProdutoManForm'
+  Caption = 'Manutenção de Produtos'
   ClientHeight = 470
   ClientWidth = 632
   LCLVersion = '2.2.0.4'
@@ -21,22 +21,22 @@ object ProdutoManForm: TProdutoManForm
     Options = [dgTitles, dgIndicator, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgTabs, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgDisableDelete, dgDisableInsert, dgRowHighlight, dgDblClickAutoSize]
     TabOrder = 0
   end
-  object Button1: TButton
+  object btNovo: TButton
     Left = 8
     Height = 25
     Top = 24
     Width = 75
     Caption = 'Novo'
-    OnClick = Button1Click
+    OnClick = btNovoClick
     TabOrder = 1
   end
-  object Button2: TButton
+  object btEdit: TButton
     Left = 88
     Height = 25
     Top = 24
     Width = 75
-    Caption = 'Button2'
-    OnClick = Button2Click
+    Caption = 'Editar'
+    OnClick = btEditClick
     TabOrder = 2
   end
   object ds: TDataSource

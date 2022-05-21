@@ -10,9 +10,10 @@ uses
   athreads,
   {$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms, memdslaz, sdflaz, conexao_dm, dal_base, entity_base,
+  Forms, memdslaz, sdflaz, lazcontrols, conexao_dm, dal_base, entity_base,
   gerador_codigo_form, mini_orm, principal_form, produto_dal, produto_entity,
-  usuario_entity, produto_man_form, funcoes, documentacao, produto_cad_form;
+  usuario_entity, produto_man_form, funcoes, documentacao, produto_cad_form,
+  query_runner_form;
 
 {$R *.res}
 

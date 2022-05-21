@@ -54,6 +54,7 @@ type
       FDBType: string;
       FLength: Integer;
       FIsPK: Boolean;
+      FIsString: Boolean;
       FHasSequence: Boolean;
       FPPropInfo: PPropInfo;
     public
@@ -62,6 +63,7 @@ type
       property DBType: string read FDBType;
       property Length: Integer read FLength;
       property IsPK: Boolean read FIsPK;
+      property IsString: Boolean read FIsString;
       property HasSequence: Boolean read FHasSequence;
       property PPropInfo: PPropInfo read FPPropInfo;
   end;
@@ -77,7 +79,8 @@ type
       class function GenerateSequene(entity: TORMEntity): string;
     public
       class var EntityList: TORMEntityList;
-      class function ToScript(EntityClassName: string): string;
+      class function ToScriptCreate(EntityClassName: string): string;
+      class function ToScriptAlter(EntityClassName: string): string;
       class function FindORMEntity(EntityClassName: string): TORMEntity;
   end;
 
@@ -92,6 +95,8 @@ type
     function MapString(ADBFieldName, AEntityFieldName: string; ALenght: Integer): TORMMapBuilder;
     function MapDateTime(ADBFieldName, AEntityFieldName: string): TORMMapBuilder;
     function MapInt32(ADBFieldName, AEntityFieldName: string): TORMMapBuilder;
+    // apesar do nome pode ser usado para outros tipos como double, real...
+    function MapDecimal(ADBFieldName, AEntityFieldName: string; APrecision, AScale: SmallInt): TORMMapBuilder;
   end;
 
 
@@ -175,14 +180,14 @@ begin
 
     if entity.FieldList[i].HasSequence then
     begin
-      s := s + ' create sequence SEQUENCE_ooo' + entity.DBTableName + ';' + LineEnding;
+      s := s + 'create sequence ' + entity.DBTableName + '_SEQUENCE;' + LineEnding;
     end;
 
   end;
   Result := s;
 end;
 
-class function TORM.ToScript(EntityClassName: string): string;
+class function TORM.ToScriptCreate(EntityClassName: string): string;
 var
   entity: TORMEntity;
   s: string;
@@ -193,6 +198,24 @@ begin
   s := s + LineEnding + ');' + LineEnding + LineEnding;
   s := s + GeneratePK(entity) + LineEnding + LineEnding;
   s := s + GenerateSequene(entity) + LineEnding + LineEnding;
+  Result := s;
+end;
+
+class function TORM.ToScriptAlter(EntityClassName: string): string;
+var
+  entity: TORMEntity;
+  i: Integer;
+  s: string;
+begin
+  entity := FindORMEntity(EntityClassName);
+
+  s := '';
+  for i := 0 to entity.FieldList.Count -1 do
+  begin
+    s := s + 'alter table ' + entity.DBTableName;
+    s := s + ' add  ' + entity.FieldList[i].DBColumnName + ' ' + entity.FieldList[i].DBType;
+    s := s + IfThen(entity.FieldList[i].IsPK, ' not null;', ';') + LineEnding + LineEnding;
+  end;
   Result := s;
 end;
 
@@ -252,6 +275,7 @@ var
 begin
   field := MapField(ADBFieldName, AEntityFieldName);
   field.FLength := ALenght;
+  field.FIsString := True;
   field.FDBType := 'VarChar(' + IntToStr(ALenght) + ')';
   Result := Self;
 end;
@@ -284,6 +308,16 @@ var
 begin
   field := MapField(ADBFieldName, AEntityFieldName);
   field.FDBType := 'Integer';
+  Result := Self;
+end;
+
+function TORMMapBuilder.MapDecimal(ADBFieldName, AEntityFieldName: string;
+  APrecision, AScale: SmallInt): TORMMapBuilder;
+var
+  field: TORMField;
+begin
+  field := MapField(ADBFieldName, AEntityFieldName);
+  field.FDBType := 'Decimal(' + APrecision.ToString + ', ' + AScale.ToString + ')';
   Result := Self;
 end;
 

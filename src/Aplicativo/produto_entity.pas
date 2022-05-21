@@ -13,14 +13,22 @@ type
 
   TProdutoEntity = class(TEntityBase)
     private
+      FReferencia: string;
       FNome: string;
       FNomePP: string;
+      FPrecoCusto: Double;
+      FMargemLucro: Double;
+      FPrecoVenda: Double;
       procedure SetNome(Value: string);
     public
 
     published
+      property Referencia: string read FReferencia write FReferencia;
       property Nome: string read FNome write SetNome;
       property NomePP: string read FNomePP;
+      property PrecoCusto: Double read FPrecoCusto write FPrecoCusto;
+      property MargemLucro: Double read FMargemLucro write FMargemLucro;
+      property PrecoVenda: Double read FPrecoVenda write FPrecoVenda;
 
 
   end;
@@ -47,8 +55,12 @@ TORMMapBuilder.Create.MapModel(TProdutoEntity, 'PRODUTO')
   .MapInt32('ID_USER_CRIACAO', 'IdUserCriacao')
   .MapInt32('ID_USER_ATUALIZACAO', 'IdUserAtualizacao')
   .MapInt32('ID_USER_EXCLUSAO', 'IdUserExclusao')
+  .MapString('REFERENCIA', 'Referencia', 20)
   .MapString('NOME', 'Nome', 60)
-  .MapString('NOME_PP', 'NomePP', 60);
+  .MapString('NOME_PP', 'NomePP', 60)
+  .MapDecimal('PRECO_CUSTO', 'PrecoCusto', 10, 2)
+  .MapDecimal('MARGEM_LUCRO', 'MargemLucro', 10, 6)
+  .MapDecimal('PRECO_VENDA', 'PrecoVenda', 10, 2);
 
 end.
 

@@ -23,11 +23,17 @@ type
       function AsString: string;
     published
       property Id: LongInt read FId write FId;
+      // propriedade alimnetada automaticamente em TDALBase
       property DataCriacao: TDateTime read FDataCriacao write FDataCriacao;
+      // propriedade alimnetada automaticamente em TDALBase
       property DataAtualizacao: TDateTime read FDataAtualizacao write FDataAtualizacao;
+      // propriedade alimnetada automaticamente em TDALBase
       property DataExclusao: TDateTime read FDataExclusao write FDataExclusao;
+      // propriedade alimnetada automaticamente em TDALBase
       property IdUserCriacao: LongInt read FIdUserCriacao write FIdUserCriacao;
+      // propriedade alimnetada automaticamente em TDALBase
       property IdUserAtualizacao: LongInt read FIdUserAtualizacao write FIdUserAtualizacao;
+      // propriedade alimnetada automaticamente em TDALBase
       property IdUserExclusao: LongInt read FIdUserExclusao write FIdUserExclusao;
 
   end;
