@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Dialogs, mini_orm, TypInfo, StrUtils, SQLDB, DateUtils,
-  Variants, conexao_dm, LazUTF8, entity_base;
+  Variants, conexao_dm, LazUTF8, entity_base, StdCtrls;
 
 type
 
@@ -14,11 +14,11 @@ type
 
   generic TDALBase<T: TEntityBase> = class
     private
-      FShowSQLAndParams: Boolean;
+      class var FMemoLogSQLCommands: TMemo;
       // gera uma exception caso os campos strings tenham mais que o length mapeado
       procedure CheckStringMaxLength(Entity: T);
     public
-      property ShowSQLAndParams: Boolean read FShowSQLAndParams write FShowSQLAndParams;
+      class property MemoLogSQLCommands: TMemo read FMemoLogSQLCommands write FMemoLogSQLCommands;
       // para chaves compostas pode ser passado VarArrayOf
       function FindByPK(Id: Variant): T;
       // pega próximo valor da sequence
@@ -133,8 +133,8 @@ begin
   q.Close;
   q.Free;
 
-  if ShowSQLAndParams then
-    ShowMessage(sql + LineEnding + LineEnding + strParams);
+  if MemoLogSQLCommands <> nil then
+    MemoLogSQLCommands.Append(sql + LineEnding + LineEnding + strParams + '///////////' + LineEnding);
 
 
   Result := entity;
@@ -218,8 +218,8 @@ begin
   q.Free;
 
 
-  if ShowSQLAndParams then
-    ShowMessage(sql + LineEnding + strParams);
+  if MemoLogSQLCommands <> nil then
+    MemoLogSQLCommands.Append(sql + LineEnding + strParams + '///////////' + LineEnding);
 
 end;
 
@@ -297,8 +297,8 @@ begin
     TSQLTransaction(q.Transaction).Commit;
   q.Free;
 
-  if ShowSQLAndParams then
-    ShowMessage(sql + LineEnding + LineEnding + strParams);
+  if MemoLogSQLCommands <> nil then
+    MemoLogSQLCommands.Append(sql + LineEnding + LineEnding + strParams + '///////////' + LineEnding);
 
 end;
 

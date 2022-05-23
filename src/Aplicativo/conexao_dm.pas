@@ -5,7 +5,7 @@ unit conexao_dm;
 interface
 
 uses
-  Classes, SysUtils, IBConnection, SQLDB, TypInfo;
+  Classes, SysUtils, IBConnection, SQLDB, TypInfo, StdCtrls;
 
 type
 
@@ -19,9 +19,9 @@ type
     procedure ConexaoLog(Sender: TSQLConnection; EventType: TDBEventType;
       const Msg: String);
   private
-
+    FMemoLogTConnection: TMemo;
   public
-
+    property MemoLogTConnection: TMemo read FMemoLogTConnection write FMemoLogTConnection;
   end;
 
 var
@@ -43,8 +43,10 @@ end;
 procedure TConexaoDM.ConexaoLog(Sender: TSQLConnection;
   EventType: TDBEventType; const Msg: String);
 begin
-  MenuPrincipalForm.Memo1.Append(GetEnumName(TypeInfo(EventType), Ord(EventType)) + ' ==> ' + Msg);
-  MenuPrincipalForm.Memo1.Append('==> ' + Transacao.Active.ToString());
+  if MemoLogTConnection <> nil then
+  begin
+    MemoLogTConnection.Append(GetEnumName(TypeInfo(EventType), Ord(EventType)) + ' ==> ' + Msg);
+  end;
 end;
 
 end.

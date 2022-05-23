@@ -8,8 +8,9 @@
       <Unit>
         <Filename Value="Aplicativo.lpr"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="2"/>
-        <CursorPos X="20" Y="16"/>
+        <EditorIndex Value="4"/>
+        <TopLine Value="9"/>
+        <CursorPos X="46" Y="25"/>
         <UsageCount Value="206"/>
         <Loaded Value="True"/>
       </Unit>
@@ -19,17 +20,17 @@
         <ComponentName Value="ConexaoDM"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="21"/>
-        <CursorPos X="98" Y="46"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="14"/>
+        <CursorPos X="32" Y="24"/>
         <UsageCount Value="206"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="dal_base.pas"/>
         <IsPartOfProject Value="True"/>
-        <IsVisibleTab Value="True"/>
-        <TopLine Value="297"/>
-        <CursorPos Y="321"/>
+        <TopLine Value="127"/>
+        <CursorPos X="101" Y="134"/>
         <UsageCount Value="206"/>
         <Bookmarks Count="1">
           <Item0 Y="170" ID="1"/>
@@ -39,7 +40,7 @@
       <Unit>
         <Filename Value="entity_base.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="9"/>
+        <EditorIndex Value="11"/>
         <TopLine Value="21"/>
         <CursorPos X="16" Y="35"/>
         <UsageCount Value="206"/>
@@ -51,7 +52,7 @@
         <ComponentName Value="GeradorDeCodigoForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="10"/>
+        <EditorIndex Value="12"/>
         <TopLine Value="25"/>
         <CursorPos X="75" Y="52"/>
         <UsageCount Value="206"/>
@@ -61,7 +62,7 @@
       <Unit>
         <Filename Value="mini_orm.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="5"/>
         <TopLine Value="268"/>
         <CursorPos X="25" Y="278"/>
         <UsageCount Value="206"/>
@@ -73,10 +74,13 @@
         <ComponentName Value="MenuPrincipalForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="44"/>
-        <CursorPos X="31" Y="65"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="58"/>
+        <CursorPos X="38" Y="68"/>
         <UsageCount Value="206"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="produto_dal.pas"/>
@@ -89,7 +93,7 @@
       <Unit>
         <Filename Value="produto_entity.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="8"/>
+        <EditorIndex Value="10"/>
         <TopLine Value="3"/>
         <CursorPos X="19" Y="40"/>
         <UsageCount Value="206"/>
@@ -108,17 +112,16 @@
         <ComponentName Value="ProdutoManForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="7"/>
         <TopLine Value="16"/>
         <CursorPos X="12" Y="62"/>
         <UsageCount Value="205"/>
         <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="funcoes.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="6"/>
         <CursorPos X="31" Y="8"/>
         <UsageCount Value="227"/>
         <Loaded Value="True"/>
@@ -128,7 +131,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <CursorPos Y="14"/>
-        <UsageCount Value="187"/>
+        <UsageCount Value="261"/>
       </Unit>
       <Unit>
         <Filename Value="produto_cad_form.pas"/>
@@ -136,10 +139,10 @@
         <ComponentName Value="ProdutoCadForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="8"/>
         <TopLine Value="64"/>
         <CursorPos X="51" Y="87"/>
-        <UsageCount Value="171"/>
+        <UsageCount Value="245"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -148,163 +151,66 @@
         <ComponentName Value="QueryRunnerForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="9"/>
         <TopLine Value="205"/>
         <CursorPos X="40" Y="201"/>
-        <UsageCount Value="118"/>
+        <UsageCount Value="192"/>
         <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="C:\lazarus\fpc\3.2.2\source\rtl\objpas\sysutils\sysstrh.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="190"/>
         <CursorPos X="10" Y="217"/>
-        <UsageCount Value="13"/>
+        <UsageCount Value="6"/>
       </Unit>
       <Unit>
         <Filename Value="C:\lazarus\fpc\3.2.2\source\rtl\objpas\sysutils\sysstr.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="571"/>
         <CursorPos X="18" Y="574"/>
-        <UsageCount Value="12"/>
+        <UsageCount Value="5"/>
       </Unit>
       <Unit>
         <Filename Value="C:\lazarus\fpc\3.2.2\source\rtl\inc\ustringh.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="126"/>
         <CursorPos X="19" Y="140"/>
-        <UsageCount Value="12"/>
+        <UsageCount Value="5"/>
       </Unit>
       <Unit>
         <Filename Value="C:\lazarus\components\lazutils\lazutf8.pas"/>
         <UnitName Value="LazUTF8"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="52"/>
-        <UsageCount Value="11"/>
-      </Unit>
-      <Unit>
-        <Filename Value="C:\lazarus\fpc\3.2.2\source\rtl\objpas\typinfo.pp"/>
-        <UnitName Value="TypInfo"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="875"/>
-        <CursorPos X="17" Y="879"/>
-        <UsageCount Value="2"/>
+        <UsageCount Value="4"/>
       </Unit>
       <Unit>
         <Filename Value="C:\lazarus\fpc\3.2.2\source\packages\rtl-objpas\src\inc\variants.pp"/>
         <UnitName Value="Variants"/>
-        <EditorIndex Value="1"/>
+        <EditorIndex Value="3"/>
         <TopLine Value="3084"/>
         <CursorPos X="18" Y="3121"/>
-        <UsageCount Value="29"/>
+        <UsageCount Value="66"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
-        <Filename Value="C:\lazarus\fpc\3.2.2\source\packages\fcl-db\src\sqldb\sqldb.pp"/>
-        <UnitName Value="SQLDB"/>
+        <Filename Value="C:\lazarus\lcl\stdctrls.pp"/>
+        <UnitName Value="StdCtrls"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="13"/>
-        <CursorPos X="3" Y="28"/>
-        <UsageCount Value="6"/>
+        <TopLine Value="1010"/>
+        <CursorPos X="3" Y="1020"/>
+        <UsageCount Value="3"/>
       </Unit>
       <Unit>
-        <Filename Value="C:\lazarus\fpc\3.2.2\source\packages\fcl-db\src\base\sqltypes.pp"/>
-        <UnitName Value="SQLTypes"/>
+        <Filename Value="C:\lazarus\lcl\include\custommemo.inc"/>
         <EditorIndex Value="-1"/>
-        <CursorPos X="3" Y="16"/>
-        <UsageCount Value="2"/>
+        <TopLine Value="32"/>
+        <CursorPos Y="42"/>
+        <UsageCount Value="3"/>
       </Unit>
     </Units>
     <JumpHistory HistoryIndex="29">
-      <Position>
-        <Filename Value="C:\lazarus\fpc\3.2.2\source\packages\rtl-objpas\src\inc\variants.pp"/>
-        <Caret Line="155" Column="25" TopLine="139"/>
-      </Position>
-      <Position>
-        <Filename Value="C:\lazarus\fpc\3.2.2\source\packages\rtl-objpas\src\inc\variants.pp"/>
-        <Caret Column="14"/>
-      </Position>
-      <Position>
-        <Filename Value="C:\lazarus\fpc\3.2.2\source\packages\rtl-objpas\src\inc\variants.pp"/>
-        <Caret Line="102" Column="20" TopLine="77"/>
-      </Position>
-      <Position>
-        <Filename Value="C:\lazarus\fpc\3.2.2\source\packages\rtl-objpas\src\inc\variants.pp"/>
-        <Caret Line="160" Column="14" TopLine="135"/>
-      </Position>
-      <Position>
-        <Filename Value="C:\lazarus\fpc\3.2.2\source\packages\rtl-objpas\src\inc\variants.pp"/>
-        <Caret Line="208" Column="81" TopLine="184"/>
-      </Position>
-      <Position>
-        <Filename Value="dal_base.pas"/>
-        <Caret Line="18" Column="23"/>
-      </Position>
-      <Position>
-        <Filename Value="dal_base.pas"/>
-        <Caret Line="34" Column="38" TopLine="29"/>
-      </Position>
-      <Position>
-        <Filename Value="dal_base.pas"/>
-        <Caret Line="18" Column="37" TopLine="3"/>
-      </Position>
-      <Position>
-        <Filename Value="dal_base.pas"/>
-        <Caret Line="34" Column="31" TopLine="4"/>
-      </Position>
-      <Position>
-        <Filename Value="dal_base.pas"/>
-        <Caret Line="18" Column="17" TopLine="4"/>
-      </Position>
-      <Position>
-        <Filename Value="produto_entity.pas"/>
-        <Caret Line="40" Column="19" TopLine="3"/>
-      </Position>
-      <Position>
-        <Filename Value="dal_base.pas"/>
-        <Caret Line="25" Column="20"/>
-      </Position>
-      <Position>
-        <Filename Value="dal_base.pas"/>
-        <Caret Line="17" Column="17"/>
-      </Position>
-      <Position>
-        <Filename Value="dal_base.pas"/>
-        <Caret Line="168" Column="3" TopLine="153"/>
-      </Position>
-      <Position>
-        <Filename Value="dal_base.pas"/>
-        <Caret Line="26" Column="17" TopLine="10"/>
-      </Position>
-      <Position>
-        <Filename Value="dal_base.pas"/>
-        <Caret Line="232" Column="10" TopLine="223"/>
-      </Position>
-      <Position>
-        <Filename Value="dal_base.pas"/>
-        <Caret Line="237" Column="44" TopLine="223"/>
-      </Position>
-      <Position>
-        <Filename Value="dal_base.pas"/>
-        <Caret Line="236" Column="22" TopLine="223"/>
-      </Position>
-      <Position>
-        <Filename Value="dal_base.pas"/>
-        <Caret Line="29" Column="39" TopLine="12"/>
-      </Position>
-      <Position>
-        <Filename Value="dal_base.pas"/>
-        <Caret Line="313" Column="27" TopLine="295"/>
-      </Position>
-      <Position>
-        <Filename Value="dal_base.pas"/>
-        <Caret Line="29" Column="35" TopLine="14"/>
-      </Position>
-      <Position>
-        <Filename Value="dal_base.pas"/>
-        <Caret Line="305" Column="27" TopLine="280"/>
-      </Position>
       <Position>
         <Filename Value="dal_base.pas"/>
         <Caret Line="27" Column="19" TopLine="13"/>
@@ -337,6 +243,94 @@
         <Filename Value="dal_base.pas"/>
         <Caret Line="320" TopLine="297"/>
       </Position>
+      <Position>
+        <Filename Value="principal_form.pas"/>
+        <Caret Line="65" Column="31" TopLine="44"/>
+      </Position>
+      <Position>
+        <Filename Value="principal_form.pas"/>
+        <Caret Line="66" Column="31" TopLine="47"/>
+      </Position>
+      <Position>
+        <Filename Value="principal_form.pas"/>
+        <Caret Line="67" Column="31" TopLine="48"/>
+      </Position>
+      <Position>
+        <Filename Value="principal_form.pas"/>
+        <Caret Line="68" Column="31" TopLine="49"/>
+      </Position>
+      <Position>
+        <Filename Value="principal_form.pas"/>
+        <Caret Line="67" Column="31" TopLine="48"/>
+      </Position>
+      <Position>
+        <Filename Value="principal_form.pas"/>
+        <Caret Line="68" Column="31" TopLine="49"/>
+      </Position>
+      <Position>
+        <Filename Value="principal_form.pas"/>
+        <Caret Line="69" Column="31" TopLine="5"/>
+      </Position>
+      <Position>
+        <Filename Value="dal_base.pas"/>
+        <Caret Line="321" TopLine="297"/>
+      </Position>
+      <Position>
+        <Filename Value="dal_base.pas"/>
+        <Caret Line="17" TopLine="11"/>
+      </Position>
+      <Position>
+        <Filename Value="conexao_dm.pas"/>
+        <Caret Line="24" Column="14" TopLine="14"/>
+      </Position>
+      <Position>
+        <Filename Value="dal_base.pas"/>
+        <Caret Line="21" Column="41" TopLine="11"/>
+      </Position>
+      <Position>
+        <Filename Value="dal_base.pas"/>
+        <Caret Line="135" Column="39" TopLine="126"/>
+      </Position>
+      <Position>
+        <Filename Value="dal_base.pas"/>
+        <Caret Line="222" Column="30" TopLine="212"/>
+      </Position>
+      <Position>
+        <Filename Value="principal_form.pas"/>
+        <Caret Line="77" Column="14" TopLine="58"/>
+      </Position>
+      <Position>
+        <Filename Value="principal_form.pas"/>
+        <Caret Line="65" Column="54" TopLine="47"/>
+      </Position>
+      <Position>
+        <Filename Value="principal_form.pas"/>
+        <Caret Line="64" Column="47" TopLine="47"/>
+      </Position>
+      <Position>
+        <Filename Value="Aplicativo.lpr"/>
+        <Caret Line="25" Column="46" TopLine="9"/>
+      </Position>
+      <Position>
+        <Filename Value="dal_base.pas"/>
+        <Caret Line="318" TopLine="308"/>
+      </Position>
+      <Position>
+        <Filename Value="principal_form.pas"/>
+        <Caret Line="74" TopLine="58"/>
+      </Position>
+      <Position>
+        <Filename Value="principal_form.pas"/>
+        <Caret Line="68" Column="38" TopLine="58"/>
+      </Position>
+      <Position>
+        <Filename Value="principal_form.pas"/>
+        <Caret Line="69" Column="38" TopLine="59"/>
+      </Position>
+      <Position>
+        <Filename Value="principal_form.pas"/>
+        <Caret Line="68" Column="38" TopLine="58"/>
+      </Position>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
@@ -344,15 +338,6 @@
     </RunParams>
   </ProjectSession>
   <Debugging>
-    <BreakPoints>
-      <Item>
-        <Kind Value="bpkSource"/>
-        <WatchScope Value="wpsLocal"/>
-        <WatchKind Value="wpkWrite"/>
-        <Source Value="dal_base.pas"/>
-        <Line Value="318"/>
-      </Item>
-    </BreakPoints>
     <Watches>
       <Item>
         <Expression Value="acentos[i]"/>

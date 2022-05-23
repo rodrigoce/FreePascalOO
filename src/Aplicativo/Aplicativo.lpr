@@ -22,8 +22,8 @@ begin
   Application.Title:='Aplicativo';
   Application.Scaled:=True;
   Application.Initialize;
-  Application.CreateForm(TMenuPrincipalForm, MenuPrincipalForm);
   Application.CreateForm(TConexaoDM, ConexaoDM);
+  Application.CreateForm(TMenuPrincipalForm, MenuPrincipalForm);
   Application.Run;
 end.
 
