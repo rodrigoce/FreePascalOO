@@ -19,8 +19,13 @@ type
       FIdUserCriacao: LongInt;
       FIdUserAtualizacao: LongInt;
       FIdUserExclusao: LongInt;
+      FOldVersion: TEntityBase;
     public
+      // ao carregar do banco de dados, faz uma copia da entidade para ser considerada os valores não alterados
+      property OldVersion: TEntityBase read FOldVersion write FOldVersion;
       function AsString: string;
+      destructor Destroy; override;
+
     published
       property Id: LongInt read FId write FId;
       // propriedade alimnetada automaticamente em TDALBase
@@ -62,6 +67,13 @@ begin
     Result := Result + vPPropList^[i]^.PropType^.Name + ' -> ';
     Result := Result + VarToStr(GetPropValue(Self, vPPropList^[i])) + LineEnding;
   end;
+end;
+
+destructor TEntityBase.Destroy;
+begin
+  inherited;
+  if OldVersion <> nil then
+    OldVersion.Free;
 end;
 
 end.

@@ -1,4 +1,6 @@
 object ConexaoDM: TConexaoDM
+  OnCreate = DataModuleCreate
+  OnDestroy = DataModuleDestroy
   OldCreateOrder = False
   Height = 174
   HorizontalOffset = 512
@@ -7,7 +9,6 @@ object ConexaoDM: TConexaoDM
   object Conexao: TIBConnection
     Connected = True
     LoginPrompt = False
-    AfterConnect = ConexaoAfterConnect
     DatabaseName = 'D:\Rodrigo\FreePascalOO\DB\APLICACAO.FDB'
     KeepConnection = True
     Password = 'masterkey'

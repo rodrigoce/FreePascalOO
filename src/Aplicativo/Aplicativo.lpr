@@ -12,8 +12,9 @@ uses
   Interfaces, // this includes the LCL widgetset
   Forms, memdslaz, sdflaz, lazcontrols, conexao_dm, dal_base, entity_base,
   gerador_codigo_form, mini_orm, principal_form, produto_dal, produto_entity,
-  usuario_entity, produto_man_form, funcoes, documentacao, produto_cad_form,
-  query_runner_form;
+  usuario_entity, produto_man_form, 
+application_functions, application_docs, produto_cad_form,
+  query_runner_form, log_sql_form, application_delegates, application_types;
 
 {$R *.res}
 

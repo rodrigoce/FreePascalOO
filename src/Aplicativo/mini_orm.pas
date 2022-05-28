@@ -10,12 +10,6 @@ uses
 
 type
 
-  {Records}
-  {TMultStrResult = record
-    Result1: string;
-    Result2: string;
-  end;}
-
   {Forward Declarations}
 
   TORMField = class;

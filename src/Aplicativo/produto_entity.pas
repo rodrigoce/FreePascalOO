@@ -5,7 +5,7 @@ unit produto_entity;
 interface
 
 uses
-  Classes, SysUtils, entity_base, mini_orm, funcoes, Dialogs;
+  Classes, SysUtils, entity_base, mini_orm, application_functions, Dialogs;
 
 type
 

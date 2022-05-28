@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Dialogs, mini_orm, TypInfo, StrUtils, SQLDB, DateUtils,
-  Variants, conexao_dm, LazUTF8, entity_base, StdCtrls;
+  Variants, conexao_dm, LazUTF8, entity_base, StdCtrls, application_delegates;
 
 type
 
@@ -14,11 +14,12 @@ type
 
   generic TDALBase<T: TEntityBase> = class
     private
-      class var FMemoLogSQLCommands: TMemo;
+      class var FLogSQLCommandsDelegate: TOneStrParam;
       // gera uma exception caso os campos strings tenham mais que o length mapeado
       procedure CheckStringMaxLength(Entity: T);
+      procedure WriteLog(TextLog: string);
     public
-      class property MemoLogSQLCommands: TMemo read FMemoLogSQLCommands write FMemoLogSQLCommands;
+      class property LogSQLCommandsDelegate: TOneStrParam read FLogSQLCommandsDelegate write FLogSQLCommandsDelegate;
       // para chaves compostas pode ser passado VarArrayOf
       function FindByPK(Id: Variant): T;
       // pega próximo valor da sequence
@@ -50,6 +51,12 @@ begin
         raise Exception.Create('A propriedade ' + ormField.EntityFieldName + ' tem mais de ' + ormField.Length.ToString + ' caracteres no objeto do tipo ' + ormEntity.EntityClassName);
     end;
   end;
+end;
+
+procedure TDALBase.WriteLog(TextLog: string);
+begin
+  if LogSQLCommandsDelegate <> nil then
+    LogSQLCommandsDelegate(TextLog);
 end;
 
 function TDALBase.FindByPK(Id: Variant): T;
@@ -122,20 +129,22 @@ begin
   //
 
   entity := T.Create;
+  entity.OldVersion := T.Create;
 
   for ormField in ormEntity.FieldList do
   begin
     if not q.FieldByName(ormField.DBColumnName).IsNull then
       if ormField.PPropInfo^.SetProc <> nil then
+      begin
         SetPropValue(entity, ormField.PPropInfo, q.FieldByName(ormField.DBColumnName).Value);
+        SetPropValue(entity.OldVersion, ormField.PPropInfo, q.FieldByName(ormField.DBColumnName).Value);
+      end;
   end;
 
   q.Close;
   q.Free;
 
-  if MemoLogSQLCommands <> nil then
-    MemoLogSQLCommands.Append(sql + LineEnding + LineEnding + strParams + '///////////' + LineEnding);
-
+  WriteLog(sql + LineEnding + LineEnding + 'Parâmetros' + LineEnding + LineEnding + strParams );
 
   Result := entity;
 end;
@@ -193,7 +202,7 @@ begin
   for ormField in ormEntity.FieldList do
   begin
     sql := sql + '  :' + ormField.DBColumnName;
-    sql := sql + IfThen(i < ormEntity.FieldList.Count -1, ', ', ')') + LineEnding;
+    sql := sql + IfThen(i < ormEntity.FieldList.Count -1, ', ' + LineEnding, ')') ;
     Inc(i);
   end;
 
@@ -217,9 +226,7 @@ begin
     TSQLTransaction(q.Transaction).Commit;
   q.Free;
 
-
-  if MemoLogSQLCommands <> nil then
-    MemoLogSQLCommands.Append(sql + LineEnding + strParams + '///////////' + LineEnding);
+  WriteLog(sql + LineEnding + LineEnding + 'Parâmetros' + LineEnding + LineEnding + strParams);
 
 end;
 
@@ -229,8 +236,8 @@ var
   ormField: TORMField;
   q: TSQLQuery;
   sql, strParams: string;
-  i, countPKFields, countCommonFields: Integer;
-
+  i, countPKFields: Integer;
+  alteredFields: TStringList;
 begin
   CheckStringMaxLength(Entity);
 
@@ -240,7 +247,18 @@ begin
 
   ormEntity := TORM.FindORMEntity(T.ClassName);
   countPKFields := ormEntity.CountPK;
-  countCommonFields := ormEntity.FieldList.Count - countPKFields;
+
+  // marca os campos não PK alterados
+  alteredFields := TStringList.Create;
+  for ormField in ormEntity.FieldList do
+  begin
+    if not ormField.IsPK then
+      if (not (VarCompareValue(GetPropValue(Entity, ormField.PPropInfo),
+        GetPropValue(Entity.OldVersion, ormField.PPropInfo)) = vrEqual)) then
+      begin
+        alteredFields.Add(ormField.EntityFieldName);
+      end;
+  end;
 
   //
   // monta a string com o update
@@ -252,11 +270,11 @@ begin
   i := 0;
   for ormField in ormEntity.FieldList do
   begin
-    // apenas campos não PK entram no update
-    if not ormField.IsPK then
+    // apenas campos não PK entram e alterados no update
+    if (not ormField.IsPK) and (alteredFields.IndexOf(ormField.EntityFieldName) > -1) then
     begin
       sql := sql + '  ' + ormField.DBColumnName + ' = :' + ormField.DBColumnName;
-      sql := sql + IfThen(i < countCommonFields -1, ', ', '') + LineEnding;
+      sql := sql + IfThen(i < alteredFields.Count -1, ', ', '') + LineEnding;
       strParams := strParams + VarToStr(GetPropValue(Entity, ormField.PPropInfo)) + LineEnding;
       Inc(i);
     end;
@@ -289,7 +307,11 @@ begin
 
   for ormField in ormEntity.FieldList do
   begin
-    q.ParamByName(ormField.DBColumnName).Value := GetPropValue(Entity, ormField.PPropInfo);
+    // apenas campos alterados e PK
+    if (alteredFields.IndexOf(ormField.EntityFieldName) > -1) or (ormField.IsPK) then
+    begin
+      q.ParamByName(ormField.DBColumnName).Value := GetPropValue(Entity, ormField.PPropInfo);
+    end;
   end;
 
   q.ExecSQL;
@@ -297,8 +319,7 @@ begin
     TSQLTransaction(q.Transaction).Commit;
   q.Free;
 
-  if MemoLogSQLCommands <> nil then
-    MemoLogSQLCommands.Append(sql + LineEnding + LineEnding + strParams + '///////////' + LineEnding);
+  WriteLog(sql + LineEnding + LineEnding + 'Parâmetros' + LineEnding + LineEnding + strParams);
 
 end;
 

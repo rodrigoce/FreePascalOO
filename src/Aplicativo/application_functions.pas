@@ -1,4 +1,4 @@
-unit funcoes;
+unit application_functions;
 
 {$mode ObjFPC}{$H+}
 

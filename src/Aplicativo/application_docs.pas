@@ -1,4 +1,4 @@
-unit documentacao;
+unit application_docs;
 
 {$mode ObjFPC}{$H+}
 

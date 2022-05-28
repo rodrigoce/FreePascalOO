@@ -3,6 +3,7 @@ object ProdutoCadForm: TProdutoCadForm
   Height = 254
   Top = 206
   Width = 585
+  ActiveControl = edReferencia
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
   Caption = 'Cadastro de Produtos'
@@ -62,7 +63,7 @@ object ProdutoCadForm: TProdutoCadForm
     BevelOuter = bvNone
     ClientHeight = 42
     ClientWidth = 585
-    Color = clWindow
+    Color = clInfoBk
     ParentColor = False
     TabOrder = 6
     object btSave: TButton

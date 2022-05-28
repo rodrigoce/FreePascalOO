@@ -5,7 +5,7 @@ unit conexao_dm;
 interface
 
 uses
-  Classes, SysUtils, IBConnection, SQLDB, TypInfo, StdCtrls;
+  Classes, SysUtils, IBConnection, SQLDB, TypInfo, StdCtrls, application_delegates;
 
 type
 
@@ -15,13 +15,14 @@ type
     Conexao: TIBConnection;
     SQLQuery1: TSQLQuery;
     Transacao: TSQLTransaction;
-    procedure ConexaoAfterConnect(Sender: TObject);
     procedure ConexaoLog(Sender: TSQLConnection; EventType: TDBEventType;
       const Msg: String);
+    procedure DataModuleCreate(Sender: TObject);
+    procedure DataModuleDestroy(Sender: TObject);
   private
-    FMemoLogTConnection: TMemo;
+    FLogTConnectionDelegate: TOneStrParam;
   public
-    property MemoLogTConnection: TMemo read FMemoLogTConnection write FMemoLogTConnection;
+    property LogTConnectionDelegate: TOneStrParam read FLogTConnectionDelegate write FLogTConnectionDelegate;
   end;
 
 var
@@ -29,24 +30,29 @@ var
 
 implementation
 
-uses principal_form;
+uses log_sql_form;
 
 {$R *.lfm}
 
 { TConexaoDM }
 
-procedure TConexaoDM.ConexaoAfterConnect(Sender: TObject);
-begin
-
-end;
-
 procedure TConexaoDM.ConexaoLog(Sender: TSQLConnection;
   EventType: TDBEventType; const Msg: String);
 begin
-  if MemoLogTConnection <> nil then
+  if LogTConnectionDelegate <> nil then
   begin
-    MemoLogTConnection.Append(GetEnumName(TypeInfo(EventType), Ord(EventType)) + ' ==> ' + Msg);
+    LogTConnectionDelegate(GetEnumName(TypeInfo(EventType), Ord(EventType)) + ' ==> ' + Msg);
   end;
+end;
+
+procedure TConexaoDM.DataModuleCreate(Sender: TObject);
+begin
+  LogSqlForm := TLogSqlForm.Create(Self);
+end;
+
+procedure TConexaoDM.DataModuleDestroy(Sender: TObject);
+begin
+  LogSqlForm.Free;
 end;
 
 end.

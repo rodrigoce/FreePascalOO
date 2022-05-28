@@ -65,7 +65,7 @@ var
 
 implementation
 
-uses funcoes;
+uses application_functions;
 
 {$R *.lfm}
 
