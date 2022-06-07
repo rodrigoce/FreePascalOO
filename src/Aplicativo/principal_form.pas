@@ -116,7 +116,7 @@ end;
 procedure TMenuPrincipalForm.Panel1Click(Sender: TObject);
 begin
   Application.CreateForm(TGeradorDeCodigoForm, GeradorDeCodigoForm);
-  GeradorDeCodigoForm.Parent := Panel1;
+  //GeradorDeCodigoForm.Parent := Panel1;
   GeradorDeCodigoForm.Show;
   GeradorDeCodigoForm.Free;
 end;

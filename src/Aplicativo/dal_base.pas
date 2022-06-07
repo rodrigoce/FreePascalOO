@@ -15,8 +15,7 @@ type
   generic TDALBase<T: TEntityBase> = class
     private
       class var FLogSQLCommandsDelegate: TOneStrParam;
-      // gera uma exception caso os campos strings tenham mais que o length mapeado
-      procedure CheckStringMaxLength(Entity: T);
+
       procedure WriteLog(TextLog: string);
     public
       class property LogSQLCommandsDelegate: TOneStrParam read FLogSQLCommandsDelegate write FLogSQLCommandsDelegate;
@@ -33,25 +32,6 @@ type
 implementation
 
 { TDALBase }
-
-procedure TDALBase.CheckStringMaxLength(Entity: T);
-var
-  ormEntity: TORMEntity;
-  ormField: TORMField;
-  v: string;
-begin
-  ormEntity := TORM.FindORMEntity(T.ClassName);
-
-  for ormField in ormEntity.FieldList do
-  begin
-    if ormField.IsString then
-    begin
-      v := GetPropValue(Entity, ormField.PPropInfo);
-      if UTF8Length(v) > ormField.Length then
-        raise Exception.Create('A propriedade ' + ormField.EntityFieldName + ' tem mais de ' + ormField.Length.ToString + ' caracteres no objeto do tipo ' + ormEntity.EntityClassName);
-    end;
-  end;
-end;
 
 procedure TDALBase.WriteLog(TextLog: string);
 begin
@@ -175,7 +155,7 @@ var
   i: Integer;
   sql, strParams: string;
 begin
-  CheckStringMaxLength(Entity);
+  Entity.ValidateStringMaxLength(True);
   // alimenta campos de rastreamento
   (Entity as TEntityBase).DataCriacao := GetDatabaseDateTime;
   (Entity as TEntityBase).IdUserCriacao := 0; //// PEAGR O ID DO CARA LOGADO
@@ -239,7 +219,7 @@ var
   i, countPKFields: Integer;
   alteredFields: TStringList;
 begin
-  CheckStringMaxLength(Entity);
+  Entity.ValidateStringMaxLength(True);
 
   // alimenta campos de rastreamento
   (Entity as TEntityBase).DataAtualizacao := GetDatabaseDateTime;

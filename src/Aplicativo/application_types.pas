@@ -7,7 +7,20 @@ interface
 uses
   Classes, SysUtils;
 
+type
+  TOperationResult = record
+    Success: Boolean;
+    Message: string;
+  end;
 
+  TValidationMsgItem = class
+  private
+    FClassFieldName: string;
+    FMsgList: TStringList;
+  public
+    property ClassFieldName: string read FClassFieldName write FClassFieldName;
+    property MsgList: TStringList read FMsgList write FMsgList;
+  end;
 
 implementation
 

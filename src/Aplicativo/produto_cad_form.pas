@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, Spin,
-  ExtCtrls, SpinEx, produto_entity, produto_dal;
+  ExtCtrls, SpinEx, produto_entity, produto_bll, application_types;
 
 type
 
@@ -31,8 +31,8 @@ type
     procedure btCancelClick(Sender: TObject);
     procedure btSaveClick(Sender: TObject);
   private
-    FProdutoEntity: TProdutoEntity;
-    FProdutoDal: TProdutoDal;
+    FProduto: TProdutoEntity;
+    FProdutoBLL: TProdutoBLL;
     FIsInsert: Boolean;
     procedure ObjectToView;
     procedure ViewToObject;
@@ -50,17 +50,22 @@ implementation
 { TProdutoCadForm }
 
 procedure TProdutoCadForm.btSaveClick(Sender: TObject);
+var
+  opResult: TOperationResult;
 begin
   ViewToObject;
 
   if FIsInsert then
   begin
-    FProdutoEntity.Id:= FProdutoDal.GetNextSequence;
-    FProdutoDal.Insert(FProdutoEntity)
+    opResult := FProdutoBLL.InsertProduto(FProduto)
   end
   else
-    FProdutoDal.Update(FProdutoEntity);
-  Close;
+    opResult := FProdutoBLL.UpdateProduto(FProduto);
+
+  if opResult.Success then
+    Close
+  else
+    ShowMessage(opResult.Message + LineEnding + FProduto.GetAllRawErrorMessages);
 end;
 
 procedure TProdutoCadForm.btCancelClick(Sender: TObject);
@@ -70,21 +75,21 @@ end;
 
 procedure TProdutoCadForm.ObjectToView;
 begin
-  edId.Text := FProdutoEntity.Id.ToString;
-  edReferencia.Text := FProdutoEntity.Referencia;
-  edNome.Text := FProdutoEntity.Nome;
-  edPrecoCusto.Value := FProdutoEntity.PrecoCusto;
-  edMargemLucro.Value := FProdutoEntity.MargemLucro;
-  edPrecoVenda.Value := FProdutoEntity.PrecoVenda;
+  edId.Text := FProduto.Id.ToString;
+  edReferencia.Text := FProduto.Referencia;
+  edNome.Text := FProduto.Nome;
+  edPrecoCusto.Value := FProduto.PrecoCusto;
+  edMargemLucro.Value := FProduto.MargemLucro;
+  edPrecoVenda.Value := FProduto.PrecoVenda;
 end;
 
 procedure TProdutoCadForm.ViewToObject;
 begin
-  FProdutoEntity.Referencia := edReferencia.Text;
-  FProdutoEntity.Nome := edNome.Text;
-  FProdutoEntity.PrecoCusto := edPrecoCusto.Value;
-  FProdutoEntity.MargemLucro := edMargemLucro.Value;
-  FProdutoEntity.PrecoVenda := edPrecoVenda.Value;
+  FProduto.Referencia := edReferencia.Text;
+  FProduto.Nome := edNome.Text;
+  FProduto.PrecoCusto := edPrecoCusto.Value;
+  FProduto.MargemLucro := edMargemLucro.Value;
+  FProduto.PrecoVenda := edPrecoVenda.Value;
 end;
 
 class procedure TProdutoCadForm.Edit(Id: Integer);
@@ -92,23 +97,23 @@ begin
   Application.CreateForm(TProdutoCadForm, ProdutoCadForm);
   with ProdutoCadForm do
   begin
-    FProdutoDal := TProdutoDal.Create;
+    FProdutoBLL := TProdutoBLL.Create;
 
     if Id = 0 then
     begin
-      FProdutoEntity := TProdutoEntity.Create;
+      FProduto := FProdutoBLL.NewProduto;
       FIsInsert := True;
     end
     else
     begin
-      FProdutoEntity := FProdutoDal.FindByPK(Id);
+      FProduto := FProdutoBLL.FindProdutoByPK(Id);
       FIsInsert := False;
     end;
     ObjectToView;
 
     ShowModal;
-    FProdutoEntity.Free;
-    FProdutoDal.Free;
+    FProduto.Free;
+    FProdutoBLL.Free;
   end;
 end;
 

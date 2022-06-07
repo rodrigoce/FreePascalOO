@@ -5,12 +5,12 @@ unit entity_base;
 interface
 
 uses
-  Classes, SysUtils, TypInfo, Variants;
+  Classes, SysUtils, TypInfo, Variants, validatable, LazUTF8;
 
 type
   { TEntityBase }
 
-  TEntityBase = class
+  TEntityBase = class(TValidatable)
     private
       FId: LongInt;
       FDataCriacao: TDateTime;
@@ -23,8 +23,14 @@ type
     public
       // ao carregar do banco de dados, faz uma copia da entidade para ser considerada os valores não alterados
       property OldVersion: TEntityBase read FOldVersion write FOldVersion;
+
       function AsString: string;
+
+      constructor Create;
       destructor Destroy; override;
+
+      // gera uma exception caso os campos strings tenham mais que o length mapeado
+      procedure ValidateStringMaxLength(RaiseError: Boolean = False);
 
     published
       property Id: LongInt read FId write FId;
@@ -45,7 +51,33 @@ type
 
 implementation
 
+uses mini_orm;
+
 { TEntityBase }
+
+procedure TEntityBase.ValidateStringMaxLength(RaiseError: Boolean = False);
+var
+  ormEntity: TORMEntity;
+  ormField: TORMField;
+  v: string;
+begin
+  ormEntity := TORM.FindORMEntity(Self.ClassName);
+
+  for ormField in ormEntity.FieldList do
+  begin
+    if ormField.IsString then
+    begin
+      v := GetPropValue(Self, ormField.PPropInfo);
+      if UTF8Length(v) > ormField.Length then
+      begin
+        Self.AddErrorValidationMsg(ormField.EntityFieldName, 'O campo %s deve ter no máximo ' + ormField.Length.ToString + ' caracteres');
+
+        if RaiseError then
+          raise Exception.Create('A propriedade ' + ormField.EntityFieldName + ' tem mais de ' + ormField.Length.ToString + ' caracteres no objeto do tipo ' + ormEntity.EntityClassName);
+      end;
+    end;
+  end;
+end;
 
 function TEntityBase.AsString: string;
 var
@@ -69,11 +101,18 @@ begin
   end;
 end;
 
-destructor TEntityBase.Destroy;
+constructor TEntityBase.Create;
 begin
   inherited;
+
+end;
+
+destructor TEntityBase.Destroy;
+begin
   if OldVersion <> nil then
     OldVersion.Free;
+
+  inherited;
 end;
 
 end.
