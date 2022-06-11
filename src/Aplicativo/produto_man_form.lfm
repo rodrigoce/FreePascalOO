@@ -1,7 +1,7 @@
 object ProdutoManForm: TProdutoManForm
-  Left = 409
+  Left = 311
   Height = 470
-  Top = 93
+  Top = 189
   Width = 632
   Caption = 'Manutenção de Produtos'
   ClientHeight = 470
@@ -10,8 +10,8 @@ object ProdutoManForm: TProdutoManForm
   WindowState = wsMaximized
   object DBGrid1: TDBGrid
     Left = 8
-    Height = 408
-    Top = 56
+    Height = 352
+    Top = 112
     Width = 616
     Anchors = [akTop, akLeft, akRight, akBottom]
     AutoEdit = False
@@ -21,32 +21,165 @@ object ProdutoManForm: TProdutoManForm
     Options = [dgTitles, dgIndicator, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgTabs, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgDisableDelete, dgDisableInsert, dgRowHighlight, dgDblClickAutoSize]
     TabOrder = 0
   end
-  object btNovo: TButton
+  object GroupBox1: TGroupBox
     Left = 8
-    Height = 25
-    Top = 24
-    Width = 75
-    Caption = 'Novo'
-    OnClick = btNovoClick
+    Height = 57
+    Top = 0
+    Width = 616
+    Anchors = [akTop, akLeft, akRight]
+    Caption = 'Pesquisar'
+    ClientHeight = 37
+    ClientWidth = 612
     TabOrder = 1
+    object Label1: TLabel
+      Left = 6
+      Height = 15
+      Top = 6
+      Width = 113
+      Caption = 'Código de Referência'
+    end
+    object edReferencia: TEdit
+      Left = 126
+      Height = 23
+      Top = 2
+      Width = 96
+      TabOrder = 0
+    end
+    object Label2: TLabel
+      Left = 230
+      Height = 15
+      Top = 6
+      Width = 33
+      Caption = 'Nome'
+    end
+    object edNome: TEdit
+      Left = 270
+      Height = 23
+      Top = 2
+      Width = 224
+      TabOrder = 1
+    end
+    object btSearch: TButton
+      Left = 502
+      Height = 25
+      Top = 0
+      Width = 75
+      Caption = 'Pesquisar'
+      TabOrder = 2
+    end
   end
-  object btEdit: TButton
-    Left = 88
-    Height = 25
-    Top = 24
-    Width = 75
-    Caption = 'Editar'
-    OnClick = btEditClick
+  object Panel1: TPanel
+    Left = 8
+    Height = 37
+    Top = 64
+    Width = 616
+    Anchors = [akTop, akLeft, akRight]
+    BevelOuter = bvNone
+    ClientHeight = 37
+    ClientWidth = 616
+    Color = clSkyBlue
+    ParentColor = False
     TabOrder = 2
+    object btNovo: TButton
+      Left = 8
+      Height = 25
+      Top = 6
+      Width = 75
+      Caption = 'Novo'
+      OnClick = btNovoClick
+      TabOrder = 0
+    end
+    object btEdit: TButton
+      Left = 88
+      Height = 25
+      Top = 6
+      Width = 75
+      Caption = 'Editar'
+      OnClick = btEditClick
+      TabOrder = 1
+    end
+  end
+  object FlowPanel1: TFlowPanel
+    Left = 128
+    Height = 48
+    Top = 168
+    Width = 64
+    BorderWidth = 3
+    BorderSpacing.Left = 3
+    BorderSpacing.Top = 3
+    BorderSpacing.Right = 3
+    BorderSpacing.Bottom = 3
+    BorderSpacing.Around = 3
+    BorderSpacing.InnerBorder = 3
+    ControlList = <    
+      item
+        Control = Label3
+        WrapAfter = waAuto
+        Index = 0
+      end    
+      item
+        Control = Edit1
+        WrapAfter = waAuto
+        Index = 1
+      end    
+      item
+        Control = Label4
+        WrapAfter = waAuto
+        Index = 2
+      end    
+      item
+        Control = Edit2
+        WrapAfter = waAuto
+        Index = 3
+      end>
+    FlowLayout = tlTop
+    FlowStyle = fsLeftRightTopBottom
+    TabOrder = 3
+    object Label3: TLabel
+      Left = 9
+      Height = 15
+      Top = 4
+      Width = 34
+      Anchors = []
+      BorderSpacing.Left = 5
+      Caption = 'Label3'
+    end
+    object Edit1: TEdit
+      Left = 9
+      Height = 23
+      Top = 19
+      Width = 197
+      Anchors = []
+      BorderSpacing.Left = 5
+      TabOrder = 0
+      Text = 'Edit1'
+    end
+    object Label4: TLabel
+      Left = 4
+      Height = 15
+      Top = 42
+      Width = 34
+      Anchors = []
+      Caption = 'Label4'
+    end
+    object Edit2: TEdit
+      Left = 4
+      Height = 23
+      Top = 57
+      Width = 80
+      Anchors = []
+      TabOrder = 1
+      Text = 'Edit2'
+    end
   end
   object ds: TDataSource
     DataSet = buf
-    Left = 70
-    Top = 64
+    Left = 120
+    Top = 232
   end
   object buf: TBufDataset
     FieldDefs = <>
-    Left = 72
-    Top = 120
+    Left = 56
+    Top = 232
   end
 end

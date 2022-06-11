@@ -13,14 +13,14 @@ type
 
   TProdutoDAL = class(specialize TDALBase<TProdutoEntity>)
     public
-      procedure LoadPesquisaProdutos(Target: TBufDataset);
+      procedure SearchProdutos(Target: TBufDataset);
   end;
 
 implementation
 
 { TProdutoDAL }
 
-procedure TProdutoDAL.LoadPesquisaProdutos(Target: TBufDataset);
+procedure TProdutoDAL.SearchProdutos(Target: TBufDataset);
 var
   q: TSQLQuery;
 begin

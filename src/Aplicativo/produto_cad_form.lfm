@@ -56,20 +56,20 @@ object ProdutoCadForm: TProdutoCadForm
   end
   object Panel1: TPanel
     Left = 0
-    Height = 42
-    Top = 212
+    Height = 37
+    Top = 217
     Width = 585
     Align = alBottom
     BevelOuter = bvNone
-    ClientHeight = 42
+    ClientHeight = 37
     ClientWidth = 585
-    Color = clInfoBk
+    Color = clSkyBlue
     ParentColor = False
     TabOrder = 6
     object btSave: TButton
       Left = 424
       Height = 25
-      Top = 8
+      Top = 6
       Width = 75
       Caption = 'Salvar'
       OnClick = btSaveClick
@@ -78,7 +78,7 @@ object ProdutoCadForm: TProdutoCadForm
     object btCancel: TButton
       Left = 504
       Height = 25
-      Top = 8
+      Top = 6
       Width = 75
       Caption = 'Cancelar'
       OnClick = btCancelClick

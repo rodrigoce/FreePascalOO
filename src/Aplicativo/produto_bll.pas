@@ -5,7 +5,8 @@ unit produto_bll;
 interface
 
 uses
-  Classes, SysUtils, produto_entity, produto_dal, produto_validator, application_types;
+  Classes, SysUtils, produto_entity, produto_dal, produto_validator,
+  application_types, BufDataset;
 
 type
 
@@ -19,6 +20,7 @@ type
       function InsertProduto(Produto: TProdutoEntity): TOperationResult;
       function UpdateProduto(Produto: TProdutoEntity): TOperationResult;
       function FindProdutoByPK(Id: Integer): TProdutoEntity;
+      procedure SearchProdutos(Target: TBufDataset);
       function Validate(Produto: TProdutoEntity): Boolean;
       constructor Create;
       destructor Destroy; override;
@@ -80,6 +82,11 @@ end;
 function TProdutoBLL.FindProdutoByPK(Id: Integer): TProdutoEntity;
 begin
   Result := FProdutoDAL.FindByPK(Id);
+end;
+
+procedure TProdutoBLL.SearchProdutos(Target: TBufDataset);
+begin
+  FProdutoDAL.SearchProdutos(Target);
 end;
 
 function TProdutoBLL.Validate(Produto: TProdutoEntity): Boolean;
