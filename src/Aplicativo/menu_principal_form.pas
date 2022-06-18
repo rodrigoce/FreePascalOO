@@ -1,4 +1,4 @@
-unit principal_form;
+unit menu_principal_form;
 
 {$mode objfpc}{$H+}
 
@@ -6,15 +6,13 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, Menus,
-  ComCtrls, ExtCtrls, Windows;
+  ComCtrls, ExtCtrls, ActnList, Windows, menu_tree_item;
 
 type
 
   { TMenuPrincipalForm }
 
   TMenuPrincipalForm = class(TForm)
-    ImageList1: TImageList;
-    ImageList2: TImageList;
     MainMenu1: TMainMenu;
     MenuItem1: TMenuItem;
     MenuItem2: TMenuItem;
@@ -26,23 +24,17 @@ type
     Page3: TPage;
     Panel1: TPanel;
     StatusBar1: TStatusBar;
-    TreeView1: TTreeView;
-    procedure Button1Click(Sender: TObject);
-    procedure Button2Click(Sender: TObject);
-    procedure ControlBar1Click(Sender: TObject);
-    procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
+    TreeViewMenu: TTreeView;
     procedure FormCreate(Sender: TObject);
     procedure MenuItem2Click(Sender: TObject);
     procedure MenuItem4Click(Sender: TObject);
     procedure MenuItem5Click(Sender: TObject);
-    procedure Page3BeforeShow(ASender: TObject; ANewPage: TPage;
-      ANewIndex: Integer);
-    procedure PaintBox1Click(Sender: TObject);
-    procedure Panel1Click(Sender: TObject);
-    procedure ScrollBox1Click(Sender: TObject);
+    procedure TreeViewMenuClick(Sender: TObject);
   private
+    FMenuTree: TMenuTreeItem;
   public
     procedure ApplicationKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    property MenuTree: TMenuTreeItem read FMenuTree write FMenuTree;
   end;
 
 var
@@ -51,38 +43,18 @@ var
 implementation
 
 uses gerador_codigo_form, produto_man_form,
-  log_sql_form, query_runner_form;
+  log_sql_form, query_runner_form, menu_principal_seed;
 
 {$R *.lfm}
 
 { TMenuPrincipalForm }
 
-procedure TMenuPrincipalForm.Button1Click(Sender: TObject);
-
-begin
-
-end;
-
-procedure TMenuPrincipalForm.Button2Click(Sender: TObject);
-begin
-
-end;
-
-procedure TMenuPrincipalForm.ControlBar1Click(Sender: TObject);
-begin
-
-end;
-
-procedure TMenuPrincipalForm.FormClose(Sender: TObject;
-  var CloseAction: TCloseAction);
-begin
-
-end;
-
 procedure TMenuPrincipalForm.FormCreate(Sender: TObject);
+
 begin
   // registra teclas de atalho geral da aplicação
   Application.AddOnKeyDownHandler(@ApplicationKeyDown);
+  TMenuPrincipalSeed.Create.InitRootMenus(MenuTree, TreeViewMenu);
 end;
 
 procedure TMenuPrincipalForm.MenuItem2Click(Sender: TObject);
@@ -102,28 +74,12 @@ begin
   TQueryRunnerForm.OpenFeature;
 end;
 
-procedure TMenuPrincipalForm.Page3BeforeShow(ASender: TObject; ANewPage: TPage;
-  ANewIndex: Integer);
+procedure TMenuPrincipalForm.TreeViewMenuClick(Sender: TObject);
 begin
+  Showmessage(TreeViewMenu.Selected.Text);
 
-end;
-
-procedure TMenuPrincipalForm.PaintBox1Click(Sender: TObject);
-begin
-
-end;
-
-procedure TMenuPrincipalForm.Panel1Click(Sender: TObject);
-begin
-  Application.CreateForm(TGeradorDeCodigoForm, GeradorDeCodigoForm);
-  //GeradorDeCodigoForm.Parent := Panel1;
-  GeradorDeCodigoForm.Show;
-  GeradorDeCodigoForm.Free;
-end;
-
-procedure TMenuPrincipalForm.ScrollBox1Click(Sender: TObject);
-begin
-
+  if TMenuTreeItem(TreeViewMenu.Selected.Data).CallBack <> nil then
+    TMenuTreeItem(TreeViewMenu.Selected.Data).CallBack;
 end;
 
 procedure TMenuPrincipalForm.ApplicationKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);

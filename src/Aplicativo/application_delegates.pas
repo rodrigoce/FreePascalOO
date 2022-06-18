@@ -10,6 +10,7 @@ uses
 
 type
   TOneStrParam = procedure(Text: string) of object;
+  TNoParam = procedure of object;
 
 
 implementation

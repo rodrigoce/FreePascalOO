@@ -1,0 +1,105 @@
+object MenuPrincipalForm: TMenuPrincipalForm
+  Left = 277
+  Height = 569
+  Top = 214
+  Width = 912
+  Caption = 'MenuPrincipalForm'
+  ClientHeight = 549
+  ClientWidth = 912
+  KeyPreview = True
+  Menu = MainMenu1
+  OnCreate = FormCreate
+  LCLVersion = '2.2.0.4'
+  object StatusBar1: TStatusBar
+    Left = 0
+    Height = 23
+    Top = 526
+    Width = 912
+    Panels = <    
+      item
+        Text = 'Teste'
+        Width = 50
+      end    
+      item
+        Alignment = taRightJustify
+        Text = 'Teste 2555554555555         '
+        Width = 50
+      end>
+    SimplePanel = False
+  end
+  object TreeViewMenu: TTreeView
+    Left = 0
+    Height = 526
+    Top = 0
+    Width = 369
+    Align = alLeft
+    BorderStyle = bsNone
+    HideSelection = False
+    HotTrack = True
+    Images = ImagesDM.ImageListMenu
+    Indent = 30
+    ParentShowHint = False
+    ReadOnly = True
+    RowSelect = True
+    TabOrder = 1
+    OnClick = TreeViewMenuClick
+    Options = [tvoAutoItemHeight, tvoHotTrack, tvoKeepCollapsedNodes, tvoReadOnly, tvoRowSelect, tvoShowButtons, tvoShowLines, tvoShowRoot, tvoToolTips, tvoThemedDraw]
+    Items.Data = {
+      F9FFFFFF0200020000000000000000000000FFFFFFFFFFFFFFFF010000000000
+      000001090000004578656D706C6F2E310100000001000000FFFFFFFFFFFFFFFF
+      0000000000000000000B0000004578656D706C6F2E312E310000000000000000
+      FFFFFFFFFFFFFFFF020000000000000001090000004578656D706C6F2E320100
+      000001000000FFFFFFFFFFFFFFFF0000000000000000000B0000004578656D70
+      6C6F2E322E310000000000000000FFFFFFFFFFFFFFFF0200000000000000010B
+      0000004578656D706C6F2E322E320200000002000000FFFFFFFFFFFFFFFF0000
+      000000000000000D0000004578656D706C6F2E322E322E310200000002000000
+      FFFFFFFFFFFFFFFF0000000000000000000D0000004578656D706C6F2E322E32
+      2E32
+    }
+  end
+  object Panel1: TPanel
+    Left = 369
+    Height = 526
+    Top = 0
+    Width = 543
+    Align = alClient
+    BevelOuter = bvNone
+    ClientHeight = 526
+    ClientWidth = 543
+    TabOrder = 2
+    object Notebook1: TNotebook
+      Left = 190
+      Height = 122
+      Top = 326
+      Width = 163
+      PageIndex = 0
+      TabOrder = 0
+      object Page2: TPage
+      end
+      object Page3: TPage
+      end
+    end
+  end
+  object MainMenu1: TMainMenu
+    Left = 53
+    Top = 26
+    object MenuItem3: TMenuItem
+      Caption = 'Cadastros'
+      object MenuItem4: TMenuItem
+        Caption = 'Produtos'
+        OnClick = MenuItem4Click
+      end
+    end
+    object MenuItem1: TMenuItem
+      Caption = '&Utilitários'
+      object MenuItem2: TMenuItem
+        Caption = '&Gerador de Código'
+        OnClick = MenuItem2Click
+      end
+      object MenuItem5: TMenuItem
+        Caption = 'SQL'
+        OnClick = MenuItem5Click
+      end
+    end
+  end
+end

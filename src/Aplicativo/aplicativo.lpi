@@ -80,7 +80,7 @@
         <IsPartOfProject Value="True"/>
       </Unit>
       <Unit>
-        <Filename Value="principal_form.pas"/>
+        <Filename Value="menu_principal_form.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="MenuPrincipalForm"/>
         <HasResources Value="True"/>
@@ -160,6 +160,25 @@
       </Unit>
       <Unit>
         <Filename Value="produto_validator.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="images_dm.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="ImagesDM"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="DataModule"/>
+      </Unit>
+      <Unit>
+        <Filename Value="menu_tree_item.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="menu_principal_seed.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="menu_principal_callbacks.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit>
     </Units>

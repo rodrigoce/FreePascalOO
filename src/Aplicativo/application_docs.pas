@@ -57,7 +57,7 @@ UNITS INTERESSANTES
 
 {
   https://github.com/hiraethbbs/pascal_bcrypt
-
+  https://wiki.freepascal.org/Lazarus_IDE_Tools#Summary_Table_of_IDE_shortcuts
 }
 
 end.
