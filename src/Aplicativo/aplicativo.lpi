@@ -174,7 +174,7 @@
         <IsPartOfProject Value="True"/>
       </Unit>
       <Unit>
-        <Filename Value="menu_principal_seed.pas"/>
+        <Filename Value="menu_principal_config.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit>
       <Unit>

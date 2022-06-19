@@ -8,7 +8,7 @@
       <Unit>
         <Filename Value="Aplicativo.lpr"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="6"/>
         <TopLine Value="3"/>
         <CursorPos X="13" Y="22"/>
         <UsageCount Value="206"/>
@@ -29,8 +29,8 @@
         <Filename Value="dal_base.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="4"/>
-        <CursorPos X="20" Y="15"/>
+        <TopLine Value="36"/>
+        <CursorPos X="27" Y="39"/>
         <UsageCount Value="206"/>
         <Bookmarks Count="2">
           <Item0 X="3" Y="127" ID="1"/>
@@ -71,8 +71,8 @@
         <ResourceBaseClass Value="Form"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="64"/>
-        <CursorPos X="6" Y="81"/>
+        <TopLine Value="17"/>
+        <CursorPos X="48" Y="27"/>
         <UsageCount Value="206"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -80,10 +80,9 @@
       <Unit>
         <Filename Value="produto_dal.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="12"/>
+        <EditorIndex Value="-1"/>
         <CursorPos X="66" Y="8"/>
         <UsageCount Value="206"/>
-        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="produto_entity.pas"/>
@@ -106,8 +105,8 @@
         <ComponentName Value="ProdutoManForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <TopLine Value="13"/>
-        <CursorPos X="3" Y="36"/>
+        <TopLine Value="25"/>
+        <CursorPos X="3" Y="31"/>
         <UsageCount Value="205"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -122,7 +121,7 @@
       <Unit>
         <Filename Value="application_docs.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="8"/>
+        <EditorIndex Value="7"/>
         <TopLine Value="34"/>
         <CursorPos X="79" Y="60"/>
         <UsageCount Value="261"/>
@@ -134,12 +133,10 @@
         <ComponentName Value="ProdutoCadForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="10"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="49"/>
         <CursorPos X="35" Y="63"/>
         <UsageCount Value="245"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="query_runner_form.pas"/>
@@ -166,8 +163,8 @@
       <Unit>
         <Filename Value="application_delegates.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="6"/>
-        <CursorPos X="33" Y="13"/>
+        <EditorIndex Value="5"/>
+        <CursorPos X="10" Y="12"/>
         <UsageCount Value="216"/>
         <Loaded Value="True"/>
       </Unit>
@@ -202,17 +199,16 @@
       <Unit>
         <Filename Value="produto_bll.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="11"/>
+        <EditorIndex Value="-1"/>
         <CursorPos X="22" Y="9"/>
-        <UsageCount Value="186"/>
-        <Loaded Value="True"/>
+        <UsageCount Value="201"/>
       </Unit>
       <Unit>
         <Filename Value="produto_validator.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <CursorPos Y="26"/>
-        <UsageCount Value="185"/>
+        <UsageCount Value="200"/>
       </Unit>
       <Unit>
         <Filename Value="images_dm.pas"/>
@@ -220,18 +216,34 @@
         <ComponentName Value="ImagesDM"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-        <EditorIndex Value="9"/>
-        <UsageCount Value="31"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
+        <EditorIndex Value="-1"/>
+        <UsageCount Value="97"/>
       </Unit>
       <Unit>
         <Filename Value="menu_tree_item.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="40"/>
-        <CursorPos X="20" Y="48"/>
-        <UsageCount Value="30"/>
+        <TopLine Value="98"/>
+        <CursorPos X="3" Y="104"/>
+        <UsageCount Value="96"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="menu_principal_config.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="58"/>
+        <CursorPos X="11" Y="78"/>
+        <UsageCount Value="88"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="menu_principal_callbacks.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="4"/>
+        <TopLine Value="4"/>
+        <CursorPos X="29" Y="8"/>
+        <UsageCount Value="88"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -240,154 +252,232 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="36"/>
         <CursorPos X="3" Y="51"/>
-        <UsageCount Value="43"/>
+        <UsageCount Value="36"/>
       </Unit>
       <Unit>
         <Filename Value="C:\lazarus\fpc\3.2.2\source\rtl\inc\objpash.inc"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="200"/>
-        <CursorPos X="21" Y="215"/>
-        <UsageCount Value="13"/>
+        <TopLine Value="195"/>
+        <CursorPos X="23" Y="206"/>
+        <UsageCount Value="6"/>
       </Unit>
       <Unit>
         <Filename Value="C:\lazarus\lcl\comctrls.pp"/>
         <UnitName Value="ComCtrls"/>
-        <EditorIndex Value="3"/>
-        <TopLine Value="3703"/>
-        <CursorPos X="14" Y="3716"/>
-        <UsageCount Value="10"/>
-        <Loaded Value="True"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="195"/>
+        <CursorPos X="21" Y="203"/>
+        <UsageCount Value="3"/>
       </Unit>
       <Unit>
         <Filename Value="C:\lazarus\fpc\3.2.2\source\packages\rtl-generics\src\generics.collections.pas"/>
         <UnitName Value="Generics.Collections"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="1171"/>
-        <CursorPos X="20" Y="1186"/>
-        <UsageCount Value="10"/>
+        <TopLine Value="1370"/>
+        <CursorPos Y="1383"/>
+        <UsageCount Value="4"/>
       </Unit>
       <Unit>
-        <Filename Value="menu_principal_seed.pas"/>
-        <IsPartOfProject Value="True"/>
-        <EditorIndex Value="4"/>
-        <TopLine Value="25"/>
-        <CursorPos X="42" Y="36"/>
-        <UsageCount Value="22"/>
-        <Loaded Value="True"/>
+        <Filename Value="C:\lazarus\lcl\stdctrls.pp"/>
+        <UnitName Value="StdCtrls"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="1274"/>
+        <CursorPos X="50" Y="1288"/>
+        <UsageCount Value="5"/>
       </Unit>
       <Unit>
-        <Filename Value="menu_principal_callbacks.pas"/>
-        <IsPartOfProject Value="True"/>
-        <EditorIndex Value="5"/>
-        <CursorPos X="33" Y="16"/>
-        <UsageCount Value="22"/>
-        <Loaded Value="True"/>
+        <Filename Value="C:\lazarus\lcl\include\buttons.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="153"/>
+        <CursorPos X="16" Y="166"/>
+        <UsageCount Value="3"/>
+      </Unit>
+      <Unit>
+        <Filename Value="C:\lazarus\lcl\include\buttoncontrol.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="52"/>
+        <CursorPos X="3" Y="54"/>
+        <UsageCount Value="3"/>
+      </Unit>
+      <Unit>
+        <Filename Value="C:\lazarus\lcl\controls.pp"/>
+        <UnitName Value="Controls"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="1160"/>
+        <CursorPos X="13" Y="1168"/>
+        <UsageCount Value="5"/>
+      </Unit>
+      <Unit>
+        <Filename Value="C:\lazarus\lcl\include\wincontrol.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="6657"/>
+        <CursorPos X="3" Y="6666"/>
+        <UsageCount Value="3"/>
+      </Unit>
+      <Unit>
+        <Filename Value="C:\lazarus\fpc\3.2.2\source\rtl\objpas\classes\classesh.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="109"/>
+        <CursorPos X="51" Y="110"/>
+        <UsageCount Value="3"/>
+      </Unit>
+      <Unit>
+        <Filename Value="C:\lazarus\fpc\3.2.2\source\rtl\inc\objpas.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="323"/>
+        <CursorPos X="9" Y="325"/>
+        <UsageCount Value="4"/>
+      </Unit>
+      <Unit>
+        <Filename Value="C:\lazarus\docs\xml\lcl\comctrls\ttreenode_data.pas"/>
+        <EditorIndex Value="-1"/>
+        <UsageCount Value="4"/>
+      </Unit>
+      <Unit>
+        <Filename Value="C:\lazarus\components\lazutils\lazstringutils.pas"/>
+        <UnitName Value="LazStringUtils"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="236"/>
+        <CursorPos Y="246"/>
+        <UsageCount Value="9"/>
+      </Unit>
+      <Unit>
+        <Filename Value="C:\lazarus\fpc\3.2.2\source\packages\rtl-generics\src\generics.defaults.pas"/>
+        <UnitName Value="Generics.Defaults"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="1040"/>
+        <CursorPos Y="1052"/>
+        <UsageCount Value="4"/>
+      </Unit>
+      <Unit>
+        <Filename Value="C:\lazarus\lcl\forms.pp"/>
+        <UnitName Value="Forms"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="1862"/>
+        <CursorPos X="3" Y="1872"/>
+        <UsageCount Value="5"/>
       </Unit>
     </Units>
-    <JumpHistory HistoryIndex="25">
+    <JumpHistory HistoryIndex="29">
       <Position>
-        <Filename Value="menu_principal_seed.pas"/>
-        <Caret Line="48" Column="29" TopLine="25"/>
-      </Position>
-      <Position>
-        <Filename Value="menu_principal_seed.pas"/>
-        <Caret Line="9" Column="36"/>
+        <Filename Value="menu_principal_form.pas"/>
+        <Caret Line="56" Column="37" TopLine="47"/>
       </Position>
       <Position>
         <Filename Value="menu_principal_form.pas"/>
-        <Caret Line="56" Column="9" TopLine="33"/>
-      </Position>
-      <Position>
-        <Filename Value="menu_tree_item.pas"/>
-        <Caret Line="27" Column="80" TopLine="10"/>
-      </Position>
-      <Position>
-        <Filename Value="menu_tree_item.pas"/>
-        <Caret Line="48" Column="30" TopLine="40"/>
-      </Position>
-      <Position>
-        <Filename Value="menu_principal_seed.pas"/>
-        <Caret Line="37" Column="53" TopLine="19"/>
+        <Caret Line="55" Column="37" TopLine="46"/>
       </Position>
       <Position>
         <Filename Value="menu_principal_callbacks.pas"/>
-        <Caret Line="16" Column="31"/>
-      </Position>
-      <Position>
-        <Filename Value="menu_principal_seed.pas"/>
-        <Caret Line="20" Column="89" TopLine="2"/>
-      </Position>
-      <Position>
-        <Filename Value="menu_principal_seed.pas"/>
-        <Caret Line="54" Column="44" TopLine="30"/>
+        <Caret Line="17" Column="28" TopLine="7"/>
       </Position>
       <Position>
         <Filename Value="menu_principal_callbacks.pas"/>
-        <Caret Line="8" Column="38"/>
+        <Caret Line="18" Column="20" TopLine="10"/>
       </Position>
       <Position>
-        <Filename Value="menu_principal_seed.pas"/>
-        <Caret Line="53" Column="37" TopLine="34"/>
+        <Filename Value="menu_principal_config.pas"/>
+        <Caret Line="70" Column="61" TopLine="57"/>
       </Position>
       <Position>
-        <Filename Value="menu_principal_seed.pas"/>
-        <Caret Line="21" Column="56" TopLine="11"/>
-      </Position>
-      <Position>
-        <Filename Value="menu_principal_seed.pas"/>
-        <Caret Line="16" Column="15"/>
-      </Position>
-      <Position>
-        <Filename Value="menu_tree_item.pas"/>
-        <Caret Line="27" Column="25" TopLine="12"/>
-      </Position>
-      <Position>
-        <Filename Value="menu_tree_item.pas"/>
-        <Caret Line="56" Column="8" TopLine="40"/>
-      </Position>
-      <Position>
-        <Filename Value="menu_tree_item.pas"/>
-        <Caret Line="21" Column="69" TopLine="6"/>
-      </Position>
-      <Position>
-        <Filename Value="menu_tree_item.pas"/>
-        <Caret Line="64" Column="25" TopLine="40"/>
-      </Position>
-      <Position>
-        <Filename Value="menu_tree_item.pas"/>
-        <Caret Line="66" Column="32" TopLine="44"/>
-      </Position>
-      <Position>
-        <Filename Value="menu_tree_item.pas"/>
-        <Caret Line="55" Column="25" TopLine="40"/>
+        <Filename Value="menu_principal_callbacks.pas"/>
+        <Caret Line="27" Column="78" TopLine="8"/>
       </Position>
       <Position>
         <Filename Value="menu_principal_form.pas"/>
-        <Caret Line="69" Column="31" TopLine="49"/>
+        <Caret Line="65" Column="14" TopLine="52"/>
       </Position>
       <Position>
         <Filename Value="menu_principal_form.pas"/>
-        <Caret Line="80" Column="32" TopLine="62"/>
+        <Caret Line="22" Column="43" TopLine="14"/>
       </Position>
       <Position>
         <Filename Value="menu_principal_form.pas"/>
-        <Caret Line="79" Column="37" TopLine="62"/>
+        <Caret Line="38" Column="19" TopLine="49"/>
+      </Position>
+      <Position>
+        <Filename Value="menu_principal_form.pas"/>
+        <Caret Line="39" Column="19" TopLine="39"/>
+      </Position>
+      <Position>
+        <Filename Value="menu_principal_form.pas"/>
+        <Caret Line="40" Column="19" TopLine="40"/>
+      </Position>
+      <Position>
+        <Filename Value="menu_principal_form.pas"/>
+        <Caret Line="39" Column="19" TopLine="39"/>
+      </Position>
+      <Position>
+        <Filename Value="menu_principal_form.pas"/>
+        <Caret Line="38" Column="19" TopLine="38"/>
+      </Position>
+      <Position>
+        <Filename Value="produto_man_form.pas"/>
+        <Caret Line="36" Column="3" TopLine="28"/>
+      </Position>
+      <Position>
+        <Filename Value="produto_man_form.pas"/>
+        <Caret Line="35" Column="3" TopLine="27"/>
+      </Position>
+      <Position>
+        <Filename Value="produto_man_form.pas"/>
+        <Caret Line="34" Column="3" TopLine="27"/>
+      </Position>
+      <Position>
+        <Filename Value="produto_man_form.pas"/>
+        <Caret Line="33" Column="3" TopLine="26"/>
+      </Position>
+      <Position>
+        <Filename Value="produto_man_form.pas"/>
+        <Caret Line="32" Column="3" TopLine="26"/>
+      </Position>
+      <Position>
+        <Filename Value="produto_man_form.pas"/>
+        <Caret Line="31" Column="3" TopLine="25"/>
+      </Position>
+      <Position>
+        <Filename Value="menu_principal_config.pas"/>
+        <Caret Line="22" Column="22" TopLine="13"/>
+      </Position>
+      <Position>
+        <Filename Value="menu_principal_config.pas"/>
+        <Caret Line="23" Column="18" TopLine="12"/>
+      </Position>
+      <Position>
+        <Filename Value="menu_principal_config.pas"/>
+        <Caret Line="57" Column="3" TopLine="53"/>
+      </Position>
+      <Position>
+        <Filename Value="menu_principal_config.pas"/>
+        <Caret Line="22" Column="15" TopLine="13"/>
+      </Position>
+      <Position>
+        <Filename Value="menu_principal_config.pas"/>
+        <Caret Line="23" Column="22" TopLine="11"/>
+      </Position>
+      <Position>
+        <Filename Value="menu_principal_form.pas"/>
+        <Caret Line="75" Column="8" TopLine="56"/>
+      </Position>
+      <Position>
+        <Filename Value="menu_principal_form.pas"/>
+        <Caret Line="59" Column="29" TopLine="56"/>
+      </Position>
+      <Position>
+        <Filename Value="menu_principal_form.pas"/>
+        <Caret Line="30" Column="19" TopLine="18"/>
+      </Position>
+      <Position>
+        <Filename Value="menu_principal_config.pas"/>
+        <Caret Line="22" Column="21" TopLine="13"/>
       </Position>
       <Position>
         <Filename Value="menu_tree_item.pas"/>
-        <Caret Line="27" Column="23" TopLine="17"/>
+        <Caret Line="26" Column="20" TopLine="26"/>
       </Position>
       <Position>
-        <Filename Value="menu_principal_seed.pas"/>
-        <Caret Line="21" Column="56" TopLine="34"/>
-      </Position>
-      <Position>
-        <Filename Value="menu_tree_item.pas"/>
-        <Caret Line="27" Column="46" TopLine="12"/>
-      </Position>
-      <Position>
-        <Filename Value="menu_principal_form.pas"/>
-        <Caret Line="82" Column="5" TopLine="64"/>
+        <Filename Value="menu_principal_config.pas"/>
+        <Caret Line="22" Column="18" TopLine="13"/>
       </Position>
     </JumpHistory>
     <RunParams>

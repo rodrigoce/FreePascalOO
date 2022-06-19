@@ -5,7 +5,7 @@ unit menu_principal_callbacks;
 interface
 
 uses
-  Classes, SysUtils, produto_man_form;
+  Classes, SysUtils, Forms, produto_man_form, gerador_codigo_form, query_runner_form;
 
 type
 
@@ -14,6 +14,8 @@ type
   TMenuPrincipalCallBacks = class
   public
     procedure ManutencaoProdutos;
+    procedure GeradorDeCodigos;
+    procedure QueryRunner;
   end;
 
 implementation
@@ -23,6 +25,18 @@ implementation
 procedure TMenuPrincipalCallBacks.ManutencaoProdutos;
 begin
   TProdutoManForm.OpenFeature;
+end;
+
+procedure TMenuPrincipalCallBacks.GeradorDeCodigos;
+begin
+  Application.CreateForm(TGeradorDeCodigoForm, GeradorDeCodigoForm);
+  GeradorDeCodigoForm.ShowModal;
+  GeradorDeCodigoForm.Free;
+end;
+
+procedure TMenuPrincipalCallBacks.QueryRunner;
+begin
+   TQueryRunnerForm.OpenFeature;
 end;
 
 end.

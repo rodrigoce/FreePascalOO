@@ -20,16 +20,11 @@ type
     buf: TBufDataset;
     ds: TDataSource;
     DBGrid1: TDBGrid;
-    Edit1: TEdit;
-    Edit2: TEdit;
     edReferencia: TEdit;
     edNome: TEdit;
-    FlowPanel1: TFlowPanel;
     GroupBox1: TGroupBox;
     Label1: TLabel;
     Label2: TLabel;
-    Label3: TLabel;
-    Label4: TLabel;
     Panel1: TPanel;
     procedure btNovoClick(Sender: TObject);
     procedure btEditClick(Sender: TObject);

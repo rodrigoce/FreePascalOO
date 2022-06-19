@@ -16,7 +16,7 @@ menu_principal_form, produto_dal, produto_entity,
   usuario_entity, produto_man_form, application_functions, application_docs,
   produto_cad_form, query_runner_form, log_sql_form, application_delegates,
   application_types, validatable, bll_base, validator_base, produto_bll, 
-produto_validator, images_dm, menu_tree_item, menu_principal_seed,
+produto_validator, images_dm, menu_tree_item, menu_principal_config,
 menu_principal_callbacks;
 
 {$R *.res}
