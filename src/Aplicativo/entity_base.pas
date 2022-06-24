@@ -70,10 +70,10 @@ begin
       v := GetPropValue(Self, ormField.PPropInfo);
       if UTF8Length(v) > ormField.Length then
       begin
-        Self.AddErrorValidationMsg(ormField.EntityFieldName, 'O campo %s deve ter no máximo ' + ormField.Length.ToString + ' caracteres');
+        Self.AddErrorValidationMsg(ormField.EntityPropName, 'O campo %s deve ter no máximo ' + ormField.Length.ToString + ' caracteres');
 
         if RaiseError then
-          raise Exception.Create('A propriedade ' + ormField.EntityFieldName + ' tem mais de ' + ormField.Length.ToString + ' caracteres no objeto do tipo ' + ormEntity.EntityClassName);
+          raise Exception.Create('A propriedade ' + ormField.EntityPropName + ' tem mais de ' + ormField.Length.ToString + ' caracteres no objeto do tipo ' + ormEntity.EntityClassName);
       end;
     end;
   end;

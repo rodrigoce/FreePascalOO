@@ -30,6 +30,9 @@
     </RunParams>
     <RequiredPackages>
       <Item>
+        <PackageName Value="LazUtils"/>
+      </Item>
+      <Item>
         <PackageName Value="LazControls"/>
       </Item>
       <Item>
@@ -179,6 +182,17 @@
       </Unit>
       <Unit>
         <Filename Value="menu_principal_callbacks.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="mensagem_validacao_form.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="MensagemValidacaoForm"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit>
+      <Unit>
+        <Filename Value="prop_to_comp_map.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit>
     </Units>

@@ -6,7 +6,8 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, Spin,
-  ExtCtrls, SpinEx, produto_entity, produto_bll, application_types;
+  ExtCtrls, SpinEx, produto_entity, produto_bll, application_types,
+  mensagem_validacao_form, prop_to_comp_map;
 
 type
 
@@ -21,21 +22,23 @@ type
     edPrecoCusto: TFloatSpinEdit;
     edMargemLucro: TFloatSpinEdit;
     edPrecoVenda: TFloatSpinEdit;
-    Label1: TLabel;
-    Label2: TLabel;
-    Label3: TLabel;
-    Label4: TLabel;
-    Label5: TLabel;
-    Label6: TLabel;
+    labId: TLabel;
+    labCodRef: TLabel;
+    labNome: TLabel;
+    labPCusto: TLabel;
+    labMLucro: TLabel;
+    labPVenda: TLabel;
     Panel1: TPanel;
     procedure btCancelClick(Sender: TObject);
     procedure btSaveClick(Sender: TObject);
+    procedure edPrecoCustoChange(Sender: TObject);
+    procedure edPrecoVendaChange(Sender: TObject);
   private
     FProduto: TProdutoEntity;
     FProdutoBLL: TProdutoBLL;
+    FPropToCompMap: TPropToCompMap;
     FIsInsert: Boolean;
-    procedure ObjectToView;
-    procedure ViewToObject;
+    procedure ConfigMapPropComp;
   public
     class procedure Edit(Id: Integer);
   end;
@@ -53,7 +56,7 @@ procedure TProdutoCadForm.btSaveClick(Sender: TObject);
 var
   opResult: TOperationResult;
 begin
-  ViewToObject;
+  FPropToCompMap.CompToObject(FProduto);
 
   if FIsInsert then
   begin
@@ -65,31 +68,39 @@ begin
   if opResult.Success then
     Close
   else
-    ShowMessage(opResult.Message + LineEnding + FProduto.GetAllRawErrorMessages);
+    TMensagemValidacaoForm.Open(opResult.Message, FProduto, FPropToCompMap);
+end;
+
+procedure TProdutoCadForm.edPrecoCustoChange(Sender: TObject);
+begin
+  edPrecoVenda.OnChange := nil;
+  edPrecoVenda.Value := (edPrecoCusto.Value * edMargemLucro.Value / 100) + edPrecoCusto.Value;
+  edPrecoVenda.OnChange := @edPrecoVendaChange;
+end;
+
+procedure TProdutoCadForm.edPrecoVendaChange(Sender: TObject);
+begin
+  edMargemLucro.OnChange := nil;
+
+  if edPrecoCusto.Value <> 0 then
+    edMargemLucro.Value := (edPrecoVenda.Value / edPrecoCusto.Value - 1) * 100;
+
+  edMargemLucro.OnChange := @edPrecoCustoChange;
+end;
+
+procedure TProdutoCadForm.ConfigMapPropComp;
+begin
+   FPropToCompMap.MapString('Id', edId, 11, labId);
+   FPropToCompMap.MapString('Referencia', edReferencia, 20, labCodRef);
+   FPropToCompMap.MapString('Nome', edNome, 60, labNome);
+   FPropToCompMap.MapFloat('PrecoCusto', edPrecoCusto, labPCusto);
+   FPropToCompMap.MapFloat('MargemLucro', edMargemLucro, labMLucro);
+   FPropToCompMap.MapFloat('PrecoVenda', edPrecoVenda, labPVenda);
 end;
 
 procedure TProdutoCadForm.btCancelClick(Sender: TObject);
 begin
   Close;
-end;
-
-procedure TProdutoCadForm.ObjectToView;
-begin
-  edId.Text := FProduto.Id.ToString;
-  edReferencia.Text := FProduto.Referencia;
-  edNome.Text := FProduto.Nome;
-  edPrecoCusto.Value := FProduto.PrecoCusto;
-  edMargemLucro.Value := FProduto.MargemLucro;
-  edPrecoVenda.Value := FProduto.PrecoVenda;
-end;
-
-procedure TProdutoCadForm.ViewToObject;
-begin
-  FProduto.Referencia := edReferencia.Text;
-  FProduto.Nome := edNome.Text;
-  FProduto.PrecoCusto := edPrecoCusto.Value;
-  FProduto.MargemLucro := edMargemLucro.Value;
-  FProduto.PrecoVenda := edPrecoVenda.Value;
 end;
 
 class procedure TProdutoCadForm.Edit(Id: Integer);
@@ -98,6 +109,8 @@ begin
   with ProdutoCadForm do
   begin
     FProdutoBLL := TProdutoBLL.Create;
+    FPropToCompMap := TPropToCompMap.Create;
+    ConfigMapPropComp;
 
     if Id = 0 then
     begin
@@ -109,11 +122,13 @@ begin
       FProduto := FProdutoBLL.FindProdutoByPK(Id);
       FIsInsert := False;
     end;
-    ObjectToView;
+
+    FPropToCompMap.ObjectToComp(FProduto);
 
     ShowModal;
     FProduto.Free;
     FProdutoBLL.Free;
+    FPropToCompMap.Free;
   end;
 end;
 

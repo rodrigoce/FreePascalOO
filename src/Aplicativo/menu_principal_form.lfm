@@ -60,7 +60,7 @@ object MenuPrincipalForm: TMenuPrincipalForm
       2E32
     }
   end
-  object Panel1: TPanel
+  object pnWallPaper: TPanel
     Left = 369
     Height = 498
     Top = 48
@@ -71,18 +71,18 @@ object MenuPrincipalForm: TMenuPrincipalForm
     ClientWidth = 543
     ParentColor = False
     TabOrder = 2
-    object Notebook1: TNotebook
-      Left = 190
-      Height = 122
-      Top = 326
-      Width = 163
-      PageIndex = 0
-      TabOrder = 0
-      object Page3: TPage
-      end
+    object Shape1: TShape
+      Left = 0
+      Height = 498
+      Top = 0
+      Width = 543
+      Align = alClient
+      Brush.Color = clSkyBlue
+      Brush.Style = bsVertical
+      Pen.Style = psClear
     end
   end
-  object Panel2: TPanel
+  object pnLogo: TPanel
     Left = 0
     Height = 48
     Top = 0
@@ -91,7 +91,7 @@ object MenuPrincipalForm: TMenuPrincipalForm
     BevelOuter = bvNone
     ClientHeight = 48
     ClientWidth = 912
-    Color = clBlack
+    Color = clSkyBlue
     ParentColor = False
     TabOrder = 3
     object Label1: TLabel
@@ -99,9 +99,9 @@ object MenuPrincipalForm: TMenuPrincipalForm
       Height = 30
       Top = 8
       Width = 139
-      Caption = 'prototipo'
+      Caption = 'protótipo'
       Font.CharSet = ANSI_CHARSET
-      Font.Color = clWhite
+      Font.Color = clBlack
       Font.Height = -24
       Font.Name = 'Showcard Gothic'
       Font.Pitch = fpVariable

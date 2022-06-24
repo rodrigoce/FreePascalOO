@@ -18,7 +18,7 @@ type
     FClassFieldName: string;
     FMsgList: TStringList;
   public
-    property ClassFieldName: string read FClassFieldName write FClassFieldName;
+    property ClassPropName: string read FClassFieldName write FClassFieldName;
     property MsgList: TStringList read FMsgList write FMsgList;
   end;
 

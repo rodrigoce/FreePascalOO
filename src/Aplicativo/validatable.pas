@@ -10,22 +10,25 @@ uses
 type
 
   { TValidatable }
-  // classe par ser herdade em Entities, DTOs ou Models
+
+  // Classe par ser herdade em Entities, DTOs ou Models
   TValidatable = class
     private
       FErrorMessageList: specialize TList<TValidationMsgItem>;
       FPropsNamesList: TStringList;
-      FIsValid: Boolean;
       procedure PopulatePropsNames;
+      function GetIsValid: Boolean;
     public
-      function ValidateMemberName(ClassFieldName: string): Boolean;
-      procedure AddErrorValidationMsg(ClassFieldName, Message: string);
-      function GetAllRawErrorMessages: string;
       constructor Create;
       destructor Destroy; override;
+
+      procedure AddErrorValidationMsg(ClassFieldName, Message: string);
+      procedure ClearErrorMessages;
+      function ValidateMemberName(ClassFieldName: string): Boolean;
+      function GetAllRawErrorMessages: string;
       property ErrorMessageList: specialize TList<TValidationMsgItem> read FErrorMessageList;
       property PropsNamesList: TStringList read FPropsNamesList;
-      property IsValid: Boolean read FIsValid;
+      property IsValid: Boolean read GetIsValid;
   end;
 
 implementation
@@ -48,6 +51,11 @@ begin
   begin
     FPropsNamesList.Add(vPPropList^[i]^.Name);
   end;
+end;
+
+function TValidatable.GetIsValid: Boolean;
+begin
+  Result := FErrorMessageList.Count = 0;
 end;
 
 function TValidatable.ValidateMemberName(ClassFieldName: string): Boolean;
@@ -76,19 +84,30 @@ begin
   added := False;
   for item in FErrorMessageList do
   begin
-    if item.ClassFieldName = ClassFieldName then
+    if item.ClassPropName = ClassFieldName then
       AddErrorMsg(item)
   end;
 
   if not added then
   begin
     item := TValidationMsgItem.Create;
-    item.ClassFieldName := ClassFieldName;
+    item.ClassPropName := ClassFieldName;
     AddErrorMsg(item);
     FErrorMessageList.Add(item);
   end;
+end;
 
-  FIsValid := False;
+procedure TValidatable.ClearErrorMessages;
+var
+  item: TValidationMsgItem;
+begin
+  for item in FErrorMessageList do
+  begin
+    item.MsgList.Free;
+    item.Free;
+  end;
+
+  FErrorMessageList.Clear;
 end;
 
 function TValidatable.GetAllRawErrorMessages: string;
@@ -99,7 +118,7 @@ begin
   s := '';
   for item in FErrorMessageList do
   begin
-    s := s + item.ClassFieldName + ': ' + item.MsgList.Text + LineEnding;
+    s := s + item.ClassPropName + ': ' + item.MsgList.Text + LineEnding;
   end;
   Result := s;
 end;
@@ -109,19 +128,12 @@ begin
   inherited;
   FErrorMessageList := specialize TList<TValidationMsgItem>.Create;
   FPropsNamesList := TStringList.Create;
-  FIsValid := True;
   PopulatePropsNames;
 end;
 
 destructor TValidatable.Destroy;
-var
-  item: TValidationMsgItem;
 begin
-  for item in FErrorMessageList do
-  begin
-    item.MsgList.Free;
-    item.Free;
-  end;
+  ClearErrorMessages;
 
   FErrorMessageList.Free;
 

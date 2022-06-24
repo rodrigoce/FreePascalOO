@@ -1,7 +1,7 @@
 object ProdutoCadForm: TProdutoCadForm
-  Left = 430
+  Left = 404
   Height = 254
-  Top = 206
+  Top = 275
   Width = 585
   ActiveControl = edReferencia
   BorderIcons = [biSystemMenu, biMinimize]
@@ -23,6 +23,7 @@ object ProdutoCadForm: TProdutoCadForm
     Height = 23
     Top = 112
     Width = 133
+    OnChange = edPrecoCustoChange
     TabOrder = 3
   end
   object edMargemLucro: TFloatSpinEdit
@@ -31,6 +32,7 @@ object ProdutoCadForm: TProdutoCadForm
     Top = 144
     Width = 133
     DecimalPlaces = 5
+    OnChange = edPrecoCustoChange
     TabOrder = 4
   end
   object edPrecoVenda: TFloatSpinEdit
@@ -38,6 +40,7 @@ object ProdutoCadForm: TProdutoCadForm
     Height = 23
     Top = 176
     Width = 134
+    OnChange = edPrecoVendaChange
     TabOrder = 5
   end
   object edReferencia: TEdit
@@ -47,7 +50,7 @@ object ProdutoCadForm: TProdutoCadForm
     Width = 112
     TabOrder = 1
   end
-  object Label1: TLabel
+  object labId: TLabel
     Left = 111
     Height = 15
     Top = 24
@@ -71,7 +74,7 @@ object ProdutoCadForm: TProdutoCadForm
       Height = 25
       Top = 6
       Width = 75
-      Caption = 'Salvar'
+      Caption = '&Salvar'
       OnClick = btSaveClick
       TabOrder = 0
     end
@@ -80,12 +83,12 @@ object ProdutoCadForm: TProdutoCadForm
       Height = 25
       Top = 6
       Width = 75
-      Caption = 'Cancelar'
+      Caption = '&Cancelar'
       OnClick = btCancelClick
       TabOrder = 1
     end
   end
-  object Label2: TLabel
+  object labCodRef: TLabel
     Left = 8
     Height = 15
     Top = 56
@@ -100,28 +103,28 @@ object ProdutoCadForm: TProdutoCadForm
     ReadOnly = True
     TabOrder = 0
   end
-  object Label3: TLabel
+  object labNome: TLabel
     Left = 88
     Height = 15
     Top = 88
     Width = 33
     Caption = 'Nome'
   end
-  object Label4: TLabel
+  object labPCusto: TLabel
     Left = 40
     Height = 15
     Top = 120
     Width = 80
     Caption = 'Preço de Custo'
   end
-  object Label5: TLabel
+  object labMLucro: TLabel
     Left = 24
     Height = 15
     Top = 152
     Width = 94
     Caption = 'Margem de Lucro'
   end
-  object Label6: TLabel
+  object labPVenda: TLabel
     Left = 37
     Height = 15
     Top = 184

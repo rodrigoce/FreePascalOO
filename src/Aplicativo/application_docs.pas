@@ -30,12 +30,13 @@ DAL ->
   - deletes
   - logs
 
+  **** UNITS / CLASSES CORE ***
 
-  TValidatable --> class com métodos para validação de fields (properties)
-  |- TEntityBase --> class from properties padrão
-  |- TDTOs --> classes com outras Entities como properties ou campos de filtros para telas de pesquisa
+  TValidatable --> metodos e propriedades para adicionar e obter mensagens de validação
+  |- TEntityBase --> classe base para entidades, possui alguns metodos e propriedades de padronização
+  |- TDTOs --> classe para transportar dados, como filtros de pesquisa, agregações de Entities, etc.
 
-  TDALBase --> insert, update, select, select, etc.
+  TDALBase<T> --> insert, update, select, select, etc.
   |- descentes de DAL
 
   TValidatorBase<T> --> metodos de validação de fields de Entities ou DTOs
@@ -44,7 +45,8 @@ DAL ->
 
   units
   |- mini_orm --> é o mini orm do projeto
-
+  |- prop_to_comp_map --> mapeia propriedades para componentes
+  |-
 
 
 }

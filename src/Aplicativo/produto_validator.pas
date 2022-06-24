@@ -23,7 +23,14 @@ implementation
 
 function TProdutoValidator.Validate: Boolean;
 begin
-  Result := IsLesserThan('PrecoVenda', 0.01, 'O Preço de Venda deve ser pelo menos 0,01');
+  Instance.ClearErrorMessages;
+
+  IsEmpty('Referencia', 'Não pode ser vazio.');
+  LengthIsLessThan('Nome', 1, 'Deve ter pelo menos um caractere.');
+  IsLesserThan('PrecoVenda', 0.01, 'O valor mínimo de 0,01 deve ser informado.');
+
+
+  Result := Instance.IsValid;
 end;
 
 end.

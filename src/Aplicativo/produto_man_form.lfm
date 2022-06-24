@@ -1,7 +1,7 @@
 object ProdutoManForm: TProdutoManForm
-  Left = 311
+  Left = 292
   Height = 470
-  Top = 189
+  Top = 252
   Width = 632
   Caption = 'Manutenção de Produtos'
   ClientHeight = 470

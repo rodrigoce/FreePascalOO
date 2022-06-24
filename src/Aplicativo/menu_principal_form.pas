@@ -5,8 +5,8 @@ unit menu_principal_form;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, Menus,
-  ComCtrls, ExtCtrls, ActnList, StdCtrls, Windows, menu_principal_config;
+  Classes, SysUtils, Forms, Controls, Dialogs, Menus,
+  ComCtrls, ExtCtrls, StdCtrls, Windows, menu_principal_config;
 
 type
 
@@ -14,10 +14,9 @@ type
 
   TMenuPrincipalForm = class(TForm)
     Label1: TLabel;
-    Notebook1: TNotebook;
-    Page3: TPage;
-    Panel1: TPanel;
-    Panel2: TPanel;
+    pnWallPaper: TPanel;
+    pnLogo: TPanel;
+    Shape1: TShape;
     StatusBar1: TStatusBar;
     TreeViewMenu: TTreeView;
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);

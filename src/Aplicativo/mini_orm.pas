@@ -44,7 +44,7 @@ type
   TORMField = class
     private
       FDBColumnName: string;
-      FEntityFieldName: string;
+      FEntityPropName: string;
       FDBType: string;
       FLength: Integer;
       FIsPK: Boolean;
@@ -53,7 +53,7 @@ type
       FPPropInfo: PPropInfo;
     public
       property DBColumnName: string read FDBColumnName;
-      property EntityFieldName: string read FEntityFieldName;
+      property EntityPropName: string read FEntityPropName;
       property DBType: string read FDBType;
       property Length: Integer read FLength;
       property IsPK: Boolean read FIsPK;
@@ -82,15 +82,15 @@ type
 
   TORMMapBuilder = class
     private
-      function MapField(ADBFieldName, AEntityFieldName: string): TORMField;
+      function MapField(ADBFieldName, AEntityPropName: string): TORMField;
   public
     function MapModel(AClassOfEntity: TClass; ADBTableName: string): TORMMapBuilder;
-    function MapSequenceInt32PK(ADBFieldName, AEntityFieldName: string): TORMMapBuilder;
-    function MapString(ADBFieldName, AEntityFieldName: string; ALenght: Integer): TORMMapBuilder;
-    function MapDateTime(ADBFieldName, AEntityFieldName: string): TORMMapBuilder;
-    function MapInt32(ADBFieldName, AEntityFieldName: string): TORMMapBuilder;
+    function MapSequenceInt32PK(ADBColumnName, AEntityPropName: string): TORMMapBuilder;
+    function MapString(ADBColumnName, AEntityPropName: string; ALenght: Integer): TORMMapBuilder;
+    function MapDateTime(ADBColumnName, AEntityPropName: string): TORMMapBuilder;
+    function MapInt32(ADBColumnName, AEntityPropName: string): TORMMapBuilder;
     // apesar do nome pode ser usado para outros tipos como double, real...
-    function MapDecimal(ADBFieldName, AEntityFieldName: string; APrecision, AScale: SmallInt): TORMMapBuilder;
+    function MapDecimal(ADBColumnName, AEntityPropName: string; APrecision, AScale: SmallInt): TORMMapBuilder;
   end;
 
 
@@ -233,7 +233,7 @@ end;
 
 { TORMMapBuilder }
 
-function TORMMapBuilder.MapField(ADBFieldName, AEntityFieldName: string
+function TORMMapBuilder.MapField(ADBFieldName, AEntityPropName: string
   ): TORMField;
 var
   field: TORMField;
@@ -243,8 +243,8 @@ begin
 
   field := TORMField.Create;
   field.FDBColumnName := ADBFieldName;
-  field.FEntityFieldName := AEntityFieldName;
-  field.FPPropInfo := FindPropInfo(entity.ClassOfEntity, AEntityFieldName) ;
+  field.FEntityPropName := AEntityPropName;
+  field.FPPropInfo := FindPropInfo(entity.ClassOfEntity, AEntityPropName) ;
 
   entity.FieldList.Add(field);
 
@@ -262,55 +262,55 @@ begin
   Result := Self;
 end;
 
-function TORMMapBuilder.MapString(ADBFieldName, AEntityFieldName: string; ALenght: Integer
+function TORMMapBuilder.MapString(ADBColumnName, AEntityPropName: string; ALenght: Integer
   ): TORMMapBuilder;
 var
   field: TORMField;
 begin
-  field := MapField(ADBFieldName, AEntityFieldName);
+  field := MapField(ADBColumnName, AEntityPropName);
   field.FLength := ALenght;
   field.FIsString := True;
   field.FDBType := 'VarChar(' + IntToStr(ALenght) + ')';
   Result := Self;
 end;
 
-function TORMMapBuilder.MapSequenceInt32PK(ADBFieldName, AEntityFieldName: string
+function TORMMapBuilder.MapSequenceInt32PK(ADBColumnName, AEntityPropName: string
   ): TORMMapBuilder;
 var
   field: TORMField;
 begin
-  field := MapField(ADBFieldName, AEntityFieldName);
+  field := MapField(ADBColumnName, AEntityPropName);
   field.FDBType := 'Integer';
   field.FIsPK := True;
   field.FHasSequence := True;
   Result := Self;
 end;
 
-function TORMMapBuilder.MapDateTime(ADBFieldName, AEntityFieldName: string): TORMMapBuilder;
+function TORMMapBuilder.MapDateTime(ADBColumnName, AEntityPropName: string): TORMMapBuilder;
 var
   field: TORMField;
 begin
-  field := MapField(ADBFieldName, AEntityFieldName);
+  field := MapField(ADBColumnName, AEntityPropName);
   field.FDBType := 'Timestamp';
   Result := Self;
 end;
 
-function TORMMapBuilder.MapInt32(ADBFieldName, AEntityFieldName: string
+function TORMMapBuilder.MapInt32(ADBColumnName, AEntityPropName: string
   ): TORMMapBuilder;
 var
   field: TORMField;
 begin
-  field := MapField(ADBFieldName, AEntityFieldName);
+  field := MapField(ADBColumnName, AEntityPropName);
   field.FDBType := 'Integer';
   Result := Self;
 end;
 
-function TORMMapBuilder.MapDecimal(ADBFieldName, AEntityFieldName: string;
+function TORMMapBuilder.MapDecimal(ADBColumnName, AEntityPropName: string;
   APrecision, AScale: SmallInt): TORMMapBuilder;
 var
   field: TORMField;
 begin
-  field := MapField(ADBFieldName, AEntityFieldName);
+  field := MapField(ADBColumnName, AEntityPropName);
   field.FDBType := 'Decimal(' + APrecision.ToString + ', ' + AScale.ToString + ')';
   Result := Self;
 end;

@@ -5,7 +5,7 @@ unit dal_base;
 interface
 
 uses
-  Classes, SysUtils, Dialogs, mini_orm, TypInfo, StrUtils, SQLDB, DateUtils,
+  Classes, SysUtils, Dialogs, mini_orm, TypInfo, StrUtils, SQLDB,
   Variants, conexao_dm, LazUTF8, entity_base, StdCtrls, application_delegates;
 
 type
@@ -236,7 +236,7 @@ begin
       if (not (VarCompareValue(GetPropValue(Entity, ormField.PPropInfo),
         GetPropValue(Entity.OldVersion, ormField.PPropInfo)) = vrEqual)) then
       begin
-        alteredFields.Add(ormField.EntityFieldName);
+        alteredFields.Add(ormField.EntityPropName);
       end;
   end;
 
@@ -251,7 +251,7 @@ begin
   for ormField in ormEntity.FieldList do
   begin
     // apenas campos não PK entram e alterados no update
-    if (not ormField.IsPK) and (alteredFields.IndexOf(ormField.EntityFieldName) > -1) then
+    if (not ormField.IsPK) and (alteredFields.IndexOf(ormField.EntityPropName) > -1) then
     begin
       sql := sql + '  ' + ormField.DBColumnName + ' = :' + ormField.DBColumnName;
       sql := sql + IfThen(i < alteredFields.Count -1, ', ', '') + LineEnding;
@@ -288,7 +288,7 @@ begin
   for ormField in ormEntity.FieldList do
   begin
     // apenas campos alterados e PK
-    if (alteredFields.IndexOf(ormField.EntityFieldName) > -1) or (ormField.IsPK) then
+    if (alteredFields.IndexOf(ormField.EntityPropName) > -1) or (ormField.IsPK) then
     begin
       q.ParamByName(ormField.DBColumnName).Value := GetPropValue(Entity, ormField.PPropInfo);
     end;
