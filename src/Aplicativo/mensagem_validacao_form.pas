@@ -5,8 +5,8 @@ unit mensagem_validacao_form;
 interface
 
 uses
-  Forms, StdCtrls, validatable, application_types, Classes, SysUtils,
-  prop_to_comp_map;
+  Forms, StdCtrls, ExtCtrls, validatable, application_types, Classes, SysUtils,
+  prop_to_comp_map, LazUTF8;
 
 type
 
@@ -14,6 +14,7 @@ type
 
   TMensagemValidacaoForm = class(TForm)
     Button1: TButton;
+    Image1: TImage;
     labTitle: TLabel;
     Memo1: TMemo;
     procedure Button1Click(Sender: TObject);
@@ -58,6 +59,7 @@ class procedure TMensagemValidacaoForm.Open(title: string;
 var
   item: TValidationMsgItem;
   i: Integer;
+  str: string;
 begin
   Application.CreateForm(TMensagemValidacaoForm, MensagemValidacaoForm);
   with MensagemValidacaoForm do
@@ -70,11 +72,13 @@ begin
       if memo1.Lines.Count > 0 then
         memo1.Lines.Append('');
 
-      memo1.Append(GetLabelCaptionOfClassPropName(item.ClassPropName, PropToCompMap) + ':');
+      str := GetLabelCaptionOfClassPropName(item.ClassPropName, PropToCompMap) + ':';
+      str := UTF8UpperCase(str);
 
       for i := 0 to item.MsgList.Count -1 do
-        memo1.Append('    ' + item.MsgList[i]);
+        str := str + ' ' + item.MsgList[i];
 
+      memo1.Append(str);
     end;
 
     ShowModal;

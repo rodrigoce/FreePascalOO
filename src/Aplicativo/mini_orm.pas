@@ -26,17 +26,17 @@ type
       FClassOfEntity: TClass;
       FDBTableName: string;
       FFieldList: TORMFieldList;
-      function FCountPK: Integer;
+      function GetCountPK: Integer;
     public
+      constructor Create(AEntityClassName, ADBTableName: string; AClassOfEntity: TClass);
+      //
       property EntityClassName: string read FEntityClassName;
       property ClassOfEntity: TClass read FClassOfEntity;
       property DBTableName: string read FDBTableName;
-      //
       property FieldList: TORMFieldList read FFieldList;
-      property CountPK: Integer read FCountPK;
+      property CountPK: Integer read GetCountPK;
       //
-      constructor Create(AEntityClassName, ADBTableName: string; AClassOfEntity: TClass);
-
+      function GetDBColumnNameOf(ClassPropName: string): string;
   end;
 
   {TORMField}
@@ -98,7 +98,7 @@ implementation
 
 { TORMEntity }
 
-function TORMEntity.FCountPK: Integer;
+function TORMEntity.GetCountPK: Integer;
 var
   ormField: TORMField;
   c: Integer;
@@ -118,6 +118,24 @@ begin
   FClassOfEntity := AClassOfEntity;
   FDBTableName := ADBTableName;
   FFieldList := TORMFieldList.Create;
+end;
+
+function TORMEntity.GetDBColumnNameOf(ClassPropName: string): string;
+var
+  item: TORMField;
+begin
+  Result := '';
+  for item in FieldList do
+  begin
+    if item.EntityPropName = ClassPropName then
+    begin
+      Result := item.DBColumnName;
+      break;
+    end;
+  end;
+
+  if Result = '' then
+    raise Exception.Create('A classe ' + Self.ClassOfEntity.ClassName + ' não possui a propriedade ' + ClassPropName + ' mapeada.');
 end;
 
 { TORM }

@@ -66,6 +66,8 @@ begin
   if key = VK_F12 then
     if not LogSqlForm.Visible then
       LogSqlForm.ShowModal;
+
+
 end;
 
 

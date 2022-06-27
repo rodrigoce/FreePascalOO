@@ -21,7 +21,7 @@ type
       function UpdateProduto(Produto: TProdutoEntity): TOperationResult;
       function FindProdutoByPK(Id: Integer): TProdutoEntity;
       procedure SearchProdutos(Target: TBufDataset);
-      function Validate(Produto: TProdutoEntity): Boolean;
+      function Validate(Produto: TProdutoEntity; IsInsert: Boolean): Boolean;
       constructor Create;
       destructor Destroy; override;
 
@@ -38,7 +38,7 @@ begin
   produto := TProdutoEntity.Create;
 
   // valores iniciais, etc.
-  produto.Nome := '...';
+  //produto.Nome := '...';
   Result := produto;
 end;
 
@@ -46,7 +46,7 @@ function TProdutoBLL.InsertProduto(Produto: TProdutoEntity): TOperationResult;
 var
   opResult: TOperationResult;
 begin
-  if Validate(Produto) then
+  if Validate(Produto, True) then
   begin
     Produto.Id := FProdutoDAL.GetNextSequence;
     FProdutoDAL.Insert(Produto);
@@ -65,7 +65,7 @@ function TProdutoBLL.UpdateProduto(Produto: TProdutoEntity): TOperationResult;
 var
   opResult: TOperationResult;
 begin
-  if Validate(Produto) then
+  if Validate(Produto, False) then
   begin
     FProdutoDAL.Update(Produto);
     opResult.Success := True;
@@ -89,12 +89,13 @@ begin
   FProdutoDAL.SearchProdutos(Target);
 end;
 
-function TProdutoBLL.Validate(Produto: TProdutoEntity): Boolean;
+function TProdutoBLL.Validate(Produto: TProdutoEntity; IsInsert: Boolean
+  ): Boolean;
 var
   produtoValidator: TProdutoValidator;
 begin
   produtoValidator := TProdutoValidator.Create(Produto);
-  Result := produtoValidator.Validate;
+  Result := produtoValidator.Validate(IsInsert);
   produtoValidator.Free;
 end;
 

@@ -24,7 +24,7 @@ implementation
 
 procedure TMenuPrincipalCallBacks.ManutencaoProdutos;
 begin
-  TProdutoManForm.OpenFeature;
+  TProdutoManForm.Open;
 end;
 
 procedure TMenuPrincipalCallBacks.GeradorDeCodigos;

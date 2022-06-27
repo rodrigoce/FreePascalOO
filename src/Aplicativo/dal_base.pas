@@ -27,6 +27,9 @@ type
       procedure Update(Entity: T; AutoCommit: Boolean = True);
       function CreateSQLQuery: TSQLQuery;
       function GetDatabaseDateTime: TDateTime;
+      // verifica se um valor string já existe no banco de dados,
+      // se IsInsert for true, o ID será ignorado e pode ser passado qualque valor
+      function Exists(ClassPropName, Value: string; IsInsert: Boolean; Id: Variant): Boolean;
   end;
 
 implementation
@@ -323,6 +326,88 @@ begin
   q.Free;
 end;
 
+function TDALBase.Exists(ClassPropName, Value: string; IsInsert: Boolean;
+  Id: Variant): Boolean;
+var
+  ormEntity: TORMEntity;
+  ormField: TORMField;
+  q: TSQLQuery;
+  i, countPKFields: Integer;
+  sql, strParams: string;
+begin
+
+  ormEntity := TORM.FindORMEntity(T.ClassName);
+  countPKFields := ormEntity.CountPK;
+
+  //
+  // monta o select
+  //
+
+  sql := 'select count(1) ' + LineEnding;
+  sql := sql + 'from ' + ormEntity.DBTableName + LineEnding +
+    'where';
+
+  if (countPKFields = 0) then
+    raise Exception.Create(ormEntity.DBTableName + ' não tem chave primária.');
+
+  // se for update precisa comparar com registros diferentes dele mesmo
+  i := -1;
+  if not IsInsert then
+  begin
+    i := 1;
+    sql := sql + '(';
+    for ormField in ormEntity.FieldList do
+    begin
+      if ormField.IsPK then
+      begin
+
+        sql := sql + '  ' + ormField.DBColumnName + ' <> :' + ormField.DBColumnName;
+        sql := sql + IfThen(i < countPKFields, LineEnding + '  and', '');
+        Inc(i);
+      end;
+    end;
+    sql := sql + ')';
+  end;
+
+  sql := sql + IfThen(i = -1, '  ', '  and ') + ormEntity.GetDBColumnNameOf(ClassPropName) + ' = :' + ClassPropName;
+
+  //
+  // alimenta os parâmetros
+  //
+
+  q := TSQLQuery.Create(nil);
+  q.DataBase := ConexaoDm.Conexao;
+  q.SQL.Text := sql;
+
+  // se for update precisa comparar com registros diferentes dele mesmo
+  if not IsInsert then
+  begin
+    // implementar alimentar o parâmetros de chave composta como
+    // em TDataSet.Locate
+    strParams := '';
+    for ormField in ormEntity.FieldList do
+    begin
+      if ormField.IsPK then
+      begin
+        q.ParamByName(ormField.DBColumnName).Value := Id;
+        strParams := strParams + VarToStr(Id) + LineEnding;
+      end;
+    end;
+  end;
+
+  q.ParamByName(ClassPropName).Value := Value;
+  strParams := strParams + Value + LineEnding;
+
+  q.Open;
+
+  Result := q.Fields[0].Value > 0;
+
+  q.Close;
+  q.Free;
+
+  WriteLog(sql + LineEnding + LineEnding + 'Parâmetros' + LineEnding + LineEnding + strParams );
+
+end;
 
 end.
 
