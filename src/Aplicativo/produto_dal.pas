@@ -5,7 +5,8 @@ unit produto_dal;
 interface
 
 uses
-  Classes, SysUtils, dal_base, produto_entity, DB, SQLDB, Dialogs, BufDataset;
+  Classes, SysUtils, dal_base, produto_entity, produto_filter, filter_composer,
+  application_functions, DB, SQLDB, Dialogs, BufDataset;
 
 type
 
@@ -13,26 +14,35 @@ type
 
   TProdutoDAL = class(specialize TDALBase<TProdutoEntity>)
     public
-      procedure SearchProdutos(Target: TBufDataset);
+      procedure SearchProdutos(Target: TBufDataset; Filter: TProdutoFilter);
   end;
 
 implementation
 
 { TProdutoDAL }
 
-procedure TProdutoDAL.SearchProdutos(Target: TBufDataset);
+procedure TProdutoDAL.SearchProdutos(Target: TBufDataset; Filter: TProdutoFilter
+  );
 var
-  q: TSQLQuery;
+  query: TSQLQuery;
+  filterComposer: TFilterComposer;
 begin
-  q := Self.CreateSQLQuery;
-  q.SQL.Text := 'select * from produto';
-  q.Open;
+  query := Self.CreateSQLQuery;
+  filterComposer := TFilterComposer.Create;
+  query.SQL.Text := 'select * from produto';
 
-  Target.CopyFromDataset(q);
+  filterComposer.IsNotEmptyThenEquals(Filter.Codigo, 'CODIGO');
+  filterComposer.IsNotEmptyThenLike(RemoveAccent(Filter.Nome), 'NOME_PP');
+  filterComposer.ApplyOnQuery(query);
+
+  query.Open;
+
+  Target.CopyFromDataset(query);
   Target.First;
 
-  q.Close;
-  q.Free;
+  query.Close;
+  query.Free;
+  filterComposer.Free;
 end;
 
 end.

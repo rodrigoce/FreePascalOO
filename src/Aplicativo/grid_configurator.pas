@@ -5,42 +5,67 @@ unit grid_configurator;
 interface
 
 uses
-  Classes, SysUtils, DBGrids, BufDataset;
+  Classes, SysUtils, DBGrids, BufDataset, Graphics;
 
 type
 
   { TGridCofingurator }
 
   TGridCofingurator = class
-    FCurrentGrid: TDBGrid;
+  private
+    FOrderedFieldName: string;
+    FOrderedDirection: string;
+    FDBGrid: TDBGrid;
+    procedure _SetOrderedColumn(FieldName: string);
     procedure GridTitleClick(Column: TColumn);
   public
     function WithGrid(Grid: TDBGrid): TGridCofingurator;
     function SetDefaultProps: TGridCofingurator;
     function AddColumn(FieldName, Title: string; Width: Integer; DisplayFormat: string = ''): TGridCofingurator;
     function AddOrderAbility: TGridCofingurator;
+    function SetOrderedColumn(FieldName: string): TGridCofingurator;
   end;
 
 implementation
 
 { TGridCofingurator }
 
+procedure TGridCofingurator._SetOrderedColumn(FieldName: string);
+var
+  i: Integer;
+begin
+  if (FOrderedFieldName = FieldName) and (FOrderedDirection = '') then
+    FOrderedDirection := ' DESC'
+  else
+    FOrderedDirection := '';
+
+  if FDBGrid.DataSource.DataSet is TBufDataset then
+  begin
+    FOrderedFieldName := FieldName;
+    (FDBGrid.DataSource.DataSet as TBufDataset).IndexFieldNames := FOrderedFieldName + FOrderedDirection;
+  end;
+
+  for i := 0 to FDBGrid.Columns.Count -1 do
+    FDBGrid.Columns[i].Title.Font.Color := clDefault;
+
+  FDBGrid.Columns.ColumnByFieldname(FieldName).Title.Font.Color := clBlue;
+end;
+
 procedure TGridCofingurator.GridTitleClick(Column: TColumn);
 begin
-  if FCurrentGrid.DataSource.DataSet is TBufDataset then
-    (FCurrentGrid.DataSource.DataSet as TBufDataset).IndexFieldNames := Column.FieldName;
+  _SetOrderedColumn(Column.FieldName);
 end;
 
 function TGridCofingurator.WithGrid(Grid: TDBGrid): TGridCofingurator;
 begin
-  FCurrentGrid := Grid;
+  FDBGrid := Grid;
   Result := Self;
 end;
 
 function TGridCofingurator.SetDefaultProps: TGridCofingurator;
 begin
-  FCurrentGrid.Options := [dgTitles, dgIndicator, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgTabs, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgDisableDelete, dgDisableInsert, dgRowHighlight, dgDblClickAutoSize];
-  FCurrentGrid.AutoEdit := False;
+  FDBGrid.Options := [dgTitles, dgIndicator, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgTabs, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgDisableDelete, dgDisableInsert, dgRowHighlight, dgDblClickAutoSize];
+  FDBGrid.AutoEdit := False;
   Result := Self;
 end;
 
@@ -49,7 +74,7 @@ function TGridCofingurator.AddColumn(FieldName, Title: string; Width: Integer;
 var
   col: TColumn;
 begin
-  col := FCurrentGrid.Columns.Add;
+  col := FDBGrid.Columns.Add;
 
   col.Title.Caption := Title;
   col.FieldName :=  FieldName;
@@ -61,7 +86,16 @@ end;
 
 function TGridCofingurator.AddOrderAbility: TGridCofingurator;
 begin
-  FCurrentGrid.OnTitleClick := @GridTitleClick;
+  FDBGrid.OnTitleClick := @GridTitleClick;
+  FDBGrid.Options := FDBGrid.Options + [dgHeaderHotTracking];
+
+  Result := Self;
+end;
+
+function TGridCofingurator.SetOrderedColumn(FieldName: string
+  ): TGridCofingurator;
+begin
+  _SetOrderedColumn(FieldName);
 
   Result := Self;
 end;

@@ -160,8 +160,8 @@ var
 begin
   Entity.ValidateStringMaxLength(True);
   // alimenta campos de rastreamento
-  (Entity as TEntityBase).DataCriacao := GetDatabaseDateTime;
-  (Entity as TEntityBase).IdUserCriacao := 0; //// PEAGR O ID DO CARA LOGADO
+  Entity.DataCriacao := GetDatabaseDateTime;
+  Entity.IdUserCriacao := 0; //// PEAGR O ID DO CARA LOGADO
 
 
   ormEntity := TORM.FindORMEntity(T.ClassName);
@@ -225,8 +225,8 @@ begin
   Entity.ValidateStringMaxLength(True);
 
   // alimenta campos de rastreamento
-  (Entity as TEntityBase).DataAtualizacao := GetDatabaseDateTime;
-  (Entity as TEntityBase).IdUserAtualizacao := 0; //// PEGAR O ID DO CARA LOGADO
+  Entity.DataAtualizacao := GetDatabaseDateTime;
+  Entity.IdUserAtualizacao := 0; //// PEGAR O ID DO CARA LOGADO
 
   ormEntity := TORM.FindORMEntity(T.ClassName);
   countPKFields := ormEntity.CountPK;

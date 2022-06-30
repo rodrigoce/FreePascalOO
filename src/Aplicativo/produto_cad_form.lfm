@@ -1,9 +1,9 @@
 object ProdutoCadForm: TProdutoCadForm
-  Left = 404
+  Left = 406
   Height = 254
-  Top = 275
+  Top = 277
   Width = 585
-  ActiveControl = edReferencia
+  ActiveControl = edCodigo
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
   Caption = 'Cadastro de Produtos'
@@ -43,7 +43,7 @@ object ProdutoCadForm: TProdutoCadForm
     OnChange = edPrecoVendaChange
     TabOrder = 5
   end
-  object edReferencia: TEdit
+  object edCodigo: TEdit
     Left = 128
     Height = 23
     Top = 48
@@ -88,12 +88,12 @@ object ProdutoCadForm: TProdutoCadForm
       TabOrder = 1
     end
   end
-  object labCodRef: TLabel
-    Left = 8
+  object labCodigo: TLabel
+    Left = 79
     Height = 15
     Top = 56
-    Width = 113
-    Caption = 'Código de Referência'
+    Width = 39
+    Caption = 'Código'
   end
   object edId: TEdit
     Left = 128

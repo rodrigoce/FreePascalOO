@@ -1,8 +1,9 @@
 object ProdutoManForm: TProdutoManForm
-  Left = 359
+  Left = 333
   Height = 470
-  Top = 118
+  Top = 166
   Width = 632
+  ActiveControl = GridProdutos
   Caption = 'Manutenção de Produtos'
   ClientHeight = 470
   ClientWidth = 632
@@ -18,44 +19,45 @@ object ProdutoManForm: TProdutoManForm
     ClientHeight = 37
     ClientWidth = 612
     TabOrder = 0
-    object Label1: TLabel
-      Left = 6
+    object labCodigo: TLabel
+      Left = 8
       Height = 15
       Top = 6
-      Width = 113
-      Caption = 'Código de Referência'
+      Width = 39
+      Caption = 'Código'
     end
-    object edReferencia: TEdit
-      Left = 126
+    object edCodigo: TEdit
+      Left = 56
       Height = 23
       Top = 2
       Width = 96
       TabOrder = 0
     end
-    object Label2: TLabel
-      Left = 230
+    object labNome: TLabel
+      Left = 160
       Height = 15
       Top = 6
       Width = 33
       Caption = 'Nome'
     end
     object edNome: TEdit
-      Left = 270
+      Left = 200
       Height = 23
-      Top = 2
+      Top = 0
       Width = 224
       TabOrder = 1
     end
     object btSearch: TButton
-      Left = 502
+      Left = 432
       Height = 25
       Top = 0
       Width = 75
       Caption = 'Pesquisar'
+      OnClick = btSearchClick
       TabOrder = 2
     end
   end
-  object Panel1: TPanel
+  object pnAcoes: TPanel
     Left = 8
     Height = 37
     Top = 64

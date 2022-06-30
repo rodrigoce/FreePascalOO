@@ -6,8 +6,8 @@ interface
 
 uses
   Classes, SysUtils, DB, BufDataset, SQLDB, Forms,
-  Controls, Graphics, Dialogs, DBGrids, StdCtrls, ExtCtrls, Grids, produto_bll,
-  produto_cad_form, grid_configurator;
+  Controls, Graphics, Dialogs, DBGrids, StdCtrls, ExtCtrls, produto_bll,
+  produto_cad_form, grid_configurator, prop_to_comp_map, produto_filter;
 
 type
 
@@ -20,19 +20,23 @@ type
     buf: TBufDataset;
     GridProdutos: TDBGrid;
     ds: TDataSource;
-    edReferencia: TEdit;
+    edCodigo: TEdit;
     edNome: TEdit;
     GroupBox1: TGroupBox;
-    Label1: TLabel;
-    Label2: TLabel;
-    Panel1: TPanel;
+    labCodigo: TLabel;
+    labNome: TLabel;
+    pnAcoes: TPanel;
     procedure btNovoClick(Sender: TObject);
     procedure btEditClick(Sender: TObject);
+    procedure btSearchClick(Sender: TObject);
   private
+    FPropToCompMap: TPropToCompMap;
     FProdutoBLL: TProdutoBLL;
     FGridConfig: TGridCofingurator;
+    FProdutoFilter: TProdutoFilter;
     procedure Search;
     procedure ConfigureGrid;
+    procedure ConfigMapPropComp;
   public
     class procedure Open;
   end;
@@ -62,25 +66,36 @@ begin
   buf.Locate('Id', rememberId, []);
 end;
 
+procedure TProdutoManForm.btSearchClick(Sender: TObject);
+begin
+  Search;
+end;
+
 procedure TProdutoManForm.Search;
 begin
-  FProdutoBLL.SearchProdutos(buf);
+  FPropToCompMap.CompToObject(FProdutoFilter);
+  FProdutoBLL.SearchProdutos(buf, FProdutoFilter); esse cara deve retornar um TOperationResult
+  também voi implementar um produtofiltervalidator modelo vazio mesmo
 end;
 
 procedure TProdutoManForm.ConfigureGrid;
 begin
-
-
   FGridConfig.WithGrid(GridProdutos)
     .SetDefaultProps
     .AddOrderAbility
     .AddColumn('ID', 'ID', 80)
-    .AddColumn('REFERENCIA', 'Referencia', 80)
+    .AddColumn('CODIGO', 'Código', 80)
     .AddColumn('NOME', 'Nome', 250)
     .AddColumn('PRECO_CUSTO', 'Preço Custo', 120, ',0.00')
     .AddColumn('MARGEM_LUCRO', 'Margem Lucro', 120, ',0.00')
-    .AddColumn('PRECO_VENDA', 'Preço Venda', 120, ',0.00');
+    .AddColumn('PRECO_VENDA', 'Preço Venda', 120, ',0.00')
+    .SetOrderedColumn('NOME');
+end;
 
+procedure TProdutoManForm.ConfigMapPropComp;
+begin
+  FPropToCompMap.MapString('Codigo', edCodigo, 20, labCodigo);
+  FPropToCompMap.MapString('Nome', edNome, 60, labNome);
 end;
 
 class procedure TProdutoManForm.Open;
@@ -88,13 +103,21 @@ begin
   Application.CreateForm(TProdutoManForm, ProdutoManForm);
   with ProdutoManForm do
   begin
+    FPropToCompMap := TPropToCompMap.Create;
     FGridConfig := TGridCofingurator.Create;
-    ConfigureGrid;
     FProdutoBLL := TProdutoBLL.Create;
+    FProdutoFilter := TProdutoFilter.Create;
+
+    ConfigureGrid;
+    ConfigMapPropComp;
     Search;
     ProdutoManForm.ShowModal;
+
+    FPropToCompMap.Free;
     FGridConfig.Free;
     FProdutoBLL.Free;
+    FProdutoFilter.Free;
+
     ProdutoManForm.Free;
   end;
 end;

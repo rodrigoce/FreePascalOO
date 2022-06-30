@@ -24,7 +24,7 @@ type
 
       procedure AddErrorValidationMsg(ClassFieldName, Message: string);
       procedure ClearErrorMessages;
-      function ValidateMemberName(ClassFieldName: string): Boolean;
+      function ClassPropNameExists(ClassFieldName: string): Boolean;
       function GetAllRawErrorMessages: string;
       property ErrorMessageList: specialize TList<TValidationMsgItem> read FErrorMessageList;
       property PropsNamesList: TStringList read FPropsNamesList;
@@ -58,7 +58,7 @@ begin
   Result := FErrorMessageList.Count = 0;
 end;
 
-function TValidatable.ValidateMemberName(ClassFieldName: string): Boolean;
+function TValidatable.ClassPropNameExists(ClassFieldName: string): Boolean;
 begin
   Result := FPropsNamesList.IndexOf(ClassFieldName) > -1;
 end;
@@ -78,7 +78,7 @@ var
   end;
 
 begin
-  if not ValidateMemberName(ClassFieldName) then
+  if not ClassPropNameExists(ClassFieldName) then
     raise Exception.Create('A classe do tipo ' + Self.ClassName + ' não tem o campo ' + ClassFieldName);
 
   added := False;

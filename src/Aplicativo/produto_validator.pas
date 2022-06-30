@@ -28,9 +28,9 @@ begin
   Instance.ClearErrorMessages;
   dal := TProdutoDAL.Create;
 
-  if not IsEmpty('Referencia', False, '') then
+  if not IsEmpty('Codigo', False, '') then
   begin
-    IfInvalid('Referencia', dal.Exists('Referencia', Instance.Referencia, IsInsert, Instance.Id),
+    IfInvalid('Codigo', dal.Exists('Codigo', Instance.Codigo, IsInsert, Instance.Id),
       True, 'Esse valor já está sendo usado em outro Produto.');
   end;
 

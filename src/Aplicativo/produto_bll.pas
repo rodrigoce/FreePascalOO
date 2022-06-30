@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, produto_entity, produto_dal, produto_validator,
-  application_types, BufDataset;
+  application_types, BufDataset, produto_filter;
 
 type
 
@@ -20,7 +20,7 @@ type
       function InsertProduto(Produto: TProdutoEntity): TOperationResult;
       function UpdateProduto(Produto: TProdutoEntity): TOperationResult;
       function FindProdutoByPK(Id: Integer): TProdutoEntity;
-      procedure SearchProdutos(Target: TBufDataset);
+      procedure SearchProdutos(Target: TBufDataset; Filter: TProdutoFilter);
       function Validate(Produto: TProdutoEntity; IsInsert: Boolean): Boolean;
       constructor Create;
       destructor Destroy; override;
@@ -51,7 +51,6 @@ begin
     Produto.Id := FProdutoDAL.GetNextSequence;
     FProdutoDAL.Insert(Produto);
     opResult.Success := True;
-    opResult.Message := 'Produto inserido com sucesso.';
   end
   else
   begin
@@ -69,7 +68,6 @@ begin
   begin
     FProdutoDAL.Update(Produto);
     opResult.Success := True;
-    opResult.Message := 'Produto atualizado com sucesso.';
   end
   else
   begin
@@ -84,9 +82,10 @@ begin
   Result := FProdutoDAL.FindByPK(Id);
 end;
 
-procedure TProdutoBLL.SearchProdutos(Target: TBufDataset);
+procedure TProdutoBLL.SearchProdutos(Target: TBufDataset; Filter: TProdutoFilter
+  );
 begin
-  FProdutoDAL.SearchProdutos(Target);
+  FProdutoDAL.SearchProdutos(Target, Filter);
 end;
 
 function TProdutoBLL.Validate(Produto: TProdutoEntity; IsInsert: Boolean
@@ -106,8 +105,8 @@ end;
 
 destructor TProdutoBLL.Destroy;
 begin
- FProdutoDAL.Free;
- inherited;
+  FProdutoDAL.Free;
+  inherited;
 end;
 
 

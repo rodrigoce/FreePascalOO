@@ -1,7 +1,7 @@
 object MensagemValidacaoForm: TMensagemValidacaoForm
-  Left = 436
+  Left = 438
   Height = 371
-  Top = 307
+  Top = 309
   Width = 533
   Caption = 'Mensagem de Validação'
   ClientHeight = 371

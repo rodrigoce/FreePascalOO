@@ -18,7 +18,7 @@ menu_principal_form, produto_dal, produto_entity,
   application_types, validatable, bll_base, validator_base, produto_bll, 
 produto_validator, images_dm, menu_tree_item, menu_principal_config,
 menu_principal_callbacks, mensagem_validacao_form, prop_to_comp_map, 
-grid_configurator;
+grid_configurator, produto_filter, filter_composer;
 
 {$R *.res}
 

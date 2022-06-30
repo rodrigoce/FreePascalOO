@@ -18,12 +18,12 @@ type
     btSave: TButton;
     edId: TEdit;
     edNome: TEdit;
-    edReferencia: TEdit;
+    edCodigo: TEdit;
     edPrecoCusto: TFloatSpinEdit;
     edMargemLucro: TFloatSpinEdit;
     edPrecoVenda: TFloatSpinEdit;
     labId: TLabel;
-    labCodRef: TLabel;
+    labCodigo: TLabel;
     labNome: TLabel;
     labPCusto: TLabel;
     labMLucro: TLabel;
@@ -90,12 +90,12 @@ end;
 
 procedure TProdutoCadForm.ConfigMapPropComp;
 begin
-   FPropToCompMap.MapString('Id', edId, 11, labId);
-   FPropToCompMap.MapString('Referencia', edReferencia, 20, labCodRef);
-   FPropToCompMap.MapString('Nome', edNome, 60, labNome);
-   FPropToCompMap.MapFloat('PrecoCusto', edPrecoCusto, labPCusto);
-   FPropToCompMap.MapFloat('MargemLucro', edMargemLucro, labMLucro);
-   FPropToCompMap.MapFloat('PrecoVenda', edPrecoVenda, labPVenda);
+  FPropToCompMap.MapString('Id', edId, 11, labId);
+  FPropToCompMap.MapString('Codigo', edCodigo, 20, labCodigo);
+  FPropToCompMap.MapString('Nome', edNome, 60, labNome);
+  FPropToCompMap.MapFloat('PrecoCusto', edPrecoCusto, labPCusto);
+  FPropToCompMap.MapFloat('MargemLucro', edMargemLucro, labMLucro);
+  FPropToCompMap.MapFloat('PrecoVenda', edPrecoVenda, labPVenda);
 end;
 
 procedure TProdutoCadForm.btCancelClick(Sender: TObject);
@@ -110,6 +110,7 @@ begin
   begin
     FProdutoBLL := TProdutoBLL.Create;
     FPropToCompMap := TPropToCompMap.Create;
+
     ConfigMapPropComp;
 
     if Id = 0 then
@@ -126,9 +127,11 @@ begin
     FPropToCompMap.ObjectToComp(FProduto);
 
     ShowModal;
-    FProduto.Free;
+
     FProdutoBLL.Free;
     FPropToCompMap.Free;
+
+    FProduto.Free;
   end;
 end;
 

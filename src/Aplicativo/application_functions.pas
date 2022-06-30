@@ -7,11 +7,11 @@ interface
 uses
   Classes, SysUtils, Dialogs, LazUTF8;
 
-function RemoveAcento(Text: string): string;
+function RemoveAccent(Text: string): string;
 
 implementation
 
-function RemoveAcento(Text: string): string;
+function RemoveAccent(Text: string): string;
 const
   acentos: string =    'ÄÅÁÂÀÃäáâàãÉÊËÈéêëèÍÎÏÌíîïìÖÓÔÒÕöóôòõÜÚÛüúûùÇç';
   semAcentos: string = 'AAAAAAaaaaaEEEEeeeeIIIIiiiiOOOOOoooooUUUuuuuCc';

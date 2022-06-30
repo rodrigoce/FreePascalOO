@@ -46,8 +46,9 @@ DAL ->
   units
   |- mini_orm --> é o mini orm do projeto
   |- prop_to_comp_map --> mapeia propriedades para componentes
-  |-
-
+  |- mensagem_validacao_form --> Exibe as mensagens de validação de um objeto validatable
+  |- filter_composer --> gera a expressão where e insere o parametros em um TSQLQuery
+  |- grid_configurator --> configura uma DBGRID
 
 }
 
@@ -60,6 +61,7 @@ UNITS INTERESSANTES
 {
   https://github.com/hiraethbbs/pascal_bcrypt
   https://wiki.freepascal.org/Lazarus_IDE_Tools#Summary_Table_of_IDE_shortcuts
+  https://scriptcase.host/pt-br/hospedagem-firebird
 }
 
 end.

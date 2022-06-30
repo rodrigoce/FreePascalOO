@@ -16,7 +16,6 @@ type
     Label1: TLabel;
     pnWallPaper: TPanel;
     pnLogo: TPanel;
-    Shape1: TShape;
     StatusBar1: TStatusBar;
     TreeViewMenu: TTreeView;
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);

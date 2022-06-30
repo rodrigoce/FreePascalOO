@@ -1,7 +1,7 @@
 object MenuPrincipalForm: TMenuPrincipalForm
-  Left = 253
+  Left = 251
   Height = 569
-  Top = 105
+  Top = 169
   Width = 912
   Caption = 'Menu Principal'
   ClientHeight = 569
@@ -67,20 +67,8 @@ object MenuPrincipalForm: TMenuPrincipalForm
     Width = 543
     Align = alClient
     BevelOuter = bvNone
-    ClientHeight = 498
-    ClientWidth = 543
     ParentColor = False
     TabOrder = 2
-    object Shape1: TShape
-      Left = 0
-      Height = 498
-      Top = 0
-      Width = 543
-      Align = alClient
-      Brush.Color = clSkyBlue
-      Brush.Style = bsVertical
-      Pen.Style = psClear
-    end
   end
   object pnLogo: TPanel
     Left = 0
