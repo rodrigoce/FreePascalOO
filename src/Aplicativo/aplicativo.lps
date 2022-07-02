@@ -102,9 +102,7 @@
         <ComponentName Value="ProdutoManForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
-        <TopLine Value="57"/>
-        <CursorPos X="70" Y="78"/>
+        <CursorPos X="35" Y="72"/>
         <UsageCount Value="205"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -129,10 +127,11 @@
         <ComponentName Value="ProdutoCadForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="95"/>
-        <CursorPos X="5" Y="139"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="47"/>
+        <CursorPos X="77" Y="71"/>
         <UsageCount Value="245"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="query_runner_form.pas"/>
@@ -166,7 +165,7 @@
       <Unit>
         <Filename Value="application_types.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="1"/>
+        <EditorIndex Value="5"/>
         <CursorPos X="19" Y="11"/>
         <UsageCount Value="208"/>
         <Loaded Value="True"/>
@@ -197,17 +196,21 @@
       <Unit>
         <Filename Value="produto_bll.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="53"/>
-        <CursorPos X="39" Y="70"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="4"/>
+        <TopLine Value="74"/>
+        <CursorPos X="48" Y="89"/>
         <UsageCount Value="201"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="produto_validator.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <CursorPos X="84" Y="33"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="15"/>
+        <CursorPos X="3" Y="27"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="images_dm.pas"/>
@@ -267,21 +270,21 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="14" Y="35"/>
-        <UsageCount Value="108"/>
+        <UsageCount Value="109"/>
       </Unit>
       <Unit>
         <Filename Value="produto_filter.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="39" Y="14"/>
-        <UsageCount Value="46"/>
+        <UsageCount Value="47"/>
       </Unit>
       <Unit>
         <Filename Value="filter_composer.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="16" Y="73"/>
-        <UsageCount Value="32"/>
+        <UsageCount Value="33"/>
       </Unit>
       <Unit>
         <Filename Value="C:\lazarus\fpc\3.2.2\source\packages\rtl-objpas\src\inc\variants.pp"/>
@@ -357,8 +360,16 @@
         <TopLine Value="7"/>
         <UsageCount Value="9"/>
       </Unit>
+      <Unit>
+        <Filename Value="produto_filter_validator.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="1"/>
+        <CursorPos X="31" Y="25"/>
+        <UsageCount Value="21"/>
+        <Loaded Value="True"/>
+      </Unit>
     </Units>
-    <JumpHistory HistoryIndex="1">
+    <JumpHistory HistoryIndex="13">
       <Position>
         <Filename Value="produto_man_form.pas"/>
         <Caret Line="71" Column="7" TopLine="55"/>
@@ -366,6 +377,54 @@
       <Position>
         <Filename Value="produto_man_form.pas"/>
         <Caret Line="37" Column="18" TopLine="23"/>
+      </Position>
+      <Position>
+        <Filename Value="produto_man_form.pas"/>
+        <Caret Line="77" Column="24" TopLine="57"/>
+      </Position>
+      <Position>
+        <Filename Value="produto_bll.pas"/>
+        <Caret Line="23" Column="23" TopLine="22"/>
+      </Position>
+      <Position>
+        <Filename Value="produto_bll.pas"/>
+        <Caret Line="88" Column="10" TopLine="83"/>
+      </Position>
+      <Position>
+        <Filename Value="produto_bll.pas"/>
+        <Caret Line="23" Column="24" TopLine="8"/>
+      </Position>
+      <Position>
+        <Filename Value="produto_man_form.pas"/>
+        <Caret Line="96" Column="5" TopLine="67"/>
+      </Position>
+      <Position>
+        <Filename Value="produto_man_form.pas"/>
+        <Caret Line="76" Column="13" TopLine="61"/>
+      </Position>
+      <Position>
+        <Filename Value="produto_man_form.pas"/>
+        <Caret Line="82" Column="17"/>
+      </Position>
+      <Position>
+        <Filename Value="produto_filter_validator.pas"/>
+        <Caret Line="11" Column="11"/>
+      </Position>
+      <Position>
+        <Filename Value="produto_filter_validator.pas"/>
+        <Caret Line="16" Column="9"/>
+      </Position>
+      <Position>
+        <Filename Value="produto_bll.pas"/>
+        <Caret Line="52" Column="26" TopLine="52"/>
+      </Position>
+      <Position>
+        <Filename Value="produto_bll.pas"/>
+        <Caret Line="23" Column="22" TopLine="5"/>
+      </Position>
+      <Position>
+        <Filename Value="produto_bll.pas"/>
+        <Caret Line="91" Column="17" TopLine="79"/>
       </Position>
     </JumpHistory>
     <RunParams>

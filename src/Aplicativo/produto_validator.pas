@@ -14,7 +14,6 @@ type
   TProdutoValidator = class(specialize TValidatorBase<TProdutoEntity>)
     public
       function Validate(IsInsert: Boolean): Boolean;
-
   end;
 
 implementation

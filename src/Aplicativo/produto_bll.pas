@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, produto_entity, produto_dal, produto_validator,
-  application_types, BufDataset, produto_filter;
+  application_types, BufDataset, produto_filter, produto_filter_validator;
 
 type
 
@@ -20,7 +20,7 @@ type
       function InsertProduto(Produto: TProdutoEntity): TOperationResult;
       function UpdateProduto(Produto: TProdutoEntity): TOperationResult;
       function FindProdutoByPK(Id: Integer): TProdutoEntity;
-      procedure SearchProdutos(Target: TBufDataset; Filter: TProdutoFilter);
+      function SearchProdutos(Target: TBufDataset; Filter: TProdutoFilter): TOperationResult;
       function Validate(Produto: TProdutoEntity; IsInsert: Boolean): Boolean;
       constructor Create;
       destructor Destroy; override;
@@ -82,10 +82,28 @@ begin
   Result := FProdutoDAL.FindByPK(Id);
 end;
 
-procedure TProdutoBLL.SearchProdutos(Target: TBufDataset; Filter: TProdutoFilter
-  );
+function TProdutoBLL.SearchProdutos(Target: TBufDataset; Filter: TProdutoFilter
+  ): TOperationResult;
+var
+  opResult: TOperationResult;
+  produtoFilterValidator: TProdutoFilterValidator;
 begin
-  FProdutoDAL.SearchProdutos(Target, Filter);
+  produtoFilterValidator := TProdutoFilterValidator.Create(Filter);
+
+  if produtoFilterValidator.Validate then
+  begin
+    FProdutoDAL.SearchProdutos(Target, Filter);
+    opResult.Success := True;
+  end
+  else
+  begin
+    opResult.Message := 'Erro ao validar dados.';
+    opResult.Success := False;
+  end;
+
+  produtoFilterValidator.Free;
+
+  Result := opResult;
 end;
 
 function TProdutoBLL.Validate(Produto: TProdutoEntity; IsInsert: Boolean

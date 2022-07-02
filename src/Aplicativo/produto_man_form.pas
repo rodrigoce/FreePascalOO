@@ -5,9 +5,9 @@ unit produto_man_form;
 interface
 
 uses
-  Classes, SysUtils, DB, BufDataset, SQLDB, Forms,
-  Controls, Graphics, Dialogs, DBGrids, StdCtrls, ExtCtrls, produto_bll,
-  produto_cad_form, grid_configurator, prop_to_comp_map, produto_filter;
+  Classes, SysUtils, DB, BufDataset, SQLDB, Forms, Controls, Graphics, Dialogs,
+  DBGrids, StdCtrls, ExtCtrls, produto_bll, produto_cad_form, grid_configurator,
+  prop_to_comp_map, produto_filter, application_types, mensagem_validacao_form;
 
 type
 
@@ -72,10 +72,14 @@ begin
 end;
 
 procedure TProdutoManForm.Search;
+var
+  opResult: TOperationResult;
 begin
   FPropToCompMap.CompToObject(FProdutoFilter);
-  FProdutoBLL.SearchProdutos(buf, FProdutoFilter); esse cara deve retornar um TOperationResult
-  também voi implementar um produtofiltervalidator modelo vazio mesmo
+  opResult := FProdutoBLL.SearchProdutos(buf, FProdutoFilter);
+
+  if not opResult.Success then
+    TMensagemValidacaoForm.Open(opResult.Message, FProdutoFilter, FPropToCompMap);
 end;
 
 procedure TProdutoManForm.ConfigureGrid;
