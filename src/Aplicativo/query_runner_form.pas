@@ -57,7 +57,7 @@ type
     procedure destroiConsulta;
   public
     { Public declarations }
-    class procedure OpenFeature;
+    class procedure Open;
   end;
 
 var
@@ -71,7 +71,7 @@ uses application_functions;
 
 { TQueryRunnerForm }
 
-class procedure TQueryRunnerForm.OpenFeature;
+class procedure TQueryRunnerForm.Open;
 begin
   with QueryRunnerForm do
   begin

@@ -49,4 +49,13 @@ object LogSqlForm: TLogSqlForm
       end
     end
   end
+  object Button1: TButton
+    Left = 192
+    Height = 23
+    Top = 1
+    Width = 112
+    Caption = 'Executor de SQL'
+    OnClick = Button1Click
+    TabOrder = 1
+  end
 end

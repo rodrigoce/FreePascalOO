@@ -16,9 +16,12 @@ type
     procedure ManutencaoProdutos;
     procedure GeradorDeCodigos;
     procedure QueryRunner;
+    procedure OpenLogSQL;
   end;
 
 implementation
+
+uses log_sql_form;
 
 { TMenuPrincipalCallBacks }
 
@@ -29,14 +32,18 @@ end;
 
 procedure TMenuPrincipalCallBacks.GeradorDeCodigos;
 begin
-  Application.CreateForm(TGeradorDeCodigoForm, GeradorDeCodigoForm);
-  GeradorDeCodigoForm.ShowModal;
-  GeradorDeCodigoForm.Free;
+  TGeradorDeCodigoForm.Open;
 end;
 
 procedure TMenuPrincipalCallBacks.QueryRunner;
 begin
-   TQueryRunnerForm.OpenFeature;
+   TQueryRunnerForm.Open;
+end;
+
+procedure TMenuPrincipalCallBacks.OpenLogSQL;
+begin
+   // o formulário está sendo criando em conexao_dm
+   LogSqlForm.ShowModal;
 end;
 
 end.

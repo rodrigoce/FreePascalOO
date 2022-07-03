@@ -17,12 +17,12 @@ type
     FMenuPrincipal: TMenuTreeItem;
     procedure InitCadastros(root: TMenuTreeItem);
     procedure InitSoftwareHouse(root: TMenuTreeItem);
-    property CallBacks: TMenuPrincipalCallBacks read FCallBacks write FCallBacks;
   public
     destructor Destroy; override;
     procedure InitRootMenus(TreeView: TTreeView);
     procedure ExecuteCallBackOf(node: TTreeNode);
     property MenuPrincipal: TMenuTreeItem read FMenuPrincipal write FMenuPrincipal;
+    property CallBacks: TMenuPrincipalCallBacks read FCallBacks write FCallBacks;
   end;
 
 implementation
@@ -70,6 +70,7 @@ procedure TMenuPrincipalConfig.InitSoftwareHouse(root: TMenuTreeItem);
 begin
   root.AddChild('Executor de SQL', 2, @CallBacks.QueryRunner);
   root.AddChild('Gerador de Código', 2, @CallBacks.GeradorDeCodigos);
+  root.ADdChild('Log de SQL', 2, @CallBacks.OpenLogSQL);
 end;
 
 destructor TMenuPrincipalConfig.Destroy;

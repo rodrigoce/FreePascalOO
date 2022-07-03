@@ -1,7 +1,7 @@
 object MenuPrincipalForm: TMenuPrincipalForm
-  Left = 251
+  Left = 282
   Height = 569
-  Top = 169
+  Top = 115
   Width = 912
   Caption = 'Menu Principal'
   ClientHeight = 569
@@ -32,8 +32,8 @@ object MenuPrincipalForm: TMenuPrincipalForm
   end
   object TreeViewMenu: TTreeView
     Left = 0
-    Height = 498
-    Top = 48
+    Height = 546
+    Top = 0
     Width = 369
     Align = alLeft
     BorderStyle = bsNone
@@ -62,39 +62,26 @@ object MenuPrincipalForm: TMenuPrincipalForm
   end
   object pnWallPaper: TPanel
     Left = 369
-    Height = 498
-    Top = 48
+    Height = 546
+    Top = 0
     Width = 543
     Align = alClient
     BevelOuter = bvNone
+    ClientHeight = 546
+    ClientWidth = 543
     ParentColor = False
     TabOrder = 2
-  end
-  object pnLogo: TPanel
-    Left = 0
-    Height = 48
-    Top = 0
-    Width = 912
-    Align = alTop
-    BevelOuter = bvNone
-    ClientHeight = 48
-    ClientWidth = 912
-    Color = clSkyBlue
-    ParentColor = False
-    TabOrder = 3
-    object Label1: TLabel
-      Left = 16
-      Height = 30
-      Top = 8
-      Width = 139
-      Caption = 'protótipo'
-      Font.CharSet = ANSI_CHARSET
-      Font.Color = clBlack
-      Font.Height = -24
-      Font.Name = 'Showcard Gothic'
-      Font.Pitch = fpVariable
-      Font.Quality = fqDraft
-      ParentFont = False
+    object RxDice1: TRxDice
+      Left = 456
+      Height = 66
+      Top = 464
+      Width = 66
+      Interval = 200
+      Rotate = True
+      ShowFocus = False
+      Anchors = [akRight, akBottom]
+      TabOrder = 0
+      Value = 3
     end
   end
 end

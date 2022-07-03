@@ -5,17 +5,17 @@ unit menu_principal_form;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, Dialogs, Menus,
-  ComCtrls, ExtCtrls, StdCtrls, Windows, menu_principal_config;
+  Classes, SysUtils, Forms, Controls, Dialogs, Menus, ComCtrls, ExtCtrls,
+  StdCtrls, rxDice, rxctrls, PanelWin, TAGraph, TASources, TAPolygonSeries,
+  TASeries, TATools, Windows, menu_principal_config;
 
 type
 
   { TMenuPrincipalForm }
 
   TMenuPrincipalForm = class(TForm)
-    Label1: TLabel;
     pnWallPaper: TPanel;
-    pnLogo: TPanel;
+    RxDice1: TRxDice;
     StatusBar1: TStatusBar;
     TreeViewMenu: TTreeView;
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
@@ -64,9 +64,7 @@ procedure TMenuPrincipalForm.ApplicationKeyDown(Sender: TObject; var Key: Word; 
 begin
   if key = VK_F12 then
     if not LogSqlForm.Visible then
-      LogSqlForm.ShowModal;
-
-
+      MenuPrincipalConfig.CallBacks.OpenLogSQL;
 end;
 
 

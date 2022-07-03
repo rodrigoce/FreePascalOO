@@ -31,6 +31,7 @@ object ProdutoManForm: TProdutoManForm
       Height = 23
       Top = 2
       Width = 96
+      OnKeyPress = edCodigoKeyPress
       TabOrder = 0
     end
     object labNome: TLabel
@@ -43,14 +44,15 @@ object ProdutoManForm: TProdutoManForm
     object edNome: TEdit
       Left = 200
       Height = 23
-      Top = 0
+      Top = 2
       Width = 224
+      OnKeyPress = edCodigoKeyPress
       TabOrder = 1
     end
     object btSearch: TButton
       Left = 432
       Height = 25
-      Top = 0
+      Top = 1
       Width = 75
       Caption = 'Pesquisar'
       OnClick = btSearchClick

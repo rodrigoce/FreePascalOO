@@ -24,7 +24,7 @@ type
   private
 
   public
-
+    class procedure Open;
   end;
 
 var
@@ -50,6 +50,13 @@ procedure TGeradorDeCodigoForm.ListBox1Click(Sender: TObject);
 begin
   memoCreateTable.Lines.Text := TORM.ToScriptCreate(ListBox1.GetSelectedText);
   memoAlterTable.Lines.Text := TORM.ToScriptAlter(ListBox1.GetSelectedText);
+end;
+
+class procedure TGeradorDeCodigoForm.Open;
+begin
+  Application.CreateForm(TGeradorDeCodigoForm, GeradorDeCodigoForm);
+  GeradorDeCodigoForm.ShowModal;
+  GeradorDeCodigoForm.Free;
 end;
 
 end.

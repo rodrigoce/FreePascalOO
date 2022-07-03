@@ -1,7 +1,7 @@
 object QueryRunnerForm: TQueryRunnerForm
-  Left = 216
+  Left = 299
   Height = 504
-  Top = 253
+  Top = 114
   Width = 895
   ActiveControl = edInstrucao
   Caption = 'Executor de instruções SQL '
@@ -193,9 +193,9 @@ object QueryRunnerForm: TQueryRunnerForm
         TabOrder = 3
       end
       object SpinEdit1: TSpinEdit
-        Left = 321
+        Left = 280
         Height = 21
-        Top = 8
+        Top = 5
         Width = 50
         TabOrder = 4
       end

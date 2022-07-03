@@ -30,6 +30,15 @@
     </RunParams>
     <RequiredPackages>
       <Item>
+        <PackageName Value="rxnew"/>
+      </Item>
+      <Item>
+        <PackageName Value="SoftAutoComps"/>
+      </Item>
+      <Item>
+        <PackageName Value="TAChartLazarusPkg"/>
+      </Item>
+      <Item>
         <PackageName Value="LazUtils"/>
       </Item>
       <Item>

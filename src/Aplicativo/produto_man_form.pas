@@ -29,6 +29,7 @@ type
     procedure btNovoClick(Sender: TObject);
     procedure btEditClick(Sender: TObject);
     procedure btSearchClick(Sender: TObject);
+    procedure edCodigoKeyPress(Sender: TObject; var Key: char);
   private
     FPropToCompMap: TPropToCompMap;
     FProdutoBLL: TProdutoBLL;
@@ -69,6 +70,12 @@ end;
 procedure TProdutoManForm.btSearchClick(Sender: TObject);
 begin
   Search;
+end;
+
+procedure TProdutoManForm.edCodigoKeyPress(Sender: TObject; var Key: char);
+begin
+  if Key = #13 then
+    btSearch.Click;
 end;
 
 procedure TProdutoManForm.Search;
