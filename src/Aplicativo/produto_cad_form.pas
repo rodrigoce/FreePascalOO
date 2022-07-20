@@ -16,6 +16,7 @@ type
   TProdutoCadForm = class(TForm)
     btCancel: TButton;
     btSave: TButton;
+    ckDesativado: TCheckBox;
     edId: TEdit;
     edNome: TEdit;
     edCodigo: TEdit;
@@ -96,6 +97,7 @@ begin
   FPropToCompMap.MapFloat('PrecoCusto', edPrecoCusto, labPCusto);
   FPropToCompMap.MapFloat('MargemLucro', edMargemLucro, labMLucro);
   FPropToCompMap.MapFloat('PrecoVenda', edPrecoVenda, labPVenda);
+  FPropToCompMap.MapBool('IsDeleted', ckDesativado);
 end;
 
 procedure TProdutoCadForm.btCancelClick(Sender: TObject);

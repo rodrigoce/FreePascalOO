@@ -49,9 +49,9 @@ initialization
 
 TORMMapBuilder.Create.MapModel(TProdutoEntity, 'PRODUTO')
   .MapSequenceInt32PK('ID', 'Id')
-  .MapDateTime('DATA_CRIACAO', 'DataCriacao')
-  .MapDateTime('DATA_ATUALIZACAO', 'DataAtualizacao')
-  .MapDateTime('DATA_EXCLUSAO', 'DataExclusao')
+  .MapDateTime('DATA_CRIACAO', 'DataCriacao', True)
+  .MapDateTime('DATA_ATUALIZACAO', 'DataAtualizacao', True)
+  .MapDateTime('DATA_EXCLUSAO', 'DataExclusao', True)
   .MapInt32('ID_USER_CRIACAO', 'IdUserCriacao')
   .MapInt32('ID_USER_ATUALIZACAO', 'IdUserAtualizacao')
   .MapInt32('ID_USER_EXCLUSAO', 'IdUserExclusao')

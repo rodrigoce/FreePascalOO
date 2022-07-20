@@ -124,6 +124,9 @@ begin
       end;
   end;
 
+  if entity.DataExclusao > 0 then
+    entity.IsDeleted := True;
+
   q.Close;
   q.Free;
 
@@ -159,10 +162,16 @@ var
   sql, strParams: string;
 begin
   Entity.ValidateStringMaxLength(True);
+
   // alimenta campos de rastreamento
   Entity.DataCriacao := GetDatabaseDateTime;
   Entity.IdUserCriacao := 0; //// PEAGR O ID DO CARA LOGADO
 
+  if Entity.IsDeleted then
+  begin
+    Entity.DataExclusao := Entity.DataCriacao;
+    Entity.IdUserExclusao := 0; //// PEGAR O ID DO CARA LOGADO
+  end;
 
   ormEntity := TORM.FindORMEntity(T.ClassName);
 
@@ -227,6 +236,17 @@ begin
   // alimenta campos de rastreamento
   Entity.DataAtualizacao := GetDatabaseDateTime;
   Entity.IdUserAtualizacao := 0; //// PEGAR O ID DO CARA LOGADO
+
+  if Entity.IsDeleted then
+  begin
+    Entity.DataExclusao := Entity.DataAtualizacao;
+    Entity.IdUserExclusao := 0; //// PEGAR O ID DO CARA LOGADO
+  end
+  else
+  begin
+    Entity.DataExclusao := 0;
+    Entity.IdUserExclusao := 0; //// PEGAR O ID DO CARA LOGADO
+  end;
 
   ormEntity := TORM.FindORMEntity(T.ClassName);
   countPKFields := ormEntity.CountPK;

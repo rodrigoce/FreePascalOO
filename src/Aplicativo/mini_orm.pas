@@ -9,6 +9,10 @@ uses
   StrUtils;
 
 type
+  { Enum }
+
+  TORMType = (ormTypeTimestamp, ormTypeTimestampNullIfZero, ormTypeInt32, ormTypeInt32NullIfZero,
+    ormTypeString, ormTypeStringNullIfEmpty, ormTypeDecimal);
 
   {Forward Declarations}
 
@@ -48,16 +52,19 @@ type
       FDBType: string;
       FLength: Integer;
       FIsPK: Boolean;
-      FIsString: Boolean;
       FHasSequence: Boolean;
+      FORMType: TORMType;
       FPPropInfo: PPropInfo;
+      function GetIsString: Boolean;
     public
+      function GetIsOrNotNullValueOf(Value: Variant): Variant;
       property DBColumnName: string read FDBColumnName;
       property EntityPropName: string read FEntityPropName;
+      property ORMType: TORMType read FORMType;
       property DBType: string read FDBType;
       property Length: Integer read FLength;
       property IsPK: Boolean read FIsPK;
-      property IsString: Boolean read FIsString;
+      property IsString: Boolean read GetIsString;
       property HasSequence: Boolean read FHasSequence;
       property PPropInfo: PPropInfo read FPPropInfo;
   end;
@@ -87,7 +94,7 @@ type
     function MapModel(AClassOfEntity: TClass; ADBTableName: string): TORMMapBuilder;
     function MapSequenceInt32PK(ADBColumnName, AEntityPropName: string): TORMMapBuilder;
     function MapString(ADBColumnName, AEntityPropName: string; ALenght: Integer): TORMMapBuilder;
-    function MapDateTime(ADBColumnName, AEntityPropName: string): TORMMapBuilder;
+    function MapDateTime(ADBColumnName, AEntityPropName: string; NullIfZero: Boolean): TORMMapBuilder;
     function MapInt32(ADBColumnName, AEntityPropName: string): TORMMapBuilder;
     // apesar do nome pode ser usado para outros tipos como double, real...
     function MapDecimal(ADBColumnName, AEntityPropName: string; APrecision, AScale: SmallInt): TORMMapBuilder;
@@ -95,6 +102,18 @@ type
 
 
 implementation
+
+{ TORMField }
+
+function TORMField.GetIsString: Boolean;
+begin
+  Result := (Self.ORMType = ormTypeString) or (Self.ORMType = ormTypeStringNullIfEmpty);
+end;
+
+function TORMField.GetIsOrNotNullValueOf(Value: Variant): Variant;
+begin
+
+end;
 
 { TORMEntity }
 
@@ -287,8 +306,8 @@ var
 begin
   field := MapField(ADBColumnName, AEntityPropName);
   field.FLength := ALenght;
-  field.FIsString := True;
   field.FDBType := 'VarChar(' + IntToStr(ALenght) + ')';
+  field.FORMType := ormTypeString;
   Result := Self;
 end;
 
@@ -301,15 +320,23 @@ begin
   field.FDBType := 'Integer';
   field.FIsPK := True;
   field.FHasSequence := True;
+  field.FORMType := ormTypeInt32;
   Result := Self;
 end;
 
-function TORMMapBuilder.MapDateTime(ADBColumnName, AEntityPropName: string): TORMMapBuilder;
+function TORMMapBuilder.MapDateTime(ADBColumnName, AEntityPropName: string;
+  NullIfZero: Boolean): TORMMapBuilder;
 var
   field: TORMField;
 begin
   field := MapField(ADBColumnName, AEntityPropName);
   field.FDBType := 'Timestamp';
+
+  if NullIfZero then
+    field.FORMType := ormTypeTimestampNullIfZero
+  else
+    field.FORMType := ormTypeTimestamp;
+
   Result := Self;
 end;
 
@@ -320,6 +347,7 @@ var
 begin
   field := MapField(ADBColumnName, AEntityPropName);
   field.FDBType := 'Integer';
+  field.FORMType := ormTypeInt32;
   Result := Self;
 end;
 
@@ -330,6 +358,7 @@ var
 begin
   field := MapField(ADBColumnName, AEntityPropName);
   field.FDBType := 'Decimal(' + APrecision.ToString + ', ' + AScale.ToString + ')';
+  field.FORMType := ormTypeDecimal;
   Result := Self;
 end;
 

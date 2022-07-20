@@ -11,7 +11,7 @@ type
 
   { TPropToCompMap }
 
-  TPropToCompMapEnum = (ptcmString, ptcmFloat, ptcmDateTime);
+  TPropToCompMapEnum = (ptcmString, ptcmFloat, ptcmDateTime, ptcmBool);
 
   { TPropToCompMapRec }
 
@@ -23,10 +23,12 @@ type
     FFloatEdit: TFloatSpinEdit;
     FMaxLenght: Integer;
     FStringEdit: TEdit;
+    FCheckBox: TCheckBox;
   public
     property ClassPropName: string read FClassPropName write FClassPropName;
     property StringEdit: TEdit read FStringEdit write FStringEdit;
     property FloatEdit: TFloatSpinEdit read FFloatEdit write FFloatEdit;
+    property CheckBox: TCheckBox read FCheckBox write FCheckBox;
     property MaxLength: Integer read FMaxLenght write FMaxLenght;
     property ALabel: TLabel read FALabel write FALabel;
     property AType: TPropToCompMapEnum read FAType write FAType;
@@ -42,6 +44,7 @@ type
 
     procedure MapString(ClassPropName: string; Edit: TEdit; MaxLength: Integer; ALabel: TLabel);
     procedure MapFloat(ClassPropName: string; FloatSpinEdit: TFloatSpinEdit; ALabel: TLabel);
+    procedure MapBool(ClassPropName: string; CheckBox: TCheckBox);
     procedure ObjectToComp(Instance: TObject);
     procedure CompToObject(Instance: TObject);
 
@@ -96,6 +99,18 @@ begin
   MapList.Add(item);
 end;
 
+procedure TPropToCompMap.MapBool(ClassPropName: string; CheckBox: TCheckBox);
+var
+  item: TPropToCompMapItem;
+begin
+  item := TPropToCompMapItem.Create;
+  item.ClassPropName := ClassPropName;
+  item.CheckBox := CheckBox;
+  item.AType := ptcmBool;
+
+  MapList.Add(item)
+end;
+
 procedure TPropToCompMap.ObjectToComp(Instance: TObject);
 var
   item: TPropToCompMapItem;
@@ -109,6 +124,9 @@ begin
     end else if item.AType = ptcmFloat then
     begin
       item.FloatEdit.Value := GetPropValue(Instance, item.ClassPropName);
+    end else if item.AType = ptcmBool then
+    begin
+      item.CheckBox.Checked := GetPropValue(Instance, item.ClassPropName);
     end;
   end;
 end;
@@ -125,6 +143,9 @@ begin
     end else if item.AType = ptcmFloat then
     begin
       SetPropValue(Instance, item.ClassPropName, item.FloatEdit.Value);
+    end else if item.AType = ptcmBool then
+    begin
+      SetPropValue(Instance, item.ClassPropName, item.CheckBox.Checked);
     end;
   end;
 end;

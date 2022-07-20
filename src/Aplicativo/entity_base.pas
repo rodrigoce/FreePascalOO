@@ -19,6 +19,7 @@ type
       FIdUserCriacao: LongInt;
       FIdUserAtualizacao: LongInt;
       FIdUserExclusao: LongInt;
+      FIsDeleted: Boolean;
       FOldVersion: TEntityBase;
     public
       // ao carregar do banco de dados, faz uma copia da entidade para ser considerada os valores não alterados
@@ -46,6 +47,9 @@ type
       property IdUserAtualizacao: LongInt read FIdUserAtualizacao write FIdUserAtualizacao;
       // propriedade alimnetada automaticamente em TDALBase
       property IdUserExclusao: LongInt read FIdUserExclusao write FIdUserExclusao;
+      // a ideia é não gravar essa propriedade no banco de dados,
+      // usa-la para colocar um chebkbox da interface
+      property IsDeleted: Boolean read FIsDeleted write FIsDeleted;
 
   end;
 
