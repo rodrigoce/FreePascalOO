@@ -6,7 +6,8 @@ interface
 
 uses
   Classes, SysUtils, Dialogs, mini_orm, TypInfo, StrUtils, SQLDB,
-  Variants, conexao_dm, LazUTF8, entity_base, StdCtrls, application_delegates;
+  Variants, conexao_dm, LazUTF8, entity_base, StdCtrls, application_delegates,
+  application_functions;
 
 type
 
@@ -209,8 +210,9 @@ begin
   strParams := '';
   for ormField in ormEntity.FieldList do
   begin
-    q.ParamByName(ormField.DBColumnName).Value := GetPropValue(Entity, ormField.PPropInfo);
-    strParams := strParams + VarToStr(GetPropValue(Entity, ormField.PPropInfo)) + LineEnding;
+    q.ParamByName(ormField.DBColumnName).Value :=
+      ormField.GetIsOrNotNullValueOf(GetPropValue(Entity, ormField.PPropInfo));
+    strParams := strParams + VarToStrSQLParam(q.ParamByName(ormField.DBColumnName).Value) + LineEnding;
   end;
 
   q.ExecSQL;
@@ -278,7 +280,7 @@ begin
     begin
       sql := sql + '  ' + ormField.DBColumnName + ' = :' + ormField.DBColumnName;
       sql := sql + IfThen(i < alteredFields.Count -1, ', ', '') + LineEnding;
-      strParams := strParams + VarToStr(GetPropValue(Entity, ormField.PPropInfo)) + LineEnding;
+      strParams := strParams + VarToStrSQLParam(GetPropValue(Entity, ormField.PPropInfo)) + LineEnding;
       Inc(i);
     end;
   end;
@@ -295,7 +297,7 @@ begin
     begin
       sql := sql + '  ' + ormField.DBColumnName + ' = :' + ormField.DBColumnName;
       sql := sql + IfThen(i < countPKFields, LineEnding + '  and', '');
-      strParams := strParams + VarToStr(GetPropValue(Entity, ormField.PPropInfo)) + LineEnding;
+      strParams := strParams + VarToStrSQLParam(GetPropValue(Entity, ormField.PPropInfo)) + LineEnding;
       Inc(i);
     end;
   end;
@@ -313,7 +315,8 @@ begin
     // apenas campos alterados e PK
     if (alteredFields.IndexOf(ormField.EntityPropName) > -1) or (ormField.IsPK) then
     begin
-      q.ParamByName(ormField.DBColumnName).Value := GetPropValue(Entity, ormField.PPropInfo);
+      q.ParamByName(ormField.DBColumnName).Value :=
+        ormField.GetIsOrNotNullValueOf(GetPropValue(Entity, ormField.PPropInfo));
     end;
   end;
 

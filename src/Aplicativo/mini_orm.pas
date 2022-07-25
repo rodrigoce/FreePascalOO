@@ -58,6 +58,7 @@ type
       function GetIsString: Boolean;
     public
       function GetIsOrNotNullValueOf(Value: Variant): Variant;
+
       property DBColumnName: string read FDBColumnName;
       property EntityPropName: string read FEntityPropName;
       property ORMType: TORMType read FORMType;
@@ -112,7 +113,10 @@ end;
 
 function TORMField.GetIsOrNotNullValueOf(Value: Variant): Variant;
 begin
-
+  if (Self.ORMType in [ormTypeInt32NullIfZero, ormTypeTimestampNullIfZero]) and (Value = 0) then
+    Result := Null
+  else
+    Result := Value;
 end;
 
 { TORMEntity }

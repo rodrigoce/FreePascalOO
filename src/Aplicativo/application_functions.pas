@@ -5,9 +5,11 @@ unit application_functions;
 interface
 
 uses
-  Classes, SysUtils, Dialogs, LazUTF8;
+  Classes, SysUtils, Dialogs, LazUTF8, Variants;
 
 function RemoveAccent(Text: string): string;
+
+function VarToStrSQLParam(Value: Variant): string;
 
 implementation
 
@@ -33,6 +35,14 @@ begin
         unicodeText[k] := semAcentos[i];
 
   Result := UTF8Encode(unicodeText);
+end;
+
+function VarToStrSQLParam(Value: Variant): string;
+begin
+  if Value = Null then
+    Result := 'null'
+  else
+    Result := VarToStr(Value);
 end;
 
 end.
