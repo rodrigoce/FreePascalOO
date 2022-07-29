@@ -24,17 +24,9 @@ object ConexaoDM: TConexaoDM
   end
   object Transacao: TSQLTransaction
     Active = False
+    Action = caCommit
     Database = Conexao
     Left = 136
-    Top = 104
-  end
-  object SQLQuery1: TSQLQuery
-    FieldDefs = <>
-    Database = Conexao
-    Transaction = Transacao
-    Params = <>
-    Macros = <>
-    Left = 40
-    Top = 72
+    Top = 80
   end
 end

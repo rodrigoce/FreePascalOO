@@ -9,7 +9,7 @@ uses
 
 function RemoveAccent(Text: string): string;
 
-function VarToStrSQLParam(Value: Variant): string;
+
 
 implementation
 
@@ -37,13 +37,6 @@ begin
   Result := UTF8Encode(unicodeText);
 end;
 
-function VarToStrSQLParam(Value: Variant): string;
-begin
-  if Value = Null then
-    Result := 'null'
-  else
-    Result := VarToStr(Value);
-end;
 
 end.
 

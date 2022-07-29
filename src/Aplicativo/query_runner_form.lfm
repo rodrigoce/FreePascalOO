@@ -1,7 +1,7 @@
 object QueryRunnerForm: TQueryRunnerForm
-  Left = 299
+  Left = 320
   Height = 504
-  Top = 114
+  Top = 238
   Width = 895
   ActiveControl = edInstrucao
   Caption = 'Executor de instruções SQL '
@@ -219,7 +219,11 @@ object QueryRunnerForm: TQueryRunnerForm
     FieldDefs = <>
     Database = ConexaoDM.Conexao
     Transaction = ConexaoDM.Transacao
-    Params = <>
+    Params = <    
+      item
+        DataType = ftUnknown
+        ParamType = ptUnknown
+      end>
     Macros = <>
     Left = 296
     Top = 315

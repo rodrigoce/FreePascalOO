@@ -14,9 +14,9 @@ object GeradorDeCodigoForm: TGeradorDeCodigoForm
     Height = 224
     Top = 8
     Width = 394
-    ActivePage = TabSheet2
+    ActivePage = TabSheet1
     Anchors = [akTop, akLeft, akRight, akBottom]
-    TabIndex = 1
+    TabIndex = 0
     TabOrder = 0
     object TabSheet1: TTabSheet
       Caption = 'Create Table'
@@ -28,9 +28,6 @@ object GeradorDeCodigoForm: TGeradorDeCodigoForm
         Top = 10
         Width = 367
         Anchors = [akTop, akLeft, akRight, akBottom]
-        Lines.Strings = (
-          'Memo1'
-        )
         TabOrder = 0
       end
     end
@@ -44,9 +41,6 @@ object GeradorDeCodigoForm: TGeradorDeCodigoForm
         Top = 10
         Width = 367
         Anchors = [akTop, akLeft, akRight, akBottom]
-        Lines.Strings = (
-          'Memo1'
-        )
         TabOrder = 0
       end
     end

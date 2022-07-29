@@ -1,10 +1,10 @@
 object MenuPrincipalForm: TMenuPrincipalForm
   Left = 282
-  Height = 569
+  Height = 490
   Top = 115
   Width = 912
   Caption = 'Menu Principal'
-  ClientHeight = 569
+  ClientHeight = 490
   ClientWidth = 912
   KeyPreview = True
   OnClose = FormClose
@@ -13,7 +13,7 @@ object MenuPrincipalForm: TMenuPrincipalForm
   object StatusBar1: TStatusBar
     Left = 0
     Height = 23
-    Top = 546
+    Top = 467
     Width = 912
     Panels = <    
       item
@@ -32,7 +32,7 @@ object MenuPrincipalForm: TMenuPrincipalForm
   end
   object TreeViewMenu: TTreeView
     Left = 0
-    Height = 546
+    Height = 467
     Top = 0
     Width = 369
     Align = alLeft
@@ -62,26 +62,12 @@ object MenuPrincipalForm: TMenuPrincipalForm
   end
   object pnWallPaper: TPanel
     Left = 369
-    Height = 546
+    Height = 467
     Top = 0
     Width = 543
     Align = alClient
     BevelOuter = bvNone
-    ClientHeight = 546
-    ClientWidth = 543
     ParentColor = False
     TabOrder = 2
-    object RxDice1: TRxDice
-      Left = 456
-      Height = 66
-      Top = 464
-      Width = 66
-      Interval = 200
-      Rotate = True
-      ShowFocus = False
-      Anchors = [akRight, akBottom]
-      TabOrder = 0
-      Value = 3
-    end
   end
 end

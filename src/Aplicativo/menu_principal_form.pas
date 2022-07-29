@@ -6,8 +6,8 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Dialogs, Menus, ComCtrls, ExtCtrls,
-  StdCtrls, rxDice, rxctrls, PanelWin, TAGraph, TASources, TAPolygonSeries,
-  TASeries, TATools, Windows, menu_principal_config;
+  StdCtrls, rxDice, rxctrls, TAGraph, TASources, TAPolygonSeries,
+  TASeries, TATools, Windows, menu_principal_config, query_runner_form;
 
 type
 
@@ -15,7 +15,6 @@ type
 
   TMenuPrincipalForm = class(TForm)
     pnWallPaper: TPanel;
-    RxDice1: TRxDice;
     StatusBar1: TStatusBar;
     TreeViewMenu: TTreeView;
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
@@ -52,7 +51,7 @@ end;
 procedure TMenuPrincipalForm.FormClose(Sender: TObject;
   var CloseAction: TCloseAction);
 begin
-  FMenuPrincipalConfig.Free;;
+  FMenuPrincipalConfig.Free;
 end;
 
 procedure TMenuPrincipalForm.TreeViewMenuClick(Sender: TObject);
@@ -62,9 +61,17 @@ end;
 
 procedure TMenuPrincipalForm.ApplicationKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
 begin
-  if key = VK_F12 then
+  if (key = VK_F12) and (Shift = []) then
     if not LogSqlForm.Visible then
       MenuPrincipalConfig.CallBacks.OpenLogSQL;
+
+  if (key = VK_F12) and (ssCtrl in Shift) then
+  begin
+    if QueryRunnerForm = nil then
+      MenuPrincipalConfig.CallBacks.QueryRunner
+    else if not QueryRunnerForm.Visible then
+      MenuPrincipalConfig.CallBacks.QueryRunner;
+  end;
 end;
 
 

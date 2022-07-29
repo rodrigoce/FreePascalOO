@@ -75,11 +75,17 @@ class procedure TQueryRunnerForm.Open;
 begin
   with QueryRunnerForm do
   begin
-    Application.CreateForm(TQueryRunnerForm, QueryRunnerForm);
-    lista_qy := TStringList.Create;
+    if QueryRunnerForm = nil then
+    begin
+      Application.CreateForm(TQueryRunnerForm, QueryRunnerForm);
+      lista_qy := TStringList.Create;
+    end;
     ShowModal;
-    lista_qy.Free;
-    Free;
+
+    // no momento o form fica na memória para sempre
+    // até o fechamento do aplicativo.
+    //lista_qy.Free;
+    //Free;
   end;
 end;
 
@@ -217,6 +223,7 @@ begin
       lista_qy.AddObject('',ds);
       qy := TSQLQuery.Create(Self);
       qy.DataBase := ConexaoDM.Conexao;
+      qy.Options := [sqoAutoCommit, sqoAutoApplyUpdates];
       ds.DataSet := qy;
       antesExecuta(qy,list[i]);
       executa(qy,True);
@@ -262,6 +269,8 @@ begin
   begin
     Grade.DataSource := TDataSource(lista_qy.Objects[index - 1]);
   end;
+
+  Grade.AutoAdjustColumns;
 
   btFechaCon.Enabled := Grade.DataSource <> nil;
   btExport.Enabled   := Grade.DataSource <> nil;

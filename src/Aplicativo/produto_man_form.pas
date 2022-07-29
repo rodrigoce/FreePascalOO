@@ -7,7 +7,8 @@ interface
 uses
   Classes, SysUtils, DB, BufDataset, SQLDB, Forms, Controls, Graphics, Dialogs,
   DBGrids, StdCtrls, ExtCtrls, produto_bll, produto_cad_form, grid_configurator,
-  prop_to_comp_map, produto_filter, application_types, mensagem_validacao_form;
+  prop_to_comp_map, produto_filter, application_types, mensagem_validacao_form,
+  produto_dal;
 
 type
 
@@ -18,6 +19,7 @@ type
     btNovo: TButton;
     btSearch: TButton;
     buf: TBufDataset;
+    Button1: TButton;
     GridProdutos: TDBGrid;
     ds: TDataSource;
     edCodigo: TEdit;
@@ -29,6 +31,7 @@ type
     procedure btNovoClick(Sender: TObject);
     procedure btEditClick(Sender: TObject);
     procedure btSearchClick(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
     procedure edCodigoKeyPress(Sender: TObject; var Key: char);
   private
     FPropToCompMap: TPropToCompMap;
@@ -70,6 +73,11 @@ end;
 procedure TProdutoManForm.btSearchClick(Sender: TObject);
 begin
   Search;
+end;
+
+procedure TProdutoManForm.Button1Click(Sender: TObject);
+begin
+  TProdutoDal.Create.Teste;
 end;
 
 procedure TProdutoManForm.edCodigoKeyPress(Sender: TObject; var Key: char);

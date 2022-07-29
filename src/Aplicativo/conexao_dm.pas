@@ -13,7 +13,6 @@ type
 
   TConexaoDM = class(TDataModule)
     Conexao: TIBConnection;
-    SQLQuery1: TSQLQuery;
     Transacao: TSQLTransaction;
     procedure ConexaoLog(Sender: TSQLConnection; EventType: TDBEventType;
       const Msg: String);

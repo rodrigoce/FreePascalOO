@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Dialogs, TypInfo, Generics.Collections,
-  StrUtils;
+  StrUtils, Variants;
 
 type
   { Enum }
@@ -50,14 +50,17 @@ type
       FDBColumnName: string;
       FEntityPropName: string;
       FDBType: string;
+      FIsFK: Boolean;
       FLength: Integer;
       FIsPK: Boolean;
       FHasSequence: Boolean;
       FORMType: TORMType;
       FPPropInfo: PPropInfo;
+      FPrecision: Integer;
+      FScale: Integer;
       function GetIsString: Boolean;
     public
-      function GetIsOrNotNullValueOf(Value: Variant): Variant;
+      function ProcessedParamValue(Value: Variant): Variant;
 
       property DBColumnName: string read FDBColumnName;
       property EntityPropName: string read FEntityPropName;
@@ -65,8 +68,11 @@ type
       property DBType: string read FDBType;
       property Length: Integer read FLength;
       property IsPK: Boolean read FIsPK;
+      property IsFK: Boolean read FIsFK;
       property IsString: Boolean read GetIsString;
       property HasSequence: Boolean read FHasSequence;
+      property Precision: Integer read FPrecision;
+      property Scale: Integer read FScale;
       property PPropInfo: PPropInfo read FPPropInfo;
   end;
 
@@ -79,6 +85,7 @@ type
       class function GenerateColumnsScript(entity: TORMEntity): string;
       class function GeneratePK(entity: TORMEntity): string;
       class function GenerateSequene(entity: TORMEntity): string;
+      class function GenerateLogTable(entity: TORMEntity): string;
     public
       class var EntityList: TORMEntityList;
       class function ToScriptCreate(EntityClassName: string): string;
@@ -93,7 +100,8 @@ type
       function MapField(ADBFieldName, AEntityPropName: string): TORMField;
   public
     function MapModel(AClassOfEntity: TClass; ADBTableName: string): TORMMapBuilder;
-    function MapSequenceInt32PK(ADBColumnName, AEntityPropName: string): TORMMapBuilder;
+    function MapInt32PKWithSequence(ADBColumnName, AEntityPropName: string): TORMMapBuilder;
+    function MapOptionalInt32FK(ADBColumnName, AEntityPropName: string): TORMMapBuilder;
     function MapString(ADBColumnName, AEntityPropName: string; ALenght: Integer): TORMMapBuilder;
     function MapDateTime(ADBColumnName, AEntityPropName: string; NullIfZero: Boolean): TORMMapBuilder;
     function MapInt32(ADBColumnName, AEntityPropName: string): TORMMapBuilder;
@@ -101,8 +109,21 @@ type
     function MapDecimal(ADBColumnName, AEntityPropName: string; APrecision, AScale: SmallInt): TORMMapBuilder;
   end;
 
+  function VarToStrSQLParam(OrmField: TORMField; Value: Variant): string;
+
 
 implementation
+
+function VarToStrSQLParam(OrmField: TORMField; Value: Variant): string;
+begin
+  if Value = Null then
+    Result := 'null'
+  else if OrmField.ORMType in [ormTypeTimestamp, ormTypeTimestampNullIfZero] then
+    Result := FormatDateTime('DD/MM/YYYY hh:nn:ss', Value, [])
+  else
+    Result := VarToStr(Value);
+end;
+
 
 { TORMField }
 
@@ -111,7 +132,7 @@ begin
   Result := (Self.ORMType = ormTypeString) or (Self.ORMType = ormTypeStringNullIfEmpty);
 end;
 
-function TORMField.GetIsOrNotNullValueOf(Value: Variant): Variant;
+function TORMField.ProcessedParamValue(Value: Variant): Variant;
 begin
   if (Self.ORMType in [ormTypeInt32NullIfZero, ormTypeTimestampNullIfZero]) and (Value = 0) then
     Result := Null
@@ -222,6 +243,25 @@ begin
   Result := s;
 end;
 
+class function TORM.GenerateLogTable(entity: TORMEntity): string;
+var
+  s: string;
+begin
+  s := 'create table ' + entity.DBTableName + '_LOG' + LineEnding + '(' + LineEnding;
+  s := s + '  DATA_HORA Timestamp not null,' + LineEnding;
+  s := s + '  OPERACAO varchar(1) not null,' + LineEnding;
+  s := s + '  ID_USUARIO Integer,' + LineEnding;
+  s := s + '  ID_PK Integer not null,' + LineEnding;
+  s := s + '  NOME_COLUNA varchar(60) not null,' + LineEnding;
+  s := s + '  VALOR_ANTERIOR varchar(500),' + LineEnding;
+  s := s + '  VALOR_NOVO varchar(500)' + LineEnding;
+  s := s + ');' + LineEnding + LineEnding;
+  s := s + 'create index IDX_DATA_HORA on ' + entity.DBTableName + '_LOG (DATA_HORA);' + LineEnding;
+  s := s + 'create index IDX_ID_USUARIO on ' + entity.DBTableName + '_LOG (ID_USUARIO);' + LineEnding;
+  s := s + 'create index IDX_ID_PK on ' + entity.DBTableName + '_LOG (ID_PK);' + LineEnding;
+  Result := s;
+end;
+
 class function TORM.ToScriptCreate(EntityClassName: string): string;
 var
   entity: TORMEntity;
@@ -232,7 +272,8 @@ begin
   s := s + GenerateColumnsScript(entity);
   s := s + LineEnding + ');' + LineEnding + LineEnding;
   s := s + GeneratePK(entity) + LineEnding + LineEnding;
-  s := s + GenerateSequene(entity) + LineEnding + LineEnding;
+  s := s + GenerateSequene(entity) + LineEnding;
+  s := s + GenerateLogTable(entity);
   Result := s;
 end;
 
@@ -315,7 +356,7 @@ begin
   Result := Self;
 end;
 
-function TORMMapBuilder.MapSequenceInt32PK(ADBColumnName, AEntityPropName: string
+function TORMMapBuilder.MapInt32PKWithSequence(ADBColumnName, AEntityPropName: string
   ): TORMMapBuilder;
 var
   field: TORMField;
@@ -325,6 +366,18 @@ begin
   field.FIsPK := True;
   field.FHasSequence := True;
   field.FORMType := ormTypeInt32;
+  Result := Self;
+end;
+
+function TORMMapBuilder.MapOptionalInt32FK(ADBColumnName,
+  AEntityPropName: string): TORMMapBuilder;
+var
+  field: TORMField;
+begin
+  field := MapField(ADBColumnName, AEntityPropName);
+  field.FDBType := 'Integer';
+  field.FIsFK := True;
+  field.FORMType := ormTypeInt32NullIfZero;
   Result := Self;
 end;
 
@@ -363,6 +416,8 @@ begin
   field := MapField(ADBColumnName, AEntityPropName);
   field.FDBType := 'Decimal(' + APrecision.ToString + ', ' + AScale.ToString + ')';
   field.FORMType := ormTypeDecimal;
+  field.FPrecision := APrecision;
+  field.FScale := AScale;
   Result := Self;
 end;
 

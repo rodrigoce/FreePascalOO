@@ -33,9 +33,6 @@
         <PackageName Value="rxnew"/>
       </Item>
       <Item>
-        <PackageName Value="SoftAutoComps"/>
-      </Item>
-      <Item>
         <PackageName Value="TAChartLazarusPkg"/>
       </Item>
       <Item>

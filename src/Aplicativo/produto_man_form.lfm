@@ -58,6 +58,15 @@ object ProdutoManForm: TProdutoManForm
       OnClick = btSearchClick
       TabOrder = 2
     end
+    object Button1: TButton
+      Left = 521
+      Height = 25
+      Top = 6
+      Width = 75
+      Caption = 'Button1'
+      OnClick = Button1Click
+      TabOrder = 3
+    end
   end
   object pnAcoes: TPanel
     Left = 8

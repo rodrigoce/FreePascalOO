@@ -40,6 +40,8 @@ implementation
 { TProdutoEntity }
 
 procedure TProdutoEntity.SetNome(Value: string);
+var
+  a: Currency;
 begin
   FNome := Value;
   FNomePP := LowerCase(RemoveAccent(Value));
@@ -48,18 +50,18 @@ end;
 initialization
 
 TORMMapBuilder.Create.MapModel(TProdutoEntity, 'PRODUTO')
-  .MapSequenceInt32PK('ID', 'Id')
+  .MapInt32PKWithSequence('ID', 'Id')
   .MapDateTime('DATA_CRIACAO', 'DataCriacao', True)
   .MapDateTime('DATA_ATUALIZACAO', 'DataAtualizacao', True)
   .MapDateTime('DATA_EXCLUSAO', 'DataExclusao', True)
-  .MapInt32('ID_USER_CRIACAO', 'IdUserCriacao')
-  .MapInt32('ID_USER_ATUALIZACAO', 'IdUserAtualizacao')
-  .MapInt32('ID_USER_EXCLUSAO', 'IdUserExclusao')
+  .MapOptionalInt32FK('ID_USER_CRIACAO', 'IdUserCriacao')
+  .MapOptionalInt32FK('ID_USER_ATUALIZACAO', 'IdUserAtualizacao')
+  .MapOptionalInt32FK('ID_USER_EXCLUSAO', 'IdUserExclusao')
   .MapString('CODIGO', 'Codigo', 20)
   .MapString('NOME', 'Nome', 60)
   .MapString('NOME_PP', 'NomePP', 60)
   .MapDecimal('PRECO_CUSTO', 'PrecoCusto', 10, 2)
-  .MapDecimal('MARGEM_LUCRO', 'MargemLucro', 10, 6)
+  .MapDecimal('MARGEM_LUCRO', 'MargemLucro', 13, 5)
   .MapDecimal('PRECO_VENDA', 'PrecoVenda', 10, 2);
 
 end.

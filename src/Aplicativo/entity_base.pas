@@ -31,7 +31,7 @@ type
       destructor Destroy; override;
 
       // gera uma exception caso os campos strings tenham mais que o length mapeado
-      procedure ValidateStringMaxLength(RaiseError: Boolean = False);
+      procedure ValidateStringMaxLength;
 
     published
       property Id: LongInt read FId write FId;
@@ -59,7 +59,7 @@ uses mini_orm;
 
 { TEntityBase }
 
-procedure TEntityBase.ValidateStringMaxLength(RaiseError: Boolean = False);
+procedure TEntityBase.ValidateStringMaxLength;
 var
   ormEntity: TORMEntity;
   ormField: TORMField;
@@ -74,9 +74,6 @@ begin
       v := GetPropValue(Self, ormField.PPropInfo);
       if UTF8Length(v) > ormField.Length then
       begin
-        Self.AddErrorValidationMsg(ormField.EntityPropName, 'O campo %s deve ter no máximo ' + ormField.Length.ToString + ' caracteres');
-
-        if RaiseError then
           raise Exception.Create('A propriedade ' + ormField.EntityPropName + ' tem mais de ' + ormField.Length.ToString + ' caracteres no objeto do tipo ' + ormEntity.EntityClassName);
       end;
     end;
