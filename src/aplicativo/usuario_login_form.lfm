@@ -1,0 +1,78 @@
+object UsuarioLoginForm: TUsuarioLoginForm
+  Left = 416
+  Height = 178
+  Top = 368
+  Width = 542
+  BorderStyle = bsDialog
+  Caption = 'Entrar no Sistema'
+  ClientHeight = 178
+  ClientWidth = 542
+  Font.CharSet = ANSI_CHARSET
+  Font.Height = -21
+  Font.Pitch = fpVariable
+  Font.Quality = fqDraft
+  Position = poScreenCenter
+  LCLVersion = '2.2.0.4'
+  object Shape1: TShape
+    Left = 80
+    Height = 273
+    Top = 24
+    Width = 809
+    Brush.Color = clInfoBk
+    Pen.Style = psClear
+    Shape = stEllipse
+  end
+  object labUsuario: TLabel
+    Left = 16
+    Height = 30
+    Top = 8
+    Width = 70
+    Caption = 'Usuário'
+  end
+  object labSenha: TLabel
+    Left = 16
+    Height = 30
+    Top = 88
+    Width = 57
+    Caption = 'Senha'
+  end
+  object edUsuario: TEdit
+    Left = 16
+    Height = 38
+    Top = 40
+    Width = 240
+    Alignment = taCenter
+    CharCase = ecLowerCase
+    OnKeyPress = edUsuarioKeyPress
+    TabOrder = 0
+  end
+  object edSenha: TEdit
+    Left = 16
+    Height = 38
+    Top = 120
+    Width = 240
+    Alignment = taCenter
+    EchoMode = emPassword
+    OnKeyPress = edSenhaKeyPress
+    PasswordChar = '*'
+    TabOrder = 1
+  end
+  object btEntrar: TButton
+    Left = 272
+    Height = 38
+    Top = 120
+    Width = 123
+    Caption = 'Entrar'
+    OnClick = btEntrarClick
+    TabOrder = 2
+  end
+  object btSair: TButton
+    Left = 404
+    Height = 38
+    Top = 120
+    Width = 123
+    Caption = 'Fechar'
+    OnClick = btSairClick
+    TabOrder = 3
+  end
+end

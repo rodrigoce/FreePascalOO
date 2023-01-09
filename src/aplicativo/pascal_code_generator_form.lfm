@@ -1,0 +1,119 @@
+object PascalCodeGeneratorForm: TPascalCodeGeneratorForm
+  Left = 577
+  Height = 340
+  Top = 241
+  Width = 320
+  Caption = 'Gerador de Código'
+  ClientHeight = 340
+  ClientWidth = 320
+  LCLVersion = '2.2.0.4'
+  object btGerarEntidade: TButton
+    Left = 8
+    Height = 25
+    Top = 80
+    Width = 144
+    Caption = 'Gerar Entidade'
+    OnClick = btGerarEntidadeClick
+    TabOrder = 0
+  end
+  object Label1: TLabel
+    Left = 8
+    Height = 15
+    Top = 16
+    Width = 91
+    Caption = 'Nome Maiusculo'
+  end
+  object edNomeMaiusculo: TEdit
+    Left = 112
+    Height = 23
+    Top = 8
+    Width = 80
+    TabOrder = 1
+  end
+  object Label2: TLabel
+    Left = 7
+    Height = 15
+    Top = 48
+    Width = 92
+    Caption = 'Nome minúsculo'
+  end
+  object edNomeMinusculo: TEdit
+    Left = 112
+    Height = 23
+    Top = 40
+    Width = 80
+    TabOrder = 2
+  end
+  object btGerarFilter: TButton
+    Left = 8
+    Height = 25
+    Top = 112
+    Width = 144
+    Caption = 'Gerar Filter'
+    OnClick = btGerarFilterClick
+    TabOrder = 3
+  end
+  object btGerarFilterValidator: TButton
+    Left = 7
+    Height = 25
+    Top = 144
+    Width = 145
+    Caption = 'Gerar Filter Validator'
+    OnClick = btGerarFilterValidatorClick
+    TabOrder = 4
+  end
+  object btGerarValidator: TButton
+    Left = 7
+    Height = 25
+    Top = 208
+    Width = 145
+    Caption = 'Gerar Validator'
+    OnClick = btGerarValidatorClick
+    TabOrder = 5
+  end
+  object btGerarDAL: TButton
+    Left = 8
+    Height = 25
+    Top = 176
+    Width = 145
+    Caption = 'Gerar DAL'
+    OnClick = btGerarDALClick
+    TabOrder = 6
+  end
+  object btGerarBLL: TButton
+    Left = 8
+    Height = 25
+    Top = 240
+    Width = 145
+    Caption = 'Gerar BLL'
+    OnClick = btGerarBLLClick
+    TabOrder = 7
+  end
+  object btGerarTelaCadastro: TButton
+    Left = 8
+    Height = 25
+    Top = 272
+    Width = 145
+    Caption = 'Gerar Tela Cadastro'
+    OnClick = btGerarTelaCadastroClick
+    TabOrder = 8
+  end
+  object btGerarTelaManutencao: TButton
+    Left = 8
+    Height = 25
+    Top = 304
+    Width = 145
+    Caption = 'Gerar Tela Manutenção'
+    OnClick = btGerarTelaManutencaoClick
+    TabOrder = 9
+  end
+  object Label3: TLabel
+    Left = 160
+    Height = 152
+    Top = 80
+    Width = 152
+    AutoSize = False
+    Caption = 'Adicionar TEntidadeEntity.Map; em application_session.pas'#13#10#13#10'Adicionar o Menu em menu_principal_config.pas'
+    WordWrap = True
+  end
+end

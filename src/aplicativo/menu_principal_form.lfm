@@ -1,0 +1,71 @@
+object MenuPrincipalForm: TMenuPrincipalForm
+  Left = 238
+  Height = 490
+  Top = 247
+  Width = 912
+  Caption = 'Menu Principal'
+  ClientHeight = 490
+  ClientWidth = 912
+  KeyPreview = True
+  OnClose = FormClose
+  OnCreate = FormCreate
+  OnShow = FormShow
+  Position = poScreenCenter
+  LCLVersion = '2.2.0.4'
+  object StatusBar1: TStatusBar
+    Left = 0
+    Height = 23
+    Top = 467
+    Width = 912
+    Panels = <    
+      item
+        Text = 'Barra de Status'
+        Width = 150
+      end    
+      item
+        Text = 'Barra de Status'
+        Width = 250
+      end>
+    SimplePanel = False
+  end
+  object TreeViewMenu: TTreeView
+    Left = 0
+    Height = 467
+    Top = 0
+    Width = 369
+    Align = alLeft
+    BorderStyle = bsNone
+    HideSelection = False
+    HotTrack = True
+    Images = ImagesDM.ImageListMenu
+    Indent = 30
+    ParentShowHint = False
+    ReadOnly = True
+    RowSelect = True
+    TabOrder = 1
+    OnClick = TreeViewMenuClick
+    Options = [tvoAutoItemHeight, tvoHotTrack, tvoKeepCollapsedNodes, tvoReadOnly, tvoRowSelect, tvoShowButtons, tvoShowLines, tvoShowRoot, tvoToolTips, tvoThemedDraw]
+    Items.Data = {
+      F9FFFFFF0200020000000000000000000000FFFFFFFFFFFFFFFF010000000000
+      000001090000004578656D706C6F2E310100000001000000FFFFFFFFFFFFFFFF
+      0000000000000000000B0000004578656D706C6F2E312E310000000000000000
+      FFFFFFFFFFFFFFFF020000000000000001090000004578656D706C6F2E320100
+      000001000000FFFFFFFFFFFFFFFF0000000000000000000B0000004578656D70
+      6C6F2E322E310000000000000000FFFFFFFFFFFFFFFF0200000000000000010B
+      0000004578656D706C6F2E322E320200000002000000FFFFFFFFFFFFFFFF0000
+      000000000000000D0000004578656D706C6F2E322E322E310200000002000000
+      FFFFFFFFFFFFFFFF0000000000000000000D0000004578656D706C6F2E322E32
+      2E32
+    }
+  end
+  object pnWallPaper: TPanel
+    Left = 369
+    Height = 467
+    Top = 0
+    Width = 543
+    Align = alClient
+    BevelOuter = bvNone
+    ParentColor = False
+    TabOrder = 2
+  end
+end

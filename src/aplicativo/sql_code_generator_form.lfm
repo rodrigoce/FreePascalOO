@@ -1,0 +1,58 @@
+object SQLCodeGeneratorForm: TSQLCodeGeneratorForm
+  Left = 338
+  Height = 240
+  Top = 281
+  Width = 650
+  Caption = 'Gerador de Código'
+  ClientHeight = 240
+  ClientWidth = 650
+  OnShow = FormShow
+  LCLVersion = '2.2.0.4'
+  WindowState = wsMaximized
+  object PageControl1: TPageControl
+    Left = 248
+    Height = 224
+    Top = 8
+    Width = 394
+    ActivePage = TabSheet1
+    Anchors = [akTop, akLeft, akRight, akBottom]
+    TabIndex = 0
+    TabOrder = 0
+    object TabSheet1: TTabSheet
+      Caption = 'Create Table'
+      ClientHeight = 196
+      ClientWidth = 386
+      object memoCreateTable: TMemo
+        Left = 9
+        Height = 178
+        Top = 10
+        Width = 367
+        Anchors = [akTop, akLeft, akRight, akBottom]
+        TabOrder = 0
+      end
+    end
+    object TabSheet2: TTabSheet
+      Caption = 'Add Column'
+      ClientHeight = 196
+      ClientWidth = 386
+      object memoAlterTable: TMemo
+        Left = 9
+        Height = 178
+        Top = 10
+        Width = 367
+        Anchors = [akTop, akLeft, akRight, akBottom]
+        TabOrder = 0
+      end
+    end
+  end
+  object ListBox1: TListBox
+    Left = 8
+    Height = 224
+    Top = 8
+    Width = 232
+    Anchors = [akTop, akLeft, akBottom]
+    ItemHeight = 0
+    OnClick = ListBox1Click
+    TabOrder = 1
+  end
+end

@@ -1,0 +1,6 @@
+/src/aplicativo/*.exe
+/src/aplicativo/backup
+/src/aplicativo/lib
+/src/comps/backup
+/src/comps/lib
+/src/aplicativo/*.dbg

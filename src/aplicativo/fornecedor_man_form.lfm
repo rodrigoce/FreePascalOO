@@ -1,0 +1,152 @@
+object FornecedorManForm: TFornecedorManForm
+  Left = 335
+  Height = 470
+  Top = 168
+  Width = 760
+  ActiveControl = GridFornecedors
+  Caption = 'Manutenção de Fornecedores'
+  ClientHeight = 470
+  ClientWidth = 760
+  LCLVersion = '2.2.0.4'
+  WindowState = wsMaximized
+  object GroupBox1: TGroupBox
+    Left = 8
+    Height = 57
+    Top = 0
+    Width = 744
+    Anchors = [akTop, akLeft, akRight]
+    Caption = 'Pesquisar'
+    ClientHeight = 37
+    ClientWidth = 740
+    TabOrder = 0
+    object labNome: TLabel
+      Left = 8
+      Height = 15
+      Top = 6
+      Width = 33
+      Caption = 'Nome'
+    end
+    object edNome: TEdit
+      Left = 48
+      Height = 23
+      Top = 3
+      Width = 208
+      OnKeyPress = edCodigoKeyPress
+      TabOrder = 0
+    end
+    object btSearch: TButton
+      Left = 654
+      Height = 25
+      Top = 1
+      Width = 75
+      Caption = 'Pesquisar'
+      OnClick = btSearchClick
+      TabOrder = 3
+    end
+    object labSituacao: TLabel
+      Left = 528
+      Height = 15
+      Top = 6
+      Width = 45
+      Caption = 'Situação'
+    end
+    object cbSituacao: TComboBoxValue
+      Left = 577
+      Height = 23
+      Top = 2
+      Width = 64
+      ItemHeight = 15
+      ItemIndex = 0
+      Items.Strings = (
+        'Ativo'
+        'Inativo'
+        'Todos'
+      )
+      Style = csDropDownList
+      TabOrder = 2
+      Text = 'Ativo'
+      Values.Strings = (
+        'A'
+        'I'
+        'T'
+      )
+    end
+    object labContato: TLabel
+      Left = 264
+      Height = 15
+      Top = 8
+      Width = 43
+      Caption = 'Contato'
+    end
+    object edContato: TEdit
+      Left = 312
+      Height = 23
+      Top = 3
+      Width = 200
+      OnKeyPress = edCodigoKeyPress
+      TabOrder = 1
+    end
+  end
+  object pnAcoes: TPanel
+    Left = 8
+    Height = 37
+    Top = 64
+    Width = 744
+    Anchors = [akTop, akLeft, akRight]
+    BevelOuter = bvNone
+    ClientHeight = 37
+    ClientWidth = 744
+    Color = clSkyBlue
+    ParentColor = False
+    TabOrder = 1
+    object btNovo: TButton
+      Left = 8
+      Height = 25
+      Top = 6
+      Width = 75
+      Caption = '&Novo'
+      OnClick = btNovoClick
+      TabOrder = 0
+    end
+    object btEdit: TButton
+      Left = 88
+      Height = 25
+      Top = 6
+      Width = 75
+      Caption = '&Editar'
+      OnClick = btEditClick
+      TabOrder = 1
+    end
+  end
+  object GridFornecedors: TDBGrid
+    Left = 8
+    Height = 348
+    Top = 112
+    Width = 744
+    Anchors = [akTop, akLeft, akRight, akBottom]
+    Color = clWindow
+    Columns = <>
+    DataSource = ds
+    PopupMenu = gridPopUp
+    TabOrder = 2
+    OnDblClick = GridFornecedorsDblClick
+  end
+  object ds: TDataSource
+    DataSet = buf
+    Left = 120
+    Top = 232
+  end
+  object buf: TBufDataset
+    FieldDefs = <>
+    Left = 56
+    Top = 232
+  end
+  object gridPopUp: TPopupMenu
+    Left = 192
+    Top = 232
+    object menuLogEdicoes: TMenuItem
+      Caption = 'Log de Edições'
+      OnClick = menuLogEdicoesClick
+    end
+  end
+end

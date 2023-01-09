@@ -1,0 +1,48 @@
+object EntityLogForm: TEntityLogForm
+  Left = 313
+  Height = 312
+  Top = 194
+  Width = 544
+  Caption = 'Logs de Criação Atualização e Exclusão'
+  ClientHeight = 312
+  ClientWidth = 544
+  LCLVersion = '2.2.0.4'
+  WindowState = wsMaximized
+  object ScrollBox1: TScrollBox
+    Left = 8
+    Height = 292
+    Top = 8
+    Width = 526
+    HorzScrollBar.Page = 9
+    VertScrollBar.Increment = 200
+    VertScrollBar.Page = 105
+    Anchors = [akTop, akLeft, akRight, akBottom]
+    ClientHeight = 288
+    ClientWidth = 522
+    Color = clWhite
+    ParentColor = False
+    TabOrder = 0
+    TabStop = True
+    object Shape1: TShape
+      Left = 8
+      Height = 97
+      Top = 8
+      Width = 1
+    end
+  end
+  object Ds: TDataSource
+    AutoEdit = False
+    DataSet = qLog
+    Left = 176
+    Top = 176
+  end
+  object qLog: TSQLQuery
+    PacketRecords = -1
+    FieldDefs = <>
+    ReadOnly = True
+    Params = <>
+    Macros = <>
+    Left = 240
+    Top = 176
+  end
+end
