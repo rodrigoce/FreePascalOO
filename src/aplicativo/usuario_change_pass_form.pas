@@ -41,6 +41,7 @@ type
     FUsuarioBLL: TUsuarioBLL;
     FPropToCompMap: TPropToCompMap;
     procedure ConfigMapPropComp;
+    procedure Save;
   public
     class procedure ChangePassword(Id: Integer);
   end;
@@ -55,20 +56,10 @@ implementation
 { TUsuarioChangePassForm }
 
 procedure TUsuarioChangePassForm.btSaveClick(Sender: TObject);
-var
-  opResult: TOperationResult;
 begin
   try
     btSave.Enabled := False;
-
-    FPropToCompMap.CompToObject(FUsuarioChangePassword);
-
-    opResult := FUsuarioBLL.ChangePassword(FUsuarioChangePassword);
-
-    if opResult.Success then
-      Close
-    else
-      TMensagemValidacaoForm.Open(opResult.Message, FUsuarioChangePassword, FPropToCompMap, False);
+    Save;
   finally
     btSave.Enabled := True;
   end;
@@ -94,6 +85,20 @@ begin
   FPropToCompMap.MapEdit('SenhaAtual', edSenhaAtual, 200, labSenhaAtual);
   FPropToCompMap.MapEdit('NovaSenha', edNovaSenha, 200, labNovaSenha);
   FPropToCompMap.MapEdit('ConfirmarSenha', edConfirmarSenha, 200, labConfirmarSenha);
+end;
+
+procedure TUsuarioChangePassForm.Save;
+var
+  opResult: TOperationResult;
+begin
+  FPropToCompMap.CompToObject(FUsuarioChangePassword);
+
+  opResult := FUsuarioBLL.ChangePassword(FUsuarioChangePassword);
+
+  if opResult.Success then
+    Close
+  else
+    TMensagemValidacaoForm.Open(opResult.Message, FUsuarioChangePassword, FPropToCompMap, False);
 end;
 
 procedure TUsuarioChangePassForm.btCancelClick(Sender: TObject);

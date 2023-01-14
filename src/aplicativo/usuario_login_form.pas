@@ -32,6 +32,7 @@ type
     FUsuarioBLL: TUsuarioBLL;
     FUsuarioLogin: TUsuarioLogin;
     procedure ConfigMapPropComp;
+    procedure SignIn;
   public
     class function Login: Boolean;
   end;
@@ -46,28 +47,10 @@ implementation
 { TUsuarioLoginForm }
 
 procedure TUsuarioLoginForm.btEntrarClick(Sender: TObject);
-var
-  opResult: TOperationResult;
 begin
   try
     btEntrar.Enabled := False;
-
-    FPropToCompMap.CompToObject(FUsuarioLogin);
-    opResult := FUsuarioBLL.TryLogin(FUsuarioLogin);
-    FLogou := opResult.Success;
-
-    if opResult.Success then
-    begin
-      FLogou := True;
-      Close;
-    end
-    else
-    begin
-      TMensagemValidacaoForm.Open(opResult.Message, FUsuarioLogin, FPropToCompMap, False);
-      Inc(FTentativas);
-      if FTentativas = 3 then
-        Close;
-    end;
+    SignIn;
   finally
     btEntrar.Enabled := True;
   end;
@@ -102,6 +85,28 @@ begin
   FPropToCompMap.MapEdit('Password', edSenha, 200, labSenha);
 
   FPropToCompMap.ObjectToComp(FUsuarioLogin);
+end;
+
+procedure TUsuarioLoginForm.SignIn;
+var
+  opResult: TOperationResult;
+begin
+  FPropToCompMap.CompToObject(FUsuarioLogin);
+  opResult := FUsuarioBLL.TryLogin(FUsuarioLogin);
+  FLogou := opResult.Success;
+
+  if opResult.Success then
+  begin
+    FLogou := True;
+    Close;
+  end
+  else
+  begin
+    TMensagemValidacaoForm.Open(opResult.Message, FUsuarioLogin, FPropToCompMap, False);
+    Inc(FTentativas);
+    if FTentativas = 3 then
+      Close;
+  end;
 end;
 
 class function TUsuarioLoginForm.Login: Boolean;

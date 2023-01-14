@@ -36,6 +36,7 @@ type
     FUsuarioBLL: TUsuarioBLL;
     FPropToCompMap: TPropToCompMap;
     procedure ConfigMapPropComp;
+    procedure Save;
   public
     class procedure Edit(Id: Integer);
   end;
@@ -50,20 +51,10 @@ implementation
 { TUsuarioCadForm }
 
 procedure TUsuarioCadForm.btSaveClick(Sender: TObject);
-var
-  opResult: TOperationResult;
 begin
   try
     btSave.Enabled := False;
-
-    FPropToCompMap.CompToObject(FUsuario);
-
-    opResult := FUsuarioBLL.AddOrUpdateUsuario(FUsuario);
-
-    if opResult.Success then
-      Close
-    else
-      TMensagemValidacaoForm.Open(opResult.Message, FUsuario, FPropToCompMap);
+    Save;
   finally
     btSave.Enabled := True;
   end;
@@ -88,6 +79,20 @@ begin
   FPropToCompMap.MapEdit('UserName', edUserName, 30, labUserName);
   FPropToCompMap.MapCharCheckbox('Situacao', ckAtivo, 'A', 'I');
   FPropToCompMap.MapEdit('Senha', edSenha, 200, labSenha);
+end;
+
+procedure TUsuarioCadForm.Save;
+var
+  opResult: TOperationResult;
+begin
+  FPropToCompMap.CompToObject(FUsuario);
+
+  opResult := FUsuarioBLL.AddOrUpdateUsuario(FUsuario);
+
+  if opResult.Success then
+    Close
+  else
+    TMensagemValidacaoForm.Open(opResult.Message, FUsuario, FPropToCompMap);
 end;
 
 procedure TUsuarioCadForm.btCancelClick(Sender: TObject);

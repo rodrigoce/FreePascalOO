@@ -13,6 +13,8 @@ type
 
   { TDALBase }
 
+  // BUG DO IDE: classe base genérica, depois de modificar deve ser compilada
+  // com SHIFT + F9, senão não aplica as alterações
   generic TDALBase<T: TEntityBase> = class
     private
       FDbContext: TDbContext;
@@ -408,7 +410,7 @@ function TDALBase.FindByFilterRaw(Params: Variant): TFPObjectList;
 var
   ormEntity: TORMEntity;
   q: TSQLQuery;
-  i, low, high: Integer;
+  i, low, high, nParam: Integer;
   sql: string;
   objeto: T;
 begin
@@ -426,14 +428,17 @@ begin
   GenerateSelect(ormEntity, sql);
 
   // monta o where
+  nParam := 1;
   if low <> high then
   begin
     sql := sql + 'where' + LineEnding;
 
     for i := low to (((high - low) + 1) div 3) -1 do
     begin
-      sql := sql + '  ' + ormEntity.GetDBColumnNameOf(Params[i * 3]) + ' ' +
+      sql := sql + IfThen(nParam > 1, LineEnding + '  and ', '  ') +
+        ormEntity.GetDBColumnNameOf(Params[i * 3]) + ' ' +
         Params[(i * 3) + 1] + ' :' + ormEntity.GetDBColumnNameOf(Params[i * 3]);
+      Inc(nParam);
     end;
   end;
 

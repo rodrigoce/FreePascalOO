@@ -21,9 +21,9 @@ type
   public
     constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
+    property SelectedValue : string read GetSelectedValue write SetSelectedValue;
   published
     property Values: TStringList read FValues write SetValues;
-    property SelectedValue : string read GetSelectedValue write SetSelectedValue;
   end;
 
 procedure Register;

@@ -149,7 +149,7 @@ begin
   else
   begin
     Compra := InnerDAL.FindByPK(Id);
-    Itens := FCompraItemDAL.FindByFilter(VarArrayOf(['IdCompra', '=', Id]));
+    Itens := FCompraItemDAL.FindByFilter(VarArrayOf(['IdCompra', '=', Id, 'Situacao', '=', 'A']));
   end;
 end;
 

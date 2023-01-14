@@ -31,11 +31,24 @@ var
 begin
   query := DbContext.CreateSQLQuery;
   filterComposer := TFilterComposer.Create;
-  query.SQL.Text := 'select * from compra';
+  query.SQL.Text :=
+    'SELECT' + LineEnding +
+    '	c.ID,' + LineEnding +
+    '	c."DATA",' + LineEnding +
+    '	c.TOTAL_PRODUTOS,' + LineEnding +
+    '	c.TOTAL_DESCONTOS,' + LineEnding +
+    '	c.PER_DESCONTOS,' + LineEnding +
+    '	c.TOTAL_COMPRA,' + LineEnding +
+    '	c.ID_FORNECEDOR,' + LineEnding +
+    '	f.NOME NOME_FORNECEDOR' + LineEnding +
+    'FROM' + LineEnding +
+    '	COMPRA c' + LineEnding +
+    'JOIN FORNECEDOR f ON' + LineEnding +
+    '	c.ID_FORNECEDOR = f.ID';
 
-  filterComposer.IsEqualsThenEquals(Filter.Situacao, 'A', 'SITUACAO');
-  filterComposer.IsEqualsThenEquals(Filter.Situacao, 'E', 'SITUACAO');
-  filterComposer.IsBetween(Filter.DataIni, Filter.DataFim, 'DATA');
+  filterComposer.IsEqualsThenEquals(Filter.Situacao, 'A', 'c.SITUACAO');
+  filterComposer.IsEqualsThenEquals(Filter.Situacao, 'E', 'c.SITUACAO');
+  filterComposer.IsBetween(Filter.DataIni, Filter.DataFim, 'c.DATA');
   filterComposer.ApplyOnQuery(query);
 
   query.Open;

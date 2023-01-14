@@ -98,12 +98,16 @@ begin
 
   FConnection := TIBConnection.Create(nil);
   FConnection.LoginPrompt := False;
-  FConnection.DatabaseName := 'D:\Rodrigo\FreePascalOO\DB\APLICACAO.FDB';
+  //FConnection.DatabaseName := 'D:\Rodrigo\FreePascalOO\DB\APLICACAO.FDB';
+  FConnection.DatabaseName := '/opt/firebird/data/APLICACAO.FDB';
   FConnection.KeepConnection := True;
-  FConnection.Password := 'masterkey';
+  //FConnection.Password := 'masterkey';
+  FConnection.Password := 'KfLvSWiQhf0U9PzO1ZX8';
+  FConnection.Port := 12283;
   FConnection.Transaction := FTransaction;
   FConnection.UserName := 'SYSDBA';
-  FConnection.HostName := 'localhost';
+  //FConnection.HostName := 'localhost';
+  FConnection.HostName := 'rodrigoce.jelastic.saveincloud.net';
   FConnection.OnLog := @ConnectionLog;
   FConnection.LogEvents := [detCustom, detExecute, detCommit, detRollBack, detParamValue];
   FConnection.CheckTransactionParams := False;

@@ -1,7 +1,7 @@
 object CompraCadForm: TCompraCadForm
-  Left = 241
+  Left = 274
   Height = 555
-  Top = 106
+  Top = 114
   Width = 936
   ActiveControl = edDataCompra
   BorderIcons = [biSystemMenu, biMinimize]
@@ -265,6 +265,7 @@ object CompraCadForm: TCompraCadForm
     Color = clWindow
     Columns = <>
     DataSource = dsTemp
+    PopupMenu = itensPopMenu
     TabOrder = 3
   end
   object bufProdItens: TBufDataset
@@ -280,8 +281,13 @@ object CompraCadForm: TCompraCadForm
   object itensPopMenu: TPopupMenu
     Left = 173
     Top = 304
-    object MenuItem1: TMenuItem
+    object menuExcluirItem: TMenuItem
       Caption = 'Excluir Item'
+      OnClick = menuExcluirItemClick
+    end
+    object menuLogEdicoes: TMenuItem
+      Caption = 'Log de Edições'
+      OnClick = menuLogEdicoesClick
     end
   end
 end

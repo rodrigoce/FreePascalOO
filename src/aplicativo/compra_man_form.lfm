@@ -1,7 +1,7 @@
 object CompraManForm: TCompraManForm
-  Left = 295
+  Left = 404
   Height = 368
-  Top = 130
+  Top = 272
   Width = 661
   ActiveControl = GridCompras
   Caption = 'Manutenção de Compras'

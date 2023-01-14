@@ -17,12 +17,10 @@
         <Filename Value="dal_base.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="131"/>
-        <CursorPos X="21" Y="136"/>
+        <CursorPos X="52" Y="17"/>
         <UsageCount Value="206"/>
-        <Bookmarks Count="2">
-          <Item0 X="3" Y="116" ID="3"/>
-          <Item1 Y="48" ID="2"/>
+        <Bookmarks Count="1">
+          <Item0 X="3" Y="118" ID="3"/>
         </Bookmarks>
       </Unit>
       <Unit>
@@ -93,10 +91,12 @@
         <ComponentName Value="ProdutoManForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="-1"/>
+        <EditorIndex Value="2"/>
         <TopLine Value="137"/>
         <CursorPos X="53" Y="153"/>
         <UsageCount Value="205"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="application_functions.pas"/>
@@ -120,8 +120,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="107"/>
-        <CursorPos X="51" Y="123"/>
+        <TopLine Value="94"/>
+        <CursorPos X="16" Y="104"/>
         <UsageCount Value="245"/>
       </Unit>
       <Unit>
@@ -337,8 +337,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="98"/>
-        <CursorPos X="39" Y="109"/>
+        <TopLine Value="72"/>
+        <CursorPos Y="92"/>
         <UsageCount Value="267"/>
       </Unit>
       <Unit>
@@ -347,11 +347,12 @@
         <ComponentName Value="UsuarioManForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="142"/>
-        <CursorPos X="39" Y="158"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="20"/>
+        <CursorPos X="3" Y="110"/>
         <UsageCount Value="267"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="bcrypt.pas"/>
@@ -369,8 +370,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="100"/>
-        <CursorPos X="39" Y="116"/>
+        <TopLine Value="84"/>
+        <CursorPos Y="94"/>
         <UsageCount Value="204"/>
       </Unit>
       <Unit>
@@ -419,9 +420,13 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="97"/>
-        <CursorPos X="39" Y="103"/>
+        <TopLine Value="27"/>
+        <CursorPos X="6" Y="88"/>
         <UsageCount Value="217"/>
+        <Bookmarks Count="2">
+          <Item0 X="8" Y="87" ID="1"/>
+          <Item1 X="56" Y="53" ID="2"/>
+        </Bookmarks>
       </Unit>
       <Unit>
         <Filename Value="fornecedor_bll.pas"/>
@@ -438,8 +443,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="79"/>
-        <CursorPos X="45" Y="84"/>
+        <CursorPos X="51" Y="55"/>
         <UsageCount Value="228"/>
       </Unit>
       <Unit>
@@ -477,10 +481,12 @@
         <ComponentName Value="FornecedorManForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="-1"/>
+        <EditorIndex Value="1"/>
         <TopLine Value="134"/>
         <CursorPos X="45" Y="150"/>
         <UsageCount Value="228"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="fornecedor_validator.pas"/>
@@ -494,8 +500,8 @@
         <Filename Value="compra_bll.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="51"/>
-        <CursorPos Y="59"/>
+        <TopLine Value="141"/>
+        <CursorPos X="95" Y="152"/>
         <UsageCount Value="220"/>
       </Unit>
       <Unit>
@@ -505,19 +511,16 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="242"/>
-        <CursorPos X="77" Y="250"/>
+        <TopLine Value="61"/>
+        <CursorPos X="15" Y="102"/>
         <UsageCount Value="220"/>
-        <Bookmarks Count="1">
-          <Item0 X="50" Y="262" ID="1"/>
-        </Bookmarks>
       </Unit>
       <Unit>
         <Filename Value="compra_dal.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="18"/>
-        <CursorPos X="12" Y="32"/>
+        <TopLine Value="20"/>
+        <CursorPos X="35" Y="36"/>
         <UsageCount Value="220"/>
       </Unit>
       <Unit>
@@ -547,10 +550,11 @@
         <ComponentName Value="CompraManForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="81"/>
-        <CursorPos X="68" Y="95"/>
+        <TopLine Value="77"/>
+        <CursorPos X="11" Y="144"/>
         <UsageCount Value="220"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="compra_validator.pas"/>
@@ -580,8 +584,8 @@
         <Filename Value="fields_builder.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="4"/>
-        <CursorPos X="25" Y="55"/>
+        <TopLine Value="12"/>
+        <CursorPos X="17" Y="22"/>
         <UsageCount Value="224"/>
       </Unit>
       <Unit>
@@ -589,21 +593,23 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="52" Y="25"/>
-        <UsageCount Value="136"/>
+        <UsageCount Value="202"/>
       </Unit>
       <Unit>
         <Filename Value="db_context.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="67"/>
-        <CursorPos X="44" Y="80"/>
-        <UsageCount Value="134"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="4"/>
+        <TopLine Value="81"/>
+        <CursorPos X="28" Y="106"/>
+        <UsageCount Value="200"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="environment.pas"/>
         <EditorIndex Value="-1"/>
         <CursorPos Y="14"/>
-        <UsageCount Value="106"/>
+        <UsageCount Value="99"/>
       </Unit>
       <Unit>
         <Filename Value="log_sql_form.pas"/>
@@ -613,7 +619,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="68"/>
         <CursorPos X="3" Y="62"/>
-        <UsageCount Value="68"/>
+        <UsageCount Value="61"/>
       </Unit>
       <Unit>
         <Filename Value="C:\lazarus\fpc\3.2.2\source\packages\rtl-generics\src\generics.collections.pas"/>
@@ -621,21 +627,14 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="1426"/>
         <CursorPos Y="1439"/>
-        <UsageCount Value="88"/>
+        <UsageCount Value="81"/>
       </Unit>
       <Unit>
         <Filename Value="C:\lazarus\fpc\3.2.2\source\rtl\inc\systemh.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="67"/>
         <CursorPos X="22" Y="332"/>
-        <UsageCount Value="24"/>
-      </Unit>
-      <Unit>
-        <Filename Value="conexao_dm.lfm"/>
-        <EditorIndex Value="-1"/>
-        <CursorPos X="24" Y="32"/>
-        <UsageCount Value="6"/>
-        <DefaultSyntaxHighlighter Value="LFM"/>
+        <UsageCount Value="17"/>
       </Unit>
       <Unit>
         <Filename Value="C:\lazarus\fpc\3.2.2\source\packages\fcl-base\src\contnrs.pp"/>
@@ -643,21 +642,21 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="30"/>
         <CursorPos X="16" Y="45"/>
-        <UsageCount Value="19"/>
+        <UsageCount Value="12"/>
       </Unit>
       <Unit>
         <Filename Value="C:\lazarus\fpc\3.2.2\source\rtl\inc\objpash.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="189"/>
         <CursorPos X="23" Y="208"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="2"/>
       </Unit>
       <Unit>
         <Filename Value="C:\lazarus\fpc\3.2.2\source\rtl\inc\objpas.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="323"/>
         <CursorPos X="9" Y="329"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="2"/>
       </Unit>
       <Unit>
         <Filename Value="C:\lazarus\fpc\3.2.2\source\packages\fcl-db\src\sqldb\sqldb.pp"/>
@@ -665,7 +664,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="159"/>
         <CursorPos X="103" Y="175"/>
-        <UsageCount Value="8"/>
+        <UsageCount Value="1"/>
       </Unit>
       <Unit>
         <Filename Value="C:\lazarus\fpc\3.2.2\source\packages\fcl-db\src\sqldb\interbase\ibconnection.pp"/>
@@ -673,14 +672,14 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="51"/>
         <CursorPos X="5" Y="63"/>
-        <UsageCount Value="8"/>
+        <UsageCount Value="1"/>
       </Unit>
       <Unit>
         <Filename Value="menu_principal_form.lfm"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="50"/>
         <CursorPos X="8" Y="75"/>
-        <UsageCount Value="8"/>
+        <UsageCount Value="1"/>
         <DefaultSyntaxHighlighter Value="LFM"/>
       </Unit>
       <Unit>
@@ -688,7 +687,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="233"/>
         <CursorPos X="19" Y="247"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="3"/>
       </Unit>
       <Unit>
         <Filename Value="compra_man_form.lfm"/>
@@ -699,29 +698,58 @@
           <EditorIndex Value="-1"/>
           <TopLine Value="97"/>
         </ExtraEditor1>
-        <UsageCount Value="10"/>
+        <UsageCount Value="3"/>
         <DefaultSyntaxHighlighter Value="LFM"/>
       </Unit>
       <Unit>
         <Filename Value="produto_man_form.lfm"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="58"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="3"/>
         <DefaultSyntaxHighlighter Value="LFM"/>
       </Unit>
       <Unit>
         <Filename Value="..\comps\comboboxvalue.pas"/>
         <UnitName Value="ComboBoxValue"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="16"/>
-        <CursorPos X="48" Y="71"/>
-        <UsageCount Value="10"/>
+        <TopLine Value="11"/>
+        <CursorPos X="36" Y="24"/>
+        <UsageCount Value="20"/>
+      </Unit>
+      <Unit>
+        <Filename Value="C:\lazarus\lcl\include\application.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="221"/>
+        <CursorPos X="3" Y="223"/>
+        <UsageCount Value="8"/>
+      </Unit>
+      <Unit>
+        <Filename Value="C:\lazarus\lcl\forms.pp"/>
+        <UnitName Value="Forms"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="1889"/>
+        <CursorPos X="3" Y="1881"/>
+        <UsageCount Value="8"/>
+      </Unit>
+      <Unit>
+        <Filename Value="C:\lazarus\lcl\lcltype.pp"/>
+        <UnitName Value="LCLType"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="772"/>
+        <CursorPos X="18" Y="786"/>
+        <UsageCount Value="8"/>
       </Unit>
     </Units>
-    <General>
-      <ActiveWindowIndexAtStart Value="-1"/>
-    </General>
-    <JumpHistory HistoryIndex="-1"/>
+    <JumpHistory HistoryIndex="1">
+      <Position>
+        <Filename Value="usuario_man_form.pas"/>
+        <Caret Line="158" Column="39" TopLine="142"/>
+      </Position>
+      <Position>
+        <Filename Value="usuario_man_form.pas"/>
+        <Caret Line="85" Column="3" TopLine="83"/>
+      </Position>
+    </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
       <Modes ActiveMode="default">

@@ -118,6 +118,8 @@ begin
     .AddColumn('TOTAL_DESCONTOS', 'Total Descontos', 120, ',0.00')
     .AddColumn('PER_DESCONTOS', '% Descontos', 120, ',0.00')
     .AddColumn('TOTAL_COMPRA', 'Total Compra', 120, ',0.00')
+    .AddColumn('ID_FORNECEDOR', 'ID Fornecedor', 80)
+    .AddColumn('NOME_FORNECEDOR', 'Nome Fornecedor', 200)
     .SetOrderedColumn('DATA');
 end;
 

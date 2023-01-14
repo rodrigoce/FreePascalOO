@@ -17,9 +17,9 @@ type
     procedure DefaultProps(Field: TField; Name: string);
   public
     constructor Create(FieldsOwner: TBufDataSet);
-    function LongIntField(Name: string): TLongIntField;
-    function StringField(Name: string; Size: Integer): TStringField;
-    function FloatField(Name: string): TFloatField;
+    function AddLongIntField(Name: string): TLongIntField;
+    function AddStringField(Name: string; Size: Integer): TStringField;
+    function AddFloatField(Name: string): TFloatField;
   end;
 
 implementation
@@ -39,7 +39,7 @@ begin
   FBufDataSetOwner := FieldsOwner;
 end;
 
-function TFieldsBuilder.LongIntField(Name: string): TLongIntField;
+function TFieldsBuilder.AddLongIntField(Name: string): TLongIntField;
 var
   field: TLongintField;
 begin
@@ -48,7 +48,7 @@ begin
   Result := field;
 end;
 
-function TFieldsBuilder.StringField(Name: string; Size: Integer): TStringField;
+function TFieldsBuilder.AddStringField(Name: string; Size: Integer): TStringField;
 var
   field: TStringField;
 begin
@@ -58,7 +58,7 @@ begin
   Result := field;
 end;
 
-function TFieldsBuilder.FloatField(Name: string): TFloatField;
+function TFieldsBuilder.AddFloatField(Name: string): TFloatField;
 var
   field: TFloatField;
 begin

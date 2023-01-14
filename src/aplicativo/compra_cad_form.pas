@@ -9,8 +9,8 @@ uses
   EditBtn, DBGrids, StrUtils, compra_entity, compra_bll, application_types,
   mensagem_validacao_form, prop_to_comp_map, produto_bll, produto_entity,
   fornecedor_entity, fornecedor_bll, grid_configurator, compra_item_entity,
-  fields_builder, application_functions, db_context, Variants, BufDataset, DB,
-  Generics.Collections, LCLType, Menus;
+  fields_builder, application_functions, db_context, entity_log_form, Variants,
+  BufDataset, DB, Generics.Collections, LCLType, Menus;
 
 type
 
@@ -48,7 +48,8 @@ type
     labValor: TLabel;
     labTotal: TLabel;
     labNomeFornecedor: TLabel;
-    MenuItem1: TMenuItem;
+    menuExcluirItem: TMenuItem;
+    menuLogEdicoes: TMenuItem;
     Panel1: TPanel;
     itensPopMenu: TPopupMenu;
     procedure btCancelClick(Sender: TObject);
@@ -59,6 +60,8 @@ type
     procedure edQtdeChange(Sender: TObject);
     procedure edTotalChange(Sender: TObject);
     procedure edValorChange(Sender: TObject);
+    procedure menuExcluirItemClick(Sender: TObject);
+    procedure menuLogEdicoesClick(Sender: TObject);
   private
     FCompra: TCompraEntity;
     FCompraItens: specialize TObjectList<TCompraItemEntity>;
@@ -77,6 +80,7 @@ type
     procedure CopyItensToBuf;
     procedure MergeItensFromBuf;
     procedure CalcGrandTotal;
+    procedure Save;
   public
     class procedure Edit(Id: Integer);
   end;
@@ -93,20 +97,10 @@ uses dataset_calcs;
 { TCompraCadForm }
 
 procedure TCompraCadForm.btSaveClick(Sender: TObject);
-var
-  opResult: TOperationResult;
 begin
   try
     btSave.Enabled := False;
-    FPropToCompMap.CompToObject(FCompra);
-    MergeItensFromBuf;
-
-    opResult := FCompraBLL.AddOrUpdateCompra(FCompra, FCompraItens);
-
-    if opResult.Success then
-      Close
-    else
-      TMensagemValidacaoForm.Open(opResult.Message, FCompra, FPropToCompMap);
+    Save;
   finally
     btSave.Enabled := True;
   end;
@@ -141,6 +135,35 @@ begin
   edTotal.OnChange := nil;
   edTotal.Value := edQtde.Value * edValor.Value;
   edTotal.OnChange := @edTotalChange;
+end;
+
+procedure TCompraCadForm.menuExcluirItemClick(Sender: TObject);
+var
+  p: Pointer;
+begin
+  if bufProdItens.RecordCount = 0 then Exit;
+
+  if Application.MessageBox('Confirma a remoção do item?', 'Atenção',
+    MB_ICONQUESTION + MB_YESNO) = ID_YES then
+  begin
+
+    // apenas itens salvos no banco eu mudo a situação para excluído
+    if bufProdItens.FieldByName('Id').AsInteger > 0 then
+    begin
+      p := Pointer(bufProdItens.FieldByName('Pointer').AsInteger);
+      TCompraItemEntity(p).Situacao := 'E';
+    end;
+
+    bufProdItens.Delete;
+  end;
+end;
+
+procedure TCompraCadForm.menuLogEdicoesClick(Sender: TObject);
+begin
+  if bufProdItens.FieldByName('Id').AsInteger = 0 then
+    Application.MessageBox('Esse item ainda não foi salvo!', 'Atenção', MB_ICONASTERISK + MB_OK)
+  else
+    TEntityLogForm.Open('TCompraItemEntity', bufProdItens.FieldByName('Id').AsInteger);
 end;
 
 procedure TCompraCadForm.ConfigMapPropComp;
@@ -215,19 +238,19 @@ var
 begin
   fb := TFieldsBuilder.Create(bufProdItens);
   bufProdItens.Fields.Clear;
-  fb.LongIntField('IdProduto');
-  fb.StringField('Codigo', 20);
-  fb.StringField('Nome', 60);
-  fb.FloatField('Qtde');
-  fb.FloatField('Valor');
-  fb.FloatField('Total');
-  fb.LongIntField('Pointer');
+  fb.AddLongIntField('Id');
+  fb.AddLongIntField('IdProduto');
+  fb.AddStringField('Codigo', 20);
+  fb.AddStringField('Nome', 60);
+  fb.AddFloatField('Qtde');
+  fb.AddFloatField('Valor');
+  fb.AddFloatField('Total');
+  fb.AddLongIntField('Pointer');
   bufProdItens.CreateDataset;
   fb.Free;
 
   FGridConfig.WithGrid(GridItensCompra)
     .SetDefaultProps
-    //.AddColumn('IdProduto', 'ID', 80)
     .AddColumn('Codigo', 'Código', 80)
     .AddColumn('Nome', 'Nome', 300)
     .AddColumn('Qtde', 'Qtde', 120, ',0.00')
@@ -244,6 +267,7 @@ begin
   begin
     produto := FProdutoBLL.InnerDAL.FindByPK(item.IdProduto);
     bufProdItens.Append;
+    bufProdItens.FieldByName('Id').AsFloat := item.Id;
     bufProdItens.FieldByName('IdProduto').AsFloat := item.IdProduto;
     bufProdItens.FieldByName('Codigo').AsString := produto.Codigo;
     bufProdItens.FieldByName('Nome').AsString := produto.Nome;
@@ -295,6 +319,21 @@ var
 begin
   calc := TDatasetCalcs.Create;
   labGrandTotal.Caption := FloatToStr(calc.SumColumn(bufProdItens, 'Total'));
+end;
+
+procedure TCompraCadForm.Save;
+var
+  opResult: TOperationResult;
+begin
+  FPropToCompMap.CompToObject(FCompra);
+  MergeItensFromBuf;
+
+  opResult := FCompraBLL.AddOrUpdateCompra(FCompra, FCompraItens);
+
+  if opResult.Success then
+    Close
+  else
+    TMensagemValidacaoForm.Open(opResult.Message, FCompra, FPropToCompMap);
 end;
 
 procedure TCompraCadForm.btCancelClick(Sender: TObject);

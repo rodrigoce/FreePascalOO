@@ -39,6 +39,7 @@ type
     FProdutoBLL: TProdutoBLL;
     FPropToCompMap: TPropToCompMap;
     procedure ConfigMapPropComp;
+    procedure Save;
   public
     class procedure Edit(Id: Integer);
   end;
@@ -53,19 +54,10 @@ implementation
 { TProdutoCadForm }
 
 procedure TProdutoCadForm.btSaveClick(Sender: TObject);
-var
-  opResult: TOperationResult;
 begin
   try
     btSave.Enabled := False;
-    FPropToCompMap.CompToObject(FProduto);
-
-    opResult := FProdutoBLL.AddOrUpdateProduto(FProduto);
-
-    if opResult.Success then
-      Close
-    else
-      TMensagemValidacaoForm.Open(opResult.Message, FProduto, FPropToCompMap);
+    Save;
   finally
     btSave.Enabled := True;
   end;
@@ -97,6 +89,20 @@ begin
   FPropToCompMap.MapFloatSpinEdit('MargemLucro', edMargemLucro, labMLucro);
   FPropToCompMap.MapFloatSpinEdit('PrecoVenda', edPrecoVenda, labPVenda);
   FPropToCompMap.MapCharCheckbox('Situacao', ckAtivo, 'A', 'I');
+end;
+
+procedure TProdutoCadForm.Save;
+var
+  opResult: TOperationResult;
+begin
+  FPropToCompMap.CompToObject(FProduto);
+
+  opResult := FProdutoBLL.AddOrUpdateProduto(FProduto);
+
+  if opResult.Success then
+    Close
+  else
+    TMensagemValidacaoForm.Open(opResult.Message, FProduto, FPropToCompMap);
 end;
 
 procedure TProdutoCadForm.btCancelClick(Sender: TObject);
