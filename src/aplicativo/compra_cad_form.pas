@@ -25,8 +25,8 @@ type
     dsTemp: TDataSource;
     edID: TEdit;
     edIdFornecedor: TEdit;
+    edTotalGeral: TEdit;
     Label1: TLabel;
-    labGrandTotal: TLabel;
     labID: TLabel;
     bufProdItens: TBufDataset;
     ckAtivo: TCheckBox;
@@ -155,6 +155,7 @@ begin
     end;
 
     bufProdItens.Delete;
+    CalcGrandTotal;
   end;
 end;
 
@@ -316,9 +317,14 @@ end;
 procedure TCompraCadForm.CalcGrandTotal;
 var
   calc: TDatasetCalcs;
+  totalGeral: Double;
 begin
   calc := TDatasetCalcs.Create;
-  labGrandTotal.Caption := FloatToStr(calc.SumColumn(bufProdItens, 'Total'));
+  totalGeral := calc.SumColumn(bufProdItens, 'Total');
+  edTotalGeral.Text := FormatFloat(',0.00', totalGeral);
+  FCompra.TotalCompra := totalGeral;
+  FCompra.TotalProdutos := totalGeral;
+  calc.Free;
 end;
 
 procedure TCompraCadForm.Save;

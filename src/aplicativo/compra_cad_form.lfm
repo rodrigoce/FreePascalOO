@@ -52,7 +52,7 @@ object CompraCadForm: TCompraCadForm
     end
   end
   object gbCabecalho: TGroupBox
-    Left = 8
+    Left = 7
     Height = 72
     Top = 0
     Width = 921
@@ -143,12 +143,19 @@ object CompraCadForm: TCompraCadForm
       Width = 25
       Caption = 'Total'
     end
-    object labGrandTotal: TLabel
-      Left = 720
-      Height = 15
-      Top = 0
-      Width = 21
-      Caption = '0,00'
+    object edTotalGeral: TEdit
+      Left = 672
+      Height = 23
+      Top = 16
+      Width = 238
+      Alignment = taRightJustify
+      Font.CharSet = ANSI_CHARSET
+      Font.Pitch = fpVariable
+      Font.Quality = fqDraft
+      Font.Style = [fsBold]
+      ParentFont = False
+      ReadOnly = True
+      TabOrder = 5
     end
   end
   object gbProduto: TGroupBox

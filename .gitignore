@@ -4,3 +4,4 @@
 /src/comps/backup
 /src/comps/lib
 /src/aplicativo/*.dbg
+/db/*.FDB

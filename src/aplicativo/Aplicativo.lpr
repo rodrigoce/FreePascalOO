@@ -28,7 +28,7 @@ uses
   fornecedor_entity, fornecedor_dal, fornecedor_cad_form, fornecedor_bll,
   compra_validator, compra_man_form, compra_filter_validator, compra_filter,
   compra_entity, compra_dal, compra_cad_form, compra_bll, compra_item_entity,
-  compra_item_dal, fields_builder, dataset_calcs, db_context;
+  compra_item_dal, fields_builder, dataset_calcs, db_context, tests_form;
 
 {$R *.res}
 
@@ -40,6 +40,7 @@ begin
   TApplicationSession.InitEnvironment;
   Application.CreateForm(TImagesDM, ImagesDM);
   Application.CreateForm(TMenuPrincipalForm, MenuPrincipalForm);
+  Application.CreateForm(TForm1, Form1);
   Application.Run;
 end.
 

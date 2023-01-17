@@ -24,7 +24,7 @@ function TDatasetCalcs.SumColumn(Dataset: TDataSet; ColumnName: string): Double;
 var
   bk: TBookMark;
 begin
-  bk := Dataset.GetBookmark;
+  bk := Dataset.Bookmark;
   Result := 0;
 
   Dataset.DisableControls;
@@ -35,9 +35,8 @@ begin
 
     Dataset.Next;
   end;
-  Dataset.GotoBookmark(bk);
-  Dataset.FreeBookmark(bk);
   Dataset.EnableControls;
+  DataSet.Bookmark := bk;
 end;
 
 end.

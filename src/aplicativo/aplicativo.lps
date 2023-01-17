@@ -26,10 +26,11 @@
       <Unit>
         <Filename Value="entity_base.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
+        <EditorIndex Value="5"/>
         <TopLine Value="67"/>
         <CursorPos X="3" Y="74"/>
         <UsageCount Value="206"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="sql_code_generator_form.pas"/>
@@ -510,10 +511,12 @@
         <ComponentName Value="CompraCadForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="61"/>
-        <CursorPos X="15" Y="102"/>
+        <EditorIndex Value="7"/>
+        <TopLine Value="246"/>
+        <CursorPos X="57" Y="254"/>
         <UsageCount Value="220"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="compra_dal.pas"/>
@@ -591,17 +594,17 @@
       <Unit>
         <Filename Value="dataset_calcs.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <CursorPos X="52" Y="25"/>
+        <EditorIndex Value="9"/>
+        <CursorPos X="16" Y="38"/>
         <UsageCount Value="202"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="db_context.pas"/>
         <IsPartOfProject Value="True"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="4"/>
-        <TopLine Value="81"/>
-        <CursorPos X="28" Y="106"/>
+        <TopLine Value="36"/>
+        <CursorPos X="62" Y="44"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
       </Unit>
@@ -739,8 +742,28 @@
         <CursorPos X="18" Y="786"/>
         <UsageCount Value="8"/>
       </Unit>
+      <Unit>
+        <Filename Value="C:\lazarus\fpc\3.2.2\source\rtl\objpas\typinfo.pp"/>
+        <UnitName Value="TypInfo"/>
+        <EditorIndex Value="6"/>
+        <TopLine Value="1972"/>
+        <CursorPos X="28" Y="1989"/>
+        <UsageCount Value="12"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="tests_form.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="Form1"/>
+        <ResourceBaseClass Value="Form"/>
+        <EditorIndex Value="8"/>
+        <CursorPos X="72" Y="24"/>
+        <UsageCount Value="20"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit>
     </Units>
-    <JumpHistory HistoryIndex="1">
+    <JumpHistory HistoryIndex="16">
       <Position>
         <Filename Value="usuario_man_form.pas"/>
         <Caret Line="158" Column="39" TopLine="142"/>
@@ -748,6 +771,66 @@
       <Position>
         <Filename Value="usuario_man_form.pas"/>
         <Caret Line="85" Column="3" TopLine="83"/>
+      </Position>
+      <Position>
+        <Filename Value="compra_cad_form.pas"/>
+        <Caret Line="102" Column="15" TopLine="61"/>
+      </Position>
+      <Position>
+        <Filename Value="compra_cad_form.pas"/>
+        <Caret Line="103" Column="15" TopLine="71"/>
+      </Position>
+      <Position>
+        <Filename Value="compra_cad_form.pas"/>
+        <Caret Line="102" Column="15" TopLine="70"/>
+      </Position>
+      <Position>
+        <Filename Value="compra_cad_form.pas"/>
+        <Caret Line="105" Column="15" TopLine="80"/>
+      </Position>
+      <Position>
+        <Filename Value="compra_cad_form.pas"/>
+        <Caret Line="325" Column="38" TopLine="305"/>
+      </Position>
+      <Position>
+        <Filename Value="compra_cad_form.pas"/>
+        <Caret Line="326" Column="13" TopLine="306"/>
+      </Position>
+      <Position>
+        <Filename Value="compra_cad_form.pas"/>
+        <Caret Line="316" Column="34" TopLine="309"/>
+      </Position>
+      <Position>
+        <Filename Value="compra_cad_form.pas"/>
+        <Caret Line="366" Column="3" TopLine="348"/>
+      </Position>
+      <Position>
+        <Filename Value="entity_base.pas"/>
+        <Caret Line="74" Column="3" TopLine="67"/>
+      </Position>
+      <Position>
+        <Filename Value="C:\lazarus\fpc\3.2.2\source\rtl\objpas\typinfo.pp"/>
+        <Caret Line="773" Column="17" TopLine="757"/>
+      </Position>
+      <Position>
+        <Filename Value="C:\lazarus\fpc\3.2.2\source\rtl\objpas\typinfo.pp"/>
+        <Caret Line="1386" Column="3" TopLine="1384"/>
+      </Position>
+      <Position>
+        <Filename Value="C:\lazarus\fpc\3.2.2\source\rtl\objpas\typinfo.pp"/>
+        <Caret Line="779" Column="10" TopLine="756"/>
+      </Position>
+      <Position>
+        <Filename Value="C:\lazarus\fpc\3.2.2\source\rtl\objpas\typinfo.pp"/>
+        <Caret Line="1421" Column="3" TopLine="1414"/>
+      </Position>
+      <Position>
+        <Filename Value="compra_cad_form.pas"/>
+        <Caret Line="135" Column="45" TopLine="122"/>
+      </Position>
+      <Position>
+        <Filename Value="compra_cad_form.pas"/>
+        <Caret Line="82" Column="23" TopLine="61"/>
       </Position>
     </JumpHistory>
     <RunParams>
