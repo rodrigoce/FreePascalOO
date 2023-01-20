@@ -33,7 +33,7 @@ uses pascal_code_generator_form, produto_man_form, usuario_man_form,
 
 procedure TMenuPrincipalCallBacks.ManutencaoProdutos;
 begin
-  TProdutoManForm.Open;
+  TProdutoManForm.Open(False);
 end;
 
 procedure TMenuPrincipalCallBacks.ManutencaoUsuarios;

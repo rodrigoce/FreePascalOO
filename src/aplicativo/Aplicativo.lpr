@@ -40,7 +40,7 @@ begin
   TApplicationSession.InitEnvironment;
   Application.CreateForm(TImagesDM, ImagesDM);
   Application.CreateForm(TMenuPrincipalForm, MenuPrincipalForm);
-  Application.CreateForm(TForm1, Form1);
+  Application.CreateForm(TTestesForm, TestesForm);
   Application.Run;
 end.
 

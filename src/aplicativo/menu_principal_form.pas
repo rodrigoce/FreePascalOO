@@ -9,7 +9,7 @@ uses
   StdCtrls,
   Windows, menu_principal_config, dev_tools_form,
   usuario_login_form, usuario_bll, usuario_login, application_session,
-  application_types, db_context, StrUtils, SQLDB;
+  application_types, db_context, BarRL, BBarPanel, StrUtils, SQLDB;
 
 type
 
@@ -22,8 +22,6 @@ type
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
-    procedure IBConnection1Log(Sender: TSQLConnection; EventType: TDBEventType;
-      const Msg: String);
     procedure TreeViewMenuClick(Sender: TObject);
   private
     FMenuPrincipalConfig: TMenuPrincipalConfig;
@@ -71,12 +69,6 @@ begin
     Application.Terminate;
   end;
   UpdateStatusBar;
-end;
-
-procedure TMenuPrincipalForm.IBConnection1Log(Sender: TSQLConnection;
-  EventType: TDBEventType; const Msg: String);
-begin
-
 end;
 
 procedure TMenuPrincipalForm.FormClose(Sender: TObject;

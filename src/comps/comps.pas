@@ -8,7 +8,7 @@ unit Comps;
 interface
 
 uses
-  ComboBoxValue, LinkLabel, PanelX, LazarusPackageIntf;
+  ComboBoxValue, LinkLabel, PanelX, BBarPanel, LazarusPackageIntf;
 
 implementation
 
@@ -17,6 +17,7 @@ begin
   RegisterUnit('ComboBoxValue', @ComboBoxValue.Register);
   RegisterUnit('LinkLabel', @LinkLabel.Register);
   RegisterUnit('PanelX', @PanelX.Register);
+  RegisterUnit('BBarPanel', @BBarPanel.Register);
 end;
 
 initialization

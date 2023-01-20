@@ -1,7 +1,7 @@
 object MenuPrincipalForm: TMenuPrincipalForm
-  Left = 238
+  Left = 231
   Height = 490
-  Top = 247
+  Top = 193
   Width = 912
   Caption = 'Menu Principal'
   ClientHeight = 490

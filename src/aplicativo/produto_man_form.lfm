@@ -1,7 +1,7 @@
 object ProdutoManForm: TProdutoManForm
-  Left = 333
+  Left = 312
   Height = 470
-  Top = 166
+  Top = 237
   Width = 760
   ActiveControl = GridProdutos
   Caption = 'Manutenção de Produtos'
@@ -87,41 +87,10 @@ object ProdutoManForm: TProdutoManForm
       )
     end
   end
-  object pnAcoes: TPanel
-    Left = 8
-    Height = 37
-    Top = 64
-    Width = 744
-    Anchors = [akTop, akLeft, akRight]
-    BevelOuter = bvNone
-    ClientHeight = 37
-    ClientWidth = 744
-    Color = clSkyBlue
-    ParentColor = False
-    TabOrder = 1
-    object btNovo: TButton
-      Left = 8
-      Height = 25
-      Top = 6
-      Width = 75
-      Caption = '&Novo'
-      OnClick = btNovoClick
-      TabOrder = 0
-    end
-    object btEdit: TButton
-      Left = 88
-      Height = 25
-      Top = 6
-      Width = 75
-      Caption = '&Editar'
-      OnClick = btEditClick
-      TabOrder = 1
-    end
-  end
   object GridProdutos: TDBGrid
     Left = 8
-    Height = 348
-    Top = 112
+    Height = 360
+    Top = 104
     Width = 744
     Anchors = [akTop, akLeft, akRight, akBottom]
     Color = clWindow
@@ -130,6 +99,92 @@ object ProdutoManForm: TProdutoManForm
     PopupMenu = gridPopUp
     TabOrder = 2
     OnDblClick = GridProdutosDblClick
+  end
+  object barPanel: TBBarPanel
+    Left = 8
+    Height = 35
+    Top = 64
+    Width = 744
+    Anchors = [akTop, akLeft, akRight]
+    BevelOuter = bvNone
+    BorderWidth = 5
+    ClientHeight = 35
+    ClientWidth = 744
+    Color = clSkyBlue
+    ParentColor = False
+    TabOrder = 1
+    object leftFlowPanel: TFlowPanel
+      Left = 5
+      Height = 25
+      Top = 5
+      Width = 347
+      Align = alLeft
+      BevelOuter = bvNone
+      ControlList = <      
+        item
+          Control = btNew
+          WrapAfter = waAuto
+          Index = 0
+        end      
+        item
+          Control = btEdit
+          WrapAfter = waAuto
+          Index = 1
+        end      
+        item
+          Control = btSelect
+          WrapAfter = waAuto
+          Index = 2
+        end      
+        item
+          Control = btCancel
+          WrapAfter = waAuto
+          Index = 3
+        end>
+      FlowLayout = tlCenter
+      FlowStyle = fsLeftRightTopBottom
+      TabOrder = 0
+      object btNew: TButton
+        Left = 0
+        Height = 25
+        Top = 0
+        Width = 75
+        Anchors = []
+        Caption = '&Novo'
+        OnClick = btNewClick
+        TabOrder = 0
+      end
+      object btEdit: TButton
+        Left = 75
+        Height = 25
+        Top = 0
+        Width = 75
+        Anchors = []
+        Caption = '&Editar'
+        OnClick = btEditClick
+        TabOrder = 1
+      end
+      object btSelect: TButton
+        Left = 150
+        Height = 25
+        Top = 0
+        Width = 75
+        Anchors = []
+        Caption = '&Selecionar'
+        OnClick = btSelectClick
+        TabOrder = 2
+      end
+      object btCancel: TButton
+        Left = 225
+        Height = 25
+        Top = 0
+        Width = 75
+        Anchors = []
+        Caption = '&Cancelar'
+        OnClick = btCancelClick
+        TabOrder = 3
+      end
+    end
   end
   object ds: TDataSource
     DataSet = buf

@@ -13,6 +13,11 @@ type
     Message: string;
   end;
 
+  TSelectionResult = record
+    Success: Boolean;
+    Value: Variant;
+  end;
+
   TValidationMsgItem = class
   private
     FClassFieldName: string;

@@ -9,8 +9,9 @@ uses
   EditBtn, DBGrids, StrUtils, compra_entity, compra_bll, application_types,
   mensagem_validacao_form, prop_to_comp_map, produto_bll, produto_entity,
   fornecedor_entity, fornecedor_bll, grid_configurator, compra_item_entity,
-  fields_builder, application_functions, db_context, entity_log_form, Variants,
-  BufDataset, DB, Generics.Collections, LCLType, Menus;
+  fields_builder, application_functions, db_context, entity_log_form,
+  produto_man_form, Variants, BufDataset, DB, Generics.Collections, LCLType,
+  Menus;
 
 type
 
@@ -54,6 +55,7 @@ type
     itensPopMenu: TPopupMenu;
     procedure btCancelClick(Sender: TObject);
     procedure btLancarProdutoClick(Sender: TObject);
+    procedure btPesquisarProdutoClick(Sender: TObject);
     procedure btSaveClick(Sender: TObject);
     procedure edCodProdutoExit(Sender: TObject);
     procedure edIdFornecedorExit(Sender: TObject);
@@ -371,6 +373,21 @@ begin
   edNomeProduto.Clear;
   FreeAndNil(FLastProduto);
   edCodProduto.SetFocus;
+end;
+
+procedure TCompraCadForm.btPesquisarProdutoClick(Sender: TObject);
+var
+  selResult: TSelectionResult;
+  produto: TProdutoEntity;
+begin
+  selResult := TProdutoManForm.Open(True);
+  if selResult.Success then
+  begin
+    produto := FProdutoBll.InnerDAL.FindByPK(SelResult.Value);
+    edCodProduto.Text := produto.Codigo;
+    edCodProduto.SetFocus;
+    produto.Free;
+  end;
 end;
 
 class procedure TCompraCadForm.Edit(Id: Integer);

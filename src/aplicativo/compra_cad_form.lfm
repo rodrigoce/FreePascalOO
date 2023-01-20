@@ -147,7 +147,7 @@ object CompraCadForm: TCompraCadForm
       Left = 672
       Height = 23
       Top = 16
-      Width = 238
+      Width = 126
       Alignment = taRightJustify
       Font.CharSet = ANSI_CHARSET
       Font.Pitch = fpVariable
@@ -155,6 +155,7 @@ object CompraCadForm: TCompraCadForm
       Font.Style = [fsBold]
       ParentFont = False
       ReadOnly = True
+      TabStop = False
       TabOrder = 5
     end
   end
@@ -182,6 +183,7 @@ object CompraCadForm: TCompraCadForm
       Top = 18
       Width = 75
       Caption = 'Pesquisar'
+      OnClick = btPesquisarProdutoClick
       TabOrder = 1
     end
     object labCodProduto: TLabel

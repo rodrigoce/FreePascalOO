@@ -8,18 +8,23 @@ uses
   SysUtils, DB, BufDataset, Forms, Controls, Dialogs,
   DBGrids, StdCtrls, ExtCtrls, Menus, produto_bll, produto_cad_form,
   grid_configurator, prop_to_comp_map, produto_filter, application_types,
-  mensagem_validacao_form, db_context, ComboBoxValue;
+  mensagem_validacao_form, db_context, ComboBoxValue, BBarPanel, Classes,
+  LCLType;
 
 type
 
   { TProdutoManForm }
 
   TProdutoManForm = class(TForm)
+    barPanel: TBBarPanel;
+    btCancel: TButton;
     btEdit: TButton;
-    btNovo: TButton;
+    btNew: TButton;
     btSearch: TButton;
+    btSelect: TButton;
     buf: TBufDataset;
     cbSituacao: TComboBoxValue;
+    leftFlowPanel: TFlowPanel;
     GridProdutos: TDBGrid;
     ds: TDataSource;
     edCodigo: TEdit;
@@ -29,15 +34,17 @@ type
     labSituacao: TLabel;
     labNome: TLabel;
     menuLogEdicoes: TMenuItem;
-    pnAcoes: TPanel;
     gridPopUp: TPopupMenu;
-    procedure btNovoClick(Sender: TObject);
+    procedure btCancelClick(Sender: TObject);
+    procedure btNewClick(Sender: TObject);
     procedure btEditClick(Sender: TObject);
     procedure btSearchClick(Sender: TObject);
+    procedure btSelectClick(Sender: TObject);
     procedure edCodigoKeyPress(Sender: TObject; var Key: char);
     procedure GridProdutosDblClick(Sender: TObject);
     procedure menuLogEdicoesClick(Sender: TObject);
   private
+    FSelectionResult: TSelectionResult;
     FPropToCompMap: TPropToCompMap;
     FProdutoBLL: TProdutoBLL;
     FGridConfig: TGridConfigurator;
@@ -46,8 +53,10 @@ type
     procedure ConfigureGrid;
     procedure ConfigMapPropComp;
     procedure EditProduto;
+    procedure SelectProduto;
+    procedure ConfigureSelectionMode(IsSelectionMode: Boolean);
   public
-    class procedure Open;
+    class function Open(IsSelectionMode: Boolean): TSelectionResult;
   end;
 
 var
@@ -61,10 +70,15 @@ uses entity_log_form;
 
 { TProdutoManForm }
 
-procedure TProdutoManForm.btNovoClick(Sender: TObject);
+procedure TProdutoManForm.btNewClick(Sender: TObject);
 begin
   TProdutoCadForm.Edit(0);
   SearchProdutos;
+end;
+
+procedure TProdutoManForm.btCancelClick(Sender: TObject);
+begin
+  Close;
 end;
 
 procedure TProdutoManForm.btEditClick(Sender: TObject);
@@ -75,6 +89,11 @@ end;
 procedure TProdutoManForm.btSearchClick(Sender: TObject);
 begin
   SearchProdutos;
+end;
+
+procedure TProdutoManForm.btSelectClick(Sender: TObject);
+begin
+  SelectProduto;
 end;
 
 procedure TProdutoManForm.edCodigoKeyPress(Sender: TObject; var Key: char);
@@ -143,11 +162,30 @@ begin
   buf.Locate('Id', rememberId, []);
 end;
 
-class procedure TProdutoManForm.Open;
+procedure TProdutoManForm.SelectProduto;
+begin
+  if buf.RecordCount = 0 then
+    Application.MessageBox('Nenhum Produto está selecionado!', 'Atenção', MB_ICONASTERISK + MB_OK)
+  else
+  begin
+    FSelectionResult.Success := True;
+    FSelectionResult.Value := buf.FieldByName('Id').AsInteger;
+    Close;
+  end;
+end;
+
+procedure TProdutoManForm.ConfigureSelectionMode(IsSelectionMode: Boolean);
+begin
+  btSelect.Visible := IsSelectionMode;
+  btCancel.Visible := IsSelectionMode;
+end;
+
+class function TProdutoManForm.Open(IsSelectionMode: Boolean): TSelectionResult;
 begin
   Application.CreateForm(TProdutoManForm, ProdutoManForm);
   with ProdutoManForm do
   begin
+    FSelectionResult.Success := False;
     FPropToCompMap := TPropToCompMap.Create;
     FGridConfig := TGridConfigurator.Create;
     FProdutoBLL := TProdutoBLL.Create(gAppDbContext);
@@ -156,12 +194,15 @@ begin
     ConfigureGrid;
     ConfigMapPropComp;
     SearchProdutos;
+    ConfigureSelectionMode(IsSelectionMode);
     ProdutoManForm.ShowModal;
 
     FPropToCompMap.Free;
     FGridConfig.Free;
     FProdutoBLL.Free;
     FProdutoFilter.Free;
+
+    Result := FSelectionResult;
 
     Free;
   end;
