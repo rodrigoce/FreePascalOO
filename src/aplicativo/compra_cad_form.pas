@@ -10,18 +10,18 @@ uses
   mensagem_validacao_form, prop_to_comp_map, produto_bll, produto_entity,
   fornecedor_entity, fornecedor_bll, grid_configurator, compra_item_entity,
   fields_builder, application_functions, db_context, entity_log_form,
-  produto_man_form, Variants, BufDataset, DB, Generics.Collections, LCLType,
-  Menus;
+  produto_man_form, images_dm, fornecedor_man_form, Variants, BufDataset, DB,
+  Generics.Collections, LCLType, Menus, Buttons;
 
 type
 
   { TCompraCadForm }
 
   TCompraCadForm = class(TForm)
+    btPesquisarProduto: TBitBtn;
     btCancel: TButton;
+    btPesquisarFornecedor: TBitBtn;
     btSave: TButton;
-    btPesquisarFornecedor: TButton;
-    btPesquisarProduto: TButton;
     btLancarProduto: TButton;
     dsTemp: TDataSource;
     edID: TEdit;
@@ -55,6 +55,7 @@ type
     itensPopMenu: TPopupMenu;
     procedure btCancelClick(Sender: TObject);
     procedure btLancarProdutoClick(Sender: TObject);
+    procedure btPesquisarFornecedorClick(Sender: TObject);
     procedure btPesquisarProdutoClick(Sender: TObject);
     procedure btSaveClick(Sender: TObject);
     procedure edCodProdutoExit(Sender: TObject);
@@ -375,6 +376,20 @@ begin
   edCodProduto.SetFocus;
 end;
 
+procedure TCompraCadForm.btPesquisarFornecedorClick(Sender: TObject);
+var
+  selResult: TSelectionResult;
+begin
+  selResult := TFornecedorManForm.Open(True);
+  if selResult.Success then
+  begin
+    edIdFornecedor.Text := IntToStr(selResult.Value);
+    edIdFornecedor.SetFocus;
+    SelectNext(ActiveControl, True, True);
+    SelectNext(ActiveControl, True, True);
+  end;
+end;
+
 procedure TCompraCadForm.btPesquisarProdutoClick(Sender: TObject);
 var
   selResult: TSelectionResult;
@@ -387,6 +402,8 @@ begin
     edCodProduto.Text := produto.Codigo;
     edCodProduto.SetFocus;
     produto.Free;
+    SelectNext(ActiveControl, True, True);
+    SelectNext(ActiveControl, True, True);
   end;
 end;
 

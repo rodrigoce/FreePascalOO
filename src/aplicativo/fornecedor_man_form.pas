@@ -8,16 +8,19 @@ uses
   SysUtils, DB, BufDataset, Forms, Controls, Dialogs,
   DBGrids, StdCtrls, ExtCtrls, Menus, fornecedor_bll, fornecedor_cad_form,
   grid_configurator, prop_to_comp_map, fornecedor_filter, application_types,
-  mensagem_validacao_form, db_context, ComboBoxValue;
+  mensagem_validacao_form, db_context, ComboBoxValue, BBarPanel, LCLType, Classes;
 
 type
 
   { TFornecedorManForm }
 
   TFornecedorManForm = class(TForm)
+    barPanel: TBBarPanel;
+    btCancel: TButton;
     btEdit: TButton;
-    btNovo: TButton;
+    btNew: TButton;
     btSearch: TButton;
+    btSelect: TButton;
     buf: TBufDataset;
     cbSituacao: TComboBoxValue;
     edContato: TEdit;
@@ -28,26 +31,32 @@ type
     labContato: TLabel;
     labSituacao: TLabel;
     labNome: TLabel;
+    leftFlowPanel: TFlowPanel;
     menuLogEdicoes: TMenuItem;
-    pnAcoes: TPanel;
     gridPopUp: TPopupMenu;
-    procedure btNovoClick(Sender: TObject);
+    procedure btCancelClick(Sender: TObject);
+    procedure btNewClick(Sender: TObject);
     procedure btEditClick(Sender: TObject);
     procedure btSearchClick(Sender: TObject);
+    procedure btSelectClick(Sender: TObject);
     procedure edCodigoKeyPress(Sender: TObject; var Key: char);
     procedure GridFornecedorsDblClick(Sender: TObject);
     procedure menuLogEdicoesClick(Sender: TObject);
   private
+    FSelectionResult: TSelectionResult;
+    FIsSelectionMode: Boolean;
     FPropToCompMap: TPropToCompMap;
     FFornecedorBLL: TFornecedorBLL;
     FGridConfig: TGridConfigurator;
     FFornecedorFilter: TFornecedorFilter;
-    procedure SearchFornecedors;
+    procedure SearchFornecedores;
     procedure ConfigureGrid;
     procedure ConfigMapPropComp;
     procedure EditFornecedor;
+    procedure SelectFornecedor;
+    procedure ConfigureSelectionMode(IsSelectionMode: Boolean);
   public
-    class procedure Open;
+    class function Open(IsSelectionMode: Boolean): TSelectionResult;
   end;
 
 var
@@ -61,10 +70,15 @@ uses entity_log_form;
 
 { TFornecedorManForm }
 
-procedure TFornecedorManForm.btNovoClick(Sender: TObject);
+procedure TFornecedorManForm.btNewClick(Sender: TObject);
 begin
   TFornecedorCadForm.Edit(0);
-  SearchFornecedors;
+  SearchFornecedores;
+end;
+
+procedure TFornecedorManForm.btCancelClick(Sender: TObject);
+begin
+  Close;
 end;
 
 procedure TFornecedorManForm.btEditClick(Sender: TObject);
@@ -74,7 +88,12 @@ end;
 
 procedure TFornecedorManForm.btSearchClick(Sender: TObject);
 begin
-  SearchFornecedors;
+  SearchFornecedores;
+end;
+
+procedure TFornecedorManForm.btSelectClick(Sender: TObject);
+begin
+  SelectFornecedor;
 end;
 
 procedure TFornecedorManForm.edCodigoKeyPress(Sender: TObject; var Key: char);
@@ -85,7 +104,10 @@ end;
 
 procedure TFornecedorManForm.GridFornecedorsDblClick(Sender: TObject);
 begin
-  EditFornecedor;
+  if FIsSelectionMode then
+    SelectFornecedor
+  else
+    EditFornecedor;
 end;
 
 procedure TFornecedorManForm.menuLogEdicoesClick(Sender: TObject);
@@ -95,7 +117,7 @@ begin
   TEntityLogForm.Open('TFornecedorEntity' , buf.FieldByName('Id').Value);
 end;
 
-procedure TFornecedorManForm.SearchFornecedors;
+procedure TFornecedorManForm.SearchFornecedores;
 var
   opResult: TOperationResult;
 begin
@@ -136,15 +158,36 @@ begin
 
   rememberId := buf.FieldByName('Id').AsInteger;
   TFornecedorCadForm.Edit(buf.FieldByName('id').AsInteger);
-  SearchFornecedors;
+  SearchFornecedores;
   buf.Locate('Id', rememberId, []);
 end;
 
-class procedure TFornecedorManForm.Open;
+procedure TFornecedorManForm.SelectFornecedor;
+begin
+  if buf.RecordCount = 0 then
+    Application.MessageBox('Nenhum Produto está selecionado!', 'Atenção', MB_ICONASTERISK + MB_OK)
+  else
+  begin
+    FSelectionResult.Success := True;
+    FSelectionResult.Value := buf.FieldByName('Id').AsInteger;
+    Close;
+  end;
+end;
+
+procedure TFornecedorManForm.ConfigureSelectionMode(IsSelectionMode: Boolean);
+begin
+  btSelect.Visible := IsSelectionMode;
+  btCancel.Visible := IsSelectionMode;
+end;
+
+class function TFornecedorManForm.Open(IsSelectionMode: Boolean
+  ): TSelectionResult;
 begin
   Application.CreateForm(TFornecedorManForm, FornecedorManForm);
   with FornecedorManForm do
   begin
+    FSelectionResult.Success := False;
+    FIsSelectionMode := IsSelectionMode;
     FPropToCompMap := TPropToCompMap.Create;
     FGridConfig := TGridConfigurator.Create;
     FFornecedorBLL := TFornecedorBLL.Create(gAppDbContext);
@@ -152,13 +195,16 @@ begin
 
     ConfigureGrid;
     ConfigMapPropComp;
-    SearchFornecedors;
+    SearchFornecedores;
+    ConfigureSelectionMode(IsSelectionMode);
     FornecedorManForm.ShowModal;
 
     FPropToCompMap.Free;
     FGridConfig.Free;
     FFornecedorBLL.Free;
     FFornecedorFilter.Free;
+
+    Result := FSelectionResult;
 
     Free;
   end;

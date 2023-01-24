@@ -8,7 +8,7 @@ uses
   SysUtils, DB, BufDataset, Forms, Controls, Dialogs,
   DBGrids, StdCtrls, ExtCtrls, Menus, produto_bll, produto_cad_form,
   grid_configurator, prop_to_comp_map, produto_filter, application_types,
-  mensagem_validacao_form, db_context, ComboBoxValue, BBarPanel, Classes,
+  mensagem_validacao_form, db_context, ComboBoxValue, BBarPanel,
   LCLType;
 
 type
@@ -45,6 +45,7 @@ type
     procedure menuLogEdicoesClick(Sender: TObject);
   private
     FSelectionResult: TSelectionResult;
+    FIsSelectionMode: Boolean;
     FPropToCompMap: TPropToCompMap;
     FProdutoBLL: TProdutoBLL;
     FGridConfig: TGridConfigurator;
@@ -104,7 +105,10 @@ end;
 
 procedure TProdutoManForm.GridProdutosDblClick(Sender: TObject);
 begin
-  EditProduto;
+  if FIsSelectionMode then
+    SelectProduto
+  else
+    EditProduto;
 end;
 
 procedure TProdutoManForm.menuLogEdicoesClick(Sender: TObject);
@@ -186,6 +190,7 @@ begin
   with ProdutoManForm do
   begin
     FSelectionResult.Success := False;
+    FIsSelectionMode := IsSelectionMode;
     FPropToCompMap := TPropToCompMap.Create;
     FGridConfig := TGridConfigurator.Create;
     FProdutoBLL := TProdutoBLL.Create(gAppDbContext);

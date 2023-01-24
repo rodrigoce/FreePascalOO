@@ -92,10 +92,9 @@
         <ComponentName Value="ProdutoManForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="3"/>
-        <TopLine Value="172"/>
-        <CursorPos X="41" Y="183"/>
+        <TopLine Value="92"/>
+        <CursorPos X="15" Y="108"/>
         <UsageCount Value="205"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -148,7 +147,7 @@
       <Unit>
         <Filename Value="application_types.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="8"/>
         <CursorPos X="13" Y="16"/>
         <UsageCount Value="208"/>
         <Loaded Value="True"/>
@@ -197,9 +196,12 @@
         <ComponentName Value="ImagesDM"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-        <EditorIndex Value="-1"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="7"/>
         <CursorPos X="29" Y="4"/>
         <UsageCount Value="212"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="menu_tree_item.pas"/>
@@ -219,10 +221,11 @@
       <Unit>
         <Filename Value="menu_principal_callbacks.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="20"/>
-        <CursorPos X="30" Y="36"/>
+        <EditorIndex Value="5"/>
+        <TopLine Value="30"/>
+        <CursorPos X="33" Y="46"/>
         <UsageCount Value="203"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="mensagem_validacao_form.pas"/>
@@ -483,10 +486,12 @@
         <ComponentName Value="FornecedorManForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="134"/>
-        <CursorPos X="45" Y="150"/>
+        <EditorIndex Value="4"/>
+        <TopLine Value="104"/>
+        <CursorPos X="5" Y="110"/>
         <UsageCount Value="228"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="fornecedor_validator.pas"/>
@@ -510,10 +515,9 @@
         <ComponentName Value="CompraCadForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="4"/>
-        <TopLine Value="369"/>
-        <CursorPos X="55" Y="379"/>
-        <ComponentState Value="1"/>
+        <EditorIndex Value="6"/>
+        <TopLine Value="379"/>
+        <CursorPos Y="405"/>
         <UsageCount Value="220"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -553,7 +557,7 @@
         <ComponentName Value="CompraManForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="9"/>
         <TopLine Value="65"/>
         <CursorPos X="11" Y="144"/>
         <UsageCount Value="220"/>
@@ -613,9 +617,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="1"/>
-        <CursorPos X="72" Y="24"/>
-        <ComponentState Value="1"/>
-        <UsageCount Value="29"/>
+        <CursorPos X="15" Y="17"/>
+        <UsageCount Value="33"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -820,127 +823,134 @@
         <TopLine Value="34"/>
         <UsageCount Value="10"/>
       </Unit>
+      <Unit>
+        <Filename Value="C:\lazarus\lcl\include\wincontrol.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="4450"/>
+        <CursorPos X="3" Y="4477"/>
+        <UsageCount Value="10"/>
+      </Unit>
     </Units>
     <JumpHistory HistoryIndex="29">
       <Position>
-        <Filename Value="produto_man_form.pas"/>
-        <Caret Line="172" Column="31" TopLine="144"/>
+        <Filename Value="fornecedor_man_form.pas"/>
+        <Caret Column="45"/>
+      </Position>
+      <Position>
+        <Filename Value="fornecedor_man_form.pas"/>
+        <Caret Line="53" Column="29" TopLine="41"/>
+      </Position>
+      <Position>
+        <Filename Value="fornecedor_man_form.pas"/>
+        <Caret Line="151" Column="3" TopLine="148"/>
+      </Position>
+      <Position>
+        <Filename Value="fornecedor_man_form.pas"/>
+        <Caret Line="55" Column="70" TopLine="38"/>
+      </Position>
+      <Position>
+        <Filename Value="fornecedor_man_form.pas"/>
+        <Caret Line="80" Column="9" TopLine="77"/>
+      </Position>
+      <Position>
+        <Filename Value="fornecedor_man_form.pas"/>
+        <Caret Line="193" Column="19" TopLine="170"/>
+      </Position>
+      <Position>
+        <Filename Value="fornecedor_man_form.pas"/>
+        <Caret Line="51" Column="33" TopLine="36"/>
+      </Position>
+      <Position>
+        <Filename Value="fornecedor_man_form.pas"/>
+        <Caret Line="203" TopLine="175"/>
+      </Position>
+      <Position>
+        <Filename Value="menu_principal_callbacks.pas"/>
+        <Caret Line="46" Column="33" TopLine="30"/>
+      </Position>
+      <Position>
+        <Filename Value="tests_form.pas"/>
+        <Caret Line="16" Column="15"/>
+      </Position>
+      <Position>
+        <Filename Value="tests_form.pas"/>
+        <Caret Line="17" Column="15"/>
       </Position>
       <Position>
         <Filename Value="produto_man_form.pas"/>
-        <Caret Line="77" Column="3" TopLine="75"/>
+        <Caret Line="12" Column="35"/>
       </Position>
       <Position>
         <Filename Value="produto_man_form.pas"/>
-        <Caret Line="146" Column="49" TopLine="145"/>
+        <Caret Line="59" Column="34" TopLine="43"/>
       </Position>
       <Position>
         <Filename Value="produto_man_form.pas"/>
-        <Caret Line="88" Column="4" TopLine="86"/>
+        <Caret Line="60" Column="25" TopLine="43"/>
+      </Position>
+      <Position>
+        <Filename Value="fornecedor_man_form.pas"/>
+        <Caret Line="186" Column="30" TopLine="175"/>
       </Position>
       <Position>
         <Filename Value="produto_man_form.pas"/>
-        <Caret Line="55" Column="22" TopLine="26"/>
+        <Caret Line="200" Column="46" TopLine="181"/>
       </Position>
       <Position>
         <Filename Value="produto_man_form.pas"/>
-        <Caret Line="169" Column="25" TopLine="151"/>
+        <Caret Line="111" Column="5" TopLine="106"/>
       </Position>
       <Position>
-        <Filename Value="produto_man_form.pas"/>
-        <Caret Line="80" Column="9" TopLine="78"/>
+        <Filename Value="fornecedor_man_form.pas"/>
+        <Caret Line="47" Column="31" TopLine="43"/>
       </Position>
       <Position>
         <Filename Value="compra_cad_form.pas"/>
-        <Caret Line="355" Column="85" TopLine="331"/>
-      </Position>
-      <Position>
-        <Filename Value="produto_man_form.pas"/>
-        <Caret Line="12" Column="10"/>
-      </Position>
-      <Position>
-        <Filename Value="produto_man_form.pas"/>
-        <Caret Line="102" Column="34" TopLine="94"/>
-      </Position>
-      <Position>
-        <Filename Value="produto_man_form.pas"/>
-        <Caret Line="57" Column="16" TopLine="29"/>
+        <Caret Line="382" Column="46" TopLine="369"/>
       </Position>
       <Position>
         <Filename Value="compra_cad_form.pas"/>
-        <Caret Line="356" Column="85" TopLine="332"/>
+        <Caret Line="380" TopLine="370"/>
+      </Position>
+      <Position>
+        <Filename Value="fornecedor_man_form.pas"/>
+        <Caret Line="110" Column="5" TopLine="104"/>
       </Position>
       <Position>
         <Filename Value="produto_man_form.pas"/>
-        <Caret Line="166" Column="47" TopLine="158"/>
+        <Caret Line="48" Column="14" TopLine="28"/>
       </Position>
       <Position>
         <Filename Value="produto_man_form.pas"/>
-        <Caret Line="165" Column="47" TopLine="157"/>
+        <Caret Line="108" Column="15" TopLine="92"/>
       </Position>
       <Position>
-        <Filename Value="produto_man_form.pas"/>
-        <Caret Line="166" Column="47" TopLine="158"/>
+        <Filename Value="compra_cad_form.pas"/>
+        <Caret Line="388" Column="51" TopLine="354"/>
       </Position>
       <Position>
-        <Filename Value="produto_man_form.pas"/>
-        <Caret Line="165" Column="47" TopLine="157"/>
+        <Filename Value="compra_cad_form.pas"/>
+        <Caret Line="389" Column="51" TopLine="357"/>
       </Position>
       <Position>
-        <Filename Value="produto_man_form.pas"/>
-        <Caret Line="166" Column="47" TopLine="158"/>
+        <Filename Value="compra_cad_form.pas"/>
+        <Caret Line="388" Column="51" TopLine="356"/>
       </Position>
       <Position>
-        <Filename Value="produto_man_form.pas"/>
-        <Caret Line="165" Column="47" TopLine="157"/>
+        <Filename Value="compra_cad_form.pas"/>
+        <Caret Line="389" Column="51" TopLine="357"/>
       </Position>
       <Position>
-        <Filename Value="produto_man_form.pas"/>
-        <Caret Line="58" Column="23" TopLine="44"/>
+        <Filename Value="compra_cad_form.pas"/>
+        <Caret Line="388" Column="51" TopLine="302"/>
       </Position>
       <Position>
-        <Filename Value="produto_man_form.pas"/>
-        <Caret Line="184" Column="5" TopLine="172"/>
+        <Filename Value="compra_cad_form.pas"/>
+        <Caret Line="389" TopLine="379"/>
       </Position>
       <Position>
-        <Filename Value="produto_man_form.pas"/>
-        <Caret Line="57" Column="25" TopLine="43"/>
-      </Position>
-      <Position>
-        <Filename Value="produto_man_form.pas"/>
-        <Caret Line="196" Column="14" TopLine="176"/>
-      </Position>
-      <Position>
-        <Filename Value="produto_man_form.pas"/>
-        <Caret Line="177" Column="35" TopLine="176"/>
-      </Position>
-      <Position>
-        <Filename Value="produto_man_form.pas"/>
-        <Caret Line="57" Column="31" TopLine="42"/>
-      </Position>
-      <Position>
-        <Filename Value="produto_man_form.pas"/>
-        <Caret Line="177" Column="39" TopLine="175"/>
-      </Position>
-      <Position>
-        <Filename Value="produto_man_form.pas"/>
-        <Caret Line="57" Column="37" TopLine="42"/>
-      </Position>
-      <Position>
-        <Filename Value="produto_man_form.pas"/>
-        <Caret Line="177" Column="57" TopLine="174"/>
-      </Position>
-      <Position>
-        <Filename Value="produto_man_form.pas"/>
-        <Caret Line="57" Column="53" TopLine="42"/>
-      </Position>
-      <Position>
-        <Filename Value="produto_man_form.pas"/>
-        <Caret Line="183" Column="41" TopLine="173"/>
-      </Position>
-      <Position>
-        <Filename Value="produto_man_form.pas"/>
-        <Caret Line="59" Column="40" TopLine="44"/>
+        <Filename Value="compra_cad_form.pas"/>
+        <Caret Line="405" TopLine="379"/>
       </Position>
     </JumpHistory>
     <RunParams>

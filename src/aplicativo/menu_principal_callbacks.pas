@@ -43,7 +43,7 @@ end;
 
 procedure TMenuPrincipalCallBacks.ManutencaoFornecedores;
 begin
-  TFornecedorManForm.Open;
+  TFornecedorManForm.Open(False);
 end;
 
 procedure TMenuPrincipalCallBacks.Compras;

@@ -3,7 +3,7 @@ object ProdutoManForm: TProdutoManForm
   Height = 470
   Top = 237
   Width = 760
-  ActiveControl = GridProdutos
+  ActiveControl = edNome
   Caption = 'Manutenção de Produtos'
   ClientHeight = 470
   ClientWidth = 760

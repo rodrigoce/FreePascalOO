@@ -12,6 +12,7 @@ type
   { TImagesDM }
 
   TImagesDM = class(TDataModule)
+    ImageListBtn: TImageList;
     ImageListMenu: TImageList;
     procedure DataModuleCreate(Sender: TObject);
   private
