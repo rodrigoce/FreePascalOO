@@ -15,7 +15,7 @@ type
   { TFornecedorManForm }
 
   TFornecedorManForm = class(TForm)
-    barPanel: TBBarPanel;
+    barAcoes: TBBarPanel;
     btCancel: TButton;
     btEdit: TButton;
     btNew: TButton;

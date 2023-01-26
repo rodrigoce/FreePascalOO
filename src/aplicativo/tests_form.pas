@@ -13,12 +13,11 @@ type
   { TTestesForm }
 
   TTestesForm = class(TForm)
-    barPanel: TBBarPanel;
-    btCancel: TButton;
-    btSelect: TButton;
+    barAcoes: TBBarPanel;
     Button1: TButton;
     FlowPanel1: TFlowPanel;
     leftFlowPanel: TFlowPanel;
+    rightFlowPanel: TFlowPanel;
   private
 
   public

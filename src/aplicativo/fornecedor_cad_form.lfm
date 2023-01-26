@@ -25,46 +25,6 @@ object FornecedorCadForm: TFornecedorCadForm
     Width = 10
     Caption = 'Id'
   end
-  object Panel1: TPanel
-    Left = 0
-    Height = 37
-    Top = 253
-    Width = 585
-    Align = alBottom
-    BevelOuter = bvNone
-    ClientHeight = 37
-    ClientWidth = 585
-    Color = clSkyBlue
-    ParentColor = False
-    TabOrder = 3
-    object btSave: TButton
-      Left = 424
-      Height = 25
-      Top = 6
-      Width = 75
-      Caption = '&Salvar'
-      OnClick = btSaveClick
-      TabOrder = 1
-    end
-    object btCancel: TButton
-      Left = 504
-      Height = 25
-      Top = 6
-      Width = 75
-      Caption = '&Cancelar'
-      OnClick = btCancelClick
-      TabOrder = 2
-    end
-    object ckAtivo: TCheckBox
-      Left = 8
-      Height = 19
-      Top = 12
-      Width = 48
-      Caption = 'Ativo'
-      TabOrder = 0
-      TabStop = False
-    end
-  end
   object edId: TEdit
     Left = 128
     Height = 23
@@ -93,5 +53,88 @@ object FornecedorCadForm: TFornecedorCadForm
     Top = 80
     Width = 448
     TabOrder = 2
+  end
+  object barAcoes: TBBarPanel
+    Left = 0
+    Height = 35
+    Top = 255
+    Width = 585
+    Align = alBottom
+    BevelOuter = bvNone
+    BorderWidth = 5
+    ClientHeight = 35
+    ClientWidth = 585
+    Color = clSkyBlue
+    ParentColor = False
+    TabOrder = 3
+    object leftFlowPanel: TFlowPanel
+      Left = 5
+      Height = 25
+      Top = 5
+      Width = 123
+      Align = alLeft
+      BevelOuter = bvNone
+      ControlList = <      
+        item
+          Control = ckAtivo
+          WrapAfter = waAuto
+          Index = 0
+        end>
+      FlowLayout = tlCenter
+      FlowStyle = fsLeftRightTopBottom
+      TabOrder = 0
+      object ckAtivo: TCheckBox
+        Left = 0
+        Height = 19
+        Top = 0
+        Width = 48
+        Anchors = []
+        Caption = 'Ativo'
+        TabOrder = 0
+        TabStop = False
+      end
+    end
+    object rightFlowPanel: TFlowPanel
+      Left = 249
+      Height = 25
+      Top = 5
+      Width = 331
+      Align = alRight
+      BevelOuter = bvNone
+      ControlList = <      
+        item
+          Control = btCancel
+          WrapAfter = waAuto
+          Index = 0
+        end      
+        item
+          Control = btSave
+          WrapAfter = waAuto
+          Index = 1
+        end>
+      FlowLayout = tlCenter
+      FlowStyle = fsRightLeftTopBottom
+      TabOrder = 1
+      object btSave: TButton
+        Left = 181
+        Height = 25
+        Top = 0
+        Width = 75
+        Anchors = []
+        Caption = '&Salvar'
+        OnClick = btSaveClick
+        TabOrder = 0
+      end
+      object btCancel: TButton
+        Left = 256
+        Height = 25
+        Top = 0
+        Width = 75
+        Anchors = []
+        Caption = '&Cancelar'
+        OnClick = btCancelClick
+        TabOrder = 1
+      end
+    end
   end
 end

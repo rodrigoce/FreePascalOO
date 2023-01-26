@@ -1,13 +1,13 @@
 object UsuarioChangePassForm: TUsuarioChangePassForm
   Left = 425
-  Height = 247
+  Height = 243
   Top = 308
   Width = 585
   ActiveControl = edSenhaAtual
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
   Caption = 'Alterar Senha'
-  ClientHeight = 247
+  ClientHeight = 243
   ClientWidth = 585
   Position = poScreenCenter
   LCLVersion = '2.2.0.4'
@@ -25,37 +25,6 @@ object UsuarioChangePassForm: TUsuarioChangePassForm
     Top = 24
     Width = 10
     Caption = 'Id'
-  end
-  object Panel1: TPanel
-    Left = 0
-    Height = 37
-    Top = 210
-    Width = 585
-    Align = alBottom
-    BevelOuter = bvNone
-    ClientHeight = 37
-    ClientWidth = 585
-    Color = clSkyBlue
-    ParentColor = False
-    TabOrder = 6
-    object btSave: TButton
-      Left = 424
-      Height = 25
-      Top = 6
-      Width = 75
-      Caption = '&Salvar'
-      OnClick = btSaveClick
-      TabOrder = 0
-    end
-    object btCancel: TButton
-      Left = 504
-      Height = 25
-      Top = 6
-      Width = 75
-      Caption = '&Cancelar'
-      OnClick = btCancelClick
-      TabOrder = 1
-    end
   end
   object edId: TEdit
     Left = 128
@@ -137,5 +106,61 @@ object UsuarioChangePassForm: TUsuarioChangePassForm
     Top = 184
     Width = 89
     Caption = 'Confirmar Senha'
+  end
+  object barAcoes: TBBarPanel
+    Left = 0
+    Height = 35
+    Top = 208
+    Width = 585
+    Align = alBottom
+    BevelOuter = bvNone
+    BorderWidth = 5
+    ClientHeight = 35
+    ClientWidth = 585
+    Color = clSkyBlue
+    ParentColor = False
+    TabOrder = 6
+    object rightFlowPanel: TFlowPanel
+      Left = 249
+      Height = 25
+      Top = 5
+      Width = 331
+      Align = alRight
+      BevelOuter = bvNone
+      ControlList = <      
+        item
+          Control = btCancel
+          WrapAfter = waAuto
+          Index = 0
+        end      
+        item
+          Control = btSave
+          WrapAfter = waAuto
+          Index = 1
+        end>
+      FlowLayout = tlCenter
+      FlowStyle = fsRightLeftTopBottom
+      TabOrder = 0
+      object btSave: TButton
+        Left = 181
+        Height = 25
+        Top = 0
+        Width = 75
+        Anchors = []
+        Caption = '&Salvar'
+        OnClick = btSaveClick
+        TabOrder = 0
+      end
+      object btCancel: TButton
+        Left = 256
+        Height = 25
+        Top = 0
+        Width = 75
+        Anchors = []
+        Caption = '&Cancelar'
+        OnClick = btCancelClick
+        TabOrder = 1
+      end
+    end
   end
 end

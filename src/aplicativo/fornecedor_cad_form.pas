@@ -7,13 +7,14 @@ interface
 uses
   SysUtils, Forms, Controls, StdCtrls,
   ExtCtrls, fornecedor_entity, fornecedor_bll, application_types,
-  mensagem_validacao_form, prop_to_comp_map, db_context;
+  mensagem_validacao_form, prop_to_comp_map, db_context, BBarPanel;
 
 type
 
   { TFornecedorCadForm }
 
   TFornecedorCadForm = class(TForm)
+    barAcoes: TBBarPanel;
     btCancel: TButton;
     btSave: TButton;
     ckAtivo: TCheckBox;
@@ -22,8 +23,9 @@ type
     labContatos: TLabel;
     labId: TLabel;
     labNome: TLabel;
+    leftFlowPanel: TFlowPanel;
     memoContatos: TMemo;
-    Panel1: TPanel;
+    rightFlowPanel: TFlowPanel;
     procedure btCancelClick(Sender: TObject);
     procedure btSaveClick(Sender: TObject);
   private

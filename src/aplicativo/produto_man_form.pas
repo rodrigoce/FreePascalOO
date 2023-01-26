@@ -16,14 +16,22 @@ type
   { TProdutoManForm }
 
   TProdutoManForm = class(TForm)
-    barPanel: TBBarPanel;
+    barAcoes: TBBarPanel;
     btCancel: TButton;
     btEdit: TButton;
     btNew: TButton;
     btSearch: TButton;
+    btSearch1: TButton;
     btSelect: TButton;
     buf: TBufDataset;
     cbSituacao: TComboBoxValue;
+    cbSituacao1: TComboBoxValue;
+    edCodigo1: TEdit;
+    edNome1: TEdit;
+    labCodigo1: TLabel;
+    Label1: TLabel;
+    labNome1: TLabel;
+    labSituacao1: TLabel;
     leftFlowPanel: TFlowPanel;
     GridProdutos: TDBGrid;
     ds: TDataSource;
@@ -35,6 +43,8 @@ type
     labNome: TLabel;
     menuLogEdicoes: TMenuItem;
     gridPopUp: TPopupMenu;
+    Panel1: TPanel;
+    Shape1: TShape;
     procedure btCancelClick(Sender: TObject);
     procedure btNewClick(Sender: TObject);
     procedure btEditClick(Sender: TObject);

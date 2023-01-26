@@ -9,16 +9,19 @@ uses
   DBGrids, StdCtrls, ExtCtrls, Menus, EditBtn, ComCtrls,
   compra_bll, compra_cad_form, grid_configurator, prop_to_comp_map,
   compra_filter, application_types, mensagem_validacao_form, db_context,
-  ComboBoxValue;
+  ComboBoxValue, BBarPanel, LCLType, Classes;
 
 type
 
   { TCompraManForm }
 
   TCompraManForm = class(TForm)
+    barAcoes: TBBarPanel;
+    btCancel: TButton;
     btEdit: TButton;
-    btNovo: TButton;
+    btNew: TButton;
     btSearch: TButton;
+    btSelect: TButton;
     buf: TBufDataset;
     cbSituacao: TComboBoxValue;
     edDtIni: TDateEdit;
@@ -29,16 +32,20 @@ type
     labDtIni: TLabel;
     labSituacao: TLabel;
     labDtFim: TLabel;
+    leftFlowPanel: TFlowPanel;
     menuLogEdicoes: TMenuItem;
-    pnAcoes: TPanel;
     gridPopUp: TPopupMenu;
-    procedure btNovoClick(Sender: TObject);
+    procedure btCancelClick(Sender: TObject);
+    procedure btNewClick(Sender: TObject);
     procedure btEditClick(Sender: TObject);
     procedure btSearchClick(Sender: TObject);
+    procedure btSelectClick(Sender: TObject);
     procedure edCodigoKeyPress(Sender: TObject; var Key: char);
     procedure GridComprasDblClick(Sender: TObject);
     procedure menuLogEdicoesClick(Sender: TObject);
   private
+    FSelectionResult: TSelectionResult;
+    FIsSelectionMode: Boolean;
     FPropToCompMap: TPropToCompMap;
     FCompraBLL: TCompraBLL;
     FGridConfig: TGridConfigurator;
@@ -47,8 +54,10 @@ type
     procedure ConfigureGrid;
     procedure ConfigMapPropComp;
     procedure EditCompra;
+    procedure SelectCompra;
+    procedure ConfigureSelectionMode(IsSelectionMode: Boolean);
   public
-    class procedure Open;
+    class function Open(IsSelectionMode: Boolean): TSelectionResult;
   end;
 
 var
@@ -62,10 +71,15 @@ uses entity_log_form;
 
 { TCompraManForm }
 
-procedure TCompraManForm.btNovoClick(Sender: TObject);
+procedure TCompraManForm.btNewClick(Sender: TObject);
 begin
   TCompraCadForm.Edit(0);
   SearchCompras;
+end;
+
+procedure TCompraManForm.btCancelClick(Sender: TObject);
+begin
+  Close;
 end;
 
 procedure TCompraManForm.btEditClick(Sender: TObject);
@@ -78,6 +92,11 @@ begin
   SearchCompras;
 end;
 
+procedure TCompraManForm.btSelectClick(Sender: TObject);
+begin
+  SelectCompra;
+end;
+
 procedure TCompraManForm.edCodigoKeyPress(Sender: TObject; var Key: char);
 begin
   if Key = #13 then
@@ -86,7 +105,10 @@ end;
 
 procedure TCompraManForm.GridComprasDblClick(Sender: TObject);
 begin
-  EditCompra;
+  if FIsSelectionMode then
+    SelectCompra
+  else
+    EditCompra;
 end;
 
 procedure TCompraManForm.menuLogEdicoesClick(Sender: TObject);
@@ -147,11 +169,31 @@ begin
   buf.Locate('Id', rememberId, []);
 end;
 
-class procedure TCompraManForm.Open;
+procedure TCompraManForm.SelectCompra;
+begin
+  if buf.RecordCount = 0 then
+    Application.MessageBox('Nenhuma Compra está selecionada!', 'Atenção', MB_ICONASTERISK + MB_OK)
+  else
+  begin
+    FSelectionResult.Success := True;
+    FSelectionResult.Value := buf.FieldByName('Id').AsInteger;
+    Close;
+  end;
+end;
+
+procedure TCompraManForm.ConfigureSelectionMode(IsSelectionMode: Boolean);
+begin
+  btSelect.Visible := IsSelectionMode;
+  btCancel.Visible := IsSelectionMode;
+end;
+
+class function TCompraManForm.Open(IsSelectionMode: Boolean): TSelectionResult;
 begin
   Application.CreateForm(TCompraManForm, CompraManForm);
   with CompraManForm do
   begin
+    FSelectionResult.Success := False;
+    FIsSelectionMode := IsSelectionMode;
     FPropToCompMap := TPropToCompMap.Create;
     FGridConfig := TGridConfigurator.Create;
     FCompraBLL := TCompraBLL.Create(gAppDbContext);
@@ -160,12 +202,15 @@ begin
     ConfigureGrid;
     ConfigMapPropComp;
     SearchCompras;
+    ConfigureSelectionMode(IsSelectionMode);
     CompraManForm.ShowModal;
 
     FPropToCompMap.Free;
     FGridConfig.Free;
     FCompraBLL.Free;
     FCompraFilter.Free;
+
+    Result := FSelectionResult;
 
     Free;
   end;

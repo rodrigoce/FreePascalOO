@@ -97,10 +97,10 @@ object FornecedorManForm: TFornecedorManForm
     Columns = <>
     DataSource = ds
     PopupMenu = gridPopUp
-    TabOrder = 1
+    TabOrder = 2
     OnDblClick = GridFornecedorsDblClick
   end
-  object barPanel: TBBarPanel
+  object barAcoes: TBBarPanel
     Left = 8
     Height = 35
     Top = 64
@@ -112,7 +112,7 @@ object FornecedorManForm: TFornecedorManForm
     ClientWidth = 744
     Color = clSkyBlue
     ParentColor = False
-    TabOrder = 2
+    TabOrder = 1
     object leftFlowPanel: TFlowPanel
       Left = 5
       Height = 25

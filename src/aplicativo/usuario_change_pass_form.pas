@@ -8,13 +8,14 @@ uses
   Classes, SysUtils, Forms, Controls, Dialogs, StdCtrls,
   ExtCtrls, usuario_entity, usuario_bll, application_types,
   mensagem_validacao_form, prop_to_comp_map, usuario_change_password,
-  db_context;
+  db_context, BBarPanel;
 
 type
 
   { TUsuarioChangePassForm }
 
   TUsuarioChangePassForm = class(TForm)
+    barAcoes: TBBarPanel;
     btCancel: TButton;
     btSave: TButton;
     edId: TEdit;
@@ -29,7 +30,7 @@ type
     labConfirmarSenha: TLabel;
     labUserName: TLabel;
     labSenhaAtual: TLabel;
-    Panel1: TPanel;
+    rightFlowPanel: TFlowPanel;
     procedure btCancelClick(Sender: TObject);
     procedure btSaveClick(Sender: TObject);
     procedure edUserNameKeyDown(Sender: TObject; var Key: Word;

@@ -38,7 +38,7 @@ end;
 
 procedure TMenuPrincipalCallBacks.ManutencaoUsuarios;
 begin
-  TUsuarioManForm.Open;
+  TUsuarioManForm.Open(False);
 end;
 
 procedure TMenuPrincipalCallBacks.ManutencaoFornecedores;
@@ -48,7 +48,7 @@ end;
 
 procedure TMenuPrincipalCallBacks.Compras;
 begin
-  TCompraManForm.Open;
+  TCompraManForm.Open(False);
 end;
 
 procedure TMenuPrincipalCallBacks.GeradorDeCodigoSQL;

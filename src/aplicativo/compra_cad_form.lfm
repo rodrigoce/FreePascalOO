@@ -11,46 +11,6 @@ object CompraCadForm: TCompraCadForm
   ClientWidth = 936
   Position = poScreenCenter
   LCLVersion = '2.2.0.4'
-  object Panel1: TPanel
-    Left = 0
-    Height = 37
-    Top = 518
-    Width = 936
-    Align = alBottom
-    BevelOuter = bvNone
-    ClientHeight = 37
-    ClientWidth = 936
-    Color = clSkyBlue
-    ParentColor = False
-    TabOrder = 0
-    object btSave: TButton
-      Left = 776
-      Height = 25
-      Top = 7
-      Width = 75
-      Caption = '&Salvar'
-      OnClick = btSaveClick
-      TabOrder = 0
-    end
-    object btCancel: TButton
-      Left = 856
-      Height = 25
-      Top = 7
-      Width = 75
-      Caption = '&Cancelar'
-      OnClick = btCancelClick
-      TabOrder = 1
-    end
-    object ckAtivo: TCheckBox
-      Left = 8
-      Height = 19
-      Top = 12
-      Width = 110
-      Caption = 'Compra Excluída'
-      TabOrder = 2
-      TabStop = False
-    end
-  end
   object gbCabecalho: TGroupBox
     Left = 7
     Height = 72
@@ -59,7 +19,7 @@ object CompraCadForm: TCompraCadForm
     Caption = 'Cabeçalho'
     ClientHeight = 52
     ClientWidth = 917
-    TabOrder = 1
+    TabOrder = 0
     object labDataCompra: TLabel
       Left = 99
       Height = 15
@@ -172,7 +132,7 @@ object CompraCadForm: TCompraCadForm
     Caption = 'Produto'
     ClientHeight = 52
     ClientWidth = 916
-    TabOrder = 2
+    TabOrder = 1
     object edCodProduto: TEdit
       Left = 8
       Height = 23
@@ -284,7 +244,90 @@ object CompraCadForm: TCompraCadForm
     Columns = <>
     DataSource = dsTemp
     PopupMenu = itensPopMenu
+    TabOrder = 2
+  end
+  object barAcoes: TBBarPanel
+    Left = 0
+    Height = 35
+    Top = 520
+    Width = 936
+    Align = alBottom
+    BevelOuter = bvNone
+    BorderWidth = 5
+    ClientHeight = 35
+    ClientWidth = 936
+    Color = clSkyBlue
+    ParentColor = False
     TabOrder = 3
+    object leftFlowPanel: TFlowPanel
+      Left = 5
+      Height = 25
+      Top = 5
+      Width = 123
+      Align = alLeft
+      BevelOuter = bvNone
+      ControlList = <      
+        item
+          Control = ckAtivo
+          WrapAfter = waAuto
+          Index = 0
+        end>
+      FlowLayout = tlCenter
+      FlowStyle = fsLeftRightTopBottom
+      TabOrder = 0
+      object ckAtivo: TCheckBox
+        Left = 0
+        Height = 19
+        Top = 0
+        Width = 110
+        Anchors = []
+        Caption = 'Compra Excluída'
+        TabOrder = 0
+        TabStop = False
+      end
+    end
+    object rightFlowPanel: TFlowPanel
+      Left = 600
+      Height = 25
+      Top = 5
+      Width = 331
+      Align = alRight
+      BevelOuter = bvNone
+      ControlList = <      
+        item
+          Control = btCancel
+          WrapAfter = waAuto
+          Index = 0
+        end      
+        item
+          Control = btSave
+          WrapAfter = waAuto
+          Index = 1
+        end>
+      FlowLayout = tlCenter
+      FlowStyle = fsRightLeftTopBottom
+      TabOrder = 1
+      object btSave: TButton
+        Left = 181
+        Height = 25
+        Top = 0
+        Width = 75
+        Anchors = []
+        Caption = '&Salvar'
+        OnClick = btSaveClick
+        TabOrder = 0
+      end
+      object btCancel: TButton
+        Left = 256
+        Height = 25
+        Top = 0
+        Width = 75
+        Anchors = []
+        Caption = '&Cancelar'
+        OnClick = btCancelClick
+        TabOrder = 1
+      end
+    end
   end
   object bufProdItens: TBufDataset
     FieldDefs = <>

@@ -38,7 +38,8 @@ end;
 
 procedure TBBarPanel.PanelResize(Sender: TObject);
 begin
-  Height := 35;
+  if Align = alNone then
+    Height := 35;
 end;
 
 constructor TBBarPanel.Create(AOwner: TComponent);

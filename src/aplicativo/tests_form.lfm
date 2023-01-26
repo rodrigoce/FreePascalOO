@@ -1,22 +1,22 @@
 object TestesForm: TTestesForm
-  Left = 520
-  Height = 409
-  Top = 317
-  Width = 519
+  Left = 1415
+  Height = 416
+  Top = 379
+  Width = 562
   Caption = 'Formulário de Testes'
-  ClientHeight = 409
-  ClientWidth = 519
+  ClientHeight = 416
+  ClientWidth = 562
   LCLVersion = '2.2.0.4'
-  object barPanel: TBBarPanel
-    Left = 16
+  object barAcoes: TBBarPanel
+    Left = 0
     Height = 35
-    Top = 40
-    Width = 446
-    Anchors = [akTop, akLeft, akRight]
+    Top = 381
+    Width = 562
+    Align = alBottom
     BevelOuter = bvNone
     BorderWidth = 5
     ClientHeight = 35
-    ClientWidth = 446
+    ClientWidth = 562
     Color = clSkyBlue
     ParentColor = False
     TabOrder = 0
@@ -24,41 +24,25 @@ object TestesForm: TTestesForm
       Left = 5
       Height = 25
       Top = 5
-      Width = 347
+      Width = 123
       Align = alLeft
       BevelOuter = bvNone
-      ControlList = <      
-        item
-          Control = btSelect
-          WrapAfter = waAuto
-          Index = 0
-        end      
-        item
-          Control = btCancel
-          WrapAfter = waAuto
-          Index = 1
-        end>
+      ControlList = <>
       FlowLayout = tlCenter
       FlowStyle = fsLeftRightTopBottom
       TabOrder = 0
-      object btSelect: TButton
-        Left = 0
-        Height = 25
-        Top = 0
-        Width = 75
-        Anchors = []
-        Caption = '&Selecionar'
-        TabOrder = 0
-      end
-      object btCancel: TButton
-        Left = 75
-        Height = 25
-        Top = 0
-        Width = 75
-        Anchors = []
-        Caption = '&Cancelar'
-        TabOrder = 1
-      end
+    end
+    object rightFlowPanel: TFlowPanel
+      Left = 226
+      Height = 25
+      Top = 5
+      Width = 331
+      Align = alRight
+      BevelOuter = bvNone
+      ControlList = <>
+      FlowLayout = tlCenter
+      FlowStyle = fsRightLeftTopBottom
+      TabOrder = 1
     end
   end
   object Button1: TButton

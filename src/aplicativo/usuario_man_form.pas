@@ -9,17 +9,20 @@ uses
   DBGrids, StdCtrls, ExtCtrls, Menus, usuario_bll, usuario_cad_form,
   grid_configurator, prop_to_comp_map, usuario_filter, application_types,
   mensagem_validacao_form, usuario_change_pass_form, db_context,
-  ComboBoxValue;
+  ComboBoxValue, BBarPanel, Classes, LCLType;
 
 type
 
   { TUsuarioManForm }
 
   TUsuarioManForm = class(TForm)
-    btEdit: TButton;
+    barAcoes: TBBarPanel;
+    btCancel: TButton;
     btChangePassword: TButton;
-    btNovo: TButton;
+    btEdit: TButton;
+    btNew: TButton;
     btSearch: TButton;
+    btSelect: TButton;
     buf: TBufDataset;
     cbSituacao: TComboBoxValue;
     GridUsuarios: TDBGrid;
@@ -28,17 +31,21 @@ type
     GroupBox1: TGroupBox;
     labSituacao: TLabel;
     labNome: TLabel;
+    leftFlowPanel: TFlowPanel;
     menuLogEdicoes: TMenuItem;
-    pnAcoes: TPanel;
     gridPopUp: TPopupMenu;
+    procedure btCancelClick(Sender: TObject);
     procedure btChangePasswordClick(Sender: TObject);
-    procedure btNovoClick(Sender: TObject);
+    procedure btNewClick(Sender: TObject);
     procedure btEditClick(Sender: TObject);
     procedure btSearchClick(Sender: TObject);
+    procedure btSelectClick(Sender: TObject);
     procedure edCodigoKeyPress(Sender: TObject; var Key: char);
     procedure GridUsuariosDblClick(Sender: TObject);
     procedure menuLogEdicoesClick(Sender: TObject);
   private
+    FSelectionResult: TSelectionResult;
+    FIsSelectionMode: Boolean;
     FPropToCompMap: TPropToCompMap;
     FUsuarioBLL: TUsuarioBLL;
     FGridConfig: TGridConfigurator;
@@ -47,8 +54,10 @@ type
     procedure ConfigureGrid;
     procedure ConfigMapPropComp;
     procedure EditUsuario;
+    procedure SelectUsuario;
+    procedure ConfigureSelectionMode(IsSelectionMode: Boolean);
   public
-    class procedure Open;
+    class function Open(IsSelectionMode: Boolean): TSelectionResult;
   end;
 
 var
@@ -62,7 +71,7 @@ uses entity_log_form;
 
 { TUsuarioManForm }
 
-procedure TUsuarioManForm.btNovoClick(Sender: TObject);
+procedure TUsuarioManForm.btNewClick(Sender: TObject);
 begin
   TUsuarioCadForm.Edit(0);
   SearchUsuarios;
@@ -75,6 +84,11 @@ begin
   TUsuarioChangePassForm.ChangePassword(buf.FieldByName('Id').Value);
 end;
 
+procedure TUsuarioManForm.btCancelClick(Sender: TObject);
+begin
+  Close;
+end;
+
 procedure TUsuarioManForm.btEditClick(Sender: TObject);
 begin
   EditUsuario;
@@ -85,6 +99,11 @@ begin
   SearchUsuarios;
 end;
 
+procedure TUsuarioManForm.btSelectClick(Sender: TObject);
+begin
+  SelectUsuario;
+end;
+
 procedure TUsuarioManForm.edCodigoKeyPress(Sender: TObject; var Key: char);
 begin
   if Key = #13 then
@@ -93,7 +112,10 @@ end;
 
 procedure TUsuarioManForm.GridUsuariosDblClick(Sender: TObject);
 begin
-  EditUsuario;
+  if FIsSelectionMode then
+    SelectUsuario
+  else
+    EditUsuario;
 end;
 
 procedure TUsuarioManForm.menuLogEdicoesClick(Sender: TObject);
@@ -148,11 +170,31 @@ begin
   buf.Locate('Id', rememberId, []);
 end;
 
-class procedure TUsuarioManForm.Open;
+procedure TUsuarioManForm.SelectUsuario;
+begin
+  if buf.RecordCount = 0 then
+    Application.MessageBox('Nenhum Usuário está selecionado!', 'Atenção', MB_ICONASTERISK + MB_OK)
+  else
+  begin
+    FSelectionResult.Success := True;
+    FSelectionResult.Value := buf.FieldByName('Id').AsInteger;
+    Close;
+  end;
+end;
+
+procedure TUsuarioManForm.ConfigureSelectionMode(IsSelectionMode: Boolean);
+begin
+  btSelect.Visible := IsSelectionMode;
+  btCancel.Visible := IsSelectionMode;
+end;
+
+class function TUsuarioManForm.Open(IsSelectionMode: Boolean): TSelectionResult;
 begin
   Application.CreateForm(TUsuarioManForm, UsuarioManForm);
   with UsuarioManForm do
   begin
+    FSelectionResult.Success := False;
+    FIsSelectionMode := IsSelectionMode;
     FPropToCompMap := TPropToCompMap.Create;
     FGridConfig := TGridConfigurator.Create;
     FUsuarioBLL := TUsuarioBLL.Create(gAppDbContext);
@@ -161,12 +203,15 @@ begin
     ConfigureGrid;
     ConfigMapPropComp;
     SearchUsuarios;
+    ConfigureSelectionMode(IsSelectionMode);
     UsuarioManForm.ShowModal;
 
     FPropToCompMap.Free;
     FGridConfig.Free;
     FUsuarioBLL.Free;
     FUsuarioFilter.Free;
+
+    Result := FSelectionResult;
 
     Free;
   end;

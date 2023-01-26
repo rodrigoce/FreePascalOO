@@ -10,19 +10,21 @@ uses
   mensagem_validacao_form, prop_to_comp_map, produto_bll, produto_entity,
   fornecedor_entity, fornecedor_bll, grid_configurator, compra_item_entity,
   fields_builder, application_functions, db_context, entity_log_form,
-  produto_man_form, images_dm, fornecedor_man_form, Variants, BufDataset, DB,
-  Generics.Collections, LCLType, Menus, Buttons;
+  produto_man_form, images_dm, fornecedor_man_form, BBarPanel, Variants,
+  BufDataset, DB, Generics.Collections, LCLType, Menus, Buttons;
 
 type
 
   { TCompraCadForm }
 
   TCompraCadForm = class(TForm)
-    btPesquisarProduto: TBitBtn;
+    barAcoes: TBBarPanel;
     btCancel: TButton;
+    btPesquisarProduto: TBitBtn;
     btPesquisarFornecedor: TBitBtn;
-    btSave: TButton;
     btLancarProduto: TButton;
+    btSave: TButton;
+    ckAtivo: TCheckBox;
     dsTemp: TDataSource;
     edID: TEdit;
     edIdFornecedor: TEdit;
@@ -30,7 +32,6 @@ type
     Label1: TLabel;
     labID: TLabel;
     bufProdItens: TBufDataset;
-    ckAtivo: TCheckBox;
     GridItensCompra: TDBGrid;
     edDataCompra: TDateEdit;
     edNomeFornecedor: TEdit;
@@ -49,10 +50,11 @@ type
     labValor: TLabel;
     labTotal: TLabel;
     labNomeFornecedor: TLabel;
+    leftFlowPanel: TFlowPanel;
     menuExcluirItem: TMenuItem;
     menuLogEdicoes: TMenuItem;
-    Panel1: TPanel;
     itensPopMenu: TPopupMenu;
+    rightFlowPanel: TFlowPanel;
     procedure btCancelClick(Sender: TObject);
     procedure btLancarProdutoClick(Sender: TObject);
     procedure btPesquisarFornecedorClick(Sender: TObject);
