@@ -1,7 +1,7 @@
 object TestesForm: TTestesForm
-  Left = 1415
+  Left = 316
   Height = 416
-  Top = 379
+  Top = 258
   Width = 562
   Caption = 'Formulário de Testes'
   ClientHeight = 416
@@ -63,5 +63,14 @@ object TestesForm: TTestesForm
     FlowLayout = tlTop
     FlowStyle = fsLeftRightTopBottom
     TabOrder = 2
+  end
+  object RxDice1: TRxDice
+    Left = 128
+    Height = 66
+    Top = 32
+    Width = 66
+    Rotate = False
+    ShowFocus = False
+    TabOrder = 3
   end
 end

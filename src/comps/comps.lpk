@@ -12,7 +12,7 @@
       </SearchPaths>
     </CompilerOptions>
     <Version Major="1"/>
-    <Files Count="4">
+    <Files Count="5">
       <Item1>
         <Filename Value="comboboxvalue.pas"/>
         <HasRegisterProc Value="True"/>
@@ -33,6 +33,11 @@
         <HasRegisterProc Value="True"/>
         <UnitName Value="BBarPanel"/>
       </Item4>
+      <Item5>
+        <Filename Value="paneltitle.pas"/>
+        <HasRegisterProc Value="True"/>
+        <UnitName Value="PanelTitle"/>
+      </Item5>
     </Files>
     <CompatibilityMode Value="True"/>
     <RequiredPkgs Count="2">

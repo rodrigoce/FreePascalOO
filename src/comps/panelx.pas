@@ -41,7 +41,7 @@ begin
   inherited Paint;
   if not Enabled then
   begin
-    Canvas.Pen.Color := clGray;//clRed;
+    Canvas.Pen.Color := clGray;
     Canvas.Pen.Width := 2;
     p.X := 1 + BevelWidth;
     p.Y := 1 + BevelWidth;

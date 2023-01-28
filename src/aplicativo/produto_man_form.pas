@@ -9,7 +9,7 @@ uses
   DBGrids, StdCtrls, ExtCtrls, Menus, produto_bll, produto_cad_form,
   grid_configurator, prop_to_comp_map, produto_filter, application_types,
   mensagem_validacao_form, db_context, ComboBoxValue, BBarPanel,
-  LCLType;
+  LCLType, Classes, Graphics, LCLIntf;
 
 type
 
@@ -29,7 +29,6 @@ type
     edCodigo1: TEdit;
     edNome1: TEdit;
     labCodigo1: TLabel;
-    Label1: TLabel;
     labNome1: TLabel;
     labSituacao1: TLabel;
     leftFlowPanel: TFlowPanel;
@@ -44,15 +43,16 @@ type
     menuLogEdicoes: TMenuItem;
     gridPopUp: TPopupMenu;
     Panel1: TPanel;
-    Shape1: TShape;
     procedure btCancelClick(Sender: TObject);
     procedure btNewClick(Sender: TObject);
     procedure btEditClick(Sender: TObject);
     procedure btSearchClick(Sender: TObject);
     procedure btSelectClick(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
     procedure edCodigoKeyPress(Sender: TObject; var Key: char);
     procedure GridProdutosDblClick(Sender: TObject);
     procedure menuLogEdicoesClick(Sender: TObject);
+    procedure Panel1Paint(Sender: TObject);
   private
     FSelectionResult: TSelectionResult;
     FIsSelectionMode: Boolean;
@@ -107,6 +107,12 @@ begin
   SelectProduto;
 end;
 
+procedure TProdutoManForm.Button1Click(Sender: TObject);
+
+begin
+
+end;
+
 procedure TProdutoManForm.edCodigoKeyPress(Sender: TObject; var Key: char);
 begin
   if Key = #13 then
@@ -126,6 +132,54 @@ begin
   if buf.RecordCount = 0 then Exit;
 
   TEntityLogForm.Open('TProdutoEntity' , buf.FieldByName('Id').Value);
+end;
+
+procedure TProdutoManForm.Panel1Paint(Sender: TObject);
+
+function Darker2(MyColor:TColor; Percent:Byte):TColor;
+var r,g,b:Byte;
+begin
+  MyColor:=ColorToRGB(MyColor);
+  r:=GetRValue(MyColor);
+  g:=GetGValue(MyColor);
+  b:=GetBValue(MyColor);
+  r:=r-muldiv(r,Percent,100);  //Percent% closer to black
+  g:=g-muldiv(g,Percent,100);
+  b:=b-muldiv(b,Percent,100);
+  result:=RGB(r,g,b);
+end;
+function Lighter2(MyColor:TColor; Percent:Byte):TColor;
+var r,g,b:Byte;
+begin
+  MyColor:=ColorToRGB(MyColor);
+  r:=GetRValue(MyColor);
+  g:=GetGValue(MyColor);
+  b:=GetBValue(MyColor);
+  r:=r+muldiv(255-r,Percent,100); //Percent% closer to white
+  g:=g+muldiv(255-g,Percent,100);
+  b:=b+muldiv(255-b,Percent,100);
+  result:=RGB(r,g,b);
+end;
+
+
+var
+  anotherCanvas: TControlCanvas;
+  cap: string;
+begin
+  // para não mudar a cor do panel deixada em desing
+  // crio outro canvas, senão poderia usar o canvas do controle.
+  anotherCanvas := TControlCanvas.Create;
+  anotherCanvas.Control := Panel1;
+  anotherCanvas.Pen.Color := Darker2((Sender as TPanel).Color, 60);
+  anotherCanvas.Pen.Width := 1;
+  anotherCanvas.Pen.EndCap := pecSquare;
+  anotherCanvas.Font.Color := Darker2((Sender as TPanel).Color, 60);
+  anotherCanvas.Brush.Color := (Sender as TPanel).Color;
+  anotherCanvas.Line(5, 8, 25, 8); // comprimento 20
+  cap := 'Pesquisa de Produtos';
+  anotherCanvas.TextOut(30, 0, cap);
+  anotherCanvas.Line(anotherCanvas.TextWidth(cap) + 35, 8, 30 + anotherCanvas.TextWidth(cap) + 25, 8);
+  anotherCanvas.Free;
 end;
 
 procedure TProdutoManForm.SearchProdutos;

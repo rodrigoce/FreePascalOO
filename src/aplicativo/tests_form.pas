@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, ExtCtrls,
-  BBarPanel;
+  rxDice, BBarPanel;
 
 type
 
@@ -18,6 +18,7 @@ type
     FlowPanel1: TFlowPanel;
     leftFlowPanel: TFlowPanel;
     rightFlowPanel: TFlowPanel;
+    RxDice1: TRxDice;
   private
 
   public
