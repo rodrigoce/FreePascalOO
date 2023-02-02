@@ -110,7 +110,7 @@ object ProdutoCadForm: TProdutoCadForm
     BorderWidth = 5
     ClientHeight = 35
     ClientWidth = 585
-    Color = clSkyBlue
+    Color = 16766935
     ParentColor = False
     TabOrder = 6
     object leftFlowPanel: TFlowPanel

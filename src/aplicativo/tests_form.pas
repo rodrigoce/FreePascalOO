@@ -6,19 +6,13 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, ExtCtrls,
-  rxDice, BBarPanel;
+  rxDice, BBarPanel, PanelTitle;
 
 type
 
   { TTestesForm }
 
   TTestesForm = class(TForm)
-    barAcoes: TBBarPanel;
-    Button1: TButton;
-    FlowPanel1: TFlowPanel;
-    leftFlowPanel: TFlowPanel;
-    rightFlowPanel: TFlowPanel;
-    RxDice1: TRxDice;
   private
 
   public

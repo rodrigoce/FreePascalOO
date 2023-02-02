@@ -9,88 +9,10 @@ object ProdutoManForm: TProdutoManForm
   ClientWidth = 760
   LCLVersion = '2.2.0.4'
   WindowState = wsMaximized
-  object GroupBox1: TGroupBox
-    Left = 8
-    Height = 57
-    Top = 0
-    Width = 744
-    Anchors = [akTop, akLeft, akRight]
-    Caption = 'Pesquisar'
-    ClientHeight = 37
-    ClientWidth = 740
-    TabOrder = 0
-    object labCodigo: TLabel
-      Left = 8
-      Height = 15
-      Top = 6
-      Width = 39
-      Caption = 'Código'
-    end
-    object edCodigo: TEdit
-      Left = 50
-      Height = 23
-      Top = 2
-      Width = 96
-      OnKeyPress = edCodigoKeyPress
-      TabOrder = 0
-    end
-    object labNome: TLabel
-      Left = 160
-      Height = 15
-      Top = 6
-      Width = 33
-      Caption = 'Nome'
-    end
-    object edNome: TEdit
-      Left = 198
-      Height = 23
-      Top = 2
-      Width = 224
-      OnKeyPress = edCodigoKeyPress
-      TabOrder = 1
-    end
-    object btSearch: TButton
-      Left = 560
-      Height = 25
-      Top = 1
-      Width = 75
-      Caption = 'Pesquisar'
-      OnClick = btSearchClick
-      TabOrder = 3
-    end
-    object labSituacao: TLabel
-      Left = 434
-      Height = 15
-      Top = 6
-      Width = 45
-      Caption = 'Situação'
-    end
-    object cbSituacao: TComboBoxValue
-      Left = 483
-      Height = 23
-      Top = 2
-      Width = 64
-      ItemHeight = 15
-      ItemIndex = 0
-      Items.Strings = (
-        'Ativo'
-        'Inativo'
-        'Todos'
-      )
-      Style = csDropDownList
-      TabOrder = 2
-      Text = 'Ativo'
-      Values.Strings = (
-        'A'
-        'I'
-        'T'
-      )
-    end
-  end
   object GridProdutos: TDBGrid
     Left = 8
-    Height = 296
-    Top = 168
+    Height = 357
+    Top = 107
     Width = 744
     Anchors = [akTop, akLeft, akRight, akBottom]
     Color = clWindow
@@ -101,16 +23,16 @@ object ProdutoManForm: TProdutoManForm
     OnDblClick = GridProdutosDblClick
   end
   object barAcoes: TBBarPanel
-    Left = 9
+    Left = 8
     Height = 35
-    Top = 128
+    Top = 64
     Width = 744
     Anchors = [akTop, akLeft, akRight]
     BevelOuter = bvNone
     BorderWidth = 5
     ClientHeight = 35
     ClientWidth = 744
-    Color = clSkyBlue
+    Color = 16766935
     ParentColor = False
     TabOrder = 1
     object leftFlowPanel: TFlowPanel
@@ -186,68 +108,70 @@ object ProdutoManForm: TProdutoManForm
       end
     end
   end
-  object Panel1: TPanel
-    Left = 8
-    Height = 56
-    Top = 64
-    Width = 743
+  object PanelTitle1: TPanelTitle
+    Left = 9
+    Height = 48
+    Top = 8
+    Width = 744
+    Anchors = [akTop, akLeft, akRight]
     BevelOuter = bvNone
-    ClientHeight = 56
-    ClientWidth = 743
-    Color = 13619151
+    ClientHeight = 48
+    ClientWidth = 744
+    Color = 16510435
     ParentColor = False
-    TabOrder = 3
-    OnPaint = Panel1Paint
-    object labCodigo1: TLabel
-      Left = 4
+    ParentFont = False
+    TabOrder = 0
+    Title = 'Pesquisar Produto'
+    object labCodigo: TLabel
+      Left = 8
       Height = 15
-      Top = 29
+      Top = 23
       Width = 39
       Caption = 'Código'
     end
-    object edCodigo1: TEdit
-      Left = 48
+    object edCodigo: TEdit
+      Left = 50
       Height = 23
-      Top = 21
+      Top = 19
       Width = 96
       OnKeyPress = edCodigoKeyPress
       TabOrder = 0
     end
-    object labNome1: TLabel
-      Left = 156
+    object labNome: TLabel
+      Left = 160
       Height = 15
-      Top = 29
+      Top = 23
       Width = 33
       Caption = 'Nome'
     end
-    object edNome1: TEdit
-      Left = 200
+    object edNome: TEdit
+      Left = 198
       Height = 23
-      Top = 24
+      Top = 19
       Width = 224
       OnKeyPress = edCodigoKeyPress
       TabOrder = 1
     end
-    object btSearch1: TButton
-      Left = 556
+    object btSearch: TButton
+      Left = 560
       Height = 25
-      Top = 24
+      Top = 18
       Width = 75
       Caption = 'Pesquisar'
       OnClick = btSearchClick
       TabOrder = 2
     end
-    object labSituacao1: TLabel
-      Left = 430
+    object labSituacao: TLabel
+      Left = 434
       Height = 15
-      Top = 29
+      Top = 23
       Width = 45
       Caption = 'Situação'
     end
-    object cbSituacao1: TComboBoxValue
-      Left = 479
+    object cbSituacao: TComboBoxValue
+      Left = 483
       Height = 23
-      Top = 25
+      Top = 19
       Width = 64
       ItemHeight = 15
       ItemIndex = 0
