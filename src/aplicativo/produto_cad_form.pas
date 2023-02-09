@@ -7,14 +7,14 @@ interface
 uses
   SysUtils, Forms, Controls, Dialogs, StdCtrls, Spin,
   ExtCtrls, produto_entity, produto_bll, application_types,
-  mensagem_validacao_form, prop_to_comp_map, db_context, BBarPanel;
+  mensagem_validacao_form, prop_to_comp_map, db_context, PanelTitle;
 
 type
 
   { TProdutoCadForm }
 
   TProdutoCadForm = class(TForm)
-    barAcoes: TBBarPanel;
+    barAcoes: TPanelTitle;
     btCancel: TButton;
     btSave: TButton;
     ckAtivo: TCheckBox;

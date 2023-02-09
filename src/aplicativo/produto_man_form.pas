@@ -8,7 +8,7 @@ uses
   SysUtils, DB, BufDataset, Forms, Controls, Dialogs,
   DBGrids, StdCtrls, ExtCtrls, Menus, produto_bll, produto_cad_form,
   grid_configurator, prop_to_comp_map, produto_filter, application_types,
-  mensagem_validacao_form, db_context, ComboBoxValue, BBarPanel, PanelTitle,
+  mensagem_validacao_form, db_context, ComboBoxValue, PanelTitle,
   LCLType, Classes, Graphics, LCLIntf;
 
 type
@@ -16,7 +16,7 @@ type
   { TProdutoManForm }
 
   TProdutoManForm = class(TForm)
-    barAcoes: TBBarPanel;
+    pnAcoes: TPanelTitle;
     btCancel: TButton;
     btEdit: TButton;
     btNew: TButton;
@@ -34,7 +34,7 @@ type
     ds: TDataSource;
     menuLogEdicoes: TMenuItem;
     gridPopUp: TPopupMenu;
-    PanelTitle1: TPanelTitle;
+    pnPesquisa: TPanelTitle;
     procedure btCancelClick(Sender: TObject);
     procedure btNewClick(Sender: TObject);
     procedure btEditClick(Sender: TObject);

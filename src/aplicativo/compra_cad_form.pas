@@ -10,7 +10,7 @@ uses
   mensagem_validacao_form, prop_to_comp_map, produto_bll, produto_entity,
   fornecedor_entity, fornecedor_bll, grid_configurator, compra_item_entity,
   fields_builder, application_functions, db_context, entity_log_form,
-  produto_man_form, images_dm, fornecedor_man_form, BBarPanel, Variants,
+  produto_man_form, images_dm, fornecedor_man_form, PanelTitle, Variants,
   BufDataset, DB, Generics.Collections, LCLType, Menus, Buttons;
 
 type
@@ -18,7 +18,7 @@ type
   { TCompraCadForm }
 
   TCompraCadForm = class(TForm)
-    barAcoes: TBBarPanel;
+    barAcoes: TPanelTitle;
     btCancel: TButton;
     btPesquisarProduto: TBitBtn;
     btPesquisarFornecedor: TBitBtn;
@@ -40,8 +40,8 @@ type
     edTotal: TFloatSpinEdit;
     edQtde: TFloatSpinEdit;
     edValor: TFloatSpinEdit;
-    gbCabecalho: TGroupBox;
-    gbProduto: TGroupBox;
+    gbCabecalho: TPanelTitle;
+    pnProduto: TPanelTitle;
     labDataCompra: TLabel;
     labIdFornecedor: TLabel;
     labCodProduto: TLabel;

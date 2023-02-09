@@ -82,6 +82,7 @@ begin
   root.AddChild('DEV Tools', 2, @CallBacks.QueryRunner);
   root.AddChild('Gerador de Código SQL', 2, @CallBacks.GeradorDeCodigoSQL);
   root.AddChild('Gerador de Código Pascal', 2, @CallBacks.GeradorDeCodigoPascal);
+  root.AddChild('Testes', 2, @CallBacks.Testes);
 end;
 
 destructor TMenuPrincipalConfig.Destroy;

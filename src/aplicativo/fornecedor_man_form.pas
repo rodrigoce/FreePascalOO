@@ -5,17 +5,18 @@ unit fornecedor_man_form;
 interface
 
 uses
-  SysUtils, DB, BufDataset, Forms, Controls, Dialogs,
-  DBGrids, StdCtrls, ExtCtrls, Menus, fornecedor_bll, fornecedor_cad_form,
-  grid_configurator, prop_to_comp_map, fornecedor_filter, application_types,
-  mensagem_validacao_form, db_context, ComboBoxValue, BBarPanel, LCLType, Classes;
+  SysUtils, DB, BufDataset, Forms, Controls, Dialogs, DBGrids, StdCtrls,
+  ExtCtrls, Menus, fornecedor_bll, fornecedor_cad_form, grid_configurator,
+  prop_to_comp_map, fornecedor_filter, application_types,
+  mensagem_validacao_form, db_context, ComboBoxValue, PanelTitle,
+  LCLType, Classes;
 
 type
 
   { TFornecedorManForm }
 
   TFornecedorManForm = class(TForm)
-    barAcoes: TBBarPanel;
+    pnAcoes: TPanelTitle;
     btCancel: TButton;
     btEdit: TButton;
     btNew: TButton;
@@ -24,16 +25,16 @@ type
     buf: TBufDataset;
     cbSituacao: TComboBoxValue;
     edContato: TEdit;
+    edNome: TEdit;
     GridFornecedors: TDBGrid;
     ds: TDataSource;
-    edNome: TEdit;
-    GroupBox1: TGroupBox;
     labContato: TLabel;
-    labSituacao: TLabel;
     labNome: TLabel;
+    labSituacao: TLabel;
     leftFlowPanel: TFlowPanel;
     menuLogEdicoes: TMenuItem;
     gridPopUp: TPopupMenu;
+    pnPesquisa: TPanelTitle;
     procedure btCancelClick(Sender: TObject);
     procedure btNewClick(Sender: TObject);
     procedure btEditClick(Sender: TObject);

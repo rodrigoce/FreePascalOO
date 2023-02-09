@@ -9,14 +9,14 @@ uses
   DBGrids, StdCtrls, ExtCtrls, Menus, usuario_bll, usuario_cad_form,
   grid_configurator, prop_to_comp_map, usuario_filter, application_types,
   mensagem_validacao_form, usuario_change_pass_form, db_context,
-  ComboBoxValue, BBarPanel, Classes, LCLType;
+  ComboBoxValue, PanelTitle, Classes, LCLType;
 
 type
 
   { TUsuarioManForm }
 
   TUsuarioManForm = class(TForm)
-    barAcoes: TBBarPanel;
+    pnAcoes: TPanelTitle;
     btCancel: TButton;
     btChangePassword: TButton;
     btEdit: TButton;
@@ -28,7 +28,7 @@ type
     GridUsuarios: TDBGrid;
     ds: TDataSource;
     edNome: TEdit;
-    GroupBox1: TGroupBox;
+    pnPesquisa: TPanelTitle;
     labSituacao: TLabel;
     labNome: TLabel;
     leftFlowPanel: TFlowPanel;

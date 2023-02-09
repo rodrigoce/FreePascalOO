@@ -6,10 +6,9 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Dialogs, Menus, ComCtrls, ExtCtrls,
-  StdCtrls,
   Windows, menu_principal_config, dev_tools_form,
   usuario_login_form, usuario_bll, usuario_login, application_session,
-  application_types, db_context, BarRL, BBarPanel, StrUtils, SQLDB;
+  application_types, db_context;
 
 type
 

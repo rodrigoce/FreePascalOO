@@ -9,14 +9,14 @@ uses
   DBGrids, StdCtrls, ExtCtrls, Menus, EditBtn, ComCtrls,
   compra_bll, compra_cad_form, grid_configurator, prop_to_comp_map,
   compra_filter, application_types, mensagem_validacao_form, db_context,
-  ComboBoxValue, BBarPanel, LCLType, Classes;
+  ComboBoxValue, PanelTitle, LCLType, Classes;
 
 type
 
   { TCompraManForm }
 
   TCompraManForm = class(TForm)
-    barAcoes: TBBarPanel;
+    pnAcoes: TPanelTitle;
     btCancel: TButton;
     btEdit: TButton;
     btNew: TButton;
@@ -28,7 +28,7 @@ type
     edDtFim: TDateEdit;
     GridCompras: TDBGrid;
     ds: TDataSource;
-    GroupBox1: TGroupBox;
+    pnPesquisa: TPanelTitle;
     labDtIni: TLabel;
     labSituacao: TLabel;
     labDtFim: TLabel;

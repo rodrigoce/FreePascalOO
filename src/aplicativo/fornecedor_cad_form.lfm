@@ -54,7 +54,7 @@ object FornecedorCadForm: TFornecedorCadForm
     Width = 448
     TabOrder = 2
   end
-  object barAcoes: TBBarPanel
+  object barAcoes: TPanelTitle
     Left = 0
     Height = 35
     Top = 255
@@ -67,6 +67,8 @@ object FornecedorCadForm: TFornecedorCadForm
     Color = clSkyBlue
     ParentColor = False
     TabOrder = 3
+    FixedHeight = 35
+    ShowBorder = False
     object leftFlowPanel: TFlowPanel
       Left = 5
       Height = 25

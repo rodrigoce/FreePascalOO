@@ -5,7 +5,7 @@ unit menu_principal_callbacks;
 interface
 
 uses
-  fornecedor_man_form, compra_man_form;
+  fornecedor_man_form, compra_man_form, tests_form;
 
 type
 
@@ -22,6 +22,7 @@ type
     procedure GeradorDeCodigoSQL;
     procedure GeradorDeCodigoPascal;
     procedure QueryRunner;
+    procedure Testes;
   end;
 
 implementation
@@ -64,6 +65,11 @@ end;
 procedure TMenuPrincipalCallBacks.QueryRunner;
 begin
    TDevToolsForm.Open;
+end;
+
+procedure TMenuPrincipalCallBacks.Testes;
+begin
+  TTestesForm.Open;
 end;
 
 end.

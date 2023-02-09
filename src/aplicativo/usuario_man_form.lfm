@@ -9,27 +9,31 @@ object UsuarioManForm: TUsuarioManForm
   ClientWidth = 755
   LCLVersion = '2.2.0.4'
   WindowState = wsMaximized
-  object GroupBox1: TGroupBox
+  object pnPesquisa: TPanelTitle
     Left = 8
-    Height = 57
-    Top = 0
+    Height = 49
+    Top = 8
     Width = 739
     Anchors = [akTop, akLeft, akRight]
-    Caption = 'Pesquisar'
-    ClientHeight = 37
-    ClientWidth = 735
+    ClientHeight = 49
+    ClientWidth = 739
+    Color = 15395562
+    ParentColor = False
     TabOrder = 0
+    Title = 'Pesquisar Usuário'
+    HSVIncrease = 'V'
+    ShowBorder = True
     object labNome: TLabel
       Left = 8
       Height = 15
-      Top = 6
+      Top = 23
       Width = 33
       Caption = 'Nome'
     end
     object edNome: TEdit
       Left = 48
       Height = 23
-      Top = 3
+      Top = 20
       Width = 224
       OnKeyPress = edCodigoKeyPress
       TabOrder = 0
@@ -37,23 +41,23 @@ object UsuarioManForm: TUsuarioManForm
     object btSearch: TButton
       Left = 408
       Height = 25
-      Top = 2
+      Top = 18
       Width = 75
       Caption = 'Pesquisar'
       OnClick = btSearchClick
       TabOrder = 2
     end
     object labSituacao: TLabel
-      Left = 280
+      Left = 283
       Height = 15
-      Top = 6
+      Top = 24
       Width = 45
       Caption = 'Situação'
     end
     object cbSituacao: TComboBoxValue
       Left = 336
       Height = 23
-      Top = 3
+      Top = 20
       Width = 64
       ItemHeight = 15
       ItemIndex = 0
@@ -74,8 +78,8 @@ object UsuarioManForm: TUsuarioManForm
   end
   object GridUsuarios: TDBGrid
     Left = 8
-    Height = 348
-    Top = 112
+    Height = 353
+    Top = 108
     Width = 739
     Anchors = [akTop, akLeft, akRight, akBottom]
     Color = clWindow
@@ -85,7 +89,7 @@ object UsuarioManForm: TUsuarioManForm
     TabOrder = 2
     OnDblClick = GridUsuariosDblClick
   end
-  object barAcoes: TBBarPanel
+  object pnAcoes: TPanelTitle
     Left = 8
     Height = 35
     Top = 64
@@ -95,9 +99,11 @@ object UsuarioManForm: TUsuarioManForm
     BorderWidth = 5
     ClientHeight = 35
     ClientWidth = 739
-    Color = clSkyBlue
+    Color = 16577001
     ParentColor = False
     TabOrder = 1
+    FixedHeight = 35
+    ShowBorder = True
     object leftFlowPanel: TFlowPanel
       Left = 5
       Height = 25

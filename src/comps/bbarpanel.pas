@@ -39,7 +39,12 @@ end;
 procedure TBBarPanel.PanelResize(Sender: TObject);
 begin
   if Align = alNone then
-    Height := 35;
+  begin
+    if BevelOuter = bvNone then
+      Height := 35
+    else
+      Height := 35 + (2 * BevelWidth);
+  end;
 end;
 
 constructor TBBarPanel.Create(AOwner: TComponent);
@@ -47,11 +52,11 @@ begin
   inherited Create(AOwner);
 
   Height := 35;
-  Width := 500;
-  BevelOuter := bvNone;
+  //Width := 500;
+  //BevelOuter := bvNone;
   BorderWidth := 5;
-  Color := clSkyBlue;
-  ParentColor := False;
+  //Color := clSkyBlue;
+  //ParentColor := False;
   OnResize := @PanelResize;
 end;
 

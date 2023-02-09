@@ -7,14 +7,14 @@ interface
 uses
   Classes, SysUtils, Forms, Controls, Dialogs, StdCtrls,
   ExtCtrls, usuario_entity, usuario_bll, application_types,
-  mensagem_validacao_form, prop_to_comp_map, db_context, BBarPanel;
+  mensagem_validacao_form, prop_to_comp_map, db_context, PanelTitle;
 
 type
 
   { TUsuarioCadForm }
 
   TUsuarioCadForm = class(TForm)
-    barAcoes: TBBarPanel;
+    barAcoes: TPanelTitle;
     btCancel: TButton;
     btSave: TButton;
     ckAtivo: TCheckBox;

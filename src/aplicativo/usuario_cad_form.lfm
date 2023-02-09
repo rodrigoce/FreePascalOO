@@ -73,7 +73,7 @@ object UsuarioCadForm: TUsuarioCadForm
     Width = 32
     Caption = 'Senha'
   end
-  object barAcoes: TBBarPanel
+  object barAcoes: TPanelTitle
     Left = 0
     Height = 35
     Top = 148
@@ -86,6 +86,8 @@ object UsuarioCadForm: TUsuarioCadForm
     Color = clSkyBlue
     ParentColor = False
     TabOrder = 4
+    FixedHeight = 35
+    ShowBorder = False
     object leftFlowPanel: TFlowPanel
       Left = 5
       Height = 25

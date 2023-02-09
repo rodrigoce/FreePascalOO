@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, LResources, Forms, Controls, Graphics, Dialogs, ExtCtrls,
-  LCLIntf, LCLType;
+  LCLIntf, LCLType, StrUtils, colors_functions;
 
 type
 
@@ -14,16 +14,27 @@ type
 
   TPanelTitle = class(TPanel)
   private
+    FHSVIncrease: string;
+    FFixedHeight: Integer;
+    FShowBorder: Boolean;
     //FAnotherCanvas: TControlCanvas;
     FTitle: string;
+    procedure SetHSVIncrease(AValue: string);
+    procedure SetFixedHeight(AValue: Integer);
+    procedure SetShowBorder(AValue: Boolean);
     procedure SetTitle(AValue: string);
+    procedure PanelResize(Sender: TObject);
   protected
     procedure Paint; override;
   public
-    //constructor Create(TheOwner: TComponent); override;
+    constructor Create(TheOwner: TComponent); override;
     //destructor Destroy; override;
   published
     property Title: string read FTitle write SetTitle;
+    property FixedHeight: Integer read FFixedHeight write SetFixedHeight default 0;
+    // setar como H, S ou V, o Default é S
+    property HSVIncrease: string read FHSVIncrease write SetHSVIncrease;
+    property ShowBorder: Boolean read FShowBorder write SetShowBorder;
   end;
 
 procedure Register;
@@ -45,33 +56,38 @@ begin
   Invalidate;
 end;
 
-procedure TPanelTitle.Paint;
+procedure TPanelTitle.SetFixedHeight(AValue: Integer);
+begin
+  if FFixedHeight = AValue then Exit;
+  FFixedHeight := AValue;
+  PanelResize(Self);
+end;
 
-  {function Darker2(MyColor:TColor; Percent:Byte):TColor;
-  var r,g,b:Byte;
-  begin
-    MyColor:=ColorToRGB(MyColor);
-    r:=GetRValue(MyColor);
-    g:=GetGValue(MyColor);
-    b:=GetBValue(MyColor);
-    r:=r-muldiv(r,Percent,100);  //Percent% closer to black
-    g:=g-muldiv(g,Percent,100);
-    b:=b-muldiv(b,Percent,100);
-    result:=RGB(r,g,b);
-  end;
-  function Lighter2(MyColor:TColor; Percent:Byte):TColor;
-  var r,g,b:Byte;
-  begin
-    MyColor:=ColorToRGB(MyColor);
-    r:=GetRValue(MyColor);
-    g:=GetGValue(MyColor);
-    b:=GetBValue(MyColor);
-    r:=r+muldiv(255-r,Percent,100); //Percent% closer to white
-    g:=g+muldiv(255-g,Percent,100);
-    b:=b+muldiv(255-b,Percent,100);
-    result:=RGB(r,g,b);
-  end;}
-  var textWidth : Integer;
+procedure TPanelTitle.SetShowBorder(AValue: Boolean);
+begin
+  if FShowBorder = AValue then Exit;
+  FShowBorder := AValue;
+  Invalidate;
+end;
+
+procedure TPanelTitle.SetHSVIncrease(AValue: string);
+begin
+  if FHSVIncrease = AValue then Exit;
+  FHSVIncrease := AValue;
+  Invalidate;
+end;
+
+procedure TPanelTitle.PanelResize(Sender: TObject);
+begin
+  if FixedHeight > 0 then
+    Height := FixedHeight;
+end;
+
+procedure TPanelTitle.Paint;
+  var
+    textWidth : Integer;
+    R, G, B: Integer;
+    H, S, V: Double;
 begin
   inherited Paint;
   {if FAnotherCanvas.Control = nil then
@@ -79,25 +95,63 @@ begin
     FAnotherCanvas := TControlCanvas.Create;
     FAnotherCanvas.Control := Self;
   end;}
-  //Canvas.TextOut(10,50, '....................');
-  Canvas.Pen.Color := clGray;
-  //Canvas.Pen.Width := 1;
-  Canvas.Pen.EndCap := pecSquare;
-  //Canvas.Font.Color := Darker2(Self.Color, 60);
-  //Canvas.Brush.Color := Self.Color;
 
-  Canvas.Line(5, 6, 25, 6); // comprimento 20
-  Canvas.Line(5, 8, 25, 8); // comprimento 20
-  Canvas.TextOut(30, 0, FTitle);
-  textWidth := Canvas.TextWidth(FTitle);
-  Canvas.Line(textWidth + 35, 6, 30 + textWidth + 25, 6);
-  Canvas.Line(textWidth + 35, 8, 30 + textWidth + 25, 8);
+  //Canvas.Pen.Width := 1;
+  //Canvas.Font.Color := Darker2(Self.Color, 60);
+
+  Canvas.Pen.EndCap := pecSquare;
+
+  // faz um retangulo baseado na cor do panel
+  TColorToRGB(Color, R, G, B);
+  RGBToHSV(R, G, B, H, S, V);
+
+  if FHSVIncrease = 'H' then
+  begin
+    H := H + 0.15;
+    if H > 1 then
+      H := H - 1;
+  end
+  else if FHSVIncrease = 'V' then
+  begin
+    V := V - 0.15;
+      if V < 1 then
+        V := V + 1;
+  end
+  else
+  begin
+    S := S + 0.15;
+    if S > 1 then
+      S := S - 1;
+  end;
+
+  HSVtoRGB(H, S, V, R, G, B);
+  Canvas.Pen.Color := RGB(R, G, B);
+
+  if ShowBorder then
+    Canvas.Rectangle(0, 0, Width, Height);
+
+  if not IsEmptyStr(Title, [' ']) then
+  begin
+    // faz dois riscos de destaque
+    Canvas.Line(5, 4, 26, 4); // comprimento 20 px
+    Canvas.Line(9, 8, 26, 8); // comprimento 20 px
+
+    textWidth := Canvas.TextWidth(FTitle);
+    Canvas.Line(textWidth + 34, 4, 30 + textWidth + 25, 4);
+    Canvas.Line(textWidth + 34, 8, 30 + textWidth + 21, 8);
+
+    // escreve o título
+    Canvas.Brush.Color := Color;
+    Canvas.TextOut(30, 0, FTitle);
+
+  end;
 end;
 
-{constructor TPanelTitle.Create(TheOwner: TComponent);
+constructor TPanelTitle.Create(TheOwner: TComponent);
 begin
   inherited Create(TheOwner);
-end;}
+  OnResize := @PanelResize;
+end;
 
 {destructor TPanelTitle.Destroy;
 begin

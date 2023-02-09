@@ -107,7 +107,7 @@ object UsuarioChangePassForm: TUsuarioChangePassForm
     Width = 89
     Caption = 'Confirmar Senha'
   end
-  object barAcoes: TBBarPanel
+  object barAcoes: TPanelTitle
     Left = 0
     Height = 35
     Top = 208
@@ -120,6 +120,8 @@ object UsuarioChangePassForm: TUsuarioChangePassForm
     Color = clSkyBlue
     ParentColor = False
     TabOrder = 6
+    FixedHeight = 35
+    ShowBorder = False
     object rightFlowPanel: TFlowPanel
       Left = 249
       Height = 25

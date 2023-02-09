@@ -402,6 +402,11 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit>
+      <Unit>
+        <Filename Value="todo.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="TODO"/>
+      </Unit>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

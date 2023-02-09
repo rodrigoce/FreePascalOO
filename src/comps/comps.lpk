@@ -29,14 +29,13 @@
         <UnitName Value="PanelX"/>
       </Item3>
       <Item4>
-        <Filename Value="bbarpanel.pas"/>
-        <HasRegisterProc Value="True"/>
-        <UnitName Value="BBarPanel"/>
-      </Item4>
-      <Item5>
         <Filename Value="paneltitle.pas"/>
         <HasRegisterProc Value="True"/>
         <UnitName Value="PanelTitle"/>
+      </Item4>
+      <Item5>
+        <Filename Value="colors_functions.pas"/>
+        <UnitName Value="colors_functions"/>
       </Item5>
     </Files>
     <CompatibilityMode Value="True"/>

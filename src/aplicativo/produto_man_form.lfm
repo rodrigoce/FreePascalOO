@@ -1,7 +1,7 @@
 object ProdutoManForm: TProdutoManForm
-  Left = 312
+  Left = 328
   Height = 470
-  Top = 237
+  Top = 202
   Width = 760
   ActiveControl = edNome
   Caption = 'Manutenção de Produtos'
@@ -22,7 +22,7 @@ object ProdutoManForm: TProdutoManForm
     TabOrder = 2
     OnDblClick = GridProdutosDblClick
   end
-  object barAcoes: TBBarPanel
+  object pnAcoes: TPanelTitle
     Left = 8
     Height = 35
     Top = 64
@@ -32,9 +32,12 @@ object ProdutoManForm: TProdutoManForm
     BorderWidth = 5
     ClientHeight = 35
     ClientWidth = 744
-    Color = 16766935
+    Color = 16577001
     ParentColor = False
     TabOrder = 1
+    FixedHeight = 35
+    HSVIncrease = 'S'
+    ShowBorder = True
     object leftFlowPanel: TFlowPanel
       Left = 5
       Height = 25
@@ -108,8 +111,8 @@ object ProdutoManForm: TProdutoManForm
       end
     end
   end
-  object PanelTitle1: TPanelTitle
-    Left = 9
+  object pnPesquisa: TPanelTitle
+    Left = 8
     Height = 48
     Top = 8
     Width = 744
@@ -117,11 +120,13 @@ object ProdutoManForm: TProdutoManForm
     BevelOuter = bvNone
     ClientHeight = 48
     ClientWidth = 744
-    Color = 16510435
+    Color = 15395562
     ParentColor = False
     ParentFont = False
     TabOrder = 0
     Title = 'Pesquisar Produto'
+    HSVIncrease = 'V'
+    ShowBorder = True
     object labCodigo: TLabel
       Left = 8
       Height = 15
@@ -153,13 +158,13 @@ object ProdutoManForm: TProdutoManForm
       TabOrder = 1
     end
     object btSearch: TButton
-      Left = 560
+      Left = 552
       Height = 25
       Top = 18
       Width = 75
       Caption = 'Pesquisar'
       OnClick = btSearchClick
-      TabOrder = 2
+      TabOrder = 3
     end
     object labSituacao: TLabel
       Left = 434
@@ -181,7 +186,7 @@ object ProdutoManForm: TProdutoManForm
         'Todos'
       )
       Style = csDropDownList
-      TabOrder = 3
+      TabOrder = 2
       Text = 'Ativo'
       Values.Strings = (
         'A'

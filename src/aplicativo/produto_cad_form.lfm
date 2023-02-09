@@ -1,7 +1,7 @@
 object ProdutoCadForm: TProdutoCadForm
-  Left = 435
+  Left = 437
   Height = 246
-  Top = 183
+  Top = 185
   Width = 585
   ActiveControl = edCodigo
   BorderIcons = [biSystemMenu, biMinimize]
@@ -100,7 +100,7 @@ object ProdutoCadForm: TProdutoCadForm
     Width = 81
     Caption = 'Preço de Venda'
   end
-  object barAcoes: TBBarPanel
+  object barAcoes: TPanelTitle
     Left = 0
     Height = 35
     Top = 211
@@ -110,9 +110,11 @@ object ProdutoCadForm: TProdutoCadForm
     BorderWidth = 5
     ClientHeight = 35
     ClientWidth = 585
-    Color = 16766935
+    Color = clSkyBlue
     ParentColor = False
     TabOrder = 6
+    FixedHeight = 35
+    ShowBorder = False
     object leftFlowPanel: TFlowPanel
       Left = 5
       Height = 25

@@ -9,50 +9,55 @@ object CompraManForm: TCompraManForm
   ClientWidth = 661
   LCLVersion = '2.2.0.4'
   WindowState = wsMaximized
-  object GroupBox1: TGroupBox
+  object pnPesquisa: TPanelTitle
     Left = 8
-    Height = 57
-    Top = 0
+    Height = 49
+    Top = 8
     Width = 645
     Anchors = [akTop, akLeft, akRight]
-    Caption = 'Pesquisar'
-    ClientHeight = 37
-    ClientWidth = 641
+    BevelOuter = bvNone
+    ClientHeight = 49
+    ClientWidth = 645
+    Color = 15395562
+    ParentColor = False
     TabOrder = 0
+    Title = 'Pesquisar Compra'
+    HSVIncrease = 'V'
+    ShowBorder = True
     object labDtIni: TLabel
       Left = 8
       Height = 15
-      Top = 6
+      Top = 22
       Width = 126
       Caption = 'Data (de compra) Inicial'
     end
     object labDtFim: TLabel
       Left = 256
       Height = 15
-      Top = 6
+      Top = 22
       Width = 25
       Caption = 'Final'
     end
     object btSearch: TButton
-      Left = 560
+      Left = 536
       Height = 25
-      Top = 1
+      Top = 16
       Width = 75
       Caption = 'Pesquisar'
       OnClick = btSearchClick
       TabOrder = 1
     end
     object labSituacao: TLabel
-      Left = 434
+      Left = 408
       Height = 15
-      Top = 6
+      Top = 22
       Width = 45
       Caption = 'Situação'
     end
     object cbSituacao: TComboBoxValue
-      Left = 483
+      Left = 456
       Height = 23
-      Top = 2
+      Top = 17
       Width = 64
       ItemHeight = 15
       ItemIndex = 0
@@ -73,7 +78,7 @@ object CompraManForm: TCompraManForm
     object edDtIni: TDateEdit
       Left = 144
       Height = 23
-      Top = 2
+      Top = 18
       Width = 103
       CalendarDisplaySettings = [dsShowHeadings, dsShowDayNames]
       DateOrder = doNone
@@ -86,7 +91,7 @@ object CompraManForm: TCompraManForm
     object edDtFim: TDateEdit
       Left = 288
       Height = 23
-      Top = 1
+      Top = 17
       Width = 103
       CalendarDisplaySettings = [dsShowHeadings, dsShowDayNames]
       DateOrder = doNone
@@ -99,8 +104,8 @@ object CompraManForm: TCompraManForm
   end
   object GridCompras: TDBGrid
     Left = 8
-    Height = 246
-    Top = 112
+    Height = 251
+    Top = 107
     Width = 645
     Anchors = [akTop, akLeft, akRight, akBottom]
     Color = clWindow
@@ -110,7 +115,7 @@ object CompraManForm: TCompraManForm
     TabOrder = 2
     OnDblClick = GridComprasDblClick
   end
-  object barAcoes: TBBarPanel
+  object pnAcoes: TPanelTitle
     Left = 8
     Height = 35
     Top = 64
@@ -120,9 +125,11 @@ object CompraManForm: TCompraManForm
     BorderWidth = 5
     ClientHeight = 35
     ClientWidth = 645
-    Color = clSkyBlue
+    Color = 16577001
     ParentColor = False
     TabOrder = 1
+    FixedHeight = 35
+    ShowBorder = True
     object leftFlowPanel: TFlowPanel
       Left = 5
       Height = 25
