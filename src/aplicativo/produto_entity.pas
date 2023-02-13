@@ -47,11 +47,11 @@ class procedure TProdutoEntity.Map;
 begin
   TORMMapBuilder.Create.MapModel(TProdutoEntity, 'PRODUTO')
     .MapInt32PK('ID', 'Id')
-    .MapString('SITUACAO', 'Situacao', 1)
+    .MapString('SITUACAO', 'Situacao', 4, False)
     .MapInt32('NRO_REVISAO', 'NroRevisao', False)
-    .MapString('CODIGO', 'Codigo', 20)
-    .MapString('NOME', 'Nome', 60)
-    .MapString('NOME_PP', 'NomePP', 60)
+    .MapString('CODIGO', 'Codigo', 20, False)
+    .MapString('NOME', 'Nome', 60, False)
+    .MapString('NOME_PP', 'NomePP', 60, False)
     .MapDecimal('PRECO_CUSTO', 'PrecoCusto', 10, 2)
     .MapDecimal('MARGEM_LUCRO', 'MargemLucro', 13, 5)
     .MapDecimal('PRECO_VENDA', 'PrecoVenda', 10, 2);

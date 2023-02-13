@@ -5,7 +5,7 @@ unit application_session;
 interface
 
 uses
-  Classes, SysUtils, usuario_entity, db_context;
+  Classes, SysUtils, usuario_entity, db_context ;
 
 type
 
@@ -23,7 +23,7 @@ type
 implementation
 
 uses dev_tools_form, produto_entity, fornecedor_entity,
-  compra_entity, compra_item_entity;
+  compra_entity, compra_item_entity, test_entity;
 
 { TApplicationSession }
 
@@ -36,6 +36,7 @@ begin
   TFornecedorEntity.Map;
   TCompraEntity.Map;
   TCompraItemEntity.Map;
+  TTestEntity.Map;
 end;
 
 class procedure TApplicationSession.InitEnvironment;

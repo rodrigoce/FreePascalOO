@@ -16,20 +16,23 @@
       <Unit>
         <Filename Value="dal_base.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <CursorPos X="52" Y="17"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="470"/>
+        <CursorPos X="51" Y="481"/>
         <UsageCount Value="206"/>
         <Bookmarks Count="1">
           <Item0 X="3" Y="118" ID="3"/>
         </Bookmarks>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="entity_base.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
+        <EditorIndex Value="8"/>
         <TopLine Value="10"/>
-        <CursorPos X="27" Y="29"/>
+        <CursorPos X="9" Y="18"/>
         <UsageCount Value="206"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="sql_code_generator_form.pas"/>
@@ -45,10 +48,11 @@
       <Unit>
         <Filename Value="mini_orm.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="180"/>
-        <CursorPos X="23" Y="197"/>
+        <EditorIndex Value="6"/>
+        <TopLine Value="23"/>
+        <CursorPos X="3" Y="30"/>
         <UsageCount Value="206"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="menu_principal_form.pas"/>
@@ -72,16 +76,16 @@
         <Filename Value="produto_entity.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="30"/>
-        <CursorPos Y="49"/>
+        <TopLine Value="29"/>
+        <CursorPos X="46" Y="55"/>
         <UsageCount Value="206"/>
       </Unit>
       <Unit>
         <Filename Value="usuario_entity.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="27"/>
-        <CursorPos X="49" Y="49"/>
+        <TopLine Value="26"/>
+        <CursorPos X="50" Y="54"/>
         <UsageCount Value="206"/>
       </Unit>
       <Unit>
@@ -116,11 +120,10 @@
         <ComponentName Value="ProdutoCadForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="93"/>
         <CursorPos X="30" Y="104"/>
         <UsageCount Value="245"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="dev_tools_form.pas"/>
@@ -206,8 +209,8 @@
         <Filename Value="menu_principal_config.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="61"/>
-        <CursorPos X="67" Y="86"/>
+        <TopLine Value="64"/>
+        <CursorPos X="67" Y="75"/>
         <UsageCount Value="203"/>
       </Unit>
       <Unit>
@@ -215,7 +218,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="44"/>
-        <CursorPos X="3" Y="72"/>
+        <CursorPos X="20" Y="72"/>
         <UsageCount Value="203"/>
       </Unit>
       <Unit>
@@ -275,7 +278,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="221"/>
+        <TopLine Value="218"/>
         <CursorPos X="22" Y="240"/>
         <UsageCount Value="285"/>
       </Unit>
@@ -324,8 +327,8 @@
         <Filename Value="usuario_bll.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="148"/>
-        <CursorPos X="50" Y="142"/>
+        <TopLine Value="173"/>
+        <CursorPos X="33" Y="198"/>
         <UsageCount Value="267"/>
       </Unit>
       <Unit>
@@ -334,12 +337,10 @@
         <ComponentName Value="UsuarioChangePassForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="73"/>
         <CursorPos X="40" Y="92"/>
         <UsageCount Value="267"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="usuario_man_form.pas"/>
@@ -367,12 +368,10 @@
         <ComponentName Value="UsuarioLoginForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="84"/>
         <CursorPos Y="94"/>
         <UsageCount Value="204"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="usuario_login.pas"/>
@@ -392,10 +391,11 @@
       <Unit>
         <Filename Value="application_session.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="76"/>
-        <CursorPos X="3" Y="99"/>
+        <EditorIndex Value="7"/>
+        <TopLine Value="22"/>
+        <CursorPos X="14" Y="39"/>
         <UsageCount Value="217"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="usuario_change_password.pas"/>
@@ -419,16 +419,13 @@
         <ComponentName Value="UsuarioCadForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="6"/>
-        <TopLine Value="58"/>
+        <EditorIndex Value="-1"/>
         <CursorPos X="6" Y="90"/>
         <UsageCount Value="217"/>
         <Bookmarks Count="2">
           <Item0 X="8" Y="89" ID="1"/>
           <Item1 X="56" Y="55" ID="2"/>
         </Bookmarks>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="fornecedor_bll.pas"/>
@@ -444,11 +441,9 @@
         <ComponentName Value="FornecedorCadForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="-1"/>
         <CursorPos X="67" Y="10"/>
         <UsageCount Value="228"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="fornecedor_dal.pas"/>
@@ -462,8 +457,8 @@
         <Filename Value="fornecedor_entity.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="31"/>
-        <CursorPos X="49" Y="54"/>
+        <TopLine Value="30"/>
+        <CursorPos X="55" Y="58"/>
         <UsageCount Value="228"/>
       </Unit>
       <Unit>
@@ -512,12 +507,10 @@
         <ComponentName Value="CompraCadForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="380"/>
         <CursorPos X="54" Y="391"/>
         <UsageCount Value="220"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="compra_dal.pas"/>
@@ -531,8 +524,8 @@
         <Filename Value="compra_entity.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="23"/>
-        <CursorPos X="33" Y="45"/>
+        <TopLine Value="22"/>
+        <CursorPos X="49" Y="46"/>
         <UsageCount Value="220"/>
       </Unit>
       <Unit>
@@ -571,8 +564,8 @@
         <Filename Value="compra_item_entity.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="18"/>
-        <CursorPos X="47" Y="43"/>
+        <TopLine Value="17"/>
+        <CursorPos X="48" Y="41"/>
         <UsageCount Value="214"/>
       </Unit>
       <Unit>
@@ -612,22 +605,68 @@
         <ComponentName Value="TestesForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="-1"/>
-        <CursorPos X="84" Y="15"/>
+        <TopLine Value="21"/>
+        <CursorPos X="9" Y="38"/>
         <UsageCount Value="203"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="todo.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="TODO"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="26" Y="14"/>
+        <UsageCount Value="38"/>
+      </Unit>
+      <Unit>
+        <Filename Value="test_base.pas"/>
+        <IsPartOfProject Value="True"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="34"/>
+        <CursorPos X="8" Y="43"/>
+        <UsageCount Value="30"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="db_tests.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="30"/>
+        <CursorPos X="66" Y="46"/>
+        <UsageCount Value="30"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="test_dal.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="4"/>
+        <CursorPos X="10" Y="16"/>
+        <UsageCount Value="26"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="test_entity.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="5"/>
+        <TopLine Value="27"/>
+        <CursorPos X="24" Y="55"/>
+        <UsageCount Value="26"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="colors_functions.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="5"/>
         <CursorPos X="19" Y="22"/>
-        <UsageCount Value="63"/>
+        <UsageCount Value="62"/>
       </Unit>
       <Unit>
         <Filename Value="environment.pas"/>
         <EditorIndex Value="-1"/>
         <CursorPos Y="14"/>
-        <UsageCount Value="80"/>
+        <UsageCount Value="79"/>
       </Unit>
       <Unit>
         <Filename Value="log_sql_form.pas"/>
@@ -637,15 +676,15 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="68"/>
         <CursorPos X="3" Y="62"/>
-        <UsageCount Value="42"/>
+        <UsageCount Value="41"/>
       </Unit>
       <Unit>
         <Filename Value="C:\lazarus\fpc\3.2.2\source\packages\rtl-generics\src\generics.collections.pas"/>
         <UnitName Value="Generics.Collections"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="1426"/>
-        <CursorPos Y="1439"/>
-        <UsageCount Value="62"/>
+        <TopLine Value="1157"/>
+        <CursorPos Y="1173"/>
+        <UsageCount Value="61"/>
       </Unit>
       <Unit>
         <Filename Value="menu_principal_form.lfm"/>
@@ -653,14 +692,14 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="136"/>
         <CursorPos X="18" Y="86"/>
-        <UsageCount Value="1"/>
+        <UsageCount Value="10"/>
         <DefaultSyntaxHighlighter Value="LFM"/>
       </Unit>
       <Unit>
         <Filename Value="produto_man_form.lfm"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="173"/>
-        <UsageCount Value="1"/>
+        <UsageCount Value="10"/>
         <DefaultSyntaxHighlighter Value="LFM"/>
       </Unit>
       <Unit>
@@ -669,20 +708,20 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="11"/>
         <CursorPos X="36" Y="24"/>
-        <UsageCount Value="1"/>
+        <UsageCount Value="10"/>
       </Unit>
       <Unit>
         <Filename Value="C:\lazarus\lcl\include\customflowpanel.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="174"/>
         <CursorPos X="3" Y="177"/>
-        <UsageCount Value="1"/>
+        <UsageCount Value="10"/>
       </Unit>
       <Unit>
         <Filename Value="..\Comps\barpanel.pas"/>
         <UnitName Value="BarPanel"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="1"/>
+        <UsageCount Value="10"/>
       </Unit>
       <Unit>
         <Filename Value="..\comps\bbarpanel.pas"/>
@@ -695,7 +734,7 @@
           <EditorIndex Value="-1"/>
           <CursorPos X="22" Y="44"/>
         </ExtraEditor1>
-        <UsageCount Value="36"/>
+        <UsageCount Value="35"/>
       </Unit>
       <Unit>
         <Filename Value="..\comps\panelx.pas"/>
@@ -703,42 +742,42 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="7"/>
         <CursorPos X="5" Y="49"/>
-        <UsageCount Value="13"/>
+        <UsageCount Value="12"/>
       </Unit>
       <Unit>
         <Filename Value="C:\lazarus\lcl\include\wincontrol.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="4450"/>
         <CursorPos X="3" Y="4477"/>
-        <UsageCount Value="1"/>
+        <UsageCount Value="10"/>
       </Unit>
       <Unit>
         <Filename Value="C:\lazarus\lcl\include\canvas.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="1504"/>
         <CursorPos X="53" Y="1507"/>
-        <UsageCount Value="5"/>
+        <UsageCount Value="4"/>
       </Unit>
       <Unit>
         <Filename Value="C:\lazarus\lcl\include\intfbaselcl.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="211"/>
         <CursorPos X="3" Y="220"/>
-        <UsageCount Value="5"/>
+        <UsageCount Value="4"/>
       </Unit>
       <Unit>
         <Filename Value="C:\lazarus\fpc\3.2.2\source\packages\fcl-image\src\fpcanvas.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="560"/>
         <CursorPos X="3" Y="563"/>
-        <UsageCount Value="5"/>
+        <UsageCount Value="4"/>
       </Unit>
       <Unit>
         <Filename Value="C:\lazarus\lcl\include\font.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="915"/>
         <CursorPos X="3" Y="924"/>
-        <UsageCount Value="5"/>
+        <UsageCount Value="4"/>
       </Unit>
       <Unit>
         <Filename Value="C:\lazarus\fpc\3.2.2\source\packages\fcl-image\src\fpcanvas.pp"/>
@@ -746,14 +785,14 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="360"/>
         <CursorPos X="74" Y="385"/>
-        <UsageCount Value="5"/>
+        <UsageCount Value="4"/>
       </Unit>
       <Unit>
         <Filename Value="C:\lazarus\fpc\3.2.2\source\packages\fcl-image\src\fphelper.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="68"/>
         <CursorPos X="3" Y="70"/>
-        <UsageCount Value="5"/>
+        <UsageCount Value="4"/>
       </Unit>
       <Unit>
         <Filename Value="..\comps\paneltitle.pas"/>
@@ -761,7 +800,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="13"/>
         <CursorPos X="78" Y="34"/>
-        <UsageCount Value="81"/>
+        <UsageCount Value="80"/>
         <Bookmarks Count="1">
           <Item0 X="6" Y="133" ID="1"/>
         </Bookmarks>
@@ -771,7 +810,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="328"/>
         <CursorPos X="10" Y="344"/>
-        <UsageCount Value="11"/>
+        <UsageCount Value="10"/>
       </Unit>
       <Unit>
         <Filename Value="C:\lazarus\fpc\3.2.2\source\rtl\objpas\math.pp"/>
@@ -779,7 +818,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="1908"/>
         <CursorPos X="13" Y="1914"/>
-        <UsageCount Value="6"/>
+        <UsageCount Value="5"/>
       </Unit>
       <Unit>
         <Filename Value="C:\lazarus\lcl\lcltype.pp"/>
@@ -787,20 +826,20 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="1652"/>
         <CursorPos X="3" Y="1667"/>
-        <UsageCount Value="5"/>
+        <UsageCount Value="4"/>
       </Unit>
       <Unit>
         <Filename Value="..\comps\colors_functions.pas"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="32" Y="5"/>
-        <UsageCount Value="14"/>
+        <UsageCount Value="13"/>
       </Unit>
       <Unit>
         <Filename Value="..\comps\comps.pas"/>
         <UnitName Value="Comps"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="54" Y="23"/>
-        <UsageCount Value="6"/>
+        <UsageCount Value="5"/>
       </Unit>
       <Unit>
         <Filename Value="C:\lazarus\fpc\3.2.2\source\packages\rtl-objpas\src\inc\strutils.pp"/>
@@ -808,26 +847,153 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="1950"/>
         <CursorPos X="3" Y="1956"/>
-        <UsageCount Value="6"/>
+        <UsageCount Value="5"/>
       </Unit>
       <Unit>
         <Filename Value="C:\lazarus\fpc\3.2.2\source\rtl\objpas\sysutils\sysstrh.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="261"/>
         <CursorPos X="3" Y="277"/>
-        <UsageCount Value="6"/>
+        <UsageCount Value="5"/>
       </Unit>
       <Unit>
-        <Filename Value="todo.pas"/>
-        <IsPartOfProject Value="True"/>
-        <UnitName Value="TODO"/>
-        <EditorIndex Value="1"/>
-        <CursorPos X="49" Y="14"/>
-        <UsageCount Value="20"/>
-        <Loaded Value="True"/>
+        <Filename Value="C:\lazarus\fpc\3.2.2\source\rtl\objpas\typinfo.pp"/>
+        <UnitName Value="TypInfo"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="1341"/>
+        <CursorPos X="10" Y="1560"/>
+        <UsageCount Value="13"/>
+      </Unit>
+      <Unit>
+        <Filename Value="C:\lazarus\lcl\controls.pp"/>
+        <UnitName Value="Controls"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="160"/>
+        <UsageCount Value="10"/>
       </Unit>
     </Units>
-    <JumpHistory HistoryIndex="-1"/>
+    <JumpHistory HistoryIndex="29">
+      <Position>
+        <Filename Value="test_base.pas"/>
+        <Caret Line="69" TopLine="52"/>
+      </Position>
+      <Position>
+        <Filename Value="test_base.pas"/>
+        <Caret Line="70" TopLine="52"/>
+      </Position>
+      <Position>
+        <Filename Value="test_base.pas"/>
+        <Caret Line="73" TopLine="52"/>
+      </Position>
+      <Position>
+        <Filename Value="db_tests.pas"/>
+        <Caret Line="36" TopLine="25"/>
+      </Position>
+      <Position>
+        <Filename Value="db_tests.pas"/>
+        <Caret Line="33" TopLine="25"/>
+      </Position>
+      <Position>
+        <Filename Value="db_tests.pas"/>
+        <Caret Line="37" TopLine="25"/>
+      </Position>
+      <Position>
+        <Filename Value="test_base.pas"/>
+        <Caret Line="99" TopLine="83"/>
+      </Position>
+      <Position>
+        <Filename Value="test_base.pas"/>
+        <Caret Line="108" TopLine="83"/>
+      </Position>
+      <Position>
+        <Filename Value="test_base.pas"/>
+        <Caret Line="97" TopLine="83"/>
+      </Position>
+      <Position>
+        <Filename Value="test_base.pas"/>
+        <Caret Line="97" TopLine="83"/>
+      </Position>
+      <Position>
+        <Filename Value="test_base.pas"/>
+        <Caret Line="99" TopLine="83"/>
+      </Position>
+      <Position>
+        <Filename Value="test_base.pas"/>
+        <Caret Line="100" TopLine="83"/>
+      </Position>
+      <Position>
+        <Filename Value="db_tests.pas"/>
+        <Caret Line="33" TopLine="25"/>
+      </Position>
+      <Position>
+        <Filename Value="db_tests.pas"/>
+        <Caret Line="34" TopLine="25"/>
+      </Position>
+      <Position>
+        <Filename Value="db_tests.pas"/>
+        <Caret Line="35" TopLine="25"/>
+      </Position>
+      <Position>
+        <Filename Value="db_tests.pas"/>
+        <Caret Line="34" Column="29" TopLine="25"/>
+      </Position>
+      <Position>
+        <Filename Value="dal_base.pas"/>
+        <Caret Line="481" Column="3" TopLine="476"/>
+      </Position>
+      <Position>
+        <Filename Value="tests_form.pas"/>
+        <Caret Line="38" Column="9" TopLine="21"/>
+      </Position>
+      <Position>
+        <Filename Value="db_tests.pas"/>
+        <Caret Line="35" Column="6" TopLine="19"/>
+      </Position>
+      <Position>
+        <Filename Value="db_tests.pas"/>
+        <Caret Line="19" Column="40" TopLine="8"/>
+      </Position>
+      <Position>
+        <Filename Value="db_tests.pas"/>
+        <Caret Line="46" Column="3" TopLine="30"/>
+      </Position>
+      <Position>
+        <Filename Value="mini_orm.pas"/>
+        <Caret Line="346" Column="3" TopLine="342"/>
+      </Position>
+      <Position>
+        <Filename Value="db_tests.pas"/>
+        <Caret Line="46" Column="28" TopLine="30"/>
+      </Position>
+      <Position>
+        <Filename Value="test_base.pas"/>
+        <Caret Line="69" Column="3" TopLine="66"/>
+      </Position>
+      <Position>
+        <Filename Value="test_base.pas"/>
+        <Caret Line="44" Column="77" TopLine="28"/>
+      </Position>
+      <Position>
+        <Filename Value="test_base.pas"/>
+        <Caret Line="79" Column="3" TopLine="76"/>
+      </Position>
+      <Position>
+        <Filename Value="test_base.pas"/>
+        <Caret Line="43" Column="15" TopLine="28"/>
+      </Position>
+      <Position>
+        <Filename Value="test_base.pas"/>
+        <Caret Line="73" Column="31" TopLine="67"/>
+      </Position>
+      <Position>
+        <Filename Value="test_base.pas"/>
+        <Caret Line="44" Column="15" TopLine="27"/>
+      </Position>
+      <Position>
+        <Filename Value="db_tests.pas"/>
+        <Caret Line="43" Column="41" TopLine="30"/>
+      </Position>
+    </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
       <Modes ActiveMode="default">

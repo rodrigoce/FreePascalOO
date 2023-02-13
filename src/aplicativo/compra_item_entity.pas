@@ -37,7 +37,7 @@ class procedure TCompraItemEntity.Map;
 begin
   TORMMapBuilder.Create.MapModel(TCompraItemEntity, 'COMPRA_ITEM')
     .MapInt32PK('ID', 'Id')
-    .MapString('SITUACAO', 'Situacao', 1)
+    .MapString('SITUACAO', 'Situacao', 4, False)
     .MapInt32('NRO_REVISAO', 'NroRevisao', False)
     .MapInt32('ID_COMPRA', 'IdCompra', False)
     .MapInt32('ID_PRODUTO', 'IdProduto', False)

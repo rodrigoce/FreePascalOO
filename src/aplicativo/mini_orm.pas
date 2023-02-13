@@ -105,7 +105,7 @@ type
     function MapInt32PK(ADBColumnName, AEntityPropName: string): TORMMapBuilder;
     function MapInt32(ADBColumnName, AEntityPropName: string; NullIfZero: Boolean): TORMMapBuilder;
     //
-    function MapString(ADBColumnName, AEntityPropName: string; ALenght: Integer): TORMMapBuilder;
+    function MapString(ADBColumnName, AEntityPropName: string; ALenght: Integer; NullIfEmpty: Boolean): TORMMapBuilder;
     //
     function MapDateTime(ADBColumnName, AEntityPropName: string; NullIfZero: Boolean): TORMMapBuilder;
     // apesar do nome pode ser usado para outros tipos como double, real...
@@ -388,15 +388,20 @@ begin
   Result := Self;
 end;
 
-function TORMMapBuilder.MapString(ADBColumnName, AEntityPropName: string; ALenght: Integer
-  ): TORMMapBuilder;
+function TORMMapBuilder.MapString(ADBColumnName, AEntityPropName: string;
+  ALenght: Integer; NullIfEmpty: Boolean): TORMMapBuilder;
 var
   field: TORMField;
 begin
   field := MapField(ADBColumnName, AEntityPropName);
   field.FLength := ALenght;
   field.FDBType := 'VarChar(' + IntToStr(ALenght) + ')';
-  field.FORMType := ormTypeString;
+
+  if NullIfEmpty then
+    field.FORMType := ormTypeStringNullIfEmpty
+  else
+    field.FORMType := ormTypeString;
+
   Result := Self;
 end;
 

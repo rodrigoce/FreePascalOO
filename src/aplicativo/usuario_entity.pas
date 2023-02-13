@@ -45,12 +45,12 @@ class procedure TUsuarioEntity.Map;
 begin
   TORMMapBuilder.Create.MapModel(TUsuarioEntity, 'USUARIO')
     .MapInt32PK('ID', 'Id')
-    .MapString('SITUACAO', 'Situacao', 1)
+    .MapString('SITUACAO', 'Situacao', 4, False)
     .MapInt32('NRO_REVISAO', 'NroRevisao', False)
-    .MapString('NOME', 'Nome', 60)
-    .MapString('NOME_PP', 'NomePP', 60)
-    .MapString('USER_NAME', 'UserName', 30)
-    .MapString('SENHA', 'Senha', 200)
+    .MapString('NOME', 'Nome', 60, False)
+    .MapString('NOME_PP', 'NomePP', 60, False)
+    .MapString('USER_NAME', 'UserName', 30, False)
+    .MapString('SENHA', 'Senha', 200, False)
     .MapDateTime('DATA_ULT_LOGIN', 'DataUltLogin', True);
 end;
 

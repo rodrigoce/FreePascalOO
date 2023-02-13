@@ -50,12 +50,12 @@ class procedure TFornecedorEntity.Map;
 begin
   TORMMapBuilder.Create.MapModel(TFornecedorEntity, 'FORNECEDOR')
     .MapInt32PK('ID', 'Id')
-    .MapString('SITUACAO', 'Situacao', 1)
+    .MapString('SITUACAO', 'Situacao', 4, False)
     .MapInt32('NRO_REVISAO', 'NroRevisao', False)
-    .MapString('NOME', 'Nome', 60)
-    .MapString('NOME_PP', 'NomePP', 60)
-    .MapString('CONTATOS', 'Contatos', 500)
-    .MapString('CONTATOS_PP', 'ContatosPP', 500);
+    .MapString('NOME', 'Nome', 60, False)
+    .MapString('NOME_PP', 'NomePP', 60, False)
+    .MapString('CONTATOS', 'Contatos', 500, False)
+    .MapString('CONTATOS_PP', 'ContatosPP', 500, False);
 end;
 
 end.

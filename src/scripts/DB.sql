@@ -8,7 +8,7 @@
 
 CREATE TABLE SITUACAO_REG
 (
-  SITUACAO VARCHAR(1) NOT NULL,
+  SITUACAO VARCHAR(4) NOT NULL,
   DESCRICAO VARCHAR(100) NOT NULL
 );
 
@@ -23,7 +23,7 @@ INSERT INTO SITUACAO_REG (SITUACAO, DESCRICAO) VALUES ('E', 'Excluido');
 create table USUARIO
 (
   ID Integer not null,
-  SITUACAO VarChar(1) not null,
+  SITUACAO VarChar(4) not null,
   NRO_REVISAO Integer not null,
   NOME VarChar(60) not null,
   NOME_PP VarChar(60) not null,
@@ -61,7 +61,7 @@ create index USUARIO_LOG_IDX_DATA_HORA on USUARIO_LOG (DATA_HORA);
 create table PRODUTO
 (
   ID Integer not null,
-  SITUACAO VarChar(1) not null,
+  SITUACAO VarChar(4) not null,
   NRO_REVISAO Integer not null,
   CODIGO VarChar(20) not null,
   NOME VarChar(60) not null,
@@ -100,7 +100,7 @@ create index PRODUTO_LOG_IDX_DATA_HORA on PRODUTO_LOG (DATA_HORA);
 create table FORNECEDOR
 (
   ID Integer not null,
-  SITUACAO VarChar(1) not null,
+  SITUACAO VarChar(4) not null,
   NRO_REVISAO Integer not null,
   NOME VarChar(60) not null,
   NOME_PP VarChar(60) not null,
@@ -137,7 +137,7 @@ create index FORNECEDOR_LOG_IDX_DATA_HORA on FORNECEDOR_LOG (DATA_HORA);
 create table COMPRA
 (
   ID Integer not null,
-  SITUACAO VarChar(1) not null,
+  SITUACAO VarChar(4) not null,
   NRO_REVISAO Integer not null,
   DATA Timestamp not null,
   ID_FORNECEDOR Integer not null,
@@ -178,7 +178,7 @@ create index COMPRA_LOG_IDX_DATA_HORA on COMPRA_LOG (DATA_HORA);
 create table COMPRA_ITEM
 (
   ID Integer not null,
-  SITUACAO VarChar(1) not null,
+  SITUACAO VarChar(4) not null,
   NRO_REVISAO Integer not null,
   ID_COMPRA Integer not null,
   ID_PRODUTO Integer not null,
@@ -214,3 +214,41 @@ alter table COMPRA_ITEM_LOG add constraint USUARIO_COMPRA_ITEM_LOG_FK foreign ke
 alter table COMPRA_ITEM_LOG add constraint COMPRA_ITEM_COMPRA_ITEM_LOG2_FK foreign key (ID_PK) references COMPRA_ITEM (ID);
 
 create index COMPRA_ITEM_LOG_IDX_DATA_HORA on COMPRA_ITEM_LOG (DATA_HORA);
+
+create table TEST
+(
+  ID Integer not null,
+  SITUACAO VarChar(4) not null,
+  NRO_REVISAO Integer not null,
+  INT_32 Integer not null,
+  INT_32_NULL_IF_ZERO Integer,
+  DATE_TIME Timestamp not null,
+  DATE_TIME_NULL_IF_ZERO Timestamp,
+  STR VarChar(60) not null,
+  STR_NULL_IF_ZERO VarChar(60),
+  NUMERO_DECIMAL Decimal(18, 7) not null
+);
+
+alter table TEST add constraint TEST_PK primary key (ID);
+
+alter table TEST add constraint SITUACAO_REG_TEST_FK foreign key (SITUACAO) references SITUACAO_REG (SITUACAO);
+
+create sequence TEST_SEQUENCE;
+
+create table TEST_LOG
+(
+  DATA_HORA Timestamp not null,
+  OPERACAO varchar(1) not null,
+  ID_USUARIO Integer,
+  ID_PK Integer not null,
+  NOME_COLUNA varchar(60) not null,
+  VALOR_ANTERIOR varchar(500),
+  VALOR_NOVO varchar(500),
+  VALOR_ANTERIOR_B BLOB,
+  VALOR_NOVO_B BLOB
+);
+
+alter table TEST_LOG add constraint USUARIO_TEST_LOG_FK foreign key (ID_USUARIO) references USUARIO (ID);
+alter table TEST_LOG add constraint TEST_TEST_LOG2_FK foreign key (ID_PK) references TEST (ID);
+
+create index TEST_LOG_IDX_DATA_HORA on TEST_LOG (DATA_HORA);
