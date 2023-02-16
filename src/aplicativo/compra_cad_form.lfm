@@ -250,7 +250,7 @@ object CompraCadForm: TCompraCadForm
     Width = 920
     Color = clWindow
     Columns = <>
-    DataSource = dsTemp
+    DataSource = dsBufProdItens
     PopupMenu = itensPopMenu
     TabOrder = 2
   end
@@ -344,7 +344,7 @@ object CompraCadForm: TCompraCadForm
     Left = 173
     Top = 236
   end
-  object dsTemp: TDataSource
+  object dsBufProdItens: TDataSource
     DataSet = bufProdItens
     Left = 264
     Top = 236

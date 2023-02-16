@@ -25,7 +25,7 @@ type
     btLancarProduto: TButton;
     btSave: TButton;
     ckAtivo: TCheckBox;
-    dsTemp: TDataSource;
+    dsBufProdItens: TDataSource;
     edID: TEdit;
     edIdFornecedor: TEdit;
     edTotalGeral: TEdit;

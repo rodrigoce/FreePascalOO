@@ -121,11 +121,15 @@ begin
   for ormField in ORMEntity.FieldList do
   begin
     if not DataSet.FieldByName(ormField.DBColumnName).IsNull then
+    begin
       if ormField.PPropInfo^.SetProc <> nil then
       begin
         SetPropValue(entity, ormField.PPropInfo, DataSet.FieldByName(ormField.DBColumnName).Value);
         SetPropValue(entity.OldVersion, ormField.PPropInfo, DataSet.FieldByName(ormField.DBColumnName).Value);
       end;
+    end
+    else
+      entity.NullFields.Add(ormField.EntityPropName);
   end;
   Result := entity;
 end;

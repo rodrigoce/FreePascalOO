@@ -144,8 +144,8 @@ function TORMField.ProcessedParamValue(Value: Variant): Variant;
 begin
   if (Self.ORMType in [ormTypeInt32NullIfZero, ormTypeDateTimeNullIfZero]) and (Value = 0) then
     Result := Null
-  else if (Self.ORMType = ormTypeString) then
-    Result := {UTF8ToCP1252(VarToStr(}Value{), True)}
+  else if (Self.ORMType = ormTypeStringNullIfEmpty) and (Value = '') then
+    Result := Null
   else
     Result := Value;
 end;

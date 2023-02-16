@@ -13,6 +13,7 @@ type
   TEntityBase = class(TValidatable)
     private
       FId: Integer;
+      FNullFields: TStringList;
       FSituacao: string;
       FNroRevisao: Integer;
       FOldVersion: TEntityBase;
@@ -34,7 +35,8 @@ type
       property Situacao: string read FSituacao write FSituacao;
       // propriedade alimnetada automaticamente em TDALBase.
       property NroRevisao: Integer read FNroRevisao write FNroRevisao;
-
+      //
+      property NullFields: TStringList read FNullFields write FNullFields;
   end;
 
 implementation
@@ -89,13 +91,15 @@ end;
 constructor TEntityBase.Create;
 begin
   inherited;
-
+  FNullFields := TStringList.Create;
 end;
 
 destructor TEntityBase.Destroy;
 begin
   if OldVersion <> nil then
     OldVersion.Free;
+
+  FNullFields.Free;
 
   inherited;
 end;

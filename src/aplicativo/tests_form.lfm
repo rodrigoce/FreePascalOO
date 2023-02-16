@@ -3,17 +3,39 @@ object TestesForm: TTestesForm
   Height = 416
   Top = 261
   Width = 562
-  Caption = 'Formulário de Testes'
+  Caption = 'Testes Unitários'
   ClientHeight = 416
   ClientWidth = 562
   LCLVersion = '2.2.0.4'
-  object Button1: TButton
-    Left = 221
+  WindowState = wsMaximized
+  object btRunTests: TButton
+    Left = 8
     Height = 25
-    Top = 10
-    Width = 75
-    Caption = 'Button1'
-    OnClick = Button1Click
+    Top = 8
+    Width = 176
+    Caption = 'Executar Testes'
+    OnClick = btRunTestsClick
     TabOrder = 0
+  end
+  object gridTests: TDBGrid
+    Left = 8
+    Height = 360
+    Top = 40
+    Width = 544
+    Anchors = [akTop, akLeft, akRight, akBottom]
+    Color = clWindow
+    Columns = <>
+    DataSource = dsTests
+    TabOrder = 1
+  end
+  object bufTests: TBufDataset
+    FieldDefs = <>
+    Left = 201
+    Top = 264
+  end
+  object dsTests: TDataSource
+    DataSet = bufTests
+    Left = 292
+    Top = 264
   end
 end
