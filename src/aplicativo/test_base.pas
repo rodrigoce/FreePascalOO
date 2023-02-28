@@ -5,7 +5,7 @@ unit test_base;
 interface
 
 uses
-  Classes, SysUtils, Controls,
+  Classes, SysUtils, Controls, Math,
   LCLIntf, Generics.Collections;
 
 type
@@ -47,7 +47,9 @@ type
     procedure AddTestItem(ATestMethod: TTestMethodDelegate; ATitle: string);
 
     procedure IsGreaterThan(Value, Reference: Integer; var TestResult: TTestResult);
-    procedure IsEquals(Value1, Value2: string; var TestResult: TTestResult);
+    procedure IsEquals(Value1, Value2: string; var TestResult: TTestResult); overload;
+    procedure IsEquals(Value1, Value2: Integer; var TestResult: TTestResult); overload;
+    procedure IsEquals(Value1, Value2: Double; var TestResult: TTestResult); overload;
   public
     constructor Create(InitialTestNumber: Integer);
     destructor Destroy; override;
@@ -87,6 +89,24 @@ procedure TTestsBase.IsEquals(Value1, Value2: string;
   var TestResult: TTestResult);
 begin
   if Value1 = Value2 then
+    TestResult.Pass := tpsPass
+  else
+    TestResult.Pass := tpsFail
+end;
+
+procedure TTestsBase.IsEquals(Value1, Value2: Integer;
+  var TestResult: TTestResult);
+begin
+  if Value1 = Value2 then
+    TestResult.Pass := tpsPass
+  else
+    TestResult.Pass := tpsFail
+end;
+
+procedure TTestsBase.IsEquals(Value1, Value2: Double;
+  var TestResult: TTestResult);
+begin
+  if SameValue(Value1, Value2) then
     TestResult.Pass := tpsPass
   else
     TestResult.Pass := tpsFail

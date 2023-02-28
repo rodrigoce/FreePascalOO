@@ -6,8 +6,8 @@ interface
 
 uses
   SysUtils, Forms, Controls, StdCtrls, DBGrids, Generics.Collections, db_tests,
-  fields_builder, grid_configurator, test_base, db_context, BufDataset, DB,
-  SQLDB, Classes, Dialogs;
+  fields_builder, grid_configurator, test_base, db_context,
+  application_functions, BufDataset, DB, SQLDB, Classes, Dialogs, Math;
 
 type
 
@@ -19,6 +19,7 @@ type
     gridTests: TDBGrid;
     dsTests: TDataSource;
     procedure btRunTestsClick(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
   private
     FDBTests: TDBTests;
     procedure ConfigureGrid;
@@ -40,6 +41,11 @@ implementation
 procedure TTestesForm.btRunTestsClick(Sender: TObject);
 begin
   FDBTests.Execute;
+end;
+
+procedure TTestesForm.Button1Click(Sender: TObject);
+begin
+
 end;
 
 {procedure TTestesForm.ToggleBox1Change(Sender: TObject);

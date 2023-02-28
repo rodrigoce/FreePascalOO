@@ -5,11 +5,12 @@ unit application_functions;
 interface
 
 uses
-  SysUtils, Dialogs;
+  SysUtils, Dialogs, Math;
 
 function RemoveAccent2(Text: string): string;
 function PPConvert(Text: string): string;
 procedure FreeAndNil2(Obj: TObject);
+function TBRound(Value: Extended; Decimals: integer): Extended;
 
 implementation
 
@@ -48,6 +49,27 @@ begin
     FreeAndNil(obj);
 end;
 
+{ Esta função faz arredondamento de valores reais para "n" casas
+  decimais após o separador decimal, seguindo os critérios das
+  calculadoras financeiras e dos bancos de dados InterBase e FireBird.
+  https://tecnobyte.com.br/124613446/Delphi-Outros/Como-fazer-arredondamento-financeiro
+}
+function TBRound(Value: Extended; Decimals: integer): Extended;
+var
+  Factor, Fraction: Extended;
+begin
+  Factor := IntPower(10, Decimals);
+  { A conversão para string e depois para float evita
+    erros de arredondamentos indesejáveis. }
+  Value := StrToFloat(FloatToStr(Value * Factor));
+  Result := Int(Value);
+  Fraction := Frac(Value);
+  if Fraction >= 0.5 then
+    Result := Result + 1
+  else if Fraction <= -0.5 then
+    Result := Result - 1;
+  Result := Result / Factor;
+end;
 
 end.
 
