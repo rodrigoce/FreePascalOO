@@ -30,6 +30,15 @@
     </RunParams>
     <RequiredPackages>
       <Item>
+        <PackageName Value="frce"/>
+      </Item>
+      <Item>
+        <PackageName Value="rx_LazReport"/>
+      </Item>
+      <Item>
+        <PackageName Value="lazreport"/>
+      </Item>
+      <Item>
         <PackageName Value="rx"/>
       </Item>
       <Item>
@@ -423,6 +432,13 @@
         <Filename Value="test_entity.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit>
+      <Unit>
+        <Filename Value="compra_rel.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="CompraRelForm"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
@@ -447,17 +463,4 @@
       </Options>
     </Linking>
   </CompilerOptions>
-  <Debugging>
-    <Exceptions>
-      <Item>
-        <Name Value="EAbort"/>
-      </Item>
-      <Item>
-        <Name Value="ECodetoolError"/>
-      </Item>
-      <Item>
-        <Name Value="EFOpenError"/>
-      </Item>
-    </Exceptions>
-  </Debugging>
 </CONFIG>

@@ -252,3 +252,5 @@ alter table TEST_LOG add constraint USUARIO_TEST_LOG_FK foreign key (ID_USUARIO)
 alter table TEST_LOG add constraint TEST_TEST_LOG2_FK foreign key (ID_PK) references TEST (ID);
 
 create index TEST_LOG_IDX_DATA_HORA on TEST_LOG (DATA_HORA);
+
+ALTER TABLE TEST ALTER COLUMN STR_NULL_IF_ZERO TO STR_NULL_IF_EMPTY;

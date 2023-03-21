@@ -5,7 +5,7 @@ unit menu_principal_callbacks;
 interface
 
 uses
-  fornecedor_man_form, compra_man_form, tests_form;
+  fornecedor_man_form, compra_man_form, tests_form, compra_rel;
 
 type
 
@@ -18,6 +18,8 @@ type
     procedure ManutencaoFornecedores;
 
     procedure Compras;
+
+    procedure Relatorio1;
 
     procedure GeradorDeCodigoSQL;
     procedure GeradorDeCodigoPascal;
@@ -50,6 +52,11 @@ end;
 procedure TMenuPrincipalCallBacks.Compras;
 begin
   TCompraManForm.Open(False);
+end;
+
+procedure TMenuPrincipalCallBacks.Relatorio1;
+begin
+  TCompraRelForm.Execute;
 end;
 
 procedure TMenuPrincipalCallBacks.GeradorDeCodigoSQL;

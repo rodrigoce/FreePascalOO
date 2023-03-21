@@ -1,0 +1,70 @@
+object CompraRelForm: TCompraRelForm
+  Left = 272
+  Height = 646
+  Top = 118
+  Width = 820
+  Caption = 'CompraRelForm'
+  ClientHeight = 646
+  ClientWidth = 820
+  LCLVersion = '2.2.0.4'
+  object RLReport1: TRLReport
+    Left = 16
+    Height = 1123
+    Top = 8
+    Width = 794
+    Font.Color = clBlack
+    Font.Height = -13
+    Font.Name = 'Arial'
+    object RLBand1: TRLBand
+      Left = 38
+      Height = 88
+      Top = 38
+      Width = 718
+      BandType = btHeader
+      object rlTitle: TRLLabel
+        Left = 4
+        Height = 24
+        Top = 8
+        Width = 710
+        Alignment = taCenter
+        AutoSize = False
+        Caption = 'Título do Relatório'
+        Font.CharSet = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Height = -16
+        Font.Name = 'Arial'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object rlPeriodo: TRLLabel
+        Left = 4
+        Height = 16
+        Top = 37
+        Width = 206
+        Caption = 'Périodo 10/10/2000 até 20/10/2020'
+      end
+    end
+    object RLBand2: TRLBand
+      Left = 38
+      Height = 88
+      Top = 150
+      Width = 718
+      BandType = btSummary
+    end
+    object RLBand3: TRLBand
+      Left = 38
+      Height = 24
+      Top = 126
+      Width = 718
+    end
+    object RLBand4: TRLBand
+      Left = 38
+      Height = 16
+      Top = 238
+      Width = 718
+      BandType = btFooter
+    end
+  end
+end

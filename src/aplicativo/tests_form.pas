@@ -16,14 +16,15 @@ type
   TTestesForm = class(TForm)
     bufTests: TBufDataset;
     btRunTests: TButton;
+    ckDontRunTestsWithExceptionsBased: TCheckBox;
     gridTests: TDBGrid;
     dsTests: TDataSource;
     procedure btRunTestsClick(Sender: TObject);
-    procedure Button1Click(Sender: TObject);
   private
     FDBTests: TDBTests;
     procedure ConfigureGrid;
     procedure RegisterTests;
+    procedure ResetTests;
     procedure AfterExecuteItem(const TestNumber: Integer; const TestResult: TTestResult);
   public
     class procedure Open;
@@ -40,30 +41,9 @@ implementation
 
 procedure TTestesForm.btRunTestsClick(Sender: TObject);
 begin
-  FDBTests.Execute;
+  ResetTests;
+  FDBTests.Execute(ckDontRunTestsWithExceptionsBased.Checked);
 end;
-
-procedure TTestesForm.Button1Click(Sender: TObject);
-begin
-
-end;
-
-{procedure TTestesForm.ToggleBox1Change(Sender: TObject);
-var q: tsqlquery;
-  i: integer;
-begin
-  q := gAppDbContext.CreateSQLQuery;
-  q.SQL.Text := 'select * from test';
-  q.Open;
-  for i := 0 to q.Fields.Count -1 do
-  begin
-    if q.Fields[i].IsNull then
-      ShowMessage(q.Fields[i].FieldName);
-  end;
-
-  if q.FieldByName('INT_32_NULL_IF_ZERO').IsNull THEN
-    ShowMessage(q.FieldByName('INT_32_NULL_IF_ZERO').FieldName);
-end;}
 
 procedure TTestesForm.ConfigureGrid;
 var
@@ -75,6 +55,7 @@ begin
   fb.AddLongIntField('TestNumber');
   fb.AddStringField('Title', 1000);
   fb.AddStringField('Pass', 20);
+  fb.AddStringField('Message', 4000);
   bufTests.CreateDataset;
   fb.Free;
 
@@ -84,7 +65,8 @@ begin
     .SetDefaultProps
     .AddColumn('TestNumber', 'Número', 80)
     .AddColumn('Title', 'Titulo', 700)
-    .AddColumn('Pass', 'Passou?', 120);
+    .AddColumn('Pass', 'Passou?', 120)
+    .AddColumn('Message', 'Mesagem', 700);
   gc.Free;
 end;
 
@@ -105,10 +87,28 @@ begin
     bufTests.FieldByName('TestNumber').Value := itemOfTest.TestNumber;
     bufTests.FieldByName('Title').Value := itemOfTest.Title;
     bufTests.FieldByName('Pass').Value := 'NÃO EXECUTADO';
+    bufTests.FieldByName('Message').Value := itemOfTest.TestResult.Message;
     bufTests.Post;
   end;
 
   bufTests.First;
+end;
+
+procedure TTestesForm.ResetTests;
+begin
+  bufTests.DisableControls;
+  bufTests.First;
+  while not bufTests.EOF do
+  begin
+    bufTests.Edit;
+    bufTests.FieldByName('Pass').Value := 'NÃO EXECUTADO';
+    bufTests.FieldByName('Message').Value := '';
+    bufTests.Post;
+    bufTests.Next;
+  end;
+  bufTests.First;
+  bufTests.EnableControls;
+  Application.ProcessMessages;
 end;
 
 procedure TTestesForm.AfterExecuteItem(const TestNumber: Integer;
@@ -122,6 +122,7 @@ begin
     bufTests.FieldByName('Pass').Value := 'NÃO'
   else
      bufTests.FieldByName('Pass').Value := 'NÃO EXECUTADO';
+  bufTests.FieldByName('Message').Value := TestResult.Message;
   bufTests.Post;
 end;
 

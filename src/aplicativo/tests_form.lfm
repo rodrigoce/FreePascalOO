@@ -3,7 +3,7 @@ object TestesForm: TTestesForm
   Height = 416
   Top = 261
   Width = 562
-  Caption = 'Testes Unitários'
+  Caption = 'Testes de Integração e Unitários'
   ClientHeight = 416
   ClientWidth = 562
   LCLVersion = '2.2.0.4'
@@ -27,6 +27,16 @@ object TestesForm: TTestesForm
     Columns = <>
     DataSource = dsTests
     TabOrder = 1
+  end
+  object ckDontRunTestsWithExceptionsBased: TCheckBox
+    Left = 200
+    Height = 19
+    Top = 11
+    Width = 352
+    Caption = 'Não executar testes que levantam Exceptions proprositalmente'
+    Checked = True
+    State = cbChecked
+    TabOrder = 2
   end
   object bufTests: TBufDataset
     FieldDefs = <>

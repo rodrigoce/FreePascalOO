@@ -29,7 +29,7 @@ uses
   compra_validator, compra_man_form, compra_filter_validator, compra_filter,
   compra_entity, compra_dal, compra_cad_form, compra_bll, compra_item_entity,
   compra_item_dal, fields_builder, dataset_calcs, db_context, tests_form, TODO,
-  test_base, db_tests, test_entity, test_dal;
+  test_base, db_tests, test_entity, test_dal, compra_rel;
 
 {$R *.res}
 
@@ -41,7 +41,6 @@ begin
   TApplicationSession.InitEnvironment;
   Application.CreateForm(TImagesDM, ImagesDM);
   Application.CreateForm(TMenuPrincipalForm, MenuPrincipalForm);
-  Application.CreateForm(TTestesForm, TestesForm);
   Application.Run;
 end.
 

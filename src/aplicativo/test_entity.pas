@@ -51,7 +51,7 @@ begin
     .MapDateTime('DATE_TIME', 'DateTime', False)
     .MapDateTime('DATE_TIME_NULL_IF_ZERO', 'DateTimeNullIfZero', True)
     .MapString('STR', 'Str', 60, False)
-    .MapString('STR_NULL_IF_ZERO', 'StrNullIfEmpty', 60, True)
+    .MapString('STR_NULL_IF_EMPTY', 'StrNullIfEmpty', 60, True)
     .MapDecimal('NUMERO_DECIMAL', 'Decimal', 18, 7);
 end;
 

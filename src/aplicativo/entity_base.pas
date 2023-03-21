@@ -8,6 +8,11 @@ uses
   Classes, SysUtils, TypInfo, Variants, validatable, LazUTF8;
 
 type
+
+  { EMaxLengthExceded }
+
+  EMaxLengthExceded = class(Exception);
+
   { TEntityBase }
 
   TEntityBase = class(TValidatable)
@@ -60,7 +65,7 @@ begin
       v := GetPropValue(Self, ormField.PPropInfo);
       if UTF8Length(v) > ormField.Length then
       begin
-          raise Exception.Create('A propriedade ' + ormField.EntityPropName + ' tem mais de ' + ormField.Length.ToString + ' caracteres no objeto do tipo ' + ormEntity.EntityClassName);
+          raise EMaxLengthExceded.Create('A propriedade ' + ormField.EntityPropName + ' tem mais de ' + ormField.Length.ToString + ' caracteres no objeto do tipo ' + ormEntity.EntityClassName);
       end;
     end;
   end;

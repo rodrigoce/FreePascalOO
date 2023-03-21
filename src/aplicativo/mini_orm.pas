@@ -112,21 +112,19 @@ type
     function MapDecimal(ADBColumnName, AEntityPropName: string; APrecision, AScale: SmallInt): TORMMapBuilder;
   end;
 
-  function VarToStrSQLParam(OrmField: TORMField; Value: Variant): string;
+  // retorna string ou Null
+  function VarToStrSQLParam(OrmField: TORMField; Value: Variant): Variant;
 
 
 implementation
 
-function VarToStrSQLParam(OrmField: TORMField; Value: Variant): string;
+function VarToStrSQLParam(OrmField: TORMField; Value: Variant): Variant;
 begin
   if Value = Null then
-    Result := 'null'
+    Result := Null
   else if OrmField.ORMType in [ormTypeDateTime, ormTypeDateTimeNullIfZero] then
   begin
-    if (OrmField.ORMType = ormTypeDateTimeNullIfZero) and (Value = 0) then
-      Result := 'null'
-    else
-      Result := FormatDateTime('DD/MM/YYYY hh:nn:ss', Value, []);
+    Result := FormatDateTime('DD/MM/YYYY hh:nn:ss', Value, []);
   end
   else
     Result := VarToStr(Value);

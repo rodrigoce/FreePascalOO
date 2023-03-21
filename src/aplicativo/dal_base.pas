@@ -11,6 +11,10 @@ uses
 
 type
 
+  { EDBContextTransactionIsNotOpen }
+
+  EDBContextTransactionIsNotOpen = class(Exception);
+
   { TDALBase }
 
   // BUG DO IDE: classe base genérica, depois de modificar deve ser compilada
@@ -27,6 +31,7 @@ type
       function GetComparableValue(Value: Variant; ormField: TORMField): Variant;
       procedure GenerateSelect(var ORMEntity: TORMEntity; var sql: string);
       function CopyFromDataSetToEntity(DataSet: TSQLQuery; ORMEntity: TORMEntity): T;
+      procedure RegisterRollback(var ORMEntity: TORMEntity; var Entity: T);
     protected
       // passar o filtro como triades: VarArraOf(['NomeProp','=','rodrigo', ...])
       // não consegui fazer com generics dentro de uma classe génerica, por isso usei TFPObjectList
@@ -134,10 +139,14 @@ begin
   Result := entity;
 end;
 
-procedure TDALBase.DoUpdateOldValues(Entity: T; ORMEntity: TORMEntity);
+procedure TDALBase.RegisterRollback(var ORMEntity: TORMEntity; var Entity: T);
 var
   rollbackObj: TRollbackOjb;
 begin
+  // a ideia aqui é registrar os valores anteriores a tentativa de gravar
+  // os dados no banco de dados. Se tivermos que fazer rollback, os valores
+  // devem ser restaurados a esse momento anterior.
+
   rollbackObj := TRollbackOjb.Create;
   rollbackObj.InstanceEntityBase := Entity;
 
@@ -150,11 +159,17 @@ begin
   begin
     // copia os valores de old para a versão de rollback do obj
     rollbackObj.CopyOfOldVersion := T.Create;
-    TORMEntity.CloneTo(Entity.OldVersion, rollbackObj.CopyOfOldVersion, ORMEntity);
+    TORMEntity.CloneTo(Entity.OldVersion, rollbackObj.CopyOfOldVersion,
+      ORMEntity);
   end;
 
   // registra o ojeto de rollback de objetos
   DbContext.AddRollBackObj(rollbackObj);
+end;
+
+procedure TDALBase.DoUpdateOldValues(Entity: T; ORMEntity: TORMEntity);
+begin
+  RegisterRollback(ORMEntity, Entity);
 
   // copia os novos valores para Old
   TORMEntity.CloneTo(Entity, Entity.OldVersion, ORMEntity);
@@ -167,6 +182,7 @@ var
   q: TSQLQuery;
   sql, DBNroRevisaoColumnName: string;
   i, countPKFields, count: Integer;
+  paramValue: Variant;
 begin
   Entity.ValidateStringMaxLength;
 
@@ -237,11 +253,22 @@ begin
     // apenas campos alterados e PK
     if (UpdatedFields.IndexOf(ormField.EntityPropName) > -1) or (ormField.ORMType = ormTypeInt32PK) then
     begin
-      q.ParamByName(ormField.DBColumnName).Value :=
-        ormField.ProcessedParamValue(GetPropValue(Entity, ormField.PPropInfo));
+      paramValue := ormField.ProcessedParamValue(GetPropValue(Entity, ormField.PPropInfo));
+      q.ParamByName(ormField.DBColumnName).Value := paramValue;
 
       if ormField.ORMType in [ormTypeDecimal] then
         q.ParamByName(ormField.DBColumnName).DataType := ftFMTBcd; // para inserir mais que 4 digitos decimais tem que fazer assim
+
+      if paramValue = Null then
+      begin
+        if Entity.NullFields.IndexOf(ormField.EntityPropName) = -1 then
+          Entity.NullFields.Add(ormField.EntityPropName);
+      end
+      else
+      begin
+        if Entity.NullFields.IndexOf(ormField.EntityPropName) > -1 then
+          Entity.NullFields.Delete(Entity.NullFields.IndexOf(ormField.EntityPropName));
+      end;
     end;
   end;
 
@@ -260,6 +287,7 @@ end;
 procedure TDALBase.DoLogUpdate(Entity: T; UpdatedFields: TStringList);
 var
   ormEntity: TORMEntity;
+  ormField: TORMField;
   q: TSQLQuery;
   sql: string;
   i: Integer;
@@ -286,11 +314,17 @@ begin
       q.ParamByName('ID_USUARIO').Value := TApplicationSession.LogedUser.Id;
 
     q.ParamByName('ID_PK').Value := Entity.Id;
-    q.ParamByName('NOME_COLUNA').Value :=  (UpdatedFields.Objects[i] as TORMField).DBColumnName;
-    q.ParamByName('VALOR_ANTERIOR').Value := VarToStrSQLParam((UpdatedFields.Objects[i] as TORMField),
-      GetPropValue(Entity.OldVersion, UpdatedFields[i]));
-    q.ParamByName('VALOR_NOVO').Value := VarToStrSQLParam((UpdatedFields.Objects[i] as TORMField),
-      GetPropValue(Entity, UpdatedFields[i]));
+
+    ormField := (UpdatedFields.Objects[i] as TORMField);
+
+    q.ParamByName('NOME_COLUNA').Value :=  ormField.DBColumnName;
+
+    q.ParamByName('VALOR_ANTERIOR').Value := VarToStrSQLParam(ormField,
+      ormField.ProcessedParamValue(GetPropValue(Entity.OldVersion, ormField.PPropInfo)));
+
+    q.ParamByName('VALOR_NOVO').Value := VarToStrSQLParam(ormField,
+      ormField.ProcessedParamValue(GetPropValue(Entity, ormField.PPropInfo)));
+
     q.ExecSQL;
   end;
 
@@ -306,6 +340,7 @@ var
   q: TSQLQuery;
   i: Integer;
   sql: string;
+  paramValue: Variant;
 begin
   Entity.ValidateStringMaxLength;
 
@@ -343,13 +378,17 @@ begin
   q := DbContext.CreateSQLQuery;
   q.SQL.Text := sql;
 
+  Entity.NullFields.Clear;
   for ormField in ormEntity.FieldList do
   begin
-    q.ParamByName(ormField.DBColumnName).Value :=
-      ormField.ProcessedParamValue(GetPropValue(Entity, ormField.PPropInfo));
+    paramValue := ormField.ProcessedParamValue(GetPropValue(Entity, ormField.PPropInfo));
+    q.ParamByName(ormField.DBColumnName).Value := paramValue;
 
     if ormField.ORMType in [ormTypeDecimal] then
       q.ParamByName(ormField.DBColumnName).DataType := ftFMTBcd; // para inserir mais que 4 digitos decimais tem que fazer assim
+
+    if paramValue = Null then
+      Entity.NullFields.Add(ormField.EntityPropName);
   end;
 
   q.ExecSQL;
@@ -497,7 +536,7 @@ end;
 procedure TDALBase.Insert(Entity: T);
 begin
   if not DbContext.IsInTransaction then
-    raise Exception.Create('O DbContext não estava com uma transação aberta para realizar inserts.');
+    raise EDBContextTransactionIsNotOpen.Create('O DbContext não estava com uma transação aberta para realizar inserts.');
 
   DoInsert(Entity);
   DoLogInsert(Entity);
@@ -508,7 +547,7 @@ var
   updatedFields: TStringList;
 begin
   if not DbContext.IsInTransaction then
-    raise Exception.Create('O DbContext não estava com uma transação aberta para realizar updates.');
+    raise EDBContextTransactionIsNotOpen.Create('O DbContext não estava com uma transação aberta para realizar updates.');
 
   updatedFields := TStringList.Create;
 

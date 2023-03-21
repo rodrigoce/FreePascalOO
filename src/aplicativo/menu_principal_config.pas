@@ -18,6 +18,7 @@ type
     procedure InitCadastros(root: TMenuTreeItem);
     procedure InitMovimentos(root: TMenuTreeItem);
     procedure InitSoftwareHouse(root: TMenuTreeItem);
+    procedure InitRelatorios(root: TMenuTreeItem);
   public
     destructor Destroy; override;
     procedure InitRootMenus(TreeView: TTreeView);
@@ -45,6 +46,9 @@ begin
 
   item := MenuPrincipal.AddChild('Movimentos', 0, nil);
   InitMovimentos(item);
+
+  item := MenuPrincipal.AddChild('Relatórios', 0, nil);
+  InitRelatorios(item);
 
   item := MenuPrincipal.AddChild('Software House', 0, nil);
   InitSoftwareHouse(item);
@@ -83,6 +87,11 @@ begin
   root.AddChild('Gerador de Código SQL', 2, @CallBacks.GeradorDeCodigoSQL);
   root.AddChild('Gerador de Código Pascal', 2, @CallBacks.GeradorDeCodigoPascal);
   root.AddChild('Testes', 2, @CallBacks.Testes);
+end;
+
+procedure TMenuPrincipalConfig.InitRelatorios(root: TMenuTreeItem);
+begin
+  root.AddChild('Relatório 1', 2, @CallBacks.Relatorio1);
 end;
 
 destructor TMenuPrincipalConfig.Destroy;

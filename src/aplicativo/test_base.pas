@@ -5,10 +5,22 @@ unit test_base;
 interface
 
 uses
-  Classes, SysUtils, Controls, Math,
+  Classes, SysUtils, Controls, Math, Contnrs,
   LCLIntf, Generics.Collections;
 
 type
+
+  {
+  TIPOS DE TESTE
+    1. End-To-End (e2e) - Testa a funcionalidade como se fosse a ator do caso de
+       uso (pessoa, sistema, ...);
+    2. Testes de Integração - Testa a funcionalidade mesmo que essa chama outra
+       funcionalidade, incluvise chama banco de dados e qualquer outra camada;
+    3. Teste Unitário - testa uma procedure ou function. Não deve ter
+       dependências como banco de dados. Utiliza-se de mock ou fake de suas
+       dependências forçando o código ser baixamente acoplado classes reais.
+  }
+
 
   TTestPassStatus = (tpsNotExecuted, tpsFail, tpsPass);
 
@@ -39,9 +51,12 @@ type
 
   TTestsBase = class
   private
+    FDontRunTestsWithExceptionsBased: Boolean;
+    FObjectsBag: TFPHashObjectList;
     FInitialTestNumber: Integer;
     FStopTests: Boolean;
     FTestItemAfterExecute: TTestItemAfterExecute;
+    procedure ClearObjsBag;
   protected
     FTestItemList: specialize TList<TTestItem>;
     procedure AddTestItem(ATestMethod: TTestMethodDelegate; ATitle: string);
@@ -55,15 +70,32 @@ type
     destructor Destroy; override;
 
     procedure RegisterTests; virtual; abstract;
-    procedure Execute;
+    procedure Execute(ADontRunTestsWithExceptionsBased: Boolean);
     function GetTestList: specialize TList<TTestItem>;
     property TestItemAfterExecute: TTestItemAfterExecute read FTestItemAfterExecute write FTestItemAfterExecute;
     property StopTests: Boolean read FStopTests write FStopTests;
+    // após a execução dos testes os objetos dessa lista serão liberados da memória (.Free)
+    property ObjectsBag: TFPHashObjectList read FObjectsBag write FObjectsBag;
+    property DontRunTestsWithExceptionsBased: Boolean read FDontRunTestsWithExceptionsBased write FDontRunTestsWithExceptionsBased;
   end;
 
 implementation
 
 { TTestsBase }
+
+procedure TTestsBase.ClearObjsBag;
+var
+  i: Integer;
+begin
+  for i := 0 to ObjectsBag.Count -1 do
+  begin
+    try
+      ObjectsBag.Items[i].Free;
+    except
+    end;
+  end;
+  ObjectsBag.Clear;
+end;
 
 procedure TTestsBase.AddTestItem(ATestMethod: TTestMethodDelegate; ATitle: string);
 var
@@ -116,6 +148,7 @@ constructor TTestsBase.Create(InitialTestNumber: Integer);
 begin
   FInitialTestNumber := InitialTestNumber;
   FTestItemList := specialize TList<TTestItem>.Create;
+  FObjectsBag := TFPHashObjectList.Create(False);
 end;
 
 destructor TTestsBase.Destroy;
@@ -127,14 +160,17 @@ begin
     item.Free;
   end;
 
+  FObjectsBag.Free;
+
   inherited;
 end;
 
-procedure TTestsBase.Execute;
+procedure TTestsBase.Execute(ADontRunTestsWithExceptionsBased: Boolean);
 var
   item: TTestItem;
   testResult: TTestResult;
 begin
+  DontRunTestsWithExceptionsBased := ADontRunTestsWithExceptionsBased;
   StopTests := False;
   for item in FTestItemList do
   begin
@@ -155,6 +191,7 @@ begin
     except
     end;
   end;
+  ClearObjsBag;
 end;
 
 function TTestsBase.GetTestList: specialize TList<TTestItem>;
