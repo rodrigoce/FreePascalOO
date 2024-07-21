@@ -104,11 +104,11 @@ function HexToByte(const AHex: AnsiString): Byte;
 
 {@func HexToBitmap - Cria bitmap a partir de uma cadeia hexadecimal.
  @links HexToGraphic, HexToByte. :/}
-function HexToBitmap(const AHex: AnsiString): TBitmap;
+procedure HexToBitmap(const AHex: AnsiString; ABitMap: TBitmap);
 
 {@func HexToGraphic - Cria um gráfico qualquer a partir de uma cadeia hexadecimal.
  @links HexToBitmap, HexToByte. :/}
-function HexToGraphic(const AHex: AnsiString): TGraphic;
+procedure HexToGraphic(const AHex: AnsiString; AGraphic: TGraphic);
 
 {@func NewComponentName - Cria um nome para um novo componente. :/}
 function NewComponentName(AComponent: TComponent): String;
@@ -318,17 +318,11 @@ begin
   Result.PixelFormat := pf32bit;
 end;
 
-var
-  AuxBitmap: TBitmap;
-
 function NeedAuxBitmap: TBitmap;
 begin
-  if AuxBitmap <> nil then
-    AuxBitmap.Free;
-  AuxBitmap := TRLBitmap.Create;
-  AuxBitmap.Width := 1;
-  AuxBitmap.Height := 1;
-  Result := AuxBitmap;
+  Result := TRLBitmap.Create;
+  Result.Width := 1;
+  Result.Height := 1;
 end;
 
 procedure LogClear;
@@ -394,7 +388,7 @@ type
   TPublicGraphic = class(TGraphic)
   end;
 
-function HexToBitmap(const AHex: AnsiString): TBitmap;
+procedure HexToBitmap(const AHex: AnsiString; ABitMap: TBitmap);
 var
   stream: TStringStream;
   I, L: Integer;
@@ -410,23 +404,23 @@ begin
       Inc(I, 2);
     end;
     // procura referência para a classe
-    Result := NeedAuxBitmap;
     stream.Seek(0, 0);
-    TPublicGraphic(Result).ReadData(stream);
+    TPublicGraphic(ABitMap).ReadData(stream);
   finally
     FreeObj(stream);
   end;
 end;
 
-function HexToGraphic(const AHex: AnsiString): TGraphic;
+procedure HexToGraphic(const AHex: AnsiString; AGraphic: TGraphic);
 var
   graphclassname: string;
   graphclass: TGraphicClass;
+  graph: TGraphic;
   stream: TStringStream;
   I, L: Integer;
   Size: Byte;
 begin
-  Result := nil;
+  graph := nil;
   stream := TStringStream.Create('');
   try
     // traduz string hex em binária
@@ -453,12 +447,12 @@ begin
     // instancia e carrega o grafico
     if graphclass <> nil then
     begin
-      Result := graphclass.Create;
+      graph := graphclass.Create;
       try
-        TPublicGraphic(Result).ReadData(stream);
-      except
-        FreeObj(Result);
-        raise;
+        TPublicGraphic(graph).ReadData(stream);
+        AGraphic.Assign(graph);
+      finally
+        graph.Free;
       end;
     end;
   finally
@@ -949,6 +943,7 @@ begin
     RotatePoints(P, AAngle);
     Result := PointsSize(P);
   end;
+  FreeObj(B);
 end;
 
 procedure MoveRect(var ARect: TRect; AX, AY: Integer);
@@ -1128,11 +1123,9 @@ end;
 
 initialization
   TempDir := GetTempDir;
-  AuxBitmap := nil;
   LogClear;
 
 finalization
   ClearTempFiles;
-  FreeObj(AuxBitmap);
 
 end.  

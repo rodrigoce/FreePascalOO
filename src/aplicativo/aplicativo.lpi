@@ -33,9 +33,6 @@
         <PackageName Value="frce"/>
       </Item>
       <Item>
-        <PackageName Value="rx_LazReport"/>
-      </Item>
-      <Item>
         <PackageName Value="lazreport"/>
       </Item>
       <Item>

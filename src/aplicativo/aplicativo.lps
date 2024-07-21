@@ -16,23 +16,25 @@
       <Unit>
         <Filename Value="dal_base.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="141"/>
-        <CursorPos X="39" Y="173"/>
+        <EditorIndex Value="4"/>
+        <TopLine Value="454"/>
+        <CursorPos X="3" Y="476"/>
         <UsageCount Value="206"/>
         <Bookmarks Count="3">
           <Item0 X="3" Y="123" ID="3"/>
           <Item1 X="54" Y="391" ID="1"/>
           <Item2 X="11" Y="270" ID="2"/>
         </Bookmarks>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="entity_base.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="53"/>
-        <CursorPos X="11" Y="68"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="7"/>
+        <CursorPos X="16" Y="24"/>
         <UsageCount Value="206"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="sql_code_generator_form.pas"/>
@@ -208,21 +210,18 @@
       <Unit>
         <Filename Value="menu_principal_config.pas"/>
         <IsPartOfProject Value="True"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="2"/>
-        <TopLine Value="35"/>
-        <CursorPos Y="55"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="50"/>
+        <CursorPos X="78" Y="54"/>
         <UsageCount Value="203"/>
-        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="menu_principal_callbacks.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="3"/>
-        <TopLine Value="43"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="10"/>
         <CursorPos X="10" Y="59"/>
         <UsageCount Value="203"/>
-        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="mensagem_validacao_form.pas"/>
@@ -340,10 +339,12 @@
         <ComponentName Value="UsuarioChangePassForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="73"/>
-        <CursorPos X="40" Y="92"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="22"/>
+        <CursorPos X="7" Y="37"/>
         <UsageCount Value="267"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="usuario_man_form.pas"/>
@@ -517,18 +518,20 @@
       <Unit>
         <Filename Value="compra_dal.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="51"/>
-        <CursorPos X="12" Y="71"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="6"/>
+        <TopLine Value="4"/>
+        <CursorPos X="75" Y="11"/>
         <UsageCount Value="220"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="compra_entity.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="22"/>
-        <CursorPos X="49" Y="46"/>
+        <EditorIndex Value="2"/>
+        <CursorPos X="28" Y="14"/>
         <UsageCount Value="220"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="compra_filter.pas"/>
@@ -596,10 +599,11 @@
       <Unit>
         <Filename Value="db_context.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="139"/>
-        <CursorPos X="8" Y="145"/>
+        <EditorIndex Value="5"/>
+        <TopLine Value="88"/>
+        <CursorPos X="30" Y="98"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="tests_form.pas"/>
@@ -657,25 +661,23 @@
         <ComponentName Value="CompraRelForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="1"/>
-        <TopLine Value="14"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="12"/>
         <CursorPos X="25" Y="46"/>
-        <UsageCount Value="28"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
+        <UsageCount Value="104"/>
       </Unit>
       <Unit>
         <Filename Value="colors_functions.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="5"/>
         <CursorPos X="19" Y="22"/>
-        <UsageCount Value="43"/>
+        <UsageCount Value="36"/>
       </Unit>
       <Unit>
         <Filename Value="environment.pas"/>
         <EditorIndex Value="-1"/>
         <CursorPos Y="14"/>
-        <UsageCount Value="60"/>
+        <UsageCount Value="53"/>
       </Unit>
       <Unit>
         <Filename Value="log_sql_form.pas"/>
@@ -685,7 +687,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="68"/>
         <CursorPos X="3" Y="62"/>
-        <UsageCount Value="22"/>
+        <UsageCount Value="15"/>
       </Unit>
       <Unit>
         <Filename Value="C:\lazarus\fpc\3.2.2\source\packages\rtl-generics\src\generics.collections.pas"/>
@@ -693,7 +695,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="1157"/>
         <CursorPos Y="1173"/>
-        <UsageCount Value="42"/>
+        <UsageCount Value="35"/>
       </Unit>
       <Unit>
         <Filename Value="..\comps\bbarpanel.pas"/>
@@ -706,7 +708,7 @@
           <EditorIndex Value="-1"/>
           <CursorPos X="22" Y="44"/>
         </ExtraEditor1>
-        <UsageCount Value="16"/>
+        <UsageCount Value="9"/>
       </Unit>
       <Unit>
         <Filename Value="..\comps\paneltitle.pas"/>
@@ -714,17 +716,10 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="13"/>
         <CursorPos X="78" Y="34"/>
-        <UsageCount Value="61"/>
+        <UsageCount Value="54"/>
         <Bookmarks Count="1">
           <Item0 X="6" Y="133" ID="1"/>
         </Bookmarks>
-      </Unit>
-      <Unit>
-        <Filename Value="C:\lazarus\fpc\3.2.2\source\rtl\inc\objpas.inc"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="331"/>
-        <CursorPos X="12" Y="334"/>
-        <UsageCount Value="7"/>
       </Unit>
       <Unit>
         <Filename Value="C:\lazarus\fpc\3.2.2\source\packages\fcl-db\src\sqldb\sqldb.pp"/>
@@ -732,22 +727,16 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="640"/>
         <CursorPos X="3" Y="656"/>
-        <UsageCount Value="22"/>
+        <UsageCount Value="15"/>
       </Unit>
       <Unit>
         <Filename Value="C:\lazarus\fpc\3.2.2\source\packages\fcl-base\src\contnrs.pp"/>
         <UnitName Value="Contnrs"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="40"/>
-        <CursorPos X="26" Y="45"/>
-        <UsageCount Value="43"/>
-      </Unit>
-      <Unit>
-        <Filename Value="C:\lazarus\fpc\3.2.2\source\rtl\inc\objpash.inc"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="190"/>
-        <CursorPos X="23" Y="206"/>
-        <UsageCount Value="3"/>
+        <EditorIndex Value="7"/>
+        <TopLine Value="51"/>
+        <CursorPos X="30" Y="74"/>
+        <UsageCount Value="42"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="C:\lazarus\lcl\dbgrids.pas"/>
@@ -755,21 +744,21 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="854"/>
         <CursorPos Y="870"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="2"/>
       </Unit>
       <Unit>
         <Filename Value="C:\lazarus\fpc\3.2.2\source\rtl\objpas\classes\classesh.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="845"/>
         <CursorPos X="3" Y="816"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="2"/>
       </Unit>
       <Unit>
         <Filename Value="C:\lazarus\fpc\3.2.2\source\rtl\objpas\sysutils\sysutilh.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="91"/>
         <CursorPos X="4" Y="107"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="2"/>
       </Unit>
       <Unit>
         <Filename Value="C:\lazarus\fpc\3.2.2\source\packages\rtl-objpas\src\inc\strutils.pp"/>
@@ -777,44 +766,56 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="66"/>
         <CursorPos X="15" Y="71"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="3"/>
       </Unit>
       <Unit>
         <Filename Value="C:\lazarus\lcl\include\application.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="2176"/>
         <CursorPos X="35" Y="2167"/>
-        <UsageCount Value="12"/>
+        <UsageCount Value="5"/>
+      </Unit>
+      <Unit>
+        <Filename Value="C:\lazarus\fpc\3.2.2\source\packages\fcl-db\src\base\bufdataset.pas"/>
+        <UnitName Value="BufDataset"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="651"/>
+        <CursorPos X="3" Y="670"/>
+        <UsageCount Value="5"/>
       </Unit>
     </Units>
     <JumpHistory HistoryIndex="6">
       <Position>
-        <Filename Value="menu_principal_config.pas"/>
-        <Caret Line="21" Column="42" TopLine="14"/>
+        <Filename Value="todo.pas"/>
+        <Caret Line="15"/>
       </Position>
       <Position>
-        <Filename Value="menu_principal_config.pas"/>
-        <Caret Line="54" Column="24" TopLine="32"/>
+        <Filename Value="usuario_change_pass_form.pas"/>
+        <Caret Line="37" Column="7" TopLine="22"/>
       </Position>
       <Position>
-        <Filename Value="menu_principal_config.pas"/>
-        <Caret Line="94" Column="40" TopLine="70"/>
+        <Filename Value="compra_entity.pas"/>
+        <Caret Line="14" Column="28"/>
       </Position>
       <Position>
-        <Filename Value="menu_principal_callbacks.pas"/>
-        <Caret Line="22" Column="22" TopLine="12"/>
+        <Filename Value="dal_base.pas"/>
+        <Caret Line="46" Column="20" TopLine="26"/>
       </Position>
       <Position>
-        <Filename Value="compra_rel.pas"/>
-        <Caret Line="46" Column="25" TopLine="14"/>
+        <Filename Value="dal_base.pas"/>
+        <Caret Line="38" Column="24" TopLine="27"/>
       </Position>
       <Position>
-        <Filename Value="menu_principal_callbacks.pas"/>
-        <Caret Line="59" Column="10" TopLine="43"/>
+        <Filename Value="compra_dal.pas"/>
+        <Caret Line="26" Column="39" TopLine="22"/>
       </Position>
       <Position>
-        <Filename Value="menu_principal_config.pas"/>
-        <Caret Line="94" Column="54" TopLine="73"/>
+        <Filename Value="compra_dal.pas"/>
+        <Caret Line="69" Column="32" TopLine="38"/>
+      </Position>
+      <Position>
+        <Filename Value="C:\lazarus\fpc\3.2.2\source\packages\fcl-base\src\contnrs.pp"/>
+        <Caret Line="74" Column="30" TopLine="51"/>
       </Position>
     </JumpHistory>
     <RunParams>

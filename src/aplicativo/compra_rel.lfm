@@ -1,12 +1,12 @@
 object CompraRelForm: TCompraRelForm
-  Left = 272
+  Left = 345
   Height = 646
-  Top = 118
+  Top = 136
   Width = 820
   Caption = 'CompraRelForm'
   ClientHeight = 646
   ClientWidth = 820
-  LCLVersion = '2.2.0.4'
+  LCLVersion = '2.2.6.0'
   object RLReport1: TRLReport
     Left = 16
     Height = 1123

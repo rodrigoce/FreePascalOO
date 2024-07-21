@@ -1,7 +1,7 @@
 object UsuarioChangePassForm: TUsuarioChangePassForm
-  Left = 425
+  Left = 426
   Height = 243
-  Top = 308
+  Top = 309
   Width = 585
   ActiveControl = edSenhaAtual
   BorderIcons = [biSystemMenu, biMinimize]
@@ -10,7 +10,7 @@ object UsuarioChangePassForm: TUsuarioChangePassForm
   ClientHeight = 243
   ClientWidth = 585
   Position = poScreenCenter
-  LCLVersion = '2.2.0.4'
+  LCLVersion = '3.4.0.0'
   object edNome: TEdit
     Left = 128
     Height = 23
@@ -47,10 +47,10 @@ object UsuarioChangePassForm: TUsuarioChangePassForm
     Top = 80
     Width = 448
     CharCase = ecLowerCase
-    OnKeyDown = edUserNameKeyDown
-    OnKeyPress = edUserNameKeyPress
     ReadOnly = True
     TabOrder = 2
+    OnKeyDown = edUserNameKeyDown
+    OnKeyPress = edUserNameKeyPress
   end
   object labUserName: TLabel
     Left = 28
@@ -118,6 +118,7 @@ object UsuarioChangePassForm: TUsuarioChangePassForm
     ClientHeight = 35
     ClientWidth = 585
     Color = clSkyBlue
+    ParentBackground = False
     ParentColor = False
     TabOrder = 6
     FixedHeight = 35
@@ -150,8 +151,8 @@ object UsuarioChangePassForm: TUsuarioChangePassForm
         Width = 75
         Anchors = []
         Caption = '&Salvar'
-        OnClick = btSaveClick
         TabOrder = 0
+        OnClick = btSaveClick
       end
       object btCancel: TButton
         Left = 256
@@ -160,8 +161,8 @@ object UsuarioChangePassForm: TUsuarioChangePassForm
         Width = 75
         Anchors = []
         Caption = '&Cancelar'
-        OnClick = btCancelClick
         TabOrder = 1
+        OnClick = btCancelClick
       end
     end
   end
